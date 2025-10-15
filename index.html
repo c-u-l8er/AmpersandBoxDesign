@@ -22,7 +22,24 @@
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Amper Sandbox Design</title>
+        <title>AmperSandboxDesign | Fleet Software Development | GPS, Dispatch, Tracking Systems | 18 Years Experience</title>
+        <meta name="description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration. Serving fleet companies & transportation startups." />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ampersandboxdesign.com/" />
+        <meta property="og:title" content="AmperSandboxDesign | Fleet Software Development" />
+        <meta property="og:description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration." />
+        <meta property="og:image" content="https://ampersandboxdesign.com/white-bg-red-box-black-amp.png" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://ampersandboxdesign.com/" />
+        <meta property="twitter:title" content="AmperSandboxDesign | Fleet Software Development" />
+        <meta property="twitter:description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration." />
+        <meta property="twitter:image" content="https://ampersandboxdesign.com/white-bg-red-box-black-amp.png" />
+
+        <link rel="canonical" href="https://ampersandboxdesign.com/" />
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400&display=swap"
             rel="stylesheet"
@@ -181,6 +198,539 @@
             .btn:hover {
                 background-color: #cc0000;
                 transform: translateY(-3px);
+            }
+
+            .hero-subheading {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto 40px;
+                line-height: 1.8;
+            }
+
+            .hero-cta-group {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin-bottom: 50px;
+                flex-wrap: wrap;
+            }
+
+            .btn-secondary {
+                background-color: transparent;
+                color: var(--black);
+                border: 2px solid var(--black);
+            }
+
+            .btn-secondary:hover {
+                background-color: var(--black);
+                color: var(--white);
+            }
+
+            .hero-stats {
+                display: flex;
+                gap: 60px;
+                justify-content: center;
+                margin-top: 60px;
+                flex-wrap: wrap;
+            }
+
+            .stat-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-item strong {
+                font-size: 2.5rem;
+                color: var(--red);
+                font-weight: 700;
+                display: block;
+            }
+
+            .stat-item span {
+                font-size: 0.9rem;
+                color: var(--gray);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .problem-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+                margin-bottom: 60px;
+            }
+
+            .problem-item {
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            .problem-icon {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .problem-item h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                color: var(--black);
+            }
+
+            .problem-item p {
+                color: var(--gray);
+                line-height: 1.6;
+            }
+
+            .solution-banner {
+                background: linear-gradient(135deg, var(--red) 0%, #cc0000 100%);
+                color: white;
+                padding: 50px;
+                border-radius: 15px;
+                text-align: center;
+            }
+
+            .solution-banner h3 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .solution-banner p {
+                font-size: 1.2rem;
+                opacity: 0.95;
+            }
+
+            .process-steps {
+                display: grid;
+                gap: 40px;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .step-item {
+                display: grid;
+                grid-template-columns: 100px 1fr;
+                gap: 30px;
+                padding: 30px;
+                background: var(--light-gray);
+                border-radius: 10px;
+                position: relative;
+            }
+
+            .step-item:not(:last-child)::after {
+                content: '↓';
+                position: absolute;
+                bottom: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 2rem;
+                color: var(--red);
+            }
+
+            .step-number {
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--red);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .step-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+
+            .step-timeline {
+                color: var(--gray);
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 15px;
+            }
+
+            .step-deliverable {
+                margin-top: 20px;
+                padding: 15px;
+                background: white;
+                border-radius: 8px;
+                border-left: 4px solid var(--red);
+            }
+
+            .step-deliverable strong {
+                color: var(--red);
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 30px;
+                margin-bottom: 60px;
+            }
+
+            .pricing-card {
+                background: white;
+                border-radius: 15px;
+                padding: 40px 30px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                transition: transform 0.3s;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .pricing-card.featured {
+                border: 3px solid var(--red);
+                transform: scale(1.05);
+            }
+
+            .popular-badge {
+                position: absolute;
+                top: -15px;
+                right: 30px;
+                background: var(--red);
+                color: white;
+                padding: 8px 20px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .package-header h3 {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+
+            .package-subtitle {
+                color: var(--gray);
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+
+            .package-price {
+                padding: 20px 0;
+                border-top: 2px solid var(--light-gray);
+                border-bottom: 2px solid var(--light-gray);
+                margin-bottom: 30px;
+            }
+
+            .price-amount {
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--red);
+            }
+
+            .package-description {
+                font-size: 1.05rem;
+                margin-bottom: 25px;
+                line-height: 1.6;
+            }
+
+            .feature-list {
+                list-style: none;
+                margin-bottom: 25px;
+            }
+
+            .feature-list li {
+                padding: 10px 0;
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .package-timeline {
+                color: var(--gray);
+                font-size: 0.95rem;
+                margin-top: 20px;
+            }
+
+            .package-btn {
+                display: block;
+                text-align: center;
+                background: var(--black);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                margin-top: auto;
+                transition: background 0.3s;
+            }
+
+            .package-btn:hover {
+                background: var(--red);
+            }
+
+            .featured-btn {
+                background: var(--red);
+            }
+
+            .featured-btn:hover {
+                background: #cc0000;
+            }
+
+            /* Bundle Section */
+            .bundle-section {
+                background: white;
+                padding: 50px;
+                border-radius: 15px;
+                margin-bottom: 40px;
+            }
+
+            .bundle-section h3 {
+                text-align: center;
+                margin-bottom: 40px;
+                font-size: 2rem;
+            }
+
+            .bundle-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+            }
+
+            .bundle-card {
+                background: var(--light-gray);
+                padding: 30px;
+                border-radius: 10px;
+                text-align: center;
+                position: relative;
+            }
+
+            .bundle-card h4 {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .bundle-price {
+                font-size: 1.1rem;
+                margin: 15px 0;
+            }
+
+            .original-price {
+                text-decoration: line-through;
+                color: var(--gray);
+                font-size: 1rem;
+            }
+
+            .bundle-price strong {
+                font-size: 2rem;
+                color: var(--red);
+            }
+
+            .savings-badge {
+                display: inline-block;
+                background: var(--red);
+                color: white;
+                padding: 5px 15px;
+                border-radius: 15px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                margin-top: 10px;
+            }
+
+            .pricing-footer {
+                text-align: center;
+                padding-top: 30px;
+            }
+
+            .pricing-footer p {
+                margin-bottom: 25px;
+                font-size: 1.1rem;
+            }
+
+            .stats-row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+                margin-bottom: 80px;
+            }
+
+            .stat-box {
+                text-align: center;
+                padding: 30px;
+                background: var(--light-gray);
+                border-radius: 10px;
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+                font-weight: 700;
+                color: var(--red);
+                margin-bottom: 10px;
+            }
+
+            .stat-label {
+                color: var(--gray);
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+
+            .testimonials {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                background: white;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                position: relative;
+            }
+
+            .quote-icon {
+                font-size: 5rem;
+                color: var(--red);
+                opacity: 0.2;
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                font-family: Georgia, serif;
+            }
+
+            .testimonial-text {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                margin-bottom: 25px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .testimonial-author {
+                display: flex;
+                flex-direction: column;
+                border-top: 2px solid var(--light-gray);
+                padding-top: 20px;
+            }
+
+            .testimonial-author strong {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .testimonial-author span {
+                color: var(--gray);
+                font-size: 0.9rem;
+            }
+
+            .faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                max-width: 1100px;
+                margin: 0 auto 40px;
+            }
+
+            .faq-item {
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            }
+
+            .faq-question {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                color: var(--black);
+            }
+
+            .faq-answer {
+                color: var(--gray);
+                line-height: 1.7;
+            }
+
+            .faq-cta {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            .faq-cta p {
+                font-size: 1.2rem;
+            }
+
+            .faq-cta a {
+                color: var(--red);
+                font-weight: 600;
+                text-decoration: underline;
+            }
+
+            .faq-cta a:hover {
+                color: #cc0000;
+            }
+
+            .trust-indicators {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin: 30px 0;
+                padding: 20px;
+                background: var(--light-gray);
+                border-radius: 8px;
+            }
+
+            .trust-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .trust-icon {
+                color: var(--red);
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+
+            .contact-alternative {
+                text-align: center;
+                margin-top: 50px;
+                padding-top: 40px;
+                border-top: 2px solid #ddd;
+            }
+
+            .contact-alternative p {
+                margin-bottom: 15px;
+                font-size: 1.1rem;
+            }
+
+            .contact-alternative a {
+                color: var(--red);
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .contact-alternative a:hover {
+                text-decoration: underline;
+            }
+
+            select.form-control {
+                cursor: pointer;
+            }
+
+            .footer-cta-btn {
+                display: inline-block;
+                background: var(--red);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: background 0.3s;
+            }
+
+            .footer-cta-btn:hover {
+                background: #cc0000;
             }
 
             /* Section Styles */
@@ -940,6 +1490,153 @@
                     margin-bottom: 0;
                 }
             }
+
+            /* New CSS for Why Me Section */
+            .why-me-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 30px;
+                margin-bottom: 60px;
+            }
+
+            .why-item {
+                background: white;
+                padding: 40px 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                text-align: center;
+                transition: transform 0.3s;
+            }
+
+            .why-item:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            }
+
+            .why-icon {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+            }
+
+            .why-item h3 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                color: var(--red);
+            }
+
+            .why-item p {
+                line-height: 1.7;
+                color: var(--gray);
+            }
+
+            .expertise-banner {
+                background: linear-gradient(135deg, #000 0%, #333 100%);
+                color: white;
+                padding: 50px;
+                border-radius: 15px;
+                text-align: center;
+            }
+
+            .expertise-banner h3 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                color: white;
+            }
+
+            .expertise-banner p {
+                font-size: 1.15rem;
+                opacity: 0.9;
+            }
+
+            /* Process Footer Styles */
+            .process-footer {
+                margin-top: 60px;
+                padding: 40px;
+                background: var(--light-gray);
+                border-radius: 12px;
+                text-align: center;
+            }
+
+            .process-footer h3 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                color: var(--black);
+            }
+
+            .process-footer p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            /* Involvement Note Styles */
+            .involvement-note {
+                margin-top: 25px;
+                padding: 20px;
+                background: #fff8e1;
+                border-left: 4px solid var(--red);
+                border-radius: 6px;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .involvement-note strong {
+                color: var(--red);
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            /* About Section Styles */
+            .about-content {
+                max-width: 900px;
+                margin: 0 auto;
+                background: white;
+                padding: 50px;
+                border-radius: 15px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+
+            .about-text h3 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+                color: var(--red);
+            }
+
+            .about-text p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 20px;
+                color: var(--gray);
+            }
+
+            .skill-list {
+                list-style: none;
+                margin: 30px 0;
+                padding: 30px;
+                background: var(--light-gray);
+                border-radius: 10px;
+            }
+
+            .skill-list li {
+                padding: 12px 0;
+                font-size: 1.05rem;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .skill-list li:last-child {
+                border-bottom: none;
+            }
+
+            .skill-list strong {
+                color: var(--red);
+                margin-right: 10px;
+            }
+
+            .about-cta {
+                margin-top: 40px;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
@@ -964,12 +1661,12 @@
 
                     <nav>
                         <ul>
-                            <li><a href="#brand">Our Approach</a></li>
-                            <li><a href="#logo">Design System</a></li>
-                            <li><a href="#colors">Brand Elements</a></li>
-                            <li><a href="#typography">Typography</a></li>
-                            <li><a href="#applications">Services</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#packages">Pricing</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <!-- <li><a href="#results">Results</a></li> -->
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Get Started</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -979,486 +1676,514 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
+                    
                     <p style="margin: 0 auto;">Design by <a href="https://c-u-l8er.link" target="_blank">C U L8er</a></p>
-                    <h1 >
+                    <h1 style="margin: 0;">
                         <span><span class="thin">Amper</span><span class="bold">SandboxDesign</span></span>
                     </h1>
-                    <p>
-                        Crafting powerful brand identities that embody
-                        partnership, connection, and reliability through our
-                        signature design philosophy.
+                    <h2 style="margin: 0; font-size: 2em;">
+                        <span><span class="thin">Fleet Software.</span> <span class="bold">Built Right. 18 Years Experience.</span></span>
+                    </h2>
+                    <p class="hero-subheading">
+                        I'm a fleet software engineer who builds production systems for GPS tracking, dispatch coordination, and logistics operations.
+                        <strong>Custom software solutions with the engineering expertise your fleet needs.</strong>
                     </p>
-                    <a href="#contact" class="btn">Work With Us</a>
+                    <div class="hero-cta-group">
+                        <a href="#packages" class="btn btn-primary">View Packages</a>
+                        <a href="#how-it-works" class="btn btn-secondary">How I Work</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <strong>18+ years</strong>
+                            <span>Fleet Software Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>Elixir/Phoenix</strong>
+                            <span>Production-Grade Systems</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>GEOTAB API</strong>
+                            <span>GPS Integration Expert</span>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>
 
-        <section id="brand">
+        <section id="problem" style="background-color: var(--light-gray);">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Design Philosophy</h2>
-                    <p>
-                        How we transform brands through meaningful connections
-                    </p>
+                    <h2>Is Your Fleet Software Holding You Back?</h2>
                 </div>
 
-                <div class="brand-story">
-                    <div class="brand-story-text">
-                        <p>
-                            At AmperSandboxDesign, we believe in the power of connection.
-                            Our design approach combines strength and
-                            relationship, represented by our distinctive
-                            ampersand logo that symbolizes the partnerships we
-                            build with our clients.
-                        </p>
-
-                        <p>
-                            We create brand identities that are more than just
-                            visually appealing – they're strategically designed
-                            systems built on stability, reliability, and
-                            structured creativity that resonates with your
-                            audience.
-                        </p>
-
-                        <p>
-                            We specialize in connecting
-                            ideas, people, and solutions through thoughtful
-                            design that elevates your brand's market position
-                            and creates lasting impressions that drive intelligence
-                            outcomes.
-                        </p>
+                <div class="problem-grid">
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Off-the-Shelf Software</h3>
+                        <p>Generic fleet software <strong>doesn't fit your workflow</strong> and forces you to change how you work</p>
                     </div>
 
-                    <div class="brand-story-image">
-                        <img
-                            src="white-bg-red-box-black-amp.png"
-                            alt="Our Design Philosophy"
-                        />
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Poor GEOTAB Integration</h3>
+                        <p>GEOTAB integration is <strong>expensive or poorly done</strong>, limiting your access to valuable vehicle data</p>
                     </div>
+
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Limited Custom Features</h3>
+                        <p>You need <strong>custom features competitors don't offer</strong> but can't find off-the-shelf solutions</p>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Legacy Systems</h3>
+                        <p>Your <strong>legacy system is holding you back</strong> with outdated technology and poor performance</p>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Expensive Development Teams</h3>
+                        <p><strong>Hiring a full dev team is too expensive</strong> and they don't understand fleet operations</p>
+                    </div>
+
+                    <div class="problem-item">
+                        <div class="problem-icon">❌</div>
+                        <h3>Agency Disconnect</h3>
+                        <p><strong>Agencies don't understand fleet operations</strong> and build generic software that misses critical needs</p>
+                    </div>
+                </div>
+
+                <div class="solution-banner">
+                    <h3>Build Fleet Software That Gives You a Competitive Edge</h3>
+                    <p>Custom fleet management systems by an engineer with 18 years in GPS and logistics. Get software that fits your exact workflow, not the other way around.</p>
                 </div>
             </div>
         </section>
 
-        <section id="logo" class="white-bg">
+        <section id="why-me">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Design System</h2>
-                    <p>
-                        We create versatile identity systems that adapt to
-                        different environments while maintaining distinctive
-                        character
-                    </p>
+                    <h2>Why Work With a Fleet Software Engineer?</h2>
+                    <p>I'm not your typical developer—I specialize in fleet operations with 18 years of GPS and logistics experience</p>
                 </div>
 
-                <div class="logo-showcase">
-                    <div class="logo-item" data-logo="primary">
-                        <div class="logo-img">
-                            <img
-                                src="white-bg-red-box-black-amp.png"
-                                alt="Primary Logo"
-                            />
-                        </div>
-                        <div class="logo-info">
-                            <h3>Primary System</h3>
-                            <p>
-                                Core brand elements with maximum recognition and
-                                impact
-                            </p>
-                        </div>
+                <div class="why-me-grid">
+                    <div class="why-item">
+                        <div class="why-icon">🚛</div>
+                        <h3>Rooted in Coordination Systems</h3>
+                        <p>My journey began in 2007 with https://halotracks.org - a Halo racing website where I built tracking and checkpoint systems. What started as coordinating virtual racers through checkpoints evolved into coordinating real vehicles through GPS systems. This unique path gives me deep insight into driver workflows, dispatch pain points, maintenance cycles, and DOT compliance requirements.</p>
                     </div>
 
-                    <div class="logo-item" data-logo="inverse">
-                        <div class="logo-img">
-                            <img
-                                src="red-bg-white-box-black-amp.png"
-                                alt="Inverse Logo"
-                            />
-                        </div>
-                        <div class="logo-info">
-                            <h3>High-Impact System</h3>
-                            <p>
-                                Creating bold standout moments for key
-                                touchpoints
-                            </p>
-                        </div>
+                    <div class="why-item">
+                        <div class="why-icon">⚙️</div>
+                        <h3>Elixir/Phoenix Expert</h3>
+                        <p>I build <strong>production-grade, real-time systems</strong> that handle high-volume GPS data, simultaneous dispatch operations, and complex scheduling. No fluff—just robust, scalable backend architecture.</p>
                     </div>
 
-                    <div class="logo-item" data-logo="gray">
-                        <div class="logo-img">
-                            <img
-                                src="grey-bg-white-box-red-amp.png"
-                                alt="Gray Background"
-                            />
-                        </div>
-                        <div class="logo-info">
-                            <h3>Neutral System</h3>
-                            <p>
-                                Sophisticated application for professional
-                                contexts
-                            </p>
-                        </div>
+                    <div class="why-item">
+                        <div class="why-icon">📡</div>
+                        <h3>GEOTAB Integration Specialist</h3>
+                        <p>Deep experience with GEOTAB APIs, telematics data, and GPS coordination systems. <strong>I don't just connect APIs—I build intelligent systems</strong> that transform raw vehicle data into actionable insights.</p>
                     </div>
 
-                    <div class="logo-item" data-logo="dark">
-                        <div class="logo-img">
-                            <img
-                                src="black-bg-grey-box-red-amp.png"
-                                alt="Dark Mode"
-                            />
-                        </div>
-                        <div class="logo-info">
-                            <h3>Premium System</h3>
-                            <p>
-                                Elevated brand presence for upscale applications
-                            </p>
-                        </div>
+                    <div class="why-item">
+                        <div class="why-icon">🎯</div>
+                        <h3>Fleet Domain Knowledge</h3>
+                        <p>Most developers treat fleet software as "just another CRUD app." I understand route optimization, fuel management, driver performance metrics, and the <strong>specific business logic that makes fleets profitable</strong>.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🔧</div>
+                        <h3>Full-Stack Implementation</h3>
+                        <p>I handle everything from database architecture to responsive frontend design. <strong>No handoffs, no miscommunication</strong>. You get a complete system that works seamlessly across desktop and mobile.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🎨</div>
+                        <h3>Integrated Brand Identity</h3>
+                        <p>Your fleet system needs professional UI/UX. Instead of hiring separate designers, <strong>I handle both technical architecture and visual design</strong>, ensuring your software looks as good as it functions.</p>
                     </div>
                 </div>
 
-                <div class="logo-usage">
-                    <div class="section-header">
-                        <h3>Our Design Process</h3>
-                        <p>
-                            How we create brand systems that work across all
-                            touchpoints
-                        </p>
-                    </div>
-
-                    <div class="usage-grid">
-                        <div class="usage-item">
-                            <div class="usage-img">
-                                <img
-                                    src="white-bg-red-box-black-amp.png"
-                                    alt="Research & Strategy"
-                                />
-                            </div>
-                            <div class="usage-content">
-                                <h3>Research & Strategy</h3>
-                                <p>
-                                    We begin with comprehensive research and
-                                    strategic planning to understand your
-                                    audience and market position.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-img">
-                                <img
-                                    src="white-bg-red-box-black-amp.png"
-                                    alt="Identity Development"
-                                />
-                            </div>
-                            <div class="usage-content">
-                                <h3>Identity Development</h3>
-                                <p>
-                                    We create distinctive brand elements that
-                                    capture your unique value proposition and
-                                    resonate with your audience.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-img">
-                                <img
-                                    src="white-bg-red-box-black-amp.png"
-                                    alt="System Implementation"
-                                />
-                            </div>
-                            <div class="usage-content">
-                                <h3>System Implementation</h3>
-                                <p>
-                                    We develop comprehensive guidelines and
-                                    assets that ensure consistent application
-                                    across all platforms.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="expertise-banner">
+                    <h3>The Fleet Software Advantage: Industry Knowledge + Technical Excellence</h3>
+                    <p>Most developers build generic software. I build fleet systems that understand your business because I've been in this industry for 18 years.</p>
                 </div>
             </div>
         </section>
 
-        <section id="colors">
+        <section id="how-it-works">
             <div class="container">
                 <div class="section-header">
-                    <h2>Brand Elements</h2>
-                    <p>
-                        We craft strategic color palettes that express brand
-                        personality and create recognition
-                    </p>
+                    <h2>How I Build Your Fleet Software</h2>
+                    <p>Technical discovery + system architecture + iterative development</p>
                 </div>
 
-                <div class="color-palette">
-                    <div class="color-item">
-                        <div
-                            class="color-preview"
-                            style="background-color: #ff0000"
-                        ></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary Red</div>
-                            <div class="color-values">
-                                <span class="color-value"
-                                    >Creates energy & engagement</span
-                                >
-                                <span class="color-value"
-                                    >Drives action & conversion</span
-                                >
-                                <span class="color-value"
-                                    >Builds brand recognition</span
-                                >
+                <div class="process-steps">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Technical Discovery</h3>
+                            <p class="step-timeline">60-90 minute deep dive session</p>
+                            <p><strong>This is where fleet expertise matters.</strong> We discuss your current operations, pain points, workflow requirements, and technical constraints. I ask specific questions about driver workflows, dispatch processes, and integration needs that typical developers miss.</p>
+                            <div class="step-deliverable">
+                                <strong>My involvement:</strong> 100% technical analysis—no AI here. This is pure fleet domain expertise and system architecture planning.
                             </div>
                         </div>
                     </div>
 
-                    <div class="color-item">
-                        <div
-                            class="color-preview"
-                            style="background-color: #000000"
-                        ></div>
-                        <div class="color-info">
-                            <div class="color-name">Foundation Black</div>
-                            <div class="color-values">
-                                <span class="color-value"
-                                    >Establishes authority</span
-                                >
-                                <span class="color-value"
-                                    >Creates contrast & clarity</span
-                                >
-                                <span class="color-value"
-                                    >Supports premium positioning</span
-                                >
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>System Architecture & Design</h3>
+                            <p class="step-timeline">3-5 days</p>
+                            <p>I design the database schema, API structure, and system architecture based on your fleet requirements. <strong>AI helps with documentation generation, but I make all architectural decisions.</strong> We also plan the UI/UX for optimal fleet operations.</p>
+                            <div class="step-deliverable">
+                                <strong>You get:</strong> Technical architecture document, database design, API specifications, UI/UX wireframes, development roadmap
                             </div>
                         </div>
                     </div>
 
-                    <div class="color-item">
-                        <div
-                            class="color-preview"
-                            style="
-                                background-color: #ffffff;
-                                border: 1px solid #ddd;
-                            "
-                        ></div>
-                        <div class="color-info">
-                            <div class="color-name">Breathable White</div>
-                            <div class="color-values">
-                                <span class="color-value"
-                                    >Creates space & balance</span
-                                >
-                                <span class="color-value"
-                                    >Enhances readability</span
-                                >
-                                <span class="color-value"
-                                    >Provides content clarity</span
-                                >
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Development & Testing</h3>
+                            <p class="step-timeline">6-20 weeks (depending on package)</p>
+                            <p>I build your fleet software in iterative cycles, with regular demos and feedback sessions. <strong>Each iteration delivers working functionality</strong>—from basic tracking to complex dispatch algorithms. Real-time GPS data handling, GEOTAB integration, and fleet-specific business logic.</p>
+                            <div class="step-deliverable">
+                                <strong>You get:</strong> Working software at each milestone, regular demos, stakeholder feedback integration, progressively complete system
                             </div>
                         </div>
                     </div>
 
-                    <div class="color-item">
-                        <div
-                            class="color-preview"
-                            style="background-color: #808080"
-                        ></div>
-                        <div class="color-info">
-                            <div class="color-name">Versatile Gray</div>
-                            <div class="color-values">
-                                <span class="color-value"
-                                    >Creates sophistication</span
-                                >
-                                <span class="color-value"
-                                    >Adds depth & hierarchy</span
-                                >
-                                <span class="color-value"
-                                    >Supports overall balance</span
-                                >
+                    <div class="step-item">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Brand Identity Integration</h3>
+                            <p class="step-timeline">1-2 weeks</p>
+                            <p>While development progresses, <strong>I design your brand identity</strong>—logo, colors, typography—that integrates seamlessly with your fleet software. This ensures your system looks professional and matches your company identity.</p>
+                            <div class="step-deliverable">
+                                <strong>You get:</strong> Complete brand system, brand guidelines, applied to software UI, marketing materials if needed
                             </div>
                         </div>
                     </div>
+
+                    <div class="step-item">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <h3>Deployment & Training</h3>
+                            <p class="step-timeline">1 week</p>
+                            <p><strong>This is where most developers disappear.</strong> I deploy your system to production infrastructure, configure monitoring, set up backups, and train your team on all functionality—from driver mobile access to dispatcher dashboards.</p>
+                            <div class="step-deliverable">
+                                <strong>You get:</strong> Live production system, team training sessions, administrator documentation, monitoring setup, data migration if needed
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">06</div>
+                        <div class="step-content">
+                            <h3>Support & Iteration</h3>
+                            <p class="step-timeline">60-180 days (depending on package)</p>
+                            <p>Post-launch, I monitor system performance, fix bugs, and make adjustments based on real-world usage. <strong>Your fleet operations evolve, and your software evolves with it.</strong> I'm available for support and feature enhancements.</p>
+                            <div class="step-deliverable">
+                                <strong>You get:</strong> Priority support, bug fixes, performance optimization, feature consultation, system monitoring
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-footer">
+                    <h3>The Fleet Software Advantage: Domain Expertise + Technical Excellence</h3>
+                    <p>My 18 years in fleet operations means I understand your business before writing a line of code. <strong>This eliminates the learning curve typical developers have</strong> and results in software that actually solves your fleet management challenges from day one.</p>
                 </div>
             </div>
         </section>
 
-        <section id="typography" class="white-bg">
+        <section id="technology-stack">
             <div class="container">
                 <div class="section-header">
-                    <h2>Typography Systems</h2>
-                    <p>
-                        We select typefaces that reflect brand personality and
-                        ensure consistent communication
-                    </p>
+                    <h2>Technology Stack Built for Fleet Operations</h2>
+                    <p>Production-grade technologies chosen specifically for fleet management systems</p>
                 </div>
 
-                <div class="typography">
-                    <div class="font-examples">
-                        <div class="font-example">
-                            <div class="font-name">
-                                <h3>Montserrat</h3>
-                                <span>Primary Selection</span>
-                            </div>
-                            <div class="font-samples">
-                                <div class="heading">Brand Headlines</div>
-                                <div class="subheading">Section Headers</div>
-                                <div class="body">
-                                    Primary content that balances
-                                    professionalism with approachability.
-                                    Creates a strong impression while
-                                    maintaining clear communication across all
-                                    brand touchpoints.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="font-example">
-                            <div class="font-name">
-                                <h3>Open Sans</h3>
-                                <span>Supporting Selection</span>
-                            </div>
-                            <div class="font-samples">
-                                <div class="body font-secondary">
-                                    Complementary content that enhances
-                                    readability and provides versatility across
-                                    platforms and applications.
-                                </div>
-                                <div class="caption">
-                                    Detailed information presented with clarity
-                                    and precision. Perfect for specifications,
-                                    terms, and fine print requirements
-                                </div>
-                            </div>
-                        </div>
+                <div class="why-me-grid">
+                    <div class="why-item">
+                        <div class="why-icon">⚡</div>
+                        <h3>Elixir/Phoenix</h3>
+                        <p><strong>Real-time performance for fleet operations.</strong> Handles thousands of simultaneous GPS updates, dispatch communications, and driver interactions without breaking a sweat. Perfect for the high-concurrency needs of fleet management.</p>
                     </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🗄️</div>
+                        <h3>PostgreSQL</h3>
+                        <p><strong>Robust data management for complex fleet data.</strong> Handles vehicle telemetry, maintenance records, driver histories, and complex scheduling queries with reliable performance and advanced analytics capabilities.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">📱</div>
+                        <h3>TypeScript & Modern JavaScript</h3>
+                        <p><strong>Responsive frontend for any device.</strong> From desktop dispatch dashboards to mobile driver interfaces, your fleet software works seamlessly across all devices with type-safe, maintainable code.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🛰️</div>
+                        <h3>GEOTAB API Integration</h3>
+                        <p><strong>Direct access to vehicle telematics data.</strong> Real-time GPS tracking, engine diagnostics, driver behavior metrics, and maintenance alerts—all integrated into your custom fleet solution.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🔄</div>
+                        <h3>Real-time Communication</h3>
+                        <p><strong>Phoenix LiveView & Channels.</strong> Instant updates across all connected devices—when a driver updates their status, dispatch sees it immediately. No refreshing, no delays.</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-icon">🔐</div>
+                        <h3>Production Security</h3>
+                        <p><strong>Enterprise-grade security for fleet data.</strong> Role-based access control, encrypted communications, secure API authentication, and compliance with transportation industry standards.</p>
+                    </div>
+                </div>
+
+                <div class="expertise-banner">
+                    <h3>Battle-Tested Technology for Mission-Critical Fleet Operations</h3>
+                    <p>Every technology choice is optimized for the specific challenges of fleet management: high data volume, real-time requirements, mobile access, and 24/7 reliability.</p>
                 </div>
             </div>
         </section>
 
-        <section id="voice">
+        <section id="packages" style="background-color: var(--light-gray);">
             <div class="container">
                 <div class="section-header">
-                    <h2>Brand Voice Strategy</h2>
-                    <p>
-                        How we craft communication that resonates with your
-                        audience
-                    </p>
+                    <h2>Fleet Software Packages. Built for Your Operations.</h2>
+                    <p>Choose the package that fits your fleet size and complexity</p>
                 </div>
 
-                <div class="voice-tone">
-                    <div class="voice-grid">
-                        <div class="voice-item">
-                            <i class="fas fa-bold"></i>
-                            <h3>Bold</h3>
-                            <p>
-                                We develop confident messaging that cuts through
-                                the noise
-                            </p>
+                <div class="pricing-grid">
+                    <!-- Package 1: Fleet Software Foundation -->
+                    <div class="pricing-card">
+                        <div class="package-header">
+                            <h3>Fleet Software Foundation</h3>
+                            <p class="package-subtitle">For Startups & Small Fleets</p>
                         </div>
-
-                        <div class="voice-item">
-                            <i class="fas fa-briefcase"></i>
-                            <h3>Professional</h3>
-                            <p>
-                                We create authoritative voices that build
-                                credibility and trust
-                            </p>
+                        <div class="package-price">
+                            <span class="price-amount">$18,000</span>
                         </div>
-
-                        <div class="voice-item">
-                            <i class="fas fa-handshake"></i>
-                            <h3>Approachable</h3>
-                            <p>
-                                We craft accessible communication that connects
-                                with diverse audiences
-                            </p>
-                        </div>
-
-                        <div class="voice-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <h3>Solution-focused</h3>
-                            <p>
-                                We develop messaging that highlights benefits
-                                and outcomes
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="applications" class="white-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Services</h2>
-                    <p>
-                        Comprehensive brand solutions for businesses at every
-                        stage
-                    </p>
-                </div>
-
-                <div class="applications">
-                    <div class="application-item">
-                        <div class="application-img">
-                            <img
-                                src="white-bg-red-box-black-amp.png"
-                                alt="Brand Identity"
-                            />
-                        </div>
-                        <div class="application-content">
-                            <h3>Brand Identity Design</h3>
-                            <p>
-                                Complete visual identity systems that capture
-                                your unique position
-                            </p>
-                            <ul>
-                                <li>Logo system development</li>
-                                <li>Visual language creation</li>
-                                <li>Brand guidelines documentation</li>
-                                <li>Identity asset production</li>
+                        <div class="package-features">
+                            <p class="package-description">Core fleet functionality to get you started</p>
+                            <ul class="feature-list">
+                                <li>✓ <strong>Core Application Development</strong></li>
+                                <li>✓ Custom web application (Elixir/Phoenix or Node.js backend)</li>
+                                <li>✓ Responsive frontend (HTML/CSS/JS/TypeScript)</li>
+                                <li>✓ PostgreSQL database architecture</li>
+                                <li>✓ User authentication & role-based access</li>
+                                <li>✓ 3-5 core features (tracking, dispatch, scheduling, etc.)</li>
+                                <li>✓ <strong>Basic Brand Identity</strong> (included)</li>
+                                <li>✓ Logo design (1-2 variations)</li>
+                                <li>✓ Color palette & typography system</li>
+                                <li>✓ Production hosting setup</li>
+                                <li>✓ 60 days of bug fixes & adjustments</li>
                             </ul>
+                            <p class="package-timeline"><strong>Timeline:</strong> 6-8 weeks</p>
                         </div>
+                        <a href="#contact" class="package-btn">Get Started</a>
                     </div>
 
-                    <div class="application-item">
-                        <div class="application-img">
-                            <img
-                                src="red-bg-white-box-black-amp.png"
-                                alt="Digital Experience"
-                            />
+                    <!-- Package 2: Fleet Software Platform (Most Popular) -->
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">MOST POPULAR</div>
+                        <div class="package-header">
+                            <h3>Fleet Software Platform</h3>
+                            <p class="package-subtitle">For Growing Fleets</p>
                         </div>
-                        <div class="application-content">
-                            <h3>Digital Experience</h3>
-                            <p>
-                                Strategic digital design that creates meaningful
-                                connections
-                            </p>
-                            <ul>
-                                <li>Website design & development</li>
-                                <li>UI/UX for digital products</li>
-                                <li>Social media branding</li>
-                                <li>Email marketing systems</li>
+                        <div class="package-price">
+                            <span class="price-amount">$42,000</span>
+                        </div>
+                        <div class="package-features">
+                            <p class="package-description">Comprehensive fleet management system</p>
+                            <ul class="feature-list">
+                                <li>✓ <strong>Everything in Foundation, PLUS:</strong></li>
+                                <li>✓ <strong>Advanced Features</strong></li>
+                                <li>✓ Real-time GPS tracking & mapping</li>
+                                <li>✓ GEOTAB API integration</li>
+                                <li>✓ Multi-user dashboards (driver, dispatcher, admin)</li>
+                                <li>✓ Reporting & analytics</li>
+                                <li>✓ Mobile-responsive design</li>
+                                <li>✓ 8-12 core features</li>
+                                <li>✓ API for third-party integrations</li>
+                                <li>✓ <strong>Professional Brand System</strong></li>
+                                <li>✓ Complete visual identity (3-4 logo variations)</li>
+                                <li>✓ Marketing website (5-8 pages)</li>
+                                <li>✓ Scalable infrastructure setup</li>
+                                <li>✓ 90 days priority support</li>
                             </ul>
+                            <p class="package-timeline"><strong>Timeline:</strong> 10-14 weeks</p>
                         </div>
+                        <a href="#contact" class="package-btn featured-btn">Get Started</a>
                     </div>
 
-                    <div class="application-item">
-                        <div class="application-img">
-                            <img
-                                src="grey-bg-white-box-red-amp.png"
-                                alt="Brand Strategy"
-                            />
+                    <!-- Package 3: Enterprise Fleet Solution -->
+                    <div class="pricing-card">
+                        <div class="package-header">
+                            <h3>Enterprise Fleet Solution</h3>
+                            <p class="package-subtitle">For Established Fleets</p>
                         </div>
-                        <div class="application-content">
-                            <h3>Brand Strategy</h3>
-                            <p>
-                                Strategic foundations that drive brand success
-                            </p>
-                            <ul>
-                                <li>Market research & positioning</li>
-                                <li>Brand architecture</li>
-                                <li>Messaging development</li>
-                                <li>Brand experience mapping</li>
+                        <div class="package-price">
+                            <span class="price-amount">$95,000</span>
+                        </div>
+                        <div class="package-features">
+                            <p class="package-description">Complete enterprise fleet management</p>
+                            <ul class="feature-list">
+                                <li>✓ <strong>Everything in Platform, PLUS:</strong></li>
+                                <li>✓ <strong>Enterprise Architecture</strong></li>
+                                <li>✓ High-performance Elixir/Phoenix backend</li>
+                                <li>✓ Real-time communication (LiveView/Channels)</li>
+                                <li>✓ Advanced GPS & telematics integration</li>
+                                <li>✓ Multi-tenant architecture (if needed)</li>
+                                <li>✓ Custom business logic & workflows</li>
+                                <li>✓ 15-25 core features</li>
+                                <li>✓ REST & GraphQL APIs</li>
+                                <li>✓ <strong>Advanced Integrations</strong></li>
+                                <li>✓ ERP/accounting system connections</li>
+                                <li>✓ Payment processing (Stripe)</li>
+                                <li>✓ DOT compliance reporting</li>
+                                <li>✓ 6 months implementation support</li>
                             </ul>
+                            <p class="package-timeline"><strong>Timeline:</strong> 16-24 weeks</p>
+                        </div>
+                        <a href="#contact" class="package-btn">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Add-On Services -->
+                <div class="bundle-section">
+                    <h3>Add-On Services (À La Carte)</h3>
+                    <div class="bundle-grid">
+                        <div class="bundle-card">
+                            <h4>GEOTAB Integration</h4>
+                            <p class="bundle-price"><strong>$8,000</strong></p>
+                            <p>Connect your application to GEOTAB telematics for real-time vehicle data, driver behavior, maintenance alerts, and compliance reporting.</p>
+                        </div>
+                        <div class="bundle-card">
+                            <h4>Mobile App Development</h4>
+                            <p class="bundle-price"><strong>$15,000 - $35,000</strong></p>
+                            <p>Native iOS/Android apps or progressive web apps (PWA) for drivers, dispatchers, or customers.</p>
+                        </div>
+                        <div class="bundle-card">
+                            <h4>Ongoing Maintenance</h4>
+                            <p class="bundle-price"><strong>$2,500/month</strong></p>
+                            <p>Bug fixes, security updates, feature enhancements, performance monitoring, and priority support.</p>
+                        </div>
+                        <div class="bundle-card">
+                            <h4>Custom Integrations</h4>
+                            <p class="bundle-price"><strong>$3,000 - $12,000</strong></p>
+                            <p>Connect to QuickBooks, accounting software, CRMs, payment processors, or custom APIs.</p>
+                        </div>
+                        <div class="bundle-card">
+                            <h4>Brand-Only Package</h4>
+                            <p class="bundle-price"><strong>$6,500</strong></p>
+                            <p>If you just need brand identity without software development: Logo design, color palette, brand guidelines, business materials.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-footer">
+                    <p><strong>Payment Structure:</strong> 40% deposit to begin discovery & architecture, 30% at development milestone, 30% upon deployment & training</p>
+                    <a href="#contact" class="btn">Schedule Free Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" style="background-color: var(--light-gray);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Common Questions</h2>
+                </div>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3 class="faq-question">Are you really a one-person operation?</h3>
+                        <p class="faq-answer">Yes. I'm a fleet software engineer with 18+ years of experience in Elixir/Phoenix, GPS systems, and real-time applications. I've built custom automation tools that let me work at enterprise speed solo. You work directly with me—no project managers, no junior developers, no offshore teams. This means faster decisions and better technical communication.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Can you handle complex fleet software requirements?</h3>
+                        <p class="faq-answer">Absolutely. I specialize in production-ready fleet systems with real-time GPS tracking, GEOTAB integration, dispatch algorithms, and complex business logic. I've been building fleet software since 2007—if it involves vehicles, GPS, or logistics, I can build it.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Do you have experience with GEOTAB integration?</h3>
+                        <p class="faq-answer">Yes, extensive experience. I've integrated GEOTAB APIs for real-time vehicle data, telematics, driver behavior monitoring, and maintenance alerts. I understand the nuances of GPS data processing and can build intelligent systems on top of GEOTAB's platform.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Why choose Elixir/Phoenix for fleet software?</h3>
+                        <p class="faq-answer">Elixir/Phoenix is perfect for fleet operations: it handles thousands of simultaneous GPS updates, real-time dispatch communications, and high-concurrency user interactions without performance degradation. It's built for the exact challenges fleet systems face.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">What makes you different from other developers?</h3>
+                        <p class="faq-answer">Most developers treat fleet software as "just another CRUD app." My journey began in 2007 building https://halotracks.org - a Halo racing website with checkpoint tracking systems. What started as coordinating virtual racers through checkpoints evolved into coordinating real vehicles through GPS systems. This unique background means I build software that actually solves your fleet problems, not just generic business applications.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">How long does a typical fleet software project take?</h3>
+                        <p class="faq-answer">Most projects range from 6-24 weeks depending on complexity. Fleet Software Foundation takes 6-8 weeks, Fleet Software Platform takes 10-14 weeks, and Enterprise Fleet Solution takes 16-24 weeks. I provide detailed timelines in technical proposals.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Can you integrate with our existing systems?</h3>
+                        <p class="faq-answer">Yes. I regularly integrate with accounting software, ERPs, payment processors, and existing fleet management systems. I can build custom APIs to connect your new fleet software with whatever systems you're currently using.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3 class="faq-question">Do you offer payment plans?</h3>
+                        <p class="faq-answer">Yes. Standard payment structure is 40% deposit to begin discovery & architecture, 30% at development milestone, and 30% upon deployment & training. I can also arrange custom payment plans for qualified fleet companies.</p>
+                    </div>
+                </div>
+
+                <div class="faq-cta">
+                    <p>Still have questions? <a href="#contact">Schedule a free consultation</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Who You're Working With</h2>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Hi, I'm Travis :)</h3>
+                        <p>My journey in web development began in 2007, inspired by https://halotracks.org - a website for a Halo racing gametype with checkpoints and maps. This early experience with creating tracking and coordination systems ultimately led me to specialize in fleet management software. For 18 years, I've been building web applications that help coordinate vehicles, optimize routes, and manage logistics operations. Not to mention all my side projects! However my mission remains focused and with intent now.</p>
+                        
+                        <p><strong>Current Projects:</strong></p>
+                        <ul class="skill-list">
+                            <li><strong>webhost.systems</strong> - Ship GPS Tracking In Minutes</li>
+                            <li><strong>gpscoord.com</strong> - Manage your fleet tracking infrastructure</li>
+                        </ul>
+                        
+                        <p><strong>Technical Stack:</strong></p>
+                        <ul class="skill-list">
+                            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, TypeScript, Alpine.js, WebGPU/WebLLM</li>
+                            <li><strong>Backend:</strong> Elixir/Phoenix (production-grade), Node.js, real-time systems</li>
+                            <li><strong>Integrations:</strong> GEOTAB APIs, OpenRouter, Stripe payments, GPS/mapping systems</li>
+                            <li><strong>AI Tooling:</strong> VS Code with Cline, custom prompt engineering, workflow automation</li>
+                            <li><strong>Fleet Expertise:</strong> 18+ years building GPS tracking, dispatch coordination, route optimization, maintenance scheduling systems</li>
+                        </ul>
+                        
+                        <p><strong>My Approach:</strong> I believe the best software comes from engineers who understand the business domain deeply. Most developers treat fleet software as "just another CRUD app." I've spent nearly two decades in this space—I understand driver workflows, dispatch pain points, maintenance cycles, and DOT compliance requirements.</p>
+                        
+                        <p><strong>Why I Include Design:</strong> Every fleet system needs a clear brand identity and intuitive UI. Instead of handing you off to a separate designer (creating delays and miscommunication), I handle both—ensuring your technical architecture and visual identity are aligned from day one.</p>
+                        
+                        <p><strong>Who I Work Best With:</strong> Fleet companies that need custom software beyond off-the-shelf solutions, logistics startups building their first dispatch/tracking system, transportation companies wanting to modernize legacy systems, and businesses needing GEOTAB integration or custom GPS solutions.</p>
+                        
+                        <div class="about-cta">
+                            <a href="#contact" class="btn">Let's Build Your Fleet System</a>
                         </div>
                     </div>
                 </div>
@@ -1468,11 +2193,8 @@
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2>Start Your Brand Journey</h2>
-                    <p>
-                        Let's collaborate to create a powerful brand identity
-                        that drives business growth
-                    </p>
+                    <h2>Ready to Work Together?</h2>
+                    <p>Schedule a free 30-minute strategy call. I'll review your business, ask clarifying questions, and determine if we're a good fit. <strong>No sales pitch—just honest strategic consultation.</strong> If I don't think I can deliver significant value, I'll tell you upfront.</p>
                 </div>
 
                 <div class="contact-form">
@@ -1482,9 +2204,7 @@
                         method="POST"
                     >
                         <div class="form-group">
-                            <label for="name" class="form-label"
-                                >Your Name</label
-                            >
+                            <label for="name" class="form-label">Your Name *</label>
                             <input
                                 type="text"
                                 id="name"
@@ -1495,9 +2215,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="form-label"
-                                >Email Address</label
-                            >
+                            <label for="email" class="form-label">Email Address *</label>
                             <input
                                 type="email"
                                 id="email"
@@ -1508,9 +2226,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="company" class="form-label"
-                                >Company/Organization</label
-                            >
+                            <label for="company" class="form-label">Company/Organization</label>
                             <input
                                 type="text"
                                 id="company"
@@ -1520,21 +2236,68 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="message" class="form-label"
-                                >Tell Us About Your Project</label
-                            >
+                            <label for="package" class="form-label">Interested In</label>
+                            <select id="package" name="package" class="form-control">
+                                <option value="">Select a package...</option>
+                                <option value="foundation">Fleet Software Foundation ($18,000)</option>
+                                <option value="platform">Fleet Software Platform ($42,000)</option>
+                                <option value="enterprise">Enterprise Fleet Solution ($95,000)</option>
+                                <option value="geotab">GEOTAB Integration ($8,000)</option>
+                                <option value="mobile">Mobile App Development ($15,000-$35,000)</option>
+                                <option value="maintenance">Ongoing Maintenance ($2,500/month)</option>
+                                <option value="brand-only">Brand-Only Package ($6,500)</option>
+                                <option value="custom">Custom Fleet Solution</option>
+                                <option value="consultation">Just Exploring</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Tell Us About Your Project *</label>
                             <textarea
                                 id="message"
                                 name="message"
                                 class="form-control"
+                                placeholder="What fleet challenges are you facing? What software features do you need?"
                                 required
                             ></textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="timeline" class="form-label">Timeline</label>
+                            <select id="timeline" name="timeline" class="form-control">
+                                <option value="">When do you need this?</option>
+                                <option value="urgent">ASAP (1-2 weeks)</option>
+                                <option value="soon">Within 1 month</option>
+                                <option value="planning">2-3 months</option>
+                                <option value="flexible">Flexible timeline</option>
+                            </select>
+                        </div>
+
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <span class="trust-icon">✓</span>
+                                <span>No-obligation consultation</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-icon">✓</span>
+                                <span>Custom proposal within 48 hours</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-icon">✓</span>
+                                <span>Flexible payment plans</span>
+                            </div>
+                        </div>
+
                         <button type="submit" class="form-btn">
-                            Schedule a Consultation
+                            Schedule Free Consultation
                         </button>
                     </form>
+                </div>
+
+                <div class="contact-alternative">
+                    <p><strong>Prefer to talk first?</strong></p>
+                    <p>Email: <a href="mailto:travis.burandt@gmail.com">travis.burandt@gmail.com</a></p>
+                    <p>Or text "ASD" to: <a href="tel:+12817980497">(281) 798-0497</a></p>
                 </div>
             </div>
         </section>
@@ -1551,47 +2314,58 @@
                             <span><span class="thin">Amper</span><span class="bold">SandboxDesign</span></span>
                         </div>
                         <p>
-                            AmperSandboxDesign is a premium branding design agency, creating distinctive brand identities that
-                            build connections, drive recognition, and deliver
-                            business results through our signature design
-                            philosophy.
+                            Strategic brand design and development by an experienced developer-designer who's built custom AI tools for efficiency.
+                            <strong>You get expert strategy + technical execution + AI speed.</strong>
+                            Based in [Your Location], serving businesses worldwide.
+                        </p>
+                        <p style="margin-top: 20px;">
+                            <strong>Design by <a href="https://c-u-l8er.link" target="_blank" style="color: var(--red);">C U L8er</a></strong>
                         </p>
                     </div>
 
                     <div class="footer-links">
-                        <h3>Our Services</h3>
+                        <h3>Services</h3>
                         <ul>
-                            <li><a href="#brand">Brand Strategy</a></li>
-                            <li><a href="#logo">Visual Identity</a></li>
-                            <li><a href="#colors">Brand Elements</a></li>
-                            <li><a href="#typography">Typography</a></li>
-                            <li>
-                                <a href="#applications">Digital Experience</a>
-                            </li>
+                            <li><a href="#packages">Brand Foundation</a></li>
+                            <li><a href="#packages">Brand Strategy</a></li>
+                            <li><a href="#packages">Brand Transformation</a></li>
+                            <li><a href="#packages">Brand + Web Bundles</a></li>
+                            <li><a href="#contact">Custom Solutions</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#results">Case Studies</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="portfolio.html" target="_blank">Portfolio</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-contact">
-                        <h3>Contact Information</h3>
-                        <div class="contact-info">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span
-                                >123 Brand Avenue, Suite 500<br />Design City,
-                                DC 10101</span
-                            >
+                        <h3>Get Started</h3>
+                        <p style="margin-bottom: 20px;">Ready to transform your brand?</p>
+                        <a href="#contact" class="footer-cta-btn">Schedule Free Consultation</a>
+                        <div class="contact-info" style="margin-top: 30px;">
+                            <i class="fas fa-envelope"></i>
+                            <span>travis.burandt@gmail.com</span>
                         </div>
                         <div class="contact-info">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <span>Text "ASD" to (281) 798-0497</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="footer-bottom">
                     <p>
-                        &copy;
-                        <span id="currentYear"></span> AmperSandboxDesign
-                        Branding Agency. All rights reserved.
+                        &copy; <span id="currentYear"></span> AmperSandboxDesign. All rights reserved.
+                    </p>
+                    <p style="margin-top: 10px; font-size: 0.8rem;">
+                        Fleet Software Engineering • GPS Integration • Real-Time Systems
                     </p>
                 </div>
             </div>
@@ -1758,6 +2532,45 @@
                     }
                 });
             });
+        </script>
+
+        <!-- Schema Markup for SEO -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "AmperSandboxDesign",
+          "description": "Custom fleet management software by an engineer with 18 years in GPS and logistics. Elixir, Phoenix, GEOTAB integration. Serving fleet companies & transportation startups.",
+          "url": "https://ampersandboxdesign.com",
+          "priceRange": "$18000-$95000",
+          "areaServed": "Worldwide",
+          "serviceType": ["Fleet Software Development", "GPS Integration", "GEOTAB API Integration", "Real-time Systems", "Custom Logistics Solutions"],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "45"
+          },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Fleet Software Foundation",
+              "price": "18000",
+              "priceCurrency": "USD"
+            },
+            {
+              "@type": "Offer",
+              "name": "Fleet Software Platform",
+              "price": "42000",
+              "priceCurrency": "USD"
+            },
+            {
+              "@type": "Offer",
+              "name": "Enterprise Fleet Solution",
+              "price": "95000",
+              "priceCurrency": "USD"
+            }
+          ]
+        }
         </script>
     </body>
 </html>
