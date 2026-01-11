@@ -1,2575 +1,918 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[&] Ampersand Box Design - AI Infrastructure for the Future</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AmperSandboxDesign | Fleet Software Development | GPS, Dispatch, Tracking Systems | 18 Years Experience</title>
-        <meta name="description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration. Serving fleet companies & transportation startups." />
+        :root {
+            --black: #0a0a0a;
+            --near-black: #141414;
+            --gray-900: #1a1a1a;
+            --gray-800: #2a2a2a;
+            --gray-700: #3a3a3a;
+            --gray-500: #6a6a6a;
+            --gray-300: #9a9a9a;
+            --white: #f5f5f5;
+            --accent-cyan: #00d9ff;
+            --accent-green: #00ff88;
+            --accent-red: #ff3366;
+            --accent-yellow: #ffaa00;
+            --accent-purple: #9933ff;
+        }
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ampersandboxdesign.com/" />
-        <meta property="og:title" content="AmperSandboxDesign | Fleet Software Development" />
-        <meta property="og:description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration." />
-        <meta property="og:image" content="https://ampersandboxdesign.com/white-bg-red-box-black-amp.png" />
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://ampersandboxdesign.com/" />
-        <meta property="twitter:title" content="AmperSandboxDesign | Fleet Software Development" />
-        <meta property="twitter:description" content="Custom fleet management software by an engineer with 18 years in GPS/logistics. Elixir, Phoenix, GEOTAB integration." />
-        <meta property="twitter:image" content="https://ampersandboxdesign.com/white-bg-red-box-black-amp.png" />
+        /* Animated grid background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-        <link rel="canonical" href="https://ampersandboxdesign.com/" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            :root {
-                --red: #ff0000;
-                --black: #000000;
-                --white: #ffffff;
-                --gray: #808080;
-                --light-gray: #f0f0f0;
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo .ampersand {
+            color: var(--accent-cyan);
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero h1 .bracket {
+            color: var(--accent-cyan);
+        }
+
+        .hero-description {
+            font-size: 1.5rem;
+            color: var(--gray-300);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
 
-            body {
-                font-family: "Montserrat", sans-serif;
-                color: var(--black);
-                line-height: 1.6;
-                background-color: var(--white);
-            }
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
 
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px;
-            }
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--black);
+        }
 
-            /* Logo styling */
-            .thin {
-                font-weight: 300 !important;
-            }
+        .btn-primary:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
 
-            .bold {
-                margin-left: 0 !important;
-                font-weight: 700 !important;
-            }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gray-700);
+        }
 
-            /* Header Styles */
-            header {
-                background-color: var(--white);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                position: fixed;
-                width: 100%;
-                z-index: 100;
-            }
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
 
-            .header-content {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 20px 0;
-            }
+        /* Products Section */
+        .products {
+            padding: 8rem 0;
+            position: relative;
+        }
 
-            .logo-header {
-                height: 50px;
-                display: flex;
-                align-items: center;
-            }
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
 
-            .logo-header img {
-                height: 100%;
-            }
+        .section-header h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
 
-            .logo-header span {
-                font-weight: 700;
-                font-size: 1.5rem;
-                margin-left: 10px;
-            }
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
 
-            nav ul {
-                display: flex;
-                list-style: none;
-            }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
 
-            nav ul li {
-                margin-left: 30px;
-            }
+        .product-card {
+            background: var(--near-black);
+            border: 2px solid var(--gray-800);
+            border-radius: 8px;
+            padding: 3rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
 
-            nav ul li a {
-                text-decoration: none;
-                color: var(--black);
-                font-weight: 600;
-                transition: color 0.3s;
-            }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
 
-            nav ul li a:hover {
-                color: var(--red);
-            }
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
 
-            /* Hero Section */
-            .hero {
-                padding: 185px 0 100px;
-                text-align: center;
-                background-color: var(--light-gray);
-                position: relative;
-                overflow: hidden;
-            }
+        .product-card:hover {
+            border-color: var(--gray-700);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
 
-            .hero::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                background-image: linear-gradient(
-                    45deg,
-                    rgba(255, 0, 0, 0.05) 25%,
-                    transparent 25%,
-                    transparent 50%,
-                    rgba(255, 0, 0, 0.05) 50%,
-                    rgba(255, 0, 0, 0.05) 75%,
-                    transparent 75%,
-                    transparent
-                );
-                background-size: 100px 100px;
-                opacity: 0.5;
-            }
+        .product-card:nth-child(1)::before { background: var(--accent-cyan); }
+        .product-card:nth-child(2)::before { background: var(--accent-green); }
+        .product-card:nth-child(3)::before { background: var(--accent-red); }
+        .product-card:nth-child(4)::before { background: var(--accent-yellow); }
 
-            .hero-content {
-                position: relative;
-                z-index: 2;
-            }
+        .product-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gray-900);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
 
+        .product-card:nth-child(2) .product-icon { color: var(--accent-green); }
+        .product-card:nth-child(3) .product-icon { color: var(--accent-red); }
+        .product-card:nth-child(4) .product-icon { color: var(--accent-yellow); }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card .product-domain {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card:nth-child(2) .product-domain { color: var(--accent-green); }
+        .product-card:nth-child(3) .product-domain { color: var(--accent-red); }
+        .product-card:nth-child(4) .product-domain { color: var(--accent-yellow); }
+
+        .product-card p {
+            color: var(--gray-300);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--gray-900);
+            border-radius: 4px;
+            color: var(--gray-300);
+            font-weight: 600;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 700;
+            transition: gap 0.2s;
+        }
+
+        .product-link:hover {
+            gap: 1rem;
+        }
+
+        .product-card:nth-child(2) .product-link { color: var(--accent-green); }
+        .product-card:nth-child(3) .product-link { color: var(--accent-red); }
+        .product-card:nth-child(4) .product-link { color: var(--accent-yellow); }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 8rem 0;
+            background: var(--near-black);
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stack-card {
+            padding: 2.5rem;
+            background: var(--gray-900);
+            border: 2px solid var(--gray-800);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .stack-card:hover {
+            border-color: var(--gray-700);
+            transform: translateY(-4px);
+        }
+
+        .stack-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stack-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .stack-card p {
+            color: var(--gray-300);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 8rem 0;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-quote {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            color: var(--accent-cyan);
+        }
+
+        .philosophy-text {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 2px solid var(--gray-900);
+            margin-top: 8rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .footer-brand .logo-footer {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-brand .ampersand {
+            color: var(--accent-cyan);
+            font-size: 2.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray-300);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-900);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1.25rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent-cyan);
+            color: var(--black);
+        }
+
+        .footer-col h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--gray-900);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
             .hero h1 {
-                font-size: 4rem;
-                margin-bottom: 20px;
-                font-weight: 700;
-                letter-spacing: 1px;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                max-width: 600px;
-                margin: 0 auto 40px;
-            }
-
-            .btn {
-                display: inline-block;
-                background-color: var(--red);
-                color: var(--white);
-                padding: 12px 30px;
-                border-radius: 4px;
-                text-decoration: none;
-                font-weight: 600;
-                transition:
-                    background-color 0.3s,
-                    transform 0.3s;
-            }
-
-            .btn:hover {
-                background-color: #cc0000;
-                transform: translateY(-3px);
-            }
-
-            .hero-subheading {
-                font-size: 1.3rem;
-                max-width: 700px;
-                margin: 0 auto 40px;
-                line-height: 1.8;
-            }
-
-            .hero-cta-group {
-                display: flex;
-                gap: 20px;
-                justify-content: center;
-                margin-bottom: 50px;
-                flex-wrap: wrap;
-            }
-
-            .btn-secondary {
-                background-color: transparent;
-                color: var(--black);
-                border: 2px solid var(--black);
-            }
-
-            .btn-secondary:hover {
-                background-color: var(--black);
-                color: var(--white);
-            }
-
-            .hero-stats {
-                display: flex;
-                gap: 60px;
-                justify-content: center;
-                margin-top: 60px;
-                flex-wrap: wrap;
-            }
-
-            .stat-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .stat-item strong {
-                font-size: 2.5rem;
-                color: var(--red);
-                font-weight: 700;
-                display: block;
-            }
-
-            .stat-item span {
-                font-size: 0.9rem;
-                color: var(--gray);
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .problem-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .problem-item {
-                background: white;
-                padding: 30px;
-                border-radius: 10px;
-                text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            }
-
-            .problem-icon {
-                font-size: 3rem;
-                margin-bottom: 15px;
-            }
-
-            .problem-item h3 {
-                font-size: 1.3rem;
-                margin-bottom: 10px;
-                color: var(--black);
-            }
-
-            .problem-item p {
-                color: var(--gray);
-                line-height: 1.6;
-            }
-
-            .solution-banner {
-                background: linear-gradient(135deg, var(--red) 0%, #cc0000 100%);
-                color: white;
-                padding: 50px;
-                border-radius: 15px;
-                text-align: center;
-            }
-
-            .solution-banner h3 {
-                font-size: 2rem;
-                margin-bottom: 15px;
-            }
-
-            .solution-banner p {
-                font-size: 1.2rem;
-                opacity: 0.95;
-            }
-
-            .process-steps {
-                display: grid;
-                gap: 40px;
-                max-width: 900px;
-                margin: 0 auto;
-            }
-
-            .step-item {
-                display: grid;
-                grid-template-columns: 100px 1fr;
-                gap: 30px;
-                padding: 30px;
-                background: var(--light-gray);
-                border-radius: 10px;
-                position: relative;
-            }
-
-            .step-item:not(:last-child)::after {
-                content: '↓';
-                position: absolute;
-                bottom: -35px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 2rem;
-                color: var(--red);
-            }
-
-            .step-number {
-                font-size: 3rem;
-                font-weight: 700;
-                color: var(--red);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .step-content h3 {
-                font-size: 1.5rem;
-                margin-bottom: 5px;
-            }
-
-            .step-timeline {
-                color: var(--gray);
-                font-size: 0.9rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 15px;
-            }
-
-            .step-deliverable {
-                margin-top: 20px;
-                padding: 15px;
-                background: white;
-                border-radius: 8px;
-                border-left: 4px solid var(--red);
-            }
-
-            .step-deliverable strong {
-                color: var(--red);
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            .pricing-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .pricing-card {
-                background: white;
-                border-radius: 15px;
-                padding: 40px 30px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                display: flex;
-                flex-direction: column;
-                position: relative;
-                transition: transform 0.3s;
-            }
-
-            .pricing-card:hover {
-                transform: translateY(-10px);
-            }
-
-            .pricing-card.featured {
-                border: 3px solid var(--red);
-                transform: scale(1.05);
-            }
-
-            .popular-badge {
-                position: absolute;
-                top: -15px;
-                right: 30px;
-                background: var(--red);
-                color: white;
-                padding: 8px 20px;
-                border-radius: 20px;
-                font-size: 0.85rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .package-header h3 {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
-            }
-
-            .package-subtitle {
-                color: var(--gray);
-                font-size: 0.95rem;
-                margin-bottom: 20px;
-            }
-
-            .package-price {
-                padding: 20px 0;
-                border-top: 2px solid var(--light-gray);
-                border-bottom: 2px solid var(--light-gray);
-                margin-bottom: 30px;
-            }
-
-            .price-amount {
-                font-size: 3rem;
-                font-weight: 700;
-                color: var(--red);
-            }
-
-            .package-description {
-                font-size: 1.05rem;
-                margin-bottom: 25px;
-                line-height: 1.6;
-            }
-
-            .feature-list {
-                list-style: none;
-                margin-bottom: 25px;
-            }
-
-            .feature-list li {
-                padding: 10px 0;
-                border-bottom: 1px solid var(--light-gray);
-            }
-
-            .package-timeline {
-                color: var(--gray);
-                font-size: 0.95rem;
-                margin-top: 20px;
-            }
-
-            .package-btn {
-                display: block;
-                text-align: center;
-                background: var(--black);
-                color: white;
-                padding: 15px 30px;
-                border-radius: 8px;
-                text-decoration: none;
-                font-weight: 600;
-                margin-top: auto;
-                transition: background 0.3s;
-            }
-
-            .package-btn:hover {
-                background: var(--red);
-            }
-
-            .featured-btn {
-                background: var(--red);
-            }
-
-            .featured-btn:hover {
-                background: #cc0000;
-            }
-
-            /* Bundle Section */
-            .bundle-section {
-                background: white;
-                padding: 50px;
-                border-radius: 15px;
-                margin-bottom: 40px;
-            }
-
-            .bundle-section h3 {
-                text-align: center;
-                margin-bottom: 40px;
-                font-size: 2rem;
-            }
-
-            .bundle-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 25px;
-            }
-
-            .bundle-card {
-                background: var(--light-gray);
-                padding: 30px;
-                border-radius: 10px;
-                text-align: center;
-                position: relative;
-            }
-
-            .bundle-card h4 {
-                font-size: 1.3rem;
-                margin-bottom: 15px;
-            }
-
-            .bundle-price {
-                font-size: 1.1rem;
-                margin: 15px 0;
-            }
-
-            .original-price {
-                text-decoration: line-through;
-                color: var(--gray);
-                font-size: 1rem;
-            }
-
-            .bundle-price strong {
-                font-size: 2rem;
-                color: var(--red);
-            }
-
-            .savings-badge {
-                display: inline-block;
-                background: var(--red);
-                color: white;
-                padding: 5px 15px;
-                border-radius: 15px;
-                font-size: 0.85rem;
-                font-weight: 700;
-                margin-top: 10px;
-            }
-
-            .pricing-footer {
-                text-align: center;
-                padding-top: 30px;
-            }
-
-            .pricing-footer p {
-                margin-bottom: 25px;
-                font-size: 1.1rem;
-            }
-
-            .stats-row {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 30px;
-                margin-bottom: 80px;
-            }
-
-            .stat-box {
-                text-align: center;
-                padding: 30px;
-                background: var(--light-gray);
-                border-radius: 10px;
-            }
-
-            .stat-number {
                 font-size: 3.5rem;
-                font-weight: 700;
-                color: var(--red);
-                margin-bottom: 10px;
             }
 
-            .stat-label {
-                color: var(--gray);
-                font-size: 0.95rem;
-                line-height: 1.4;
+            .products-grid {
+                grid-template-columns: 1fr;
             }
 
-            .testimonials {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-
-            .testimonial-card {
-                background: white;
-                padding: 40px;
-                border-radius: 15px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                position: relative;
-            }
-
-            .quote-icon {
-                font-size: 5rem;
-                color: var(--red);
-                opacity: 0.2;
-                position: absolute;
-                top: 10px;
-                left: 20px;
-                font-family: Georgia, serif;
-            }
-
-            .testimonial-text {
-                font-size: 1.05rem;
-                line-height: 1.7;
-                margin-bottom: 25px;
-                position: relative;
-                z-index: 1;
-            }
-
-            .testimonial-author {
-                display: flex;
-                flex-direction: column;
-                border-top: 2px solid var(--light-gray);
-                padding-top: 20px;
-            }
-
-            .testimonial-author strong {
-                font-size: 1.1rem;
-                margin-bottom: 5px;
-            }
-
-            .testimonial-author span {
-                color: var(--gray);
-                font-size: 0.9rem;
-            }
-
-            .faq-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 30px;
-                max-width: 1100px;
-                margin: 0 auto 40px;
-            }
-
-            .faq-item {
-                background: white;
-                padding: 30px;
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            }
-
-            .faq-question {
-                font-size: 1.2rem;
-                margin-bottom: 15px;
-                color: var(--black);
-            }
-
-            .faq-answer {
-                color: var(--gray);
-                line-height: 1.7;
-            }
-
-            .faq-cta {
-                text-align: center;
-                margin-top: 50px;
-            }
-
-            .faq-cta p {
-                font-size: 1.2rem;
-            }
-
-            .faq-cta a {
-                color: var(--red);
-                font-weight: 600;
-                text-decoration: underline;
-            }
-
-            .faq-cta a:hover {
-                color: #cc0000;
-            }
-
-            .trust-indicators {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 15px;
-                margin: 30px 0;
-                padding: 20px;
-                background: var(--light-gray);
-                border-radius: 8px;
-            }
-
-            .trust-item {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .trust-icon {
-                color: var(--red);
-                font-weight: bold;
-                font-size: 1.2rem;
-            }
-
-            .contact-alternative {
-                text-align: center;
-                margin-top: 50px;
-                padding-top: 40px;
-                border-top: 2px solid #ddd;
-            }
-
-            .contact-alternative p {
-                margin-bottom: 15px;
-                font-size: 1.1rem;
-            }
-
-            .contact-alternative a {
-                color: var(--red);
-                text-decoration: none;
-                font-weight: 600;
-            }
-
-            .contact-alternative a:hover {
-                text-decoration: underline;
-            }
-
-            select.form-control {
-                cursor: pointer;
-            }
-
-            .footer-cta-btn {
-                display: inline-block;
-                background: var(--red);
-                color: white;
-                padding: 12px 24px;
-                border-radius: 6px;
-                text-decoration: none;
-                font-weight: 600;
-                transition: background 0.3s;
-            }
-
-            .footer-cta-btn:hover {
-                background: #cc0000;
-            }
-
-            /* Section Styles */
-            section {
-                padding: 80px 0;
-            }
-
-            .section-header {
-                text-align: center;
-                margin-bottom: 60px;
-            }
-
-            .section-header h2 {
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-                position: relative;
-                display: inline-block;
-            }
-
-            .section-header h2::after {
-                content: "";
-                display: block;
-                width: 50%;
-                height: 4px;
-                background-color: var(--red);
-                position: absolute;
-                bottom: -10px;
-                left: 25%;
-            }
-
-            .section-header p {
-                max-width: 700px;
-                margin: 0 auto;
-                font-size: 1.1rem;
-            }
-
-            /* Brand Story */
-            .brand-story {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 40px;
-                margin-top: 40px;
-            }
-
-            .brand-story-text {
-                flex: 1;
-            }
-
-            .brand-story-text p {
-                margin-bottom: 20px;
-                font-size: 1.1rem;
-            }
-
-            .brand-story-image {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .brand-story-image img {
-                max-width: 90%;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
-
-            /* Logo Section */
-            .logo-showcase {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .logo-item {
-                padding: 30px;
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                transition:
-                    transform 0.3s,
-                    box-shadow 0.3s;
-                cursor: pointer;
-            }
-
-            .logo-item:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            }
-
-            .logo-img {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .logo-img img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            .logo-info h3 {
-                margin-bottom: 10px;
-                text-align: center;
-            }
-
-            .logo-info p {
-                text-align: center;
-                color: var(--gray);
-            }
-
-            .white-bg {
-                background-color: var(--white);
-            }
-
-            .red-bg {
-                background-color: var(--red);
-            }
-
-            .gray-bg {
-                background-color: var(--gray);
-            }
-
-            .black-bg {
-                background-color: var(--black);
-            }
-
-            /* Logo Usage */
-            .logo-usage {
-                margin-top: 50px;
-            }
-
-            .usage-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .usage-item {
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .usage-img {
-                height: 200px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 20px;
-                background-color: var(--light-gray);
-            }
-
-            .usage-img img {
-                max-width: 80%;
-                max-height: 80%;
-            }
-
-            .usage-content {
-                padding: 20px;
-            }
-
-            .usage-content h3 {
-                margin-bottom: 10px;
-            }
-
-            .usage-content p {
-                color: var(--gray);
-            }
-
-            /* Color Palette */
-            .color-palette {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 30px;
-                margin-top: 40px;
-            }
-
-            .color-item {
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s;
-            }
-
-            .color-item:hover {
-                transform: translateY(-10px);
-            }
-
-            .color-preview {
-                height: 150px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .color-info {
-                padding: 20px;
-                background-color: var(--white);
-            }
-
-            .color-name {
-                font-weight: 600;
-                margin-bottom: 5px;
-                font-size: 1.1rem;
-            }
-
-            .color-values {
-                margin-top: 10px;
-                font-family: "Open Sans", sans-serif;
-            }
-
-            .color-value {
-                display: block;
-                margin-bottom: 5px;
-                font-size: 0.9rem;
-                color: var(--gray);
-            }
-
-            /* Typography */
-            .typography {
-                margin-top: 40px;
-            }
-
-            .font-examples {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-
-            .font-example {
-                padding: 30px;
-                border-radius: 10px;
-                background-color: var(--light-gray);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .font-name {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid var(--gray);
-            }
-
-            .font-name h3 {
-                font-size: 1.5rem;
-            }
-
-            .font-name span {
-                color: var(--gray);
-            }
-
-            .font-samples div {
-                margin-bottom: 15px;
-            }
-
-            .font-samples .heading {
-                font-weight: 700;
-                font-size: 2rem;
-            }
-
-            .font-samples .subheading {
-                font-weight: 600;
-                font-size: 1.5rem;
-            }
-
-            .font-samples .body {
-                font-weight: 400;
-                font-size: 1rem;
-            }
-
-            .font-secondary {
-                font-family: "Open Sans", sans-serif;
-            }
-
-            .font-samples .caption {
-                font-family: "Open Sans", sans-serif;
-                font-weight: 300;
-                font-size: 0.875rem;
-            }
-
-            /* Applications */
-            .applications {
-                margin-top: 40px;
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-
-            .application-item {
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s;
-            }
-
-            .application-item:hover {
-                transform: translateY(-10px);
-            }
-
-            .application-img {
-                height: 200px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--light-gray);
-                padding: 20px;
-            }
-
-            .application-img img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            .application-content {
-                padding: 20px;
-            }
-
-            .application-content h3 {
-                margin-bottom: 10px;
-            }
-
-            .application-content ul {
-                list-style-position: inside;
-                margin-top: 10px;
-                color: var(--gray);
-            }
-
-            .application-content li {
-                margin-bottom: 5px;
-            }
-
-            /* Voice & Tone */
-            .voice-tone {
-                margin-top: 40px;
-            }
-
-            .voice-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-            }
-
-            .voice-item {
-                padding: 20px;
-                border-radius: 10px;
-                background-color: var(--light-gray);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                transition: transform 0.3s;
-            }
-
-            .voice-item:hover {
-                transform: translateY(-5px);
-            }
-
-            .voice-item i {
-                font-size: 2rem;
-                color: var(--red);
-                margin-bottom: 15px;
-            }
-
-            .voice-item h3 {
-                margin-bottom: 10px;
-            }
-
-            /* Contact Section */
-            .contact {
-                background-color: var(--light-gray);
-                text-align: center;
-            }
-
-            .contact-form {
-                max-width: 600px;
-                margin: 40px auto 0;
-                background-color: var(--white);
-                padding: 40px;
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-                text-align: left;
-            }
-
-            .form-label {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: 600;
-            }
-
-            .form-control {
-                width: 100%;
-                padding: 12px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                font-family: "Montserrat", sans-serif;
-                transition: border-color 0.3s;
-            }
-
-            .form-control:focus {
-                outline: none;
-                border-color: var(--red);
-            }
-
-            textarea.form-control {
-                min-height: 120px;
-                resize: vertical;
-            }
-
-            .form-btn {
-                display: inline-block;
-                background-color: var(--red);
-                color: var(--white);
-                border: none;
-                padding: 12px 30px;
-                border-radius: 4px;
-                font-weight: 600;
-                cursor: pointer;
-                transition:
-                    background-color 0.3s,
-                    transform 0.3s;
-            }
-
-            .form-btn:hover {
-                background-color: #cc0000;
-                transform: translateY(-3px);
-            }
-
-            /* Footer */
-            footer {
-                background-color: var(--black);
-                color: var(--white);
-                padding: 60px 0 30px;
+            .stack-grid {
+                grid-template-columns: 1fr;
             }
 
             .footer-content {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 40px;
-                margin-bottom: 40px;
-            }
-
-            .footer-logo {
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-            }
-
-            .footer-logo img {
-                height: 40px;
-            }
-
-            .footer-logo span {
-                font-weight: 700;
-                font-size: 1.5rem;
-                margin-left: 10px;
-                color: var(--white);
-            }
-
-            .footer-about {
-                flex: 1;
-                min-width: 250px;
-            }
-
-            .footer-about p {
-                margin-bottom: 20px;
-                color: #ccc;
-            }
-
-            .footer-links {
-                min-width: 200px;
-            }
-
-            .footer-links h3 {
-                margin-bottom: 20px;
-                font-size: 1.2rem;
-                color: var(--white);
-            }
-
-            .footer-links ul {
-                list-style: none;
-            }
-
-            .footer-links li {
-                margin-bottom: 10px;
-            }
-
-            .footer-links a {
-                color: #ccc;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-
-            .footer-links a:hover {
-                color: var(--red);
-            }
-
-            .footer-contact {
-                min-width: 250px;
-            }
-
-            .footer-contact h3 {
-                margin-bottom: 20px;
-                font-size: 1.2rem;
-                color: var(--white);
-            }
-
-            .contact-info {
-                margin-bottom: 10px;
-                display: flex;
-                align-items: flex-start;
-            }
-
-            .contact-info i {
-                color: var(--red);
-                margin-right: 10px;
-                margin-top: 5px;
-            }
-
-            .contact-info span {
-                color: #ccc;
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
             .footer-bottom {
-                text-align: center;
-                padding-top: 30px;
-                border-top: 1px solid #333;
-            }
-
-            .footer-bottom p {
-                color: #777;
-                font-size: 0.875rem;
-            }
-
-            /* Modal */
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1000;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgba(0, 0, 0, 0.7);
-            }
-
-            .modal-content {
-                background-color: var(--white);
-                margin: 5% auto;
-                padding: 40px;
-                border-radius: 10px;
-                max-width: 700px;
-                position: relative;
-                animation: modalFade 0.3s;
-            }
-
-            @keyframes modalFade {
-                from {
-                    transform: translateY(-50px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-
-            .close-modal {
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                font-size: 24px;
-                font-weight: bold;
-                color: var(--gray);
-                cursor: pointer;
-                transition: color 0.3s;
-            }
-
-            .close-modal:hover {
-                color: var(--red);
-            }
-
-            .modal-body {
-                text-align: center;
-            }
-
-            .modal-body h3 {
-                margin-bottom: 30px;
-                font-size: 1.8rem;
-            }
-
-            .modal-img {
-                margin-bottom: 30px;
-                text-align: center;
-            }
-
-            .modal-img img {
-                max-width: 300px;
-                border-radius: 10px;
-            }
-
-            .modal-info {
-                margin-bottom: 30px;
-                text-align: left;
-            }
-
-            .modal-actions {
-                margin-top: 30px;
-            }
-
-            .download-btn {
-                display: inline-block;
-                background-color: var(--red);
-                color: var(--white);
-                padding: 12px 30px;
-                border-radius: 4px;
-                text-decoration: none;
-                font-weight: 600;
-                transition: background-color 0.3s;
-                margin: 0 10px;
-            }
-
-            .download-btn:hover {
-                background-color: #cc0000;
-            }
-
-            /* Responsive Styles */
-            @media (max-width: 992px) {
-                .brand-story {
-                    flex-direction: column;
-                }
-
-                .brand-story-image {
-                    order: -1;
-                    margin-bottom: 30px;
-                }
-
-                .section-header h2 {
-                    font-size: 2.2rem;
-                }
-
-                .hero h1 {
-                    font-size: 3.5rem;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .header-content {
-                    flex-direction: column;
-                }
-
-                .logo-header {
-                    margin-bottom: 20px;
-                }
-
-                nav ul {
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-
-                nav ul li {
-                    margin: 5px 15px;
-                }
-
-                .hero h1 {
-                    font-size: 3rem;
-                }
-
-                .section-header h2 {
-                    font-size: 2rem;
-                }
-
-                .footer-content {
-                    flex-direction: column;
-                }
-            }
-
-            @media (max-width: 576px) {
-                .hero h1 {
-                    font-size: 2.5rem;
-                }
-
-                .section-header h2 {
-                    font-size: 1.8rem;
-                }
-
-                .contact-form {
-                    padding: 30px 20px;
-                }
-
-                .modal-content {
-                    margin: 10% auto;
-                    padding: 30px 20px;
-                }
-            }
-
-            /* Mobile menu */
-            .menu-toggle {
-                display: none;
                 flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 21px;
-                cursor: pointer;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .menu-toggle span {
-                display: block;
-                height: 3px;
+            .hero-description {
+                font-size: 1.25rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
                 width: 100%;
-                background-color: var(--black);
-                border-radius: 3px;
-            }
-
-            @media (max-width: 768px) {
-                .menu-toggle {
-                    display: flex;
-                }
-
-                nav {
-                    display: none;
-                    width: 100%;
-                    margin-top: 20px;
-                }
-
-                nav.active {
-                    display: block;
-                }
-
-                nav ul {
-                    flex-direction: column;
-                }
-
-                nav ul li {
-                    margin: 10px 0;
-                    text-align: center;
-                }
-
-                .header-content {
-                    flex-wrap: wrap;
-                    justify-content: space-between;
-                }
-
-                .logo-header {
-                    margin-bottom: 0;
-                }
-            }
-
-            /* New CSS for Why Me Section */
-            .why-me-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .why-item {
-                background: white;
-                padding: 40px 30px;
-                border-radius: 12px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-                text-align: center;
-                transition: transform 0.3s;
-            }
-
-            .why-item:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            }
-
-            .why-icon {
-                font-size: 3.5rem;
-                margin-bottom: 20px;
-            }
-
-            .why-item h3 {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-                color: var(--red);
-            }
-
-            .why-item p {
-                line-height: 1.7;
-                color: var(--gray);
-            }
-
-            .expertise-banner {
-                background: linear-gradient(135deg, #000 0%, #333 100%);
-                color: white;
-                padding: 50px;
-                border-radius: 15px;
                 text-align: center;
             }
 
-            .expertise-banner h3 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-                color: white;
+            .header-nav {
+                display: none;
             }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
 
-            .expertise-banner p {
-                font-size: 1.15rem;
-                opacity: 0.9;
-            }
-
-            /* Process Footer Styles */
-            .process-footer {
-                margin-top: 60px;
-                padding: 40px;
-                background: var(--light-gray);
-                border-radius: 12px;
-                text-align: center;
-            }
-
-            .process-footer h3 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-                color: var(--black);
-            }
-
-            .process-footer p {
-                font-size: 1.1rem;
-                line-height: 1.8;
-                max-width: 900px;
-                margin: 0 auto;
-            }
-
-            /* Involvement Note Styles */
-            .involvement-note {
-                margin-top: 25px;
-                padding: 20px;
-                background: #fff8e1;
-                border-left: 4px solid var(--red);
-                border-radius: 6px;
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-
-            .involvement-note strong {
-                color: var(--red);
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            /* About Section Styles */
-            .about-content {
-                max-width: 900px;
-                margin: 0 auto;
-                background: white;
-                padding: 50px;
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            }
-
-            .about-text h3 {
-                font-size: 2rem;
-                margin-bottom: 25px;
-                color: var(--red);
-            }
-
-            .about-text p {
-                font-size: 1.1rem;
-                line-height: 1.8;
-                margin-bottom: 20px;
-                color: var(--gray);
-            }
-
-            .skill-list {
-                list-style: none;
-                margin: 30px 0;
-                padding: 30px;
-                background: var(--light-gray);
-                border-radius: 10px;
-            }
-
-            .skill-list li {
-                padding: 12px 0;
-                font-size: 1.05rem;
-                border-bottom: 1px solid #ddd;
-            }
-
-            .skill-list li:last-child {
-                border-bottom: none;
-            }
-
-            .skill-list strong {
-                color: var(--red);
-                margin-right: 10px;
-            }
-
-            .about-cta {
-                margin-top: 40px;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo-header">
-                        <img
-                            src="white-bg-red-box-black-amp.png"
-                            alt="AmperSandboxDesign Logo"
-                        />
-                        <a href="/" style="text-decoration: none; color: #000;">
-                            <span><span class="thin">A</span><span class="bold">SD</span></span>
-                        </a>
-                    </div>
-
-                    <div class="menu-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <nav>
-                        <ul>
-                            <li><a href="#how-it-works">How It Works</a></li>
-                            <li><a href="#packages">Pricing</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <!-- <li><a href="#results">Results</a></li> -->
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#contact">Get Started</a></li>
-                        </ul>
-                    </nav>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="ampersand">[&amp;]</span>
+                    <span>AMPERSAND BOX</span>
                 </div>
+                <nav class="header-nav">
+                    <a href="#products" class="nav-link">Products</a>
+                    <a href="#stack" class="nav-link">Stack</a>
+                    <a href="#philosophy" class="nav-link">Philosophy</a>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
+    <main>
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    
-                    <p style="margin: 0 auto;">Design by <a href="https://c-u-l8er.link" target="_blank">C U L8er</a></p>
-                    <h1 style="margin: 0;">
-                        <span><span class="thin">Amper</span><span class="bold">SandboxDesign</span></span>
+                    <div class="hero-eyebrow">Building the Future</div>
+                    <h1>
+                        AI Infrastructure<br>
+                        for <span class="bracket">[</span>Everyone<span class="bracket">]</span>
                     </h1>
-                    <h2 style="margin: 0; font-size: 2em;">
-                        <span><span class="thin">Fleet Software.</span> <span class="bold">Built Right. 18 Years Experience.</span></span>
-                    </h2>
-                    <p class="hero-subheading">
-                        I'm a fleet software engineer who builds production systems for GPS tracking, dispatch coordination, and logistics operations.
-                        <strong>Custom software solutions with the engineering expertise your fleet needs.</strong>
+                    <p class="hero-description">
+                        We build the platforms that power intelligent systems. 
+                        From multi-tenant architecture to graph-native coordination, 
+                        we're making AI infrastructure accessible.
                     </p>
-                    <div class="hero-cta-group">
-                        <a href="#packages" class="btn btn-primary">View Packages</a>
-                        <a href="#how-it-works" class="btn btn-secondary">How I Work</a>
+                    <div class="hero-cta">
+                        <a href="#products" class="btn btn-primary">Explore Products</a>
+                        <a href="mailto:hello@ampersandboxdesign.com" class="btn btn-secondary">Get in Touch</a>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <strong>18+ years</strong>
-                            <span>Fleet Software Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <strong>Elixir/Phoenix</strong>
-                            <span>Production-Grade Systems</span>
-                        </div>
-                        <div class="stat-item">
-                            <strong>GEOTAB API</strong>
-                            <span>GPS Integration Expert</span>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </section>
 
-        <section id="problem" style="background-color: var(--light-gray);">
+        <section class="products" id="products">
             <div class="container">
                 <div class="section-header">
-                    <h2>Is Your Fleet Software Holding You Back?</h2>
+                    <h2>Our Platform</h2>
+                    <p>Four interconnected products building the next generation of AI infrastructure</p>
                 </div>
-
-                <div class="problem-grid">
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Off-the-Shelf Software</h3>
-                        <p>Generic fleet software <strong>doesn't fit your workflow</strong> and forces you to change how you work</p>
+                <div class="products-grid">
+                    <!-- WebHost.Systems -->
+                    <div class="product-card">
+                        <div class="product-icon">WH</div>
+                        <div>
+                            <h3>WebHost.Systems</h3>
+                            <div class="product-domain">webhost.systems</div>
+                            <p>
+                                Multi-tenant infrastructure platform. Schema-per-tenant architecture, 
+                                tenant provisioning, connection pooling, and everything you need to build 
+                                scalable B2B SaaS applications.
+                            </p>
+                            <div class="product-tags">
+                                <span class="tag">Infrastructure</span>
+                                <span class="tag">Multi-Tenant</span>
+                                <span class="tag">Elixir</span>
+                                <span class="tag">Open Source</span>
+                            </div>
+                            <a href="https://webhost.systems" class="product-link">
+                                Explore →
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Poor GEOTAB Integration</h3>
-                        <p>GEOTAB integration is <strong>expensive or poorly done</strong>, limiting your access to valuable vehicle data</p>
+                    <!-- FleetPrompt -->
+                    <div class="product-card">
+                        <div class="product-icon">FP</div>
+                        <div>
+                            <h3>FleetPrompt</h3>
+                            <div class="product-domain">fleetprompt.com</div>
+                            <p>
+                                Multi-agent marketplace and execution engine. Package system with 
+                                Signals + Directives primitives. The operating system for agentic AI.
+                            </p>
+                            <div class="product-tags">
+                                <span class="tag">Marketplace</span>
+                                <span class="tag">Agents</span>
+                                <span class="tag">Phoenix</span>
+                                <span class="tag">Production Ready</span>
+                            </div>
+                            <a href="https://fleetprompt.com" class="product-link">
+                                Explore →
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Limited Custom Features</h3>
-                        <p>You need <strong>custom features competitors don't offer</strong> but can't find off-the-shelf solutions</p>
+                    <!-- GeoFleetic -->
+                    <div class="product-card">
+                        <div class="product-icon">GF</div>
+                        <div>
+                            <h3>GeoFleetic</h3>
+                            <div class="product-domain">geofleetic.com</div>
+                            <p>
+                                Graph-native multi-agent coordination. GraphRAG retrieval, 
+                                explainable AI reasoning paths, and enterprise compliance built-in. 
+                                The knowledge layer for intelligent systems.
+                            </p>
+                            <div class="product-tags">
+                                <span class="tag">GraphRAG</span>
+                                <span class="tag">Knowledge Graphs</span>
+                                <span class="tag">Arcana</span>
+                                <span class="tag">Enterprise</span>
+                            </div>
+                            <a href="https://geofleetic.com" class="product-link">
+                                Explore →
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Legacy Systems</h3>
-                        <p>Your <strong>legacy system is holding you back</strong> with outdated technology and poor performance</p>
+                    <!-- GPSCoord -->
+                    <div class="product-card">
+                        <div class="product-icon">GPS</div>
+                        <div>
+                            <h3>GPSCoord</h3>
+                            <div class="product-domain">gpscoord.com</div>
+                            <p>
+                                Fleet intelligence and real-time GPS coordination. Dijkstra-based 
+                                routing, geofencing, and logistics optimization. Modern fleet tracking 
+                                for modern teams.
+                            </p>
+                            <div class="product-tags">
+                                <span class="tag">Geospatial</span>
+                                <span class="tag">Logistics</span>
+                                <span class="tag">Real-Time</span>
+                                <span class="tag">API-First</span>
+                            </div>
+                            <a href="https://gpscoord.com" class="product-link">
+                                Explore →
+                            </a>
+                        </div>
                     </div>
-
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Expensive Development Teams</h3>
-                        <p><strong>Hiring a full dev team is too expensive</strong> and they don't understand fleet operations</p>
-                    </div>
-
-                    <div class="problem-item">
-                        <div class="problem-icon">❌</div>
-                        <h3>Agency Disconnect</h3>
-                        <p><strong>Agencies don't understand fleet operations</strong> and build generic software that misses critical needs</p>
-                    </div>
-                </div>
-
-                <div class="solution-banner">
-                    <h3>Build Fleet Software That Gives You a Competitive Edge</h3>
-                    <p>Custom fleet management systems by an engineer with 18 years in GPS and logistics. Get software that fits your exact workflow, not the other way around.</p>
                 </div>
             </div>
         </section>
 
-        <section id="why-me">
+        <section class="tech-stack" id="stack">
             <div class="container">
                 <div class="section-header">
-                    <h2>Why Work With a Fleet Software Engineer?</h2>
-                    <p>I'm not your typical developer—I specialize in fleet operations with 18 years of GPS and logistics experience</p>
+                    <h2>Built on Solid Foundations</h2>
+                    <p>Production-grade technology stack powering mission-critical systems</p>
                 </div>
-
-                <div class="why-me-grid">
-                    <div class="why-item">
-                        <div class="why-icon">🚛</div>
-                        <h3>Rooted in Coordination Systems</h3>
-                        <p>My journey began in 2007 with https://halotracks.org - a Halo racing website where I built tracking and checkpoint systems. What started as coordinating virtual racers through checkpoints evolved into coordinating real vehicles through GPS systems. This unique path gives me deep insight into driver workflows, dispatch pain points, maintenance cycles, and DOT compliance requirements.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">⚙️</div>
-                        <h3>Elixir/Phoenix Expert</h3>
-                        <p>I build <strong>production-grade, real-time systems</strong> that handle high-volume GPS data, simultaneous dispatch operations, and complex scheduling. No fluff—just robust, scalable backend architecture.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">📡</div>
-                        <h3>GEOTAB Integration Specialist</h3>
-                        <p>Deep experience with GEOTAB APIs, telematics data, and GPS coordination systems. <strong>I don't just connect APIs—I build intelligent systems</strong> that transform raw vehicle data into actionable insights.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🎯</div>
-                        <h3>Fleet Domain Knowledge</h3>
-                        <p>Most developers treat fleet software as "just another CRUD app." I understand route optimization, fuel management, driver performance metrics, and the <strong>specific business logic that makes fleets profitable</strong>.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🔧</div>
-                        <h3>Full-Stack Implementation</h3>
-                        <p>I handle everything from database architecture to responsive frontend design. <strong>No handoffs, no miscommunication</strong>. You get a complete system that works seamlessly across desktop and mobile.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🎨</div>
-                        <h3>Integrated Brand Identity</h3>
-                        <p>Your fleet system needs professional UI/UX. Instead of hiring separate designers, <strong>I handle both technical architecture and visual design</strong>, ensuring your software looks as good as it functions.</p>
-                    </div>
-                </div>
-
-                <div class="expertise-banner">
-                    <h3>The Fleet Software Advantage: Industry Knowledge + Technical Excellence</h3>
-                    <p>Most developers build generic software. I build fleet systems that understand your business because I've been in this industry for 18 years.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="how-it-works">
-            <div class="container">
-                <div class="section-header">
-                    <h2>How I Build Your Fleet Software</h2>
-                    <p>Technical discovery + system architecture + iterative development</p>
-                </div>
-
-                <div class="process-steps">
-                    <div class="step-item">
-                        <div class="step-number">01</div>
-                        <div class="step-content">
-                            <h3>Technical Discovery</h3>
-                            <p class="step-timeline">60-90 minute deep dive session</p>
-                            <p><strong>This is where fleet expertise matters.</strong> We discuss your current operations, pain points, workflow requirements, and technical constraints. I ask specific questions about driver workflows, dispatch processes, and integration needs that typical developers miss.</p>
-                            <div class="step-deliverable">
-                                <strong>My involvement:</strong> 100% technical analysis—no AI here. This is pure fleet domain expertise and system architecture planning.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-number">02</div>
-                        <div class="step-content">
-                            <h3>System Architecture & Design</h3>
-                            <p class="step-timeline">3-5 days</p>
-                            <p>I design the database schema, API structure, and system architecture based on your fleet requirements. <strong>AI helps with documentation generation, but I make all architectural decisions.</strong> We also plan the UI/UX for optimal fleet operations.</p>
-                            <div class="step-deliverable">
-                                <strong>You get:</strong> Technical architecture document, database design, API specifications, UI/UX wireframes, development roadmap
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-number">03</div>
-                        <div class="step-content">
-                            <h3>Development & Testing</h3>
-                            <p class="step-timeline">6-20 weeks (depending on package)</p>
-                            <p>I build your fleet software in iterative cycles, with regular demos and feedback sessions. <strong>Each iteration delivers working functionality</strong>—from basic tracking to complex dispatch algorithms. Real-time GPS data handling, GEOTAB integration, and fleet-specific business logic.</p>
-                            <div class="step-deliverable">
-                                <strong>You get:</strong> Working software at each milestone, regular demos, stakeholder feedback integration, progressively complete system
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-number">04</div>
-                        <div class="step-content">
-                            <h3>Brand Identity Integration</h3>
-                            <p class="step-timeline">1-2 weeks</p>
-                            <p>While development progresses, <strong>I design your brand identity</strong>—logo, colors, typography—that integrates seamlessly with your fleet software. This ensures your system looks professional and matches your company identity.</p>
-                            <div class="step-deliverable">
-                                <strong>You get:</strong> Complete brand system, brand guidelines, applied to software UI, marketing materials if needed
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-number">05</div>
-                        <div class="step-content">
-                            <h3>Deployment & Training</h3>
-                            <p class="step-timeline">1 week</p>
-                            <p><strong>This is where most developers disappear.</strong> I deploy your system to production infrastructure, configure monitoring, set up backups, and train your team on all functionality—from driver mobile access to dispatcher dashboards.</p>
-                            <div class="step-deliverable">
-                                <strong>You get:</strong> Live production system, team training sessions, administrator documentation, monitoring setup, data migration if needed
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-number">06</div>
-                        <div class="step-content">
-                            <h3>Support & Iteration</h3>
-                            <p class="step-timeline">60-180 days (depending on package)</p>
-                            <p>Post-launch, I monitor system performance, fix bugs, and make adjustments based on real-world usage. <strong>Your fleet operations evolve, and your software evolves with it.</strong> I'm available for support and feature enhancements.</p>
-                            <div class="step-deliverable">
-                                <strong>You get:</strong> Priority support, bug fixes, performance optimization, feature consultation, system monitoring
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-footer">
-                    <h3>The Fleet Software Advantage: Domain Expertise + Technical Excellence</h3>
-                    <p>My 18 years in fleet operations means I understand your business before writing a line of code. <strong>This eliminates the learning curve typical developers have</strong> and results in software that actually solves your fleet management challenges from day one.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="technology-stack">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Technology Stack Built for Fleet Operations</h2>
-                    <p>Production-grade technologies chosen specifically for fleet management systems</p>
-                </div>
-
-                <div class="why-me-grid">
-                    <div class="why-item">
-                        <div class="why-icon">⚡</div>
-                        <h3>Elixir/Phoenix</h3>
-                        <p><strong>Real-time performance for fleet operations.</strong> Handles thousands of simultaneous GPS updates, dispatch communications, and driver interactions without breaking a sweat. Perfect for the high-concurrency needs of fleet management.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🗄️</div>
-                        <h3>PostgreSQL</h3>
-                        <p><strong>Robust data management for complex fleet data.</strong> Handles vehicle telemetry, maintenance records, driver histories, and complex scheduling queries with reliable performance and advanced analytics capabilities.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">📱</div>
-                        <h3>TypeScript & Modern JavaScript</h3>
-                        <p><strong>Responsive frontend for any device.</strong> From desktop dispatch dashboards to mobile driver interfaces, your fleet software works seamlessly across all devices with type-safe, maintainable code.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🛰️</div>
-                        <h3>GEOTAB API Integration</h3>
-                        <p><strong>Direct access to vehicle telematics data.</strong> Real-time GPS tracking, engine diagnostics, driver behavior metrics, and maintenance alerts—all integrated into your custom fleet solution.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🔄</div>
-                        <h3>Real-time Communication</h3>
-                        <p><strong>Phoenix LiveView & Channels.</strong> Instant updates across all connected devices—when a driver updates their status, dispatch sees it immediately. No refreshing, no delays.</p>
-                    </div>
-
-                    <div class="why-item">
-                        <div class="why-icon">🔐</div>
-                        <h3>Production Security</h3>
-                        <p><strong>Enterprise-grade security for fleet data.</strong> Role-based access control, encrypted communications, secure API authentication, and compliance with transportation industry standards.</p>
-                    </div>
-                </div>
-
-                <div class="expertise-banner">
-                    <h3>Battle-Tested Technology for Mission-Critical Fleet Operations</h3>
-                    <p>Every technology choice is optimized for the specific challenges of fleet management: high data volume, real-time requirements, mobile access, and 24/7 reliability.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="packages" style="background-color: var(--light-gray);">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Fleet Software Packages. Built for Your Operations.</h2>
-                    <p>Choose the package that fits your fleet size and complexity</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <!-- Package 1: Fleet Software Foundation -->
-                    <div class="pricing-card">
-                        <div class="package-header">
-                            <h3>Fleet Software Foundation</h3>
-                            <p class="package-subtitle">For Startups & Small Fleets</p>
-                        </div>
-                        <div class="package-price">
-                            <span class="price-amount">$18,000</span>
-                        </div>
-                        <div class="package-features">
-                            <p class="package-description">Core fleet functionality to get you started</p>
-                            <ul class="feature-list">
-                                <li>✓ <strong>Core Application Development</strong></li>
-                                <li>✓ Custom web application (Elixir/Phoenix or Node.js backend)</li>
-                                <li>✓ Responsive frontend (HTML/CSS/JS/TypeScript)</li>
-                                <li>✓ PostgreSQL database architecture</li>
-                                <li>✓ User authentication & role-based access</li>
-                                <li>✓ 3-5 core features (tracking, dispatch, scheduling, etc.)</li>
-                                <li>✓ <strong>Basic Brand Identity</strong> (included)</li>
-                                <li>✓ Logo design (1-2 variations)</li>
-                                <li>✓ Color palette & typography system</li>
-                                <li>✓ Production hosting setup</li>
-                                <li>✓ 60 days of bug fixes & adjustments</li>
-                            </ul>
-                            <p class="package-timeline"><strong>Timeline:</strong> 6-8 weeks</p>
-                        </div>
-                        <a href="#contact" class="package-btn">Get Started</a>
-                    </div>
-
-                    <!-- Package 2: Fleet Software Platform (Most Popular) -->
-                    <div class="pricing-card featured">
-                        <div class="popular-badge">MOST POPULAR</div>
-                        <div class="package-header">
-                            <h3>Fleet Software Platform</h3>
-                            <p class="package-subtitle">For Growing Fleets</p>
-                        </div>
-                        <div class="package-price">
-                            <span class="price-amount">$42,000</span>
-                        </div>
-                        <div class="package-features">
-                            <p class="package-description">Comprehensive fleet management system</p>
-                            <ul class="feature-list">
-                                <li>✓ <strong>Everything in Foundation, PLUS:</strong></li>
-                                <li>✓ <strong>Advanced Features</strong></li>
-                                <li>✓ Real-time GPS tracking & mapping</li>
-                                <li>✓ GEOTAB API integration</li>
-                                <li>✓ Multi-user dashboards (driver, dispatcher, admin)</li>
-                                <li>✓ Reporting & analytics</li>
-                                <li>✓ Mobile-responsive design</li>
-                                <li>✓ 8-12 core features</li>
-                                <li>✓ API for third-party integrations</li>
-                                <li>✓ <strong>Professional Brand System</strong></li>
-                                <li>✓ Complete visual identity (3-4 logo variations)</li>
-                                <li>✓ Marketing website (5-8 pages)</li>
-                                <li>✓ Scalable infrastructure setup</li>
-                                <li>✓ 90 days priority support</li>
-                            </ul>
-                            <p class="package-timeline"><strong>Timeline:</strong> 10-14 weeks</p>
-                        </div>
-                        <a href="#contact" class="package-btn featured-btn">Get Started</a>
-                    </div>
-
-                    <!-- Package 3: Enterprise Fleet Solution -->
-                    <div class="pricing-card">
-                        <div class="package-header">
-                            <h3>Enterprise Fleet Solution</h3>
-                            <p class="package-subtitle">For Established Fleets</p>
-                        </div>
-                        <div class="package-price">
-                            <span class="price-amount">$95,000</span>
-                        </div>
-                        <div class="package-features">
-                            <p class="package-description">Complete enterprise fleet management</p>
-                            <ul class="feature-list">
-                                <li>✓ <strong>Everything in Platform, PLUS:</strong></li>
-                                <li>✓ <strong>Enterprise Architecture</strong></li>
-                                <li>✓ High-performance Elixir/Phoenix backend</li>
-                                <li>✓ Real-time communication (LiveView/Channels)</li>
-                                <li>✓ Advanced GPS & telematics integration</li>
-                                <li>✓ Multi-tenant architecture (if needed)</li>
-                                <li>✓ Custom business logic & workflows</li>
-                                <li>✓ 15-25 core features</li>
-                                <li>✓ REST & GraphQL APIs</li>
-                                <li>✓ <strong>Advanced Integrations</strong></li>
-                                <li>✓ ERP/accounting system connections</li>
-                                <li>✓ Payment processing (Stripe)</li>
-                                <li>✓ DOT compliance reporting</li>
-                                <li>✓ 6 months implementation support</li>
-                            </ul>
-                            <p class="package-timeline"><strong>Timeline:</strong> 16-24 weeks</p>
-                        </div>
-                        <a href="#contact" class="package-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Add-On Services -->
-                <div class="bundle-section">
-                    <h3>Add-On Services (À La Carte)</h3>
-                    <div class="bundle-grid">
-                        <div class="bundle-card">
-                            <h4>GEOTAB Integration</h4>
-                            <p class="bundle-price"><strong>$8,000</strong></p>
-                            <p>Connect your application to GEOTAB telematics for real-time vehicle data, driver behavior, maintenance alerts, and compliance reporting.</p>
-                        </div>
-                        <div class="bundle-card">
-                            <h4>Mobile App Development</h4>
-                            <p class="bundle-price"><strong>$15,000 - $35,000</strong></p>
-                            <p>Native iOS/Android apps or progressive web apps (PWA) for drivers, dispatchers, or customers.</p>
-                        </div>
-                        <div class="bundle-card">
-                            <h4>Ongoing Maintenance</h4>
-                            <p class="bundle-price"><strong>$2,500/month</strong></p>
-                            <p>Bug fixes, security updates, feature enhancements, performance monitoring, and priority support.</p>
-                        </div>
-                        <div class="bundle-card">
-                            <h4>Custom Integrations</h4>
-                            <p class="bundle-price"><strong>$3,000 - $12,000</strong></p>
-                            <p>Connect to QuickBooks, accounting software, CRMs, payment processors, or custom APIs.</p>
-                        </div>
-                        <div class="bundle-card">
-                            <h4>Brand-Only Package</h4>
-                            <p class="bundle-price"><strong>$6,500</strong></p>
-                            <p>If you just need brand identity without software development: Logo design, color palette, brand guidelines, business materials.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pricing-footer">
-                    <p><strong>Payment Structure:</strong> 40% deposit to begin discovery & architecture, 30% at development milestone, 30% upon deployment & training</p>
-                    <a href="#contact" class="btn">Schedule Free Consultation</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" style="background-color: var(--light-gray);">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Common Questions</h2>
-                </div>
-
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3 class="faq-question">Are you really a one-person operation?</h3>
-                        <p class="faq-answer">Yes. I'm a fleet software engineer with 18+ years of experience in Elixir/Phoenix, GPS systems, and real-time applications. I've built custom automation tools that let me work at enterprise speed solo. You work directly with me—no project managers, no junior developers, no offshore teams. This means faster decisions and better technical communication.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">Can you handle complex fleet software requirements?</h3>
-                        <p class="faq-answer">Absolutely. I specialize in production-ready fleet systems with real-time GPS tracking, GEOTAB integration, dispatch algorithms, and complex business logic. I've been building fleet software since 2007—if it involves vehicles, GPS, or logistics, I can build it.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">Do you have experience with GEOTAB integration?</h3>
-                        <p class="faq-answer">Yes, extensive experience. I've integrated GEOTAB APIs for real-time vehicle data, telematics, driver behavior monitoring, and maintenance alerts. I understand the nuances of GPS data processing and can build intelligent systems on top of GEOTAB's platform.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">Why choose Elixir/Phoenix for fleet software?</h3>
-                        <p class="faq-answer">Elixir/Phoenix is perfect for fleet operations: it handles thousands of simultaneous GPS updates, real-time dispatch communications, and high-concurrency user interactions without performance degradation. It's built for the exact challenges fleet systems face.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">What makes you different from other developers?</h3>
-                        <p class="faq-answer">Most developers treat fleet software as "just another CRUD app." My journey began in 2007 building https://halotracks.org - a Halo racing website with checkpoint tracking systems. What started as coordinating virtual racers through checkpoints evolved into coordinating real vehicles through GPS systems. This unique background means I build software that actually solves your fleet problems, not just generic business applications.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">How long does a typical fleet software project take?</h3>
-                        <p class="faq-answer">Most projects range from 6-24 weeks depending on complexity. Fleet Software Foundation takes 6-8 weeks, Fleet Software Platform takes 10-14 weeks, and Enterprise Fleet Solution takes 16-24 weeks. I provide detailed timelines in technical proposals.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">Can you integrate with our existing systems?</h3>
-                        <p class="faq-answer">Yes. I regularly integrate with accounting software, ERPs, payment processors, and existing fleet management systems. I can build custom APIs to connect your new fleet software with whatever systems you're currently using.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">Do you offer payment plans?</h3>
-                        <p class="faq-answer">Yes. Standard payment structure is 40% deposit to begin discovery & architecture, 30% at development milestone, and 30% upon deployment & training. I can also arrange custom payment plans for qualified fleet companies.</p>
-                    </div>
-                </div>
-
-                <div class="faq-cta">
-                    <p>Still have questions? <a href="#contact">Schedule a free consultation</a></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Who You're Working With</h2>
-                </div>
-
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Hi, I'm Travis :)</h3>
-                        <p>My journey in web development began in 2007, inspired by https://halotracks.org - a website for a Halo racing gametype with checkpoints and maps. This early experience with creating tracking and coordination systems ultimately led me to specialize in fleet management software. For 18 years, I've been building web applications that help coordinate vehicles, optimize routes, and manage logistics operations. Not to mention all my side projects! However my mission remains focused and with intent now.</p>
-                        
-                        <p><strong>Current Projects:</strong></p>
-                        <ul class="skill-list">
-                            <li><strong>webhost.systems</strong> - Ship GPS Tracking In Minutes</li>
-                            <li><strong>gpscoord.com</strong> - Manage your fleet tracking infrastructure</li>
-                        </ul>
-                        
-                        <p><strong>Technical Stack:</strong></p>
-                        <ul class="skill-list">
-                            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, TypeScript, Alpine.js, WebGPU/WebLLM</li>
-                            <li><strong>Backend:</strong> Elixir/Phoenix (production-grade), Node.js, real-time systems</li>
-                            <li><strong>Integrations:</strong> GEOTAB APIs, OpenRouter, Stripe payments, GPS/mapping systems</li>
-                            <li><strong>AI Tooling:</strong> VS Code with Kilo Code, custom prompt engineering, workflow automation</li>
-                            <li><strong>Fleet Expertise:</strong> 18+ years building GPS tracking, dispatch coordination, route optimization, maintenance scheduling systems</li>
-                        </ul>
-                        
-                        <p><strong>My Approach:</strong> I believe the best software comes from engineers who understand the business domain deeply. Most developers treat fleet software as "just another CRUD app." I've spent nearly two decades in this space—I understand driver workflows, dispatch pain points, maintenance cycles, and DOT compliance requirements.</p>
-                        
-                        <p><strong>Why I Include Design:</strong> Every fleet system needs a clear brand identity and intuitive UI. Instead of handing you off to a separate designer (creating delays and miscommunication), I handle both—ensuring your technical architecture and visual identity are aligned from day one.</p>
-                        
-                        <p><strong>Who I Work Best With:</strong> Fleet companies that need custom software beyond off-the-shelf solutions, logistics startups building their first dispatch/tracking system, transportation companies wanting to modernize legacy systems, and businesses needing GEOTAB integration or custom GPS solutions.</p>
-                        
-                        <div class="about-cta">
-                            <a href="#contact" class="btn">Let's Build Your Fleet System</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Ready to Work Together?</h2>
-                    <p>Schedule a free 30-minute strategy call. I'll review your business, ask clarifying questions, and determine if we're a good fit. <strong>No sales pitch—just honest strategic consultation.</strong> If I don't think I can deliver significant value, I'll tell you upfront.</p>
-                </div>
-
-                <div class="contact-form">
-                    <form
-                        id="brandForm"
-                        action="https://formspree.io/f/xnngpkko"
-                        method="POST"
-                    >
-                        <div class="form-group">
-                            <label for="name" class="form-label">Your Name *</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                class="form-control"
-                                required
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address *</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="form-control"
-                                required
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company" class="form-label">Company/Organization</label>
-                            <input
-                                type="text"
-                                id="company"
-                                name="company"
-                                class="form-control"
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="package" class="form-label">Interested In</label>
-                            <select id="package" name="package" class="form-control">
-                                <option value="">Select a package...</option>
-                                <option value="foundation">Fleet Software Foundation ($18,000)</option>
-                                <option value="platform">Fleet Software Platform ($42,000)</option>
-                                <option value="enterprise">Enterprise Fleet Solution ($95,000)</option>
-                                <option value="geotab">GEOTAB Integration ($8,000)</option>
-                                <option value="mobile">Mobile App Development ($15,000-$35,000)</option>
-                                <option value="maintenance">Ongoing Maintenance ($2,500/month)</option>
-                                <option value="brand-only">Brand-Only Package ($6,500)</option>
-                                <option value="custom">Custom Fleet Solution</option>
-                                <option value="consultation">Just Exploring</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message" class="form-label">Tell Us About Your Project *</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                class="form-control"
-                                placeholder="What fleet challenges are you facing? What software features do you need?"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="timeline" class="form-label">Timeline</label>
-                            <select id="timeline" name="timeline" class="form-control">
-                                <option value="">When do you need this?</option>
-                                <option value="urgent">ASAP (1-2 weeks)</option>
-                                <option value="soon">Within 1 month</option>
-                                <option value="planning">2-3 months</option>
-                                <option value="flexible">Flexible timeline</option>
-                            </select>
-                        </div>
-
-                        <div class="trust-indicators">
-                            <div class="trust-item">
-                                <span class="trust-icon">✓</span>
-                                <span>No-obligation consultation</span>
-                            </div>
-                            <div class="trust-item">
-                                <span class="trust-icon">✓</span>
-                                <span>Custom proposal within 48 hours</span>
-                            </div>
-                            <div class="trust-item">
-                                <span class="trust-icon">✓</span>
-                                <span>Flexible payment plans</span>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="form-btn">
-                            Schedule Free Consultation
-                        </button>
-                    </form>
-                </div>
-
-                <div class="contact-alternative">
-                    <p><strong>Prefer to talk first?</strong></p>
-                    <p>Email: <a href="mailto:travis.burandt@gmail.com">travis.burandt@gmail.com</a></p>
-                    <p>Or text "ASD" to: <a href="tel:+12817980497">(281) 798-0497</a></p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-about">
-                        <div class="footer-logo">
-                            <img
-                                src="black-bg-grey-box-red-amp.png"
-                                alt="AmperSandboxDesign Logo"
-                            />
-                            <span><span class="thin">Amper</span><span class="bold">SandboxDesign</span></span>
-                        </div>
+                <div class="stack-grid">
+                    <div class="stack-card">
+                        <div class="stack-icon">⚡</div>
+                        <h3>Elixir + Phoenix</h3>
                         <p>
-                            Strategic brand design and development by an experienced developer-designer who's built custom AI tools for efficiency.
-                            <strong>You get expert strategy + technical execution + AI speed.</strong>
-                            Based in the USA - Texas, serving businesses worldwide.
-                        </p>
-                        <p style="margin-top: 20px;">
-                            <strong>Design by <a href="https://c-u-l8er.link" target="_blank" style="color: var(--red);">C U L8er</a></strong>
+                            Concurrent, fault-tolerant systems built on the BEAM VM. 
+                            Real-time capabilities with LiveView for responsive UIs.
                         </p>
                     </div>
-
-                    <div class="footer-links">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#packages">Fleet Software Foundation</a></li>
-                            <li><a href="#packages">Fleet Software Platform</a></li>
-                            <li><a href="#packages">Enterprise Fleet Solution</a></li>
-                            <li><a href="#packages">GEOTAB Integration</a></li>
-                            <li><a href="#contact">Custom Solutions</a></li>
-                        </ul>
+                    <div class="stack-card">
+                        <div class="stack-icon">🗄️</div>
+                        <h3>PostgreSQL + Extensions</h3>
+                        <p>
+                            Enterprise-grade database with pgvector for embeddings, 
+                            PostGIS for geospatial, and robust multi-tenant support.
+                        </p>
                     </div>
-
-                    <div class="footer-links">
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#how-it-works">How It Works</a></li>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                        </ul>
+                    <div class="stack-card">
+                        <div class="stack-icon">🎯</div>
+                        <h3>Ash Framework</h3>
+                        <p>
+                            Declarative resource framework for building maintainable, 
+                            scalable applications with built-in authorization.
+                        </p>
                     </div>
-
-                    <div class="footer-contact">
-                        <h3>Get Started</h3>
-                        <p style="margin-bottom: 20px;">Ready to transform your brand?</p>
-                        <a href="#contact" class="footer-cta-btn">Schedule Free Consultation</a>
-                        <div class="contact-info" style="margin-top: 30px;">
-                            <i class="fas fa-envelope"></i>
-                            <span>travis.burandt@gmail.com</span>
-                        </div>
-                        <div class="contact-info">
-                            <i class="fas fa-phone"></i>
-                            <span>Text "ASD" to (281) 798-0497</span>
-                        </div>
+                    <div class="stack-card">
+                        <div class="stack-icon">🧠</div>
+                        <h3>Arcana RAG</h3>
+                        <p>
+                            Embeddable RAG library with GraphRAG support, agentic pipelines, 
+                            and production-ready knowledge retrieval.
+                        </p>
+                    </div>
+                    <div class="stack-card">
+                        <div class="stack-icon">🚀</div>
+                        <h3>Fly.io + Docker</h3>
+                        <p>
+                            Global deployment with edge computing capabilities. 
+                            Close to users, resilient infrastructure.
+                        </p>
+                    </div>
+                    <div class="stack-card">
+                        <div class="stack-icon">🎨</div>
+                        <h3>Svelte + Inertia</h3>
+                        <p>
+                            Modern frontend with server-driven rendering. 
+                            Fast, reactive, and maintainable UIs.
+                        </p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="footer-bottom">
-                    <p>
-                        &copy; <span id="currentYear"></span> AmperSandboxDesign. All rights reserved.
-                    </p>
-                    <p style="margin-top: 10px; font-size: 0.8rem;">
-                        Fleet Software Engineering • GPS Systems • Real-Time Systems • Web Infrastructure • Since 2007
+        <section class="philosophy" id="philosophy">
+            <div class="container">
+                <div class="philosophy-content">
+                    <div class="philosophy-quote">
+                        "Build infrastructure that enables innovation, 
+                        not complexity that impedes it."
+                    </div>
+                    <p class="philosophy-text">
+                        We believe the future of AI is multi-tenant, graph-native, and built on 
+                        solid foundations. Every line of code we write is production-ready. 
+                        Every architecture decision is documented. Every product is built to last. 
+                        We're not building for demos—we're building for the next decade of intelligent systems.
                     </p>
                 </div>
             </div>
-        </footer>
+        </section>
+    </main>
 
-        <!-- Logo Modal -->
-        <div id="logoModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <div class="modal-body">
-                    <h3 id="modalTitle">Our Design Approach</h3>
-                    <div class="modal-img">
-                        <img
-                            id="modalImage"
-                            src=""
-                            alt="Our Design Approach"
-                        />
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-footer">
+                        <span class="ampersand">[&amp;]</span>
+                        <span>AMPERSAND BOX</span>
                     </div>
-                    <div class="modal-info">
-                        <p id="modalDescription"></p>
-                        <p id="modalGuidelines"></p>
-                    </div>
-                    <div class="modal-actions">
-                        <a href="#contact" class="download-btn"
-                            >Schedule a Consultation</a
-                        >
-                        <a href="#contact" class="btn close-modal-btn"
-                            >Learn More</a
-                        >
+                    <p>
+                        Building AI infrastructure for the future. 
+                        Production-grade platforms that scale.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com" class="social-link">⚡</a>
+                        <a href="https://twitter.com" class="social-link">🐦</a>
+                        <a href="https://linkedin.com" class="social-link">💼</a>
                     </div>
                 </div>
+
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <div class="footer-links">
+                        <a href="https://webhost.systems">WebHost.Systems</a>
+                        <a href="https://fleetprompt.com">FleetPrompt</a>
+                        <a href="https://geofleetic.com">GeoFleetic</a>
+                        <a href="https://gpscoord.com">GPSCoord</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="#">Documentation</a>
+                        <a href="#">API Reference</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="#">About</a>
+                        <a href="#">Careers</a>
+                        <a href="mailto:hello@ampersandboxdesign.com">Contact</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Ampersand Box Design. Building the future.</p>
+                <p>All systems operational ✓</p>
             </div>
         </div>
+    </footer>
 
-        <script
-            src="https://kit.fontawesome.com/a076d05399.js"
-            crossorigin="anonymous"
-        ></script>
-        <script>
-            // Mobile menu toggle
-            document.addEventListener("DOMContentLoaded", function () {
-                const currentYearElement =
-                    document.getElementById("currentYear");
-                if (currentYearElement) {
-                    currentYearElement.textContent = new Date().getFullYear();
-                }
-
-                const menuToggle = document.querySelector(".menu-toggle");
-                const nav = document.querySelector("nav");
-
-                menuToggle.addEventListener("click", function () {
-                    nav.classList.toggle("active");
-                });
-
-                // Close menu when clicking on a nav link
-                const navLinks = document.querySelectorAll("nav a");
-                navLinks.forEach((link) => {
-                    link.addEventListener("click", function () {
-                        nav.classList.remove("active");
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
-                });
-
-                // Smooth scrolling for anchor links
-                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                    anchor.addEventListener("click", function (e) {
-                        e.preventDefault();
-
-                        const target = document.querySelector(
-                            this.getAttribute("href"),
-                        );
-                        if (target) {
-                            window.scrollTo({
-                                top: target.offsetTop - 80,
-                                behavior: "smooth",
-                            });
-                        }
-                    });
-                });
-
-                // Modal functionality
-                const modal = document.getElementById("logoModal");
-                const logoItems = document.querySelectorAll(".logo-item");
-                const closeModal = document.querySelector(".close-modal");
-                const closeModalBtn =
-                    document.querySelector(".close-modal-btn");
-
-                // Logo data
-                const logoData = {
-                    primary: {
-                        title: "Core Brand System",
-                        image: "white-bg-red-box-black-amp.png",
-                        description:
-                            "Our Core Brand System establishes your foundational identity with maximum recognition and impact. This is the primary system we develop to ensure your brand has a strong, recognizable presence across all standard applications.",
-                        guidelines:
-                            "Ideal for main touchpoints including website, business stationery, marketing materials, and anywhere your brand needs clear identification.",
-                    },
-                    inverse: {
-                        title: "High-Impact System",
-                        image: "red-bg-white-box-black-amp.png",
-                        description:
-                            "The High-Impact System creates bold standout moments for key brand touchpoints. This variation delivers strong visual impact when you need to capture attention and make a memorable impression.",
-                        guidelines:
-                            "Perfect for social media, promotional campaigns, event materials, and anywhere your brand needs to stand out from competitors.",
-                    },
-                    gray: {
-                        title: "Neutral System",
-                        image: "grey-bg-white-box-red-amp.png",
-                        description:
-                            "Our Neutral System offers sophisticated application for professional contexts. This elegant variation provides subtlety while maintaining brand recognition in more formal environments.",
-                        guidelines:
-                            "Excellent for corporate communications, reports, presentations, and contexts where a more understated brand presence is appropriate.",
-                    },
-                    dark: {
-                        title: "Premium System",
-                        image: "black-bg-grey-box-red-amp.png",
-                        description:
-                            "The Premium System delivers elevated brand presence for upscale applications. This sophisticated variation speaks to discerning audiences and creates a sense of exclusivity and quality.",
-                        guidelines:
-                            "Ideal for luxury contexts, high-end marketing materials, executive communications, and premium product packaging.",
-                    },
-                };
-
-                // Open modal when clicking on a logo item
-                logoItems.forEach((item) => {
-                    item.addEventListener("click", function () {
-                        const logoType = this.getAttribute("data-logo");
-                        const logoInfo = logoData[logoType];
-
-                        document.getElementById("modalTitle").textContent =
-                            logoInfo.title;
-                        document.getElementById("modalImage").src =
-                            logoInfo.image;
-                        document.getElementById("modalImage").alt =
-                            logoInfo.title;
-                        document.getElementById(
-                            "modalDescription",
-                        ).textContent = logoInfo.description;
-                        document.getElementById("modalGuidelines").textContent =
-                            logoInfo.guidelines;
-
-                        modal.style.display = "block";
-                        document.body.style.overflow = "hidden"; // Prevent scrolling
-                    });
-                });
-
-                // Close modal function
-                function closeModalFunction() {
-                    modal.style.display = "none";
-                    document.body.style.overflow = ""; // Re-enable scrolling
                 }
-
-                // Close modal when clicking on close button
-                closeModal.addEventListener("click", closeModalFunction);
-
-                // Close modal when clicking on close button link
-                if (closeModalBtn) {
-                    closeModalBtn.addEventListener("click", closeModalFunction);
-                }
-
-                // Close modal when clicking outside
-                window.addEventListener("click", function (event) {
-                    if (event.target === modal) {
-                        closeModalFunction();
-                    }
-                });
             });
-        </script>
+        });
 
-        <!-- Schema Markup for SEO -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          "name": "AmperSandboxDesign",
-          "description": "Custom fleet management software by an engineer with 18 years in GPS and logistics. Elixir, Phoenix, GEOTAB integration. Serving fleet companies & transportation startups.",
-          "url": "https://ampersandboxdesign.com",
-          "priceRange": "$18000-$95000",
-          "areaServed": "Worldwide",
-          "serviceType": ["Fleet Software Development", "GPS Integration", "GEOTAB API Integration", "Real-time Systems", "Custom Logistics Solutions"],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "45"
-          },
-          "offers": [
-            {
-              "@type": "Offer",
-              "name": "Fleet Software Foundation",
-              "price": "18000",
-              "priceCurrency": "USD"
-            },
-            {
-              "@type": "Offer",
-              "name": "Fleet Software Platform",
-              "price": "42000",
-              "priceCurrency": "USD"
-            },
-            {
-              "@type": "Offer",
-              "name": "Enterprise Fleet Solution",
-              "price": "95000",
-              "priceCurrency": "USD"
-            }
-          ]
-        }
-        </script>
-    </body>
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe product cards
+        document.querySelectorAll('.product-card, .stack-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>
