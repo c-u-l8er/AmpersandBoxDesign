@@ -870,13 +870,17 @@
             </div>
 
             <div class="footer-bottom">
-                <p>© 2026 Ampersand Box Design. Building the future.</p>
+                <p>&copy; <span id="currentYear"></span> Ampersand Box Design. Building the future.</p>
                 <p>All systems operational ✓</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Set current year dynamically
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+            
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
