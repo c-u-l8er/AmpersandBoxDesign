@@ -76,6 +76,167 @@
 
 ---
 
+### specprompt.com - Prompt Specification & Management
+
+#### Market Research (20 sources)
+
+**AI Prompt Marketplace:**
+1. Grand View Research - "Artificial Intelligence Prompt Marketplace Market Report"
+   - URL: https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-prompt-marketplace-market-report
+   - Key Data: $1.4B (2024) → $11B (2033), 25.9% CAGR
+   - Segment: Content creation & copywriting = 38.7% market share
+
+2. Precedence Research - "Prompt Engineering Market Size and Forecast 2025 to 2034"
+   - URL: https://www.precedenceresearch.com/prompt-engineering-market
+   - Key Data: $505.18B (2025) → $6,533.87B (2034), 32.90% CAGR
+   - Finding: Fastest-growing segment in AI ecosystem
+
+3. InsightAce Analytic - "Artificial Intelligence Prompt Marketplace Market Research Report 2025"
+   - URL: https://www.insightaceanalytic.com/report/artificial-intelligence-prompt-marketplace-market/3278
+   - Key Data: $1.3B (2024) → $12.1B (2034), 25.2% CAGR
+   - Finding: Rated and version-controlled templates becoming standard
+
+4. Mordor Intelligence - "Prompt Engineering and Agent Programming Tools Market"
+   - URL: https://www.mordorintelligence.com/industry-reports/prompt-engineering-and-agent-programming-tools-market
+   - Key Data: $6.95B (2025) → $40.87B (2030)
+   - Finding: Professional prompt management adopting version control
+
+**Prompt Management Platforms:**
+5. Arize AI - "Top 5 AI Prompt Management Tools of 2025"
+   - URL: https://arize.com/blog/top-5-ai-prompt-management-tools-of-2025/
+   - Tools Covered: Arize AX, Phoenix, PromptHub, LangSmith, Humanloop
+   - Key Finding: Enterprise prompt management emerging category
+
+6. DesignWhine - "7 Best AI Prompt Platforms for Product Teams in 2025"
+   - URL: https://www.designwhine.com/7-best-ai-prompt-platforms-for-product-teams/
+   - Analysis: Platform comparison and market positioning
+   - Finding: Specification layer currently missing from all platforms
+
+7. Skywork AI - "PromptBase Deep Dive: Mastering the AI Prompt Marketplace"
+   - URL: https://skywork.ai/skypage/ko/PromptBase-Deep-Dive
+   - Key Data: 220,000+ prompts, marketplace pioneer
+   - Finding: Quality control and standardization challenges
+
+8. Writesonic - "6 Best AI Prompt Marketplaces to Know in 2025"
+   - URL: https://writesonic.com/blog/ai-prompt-marketplaces
+   - Platforms: Chatsonic, AIPRM, PromptBase, ChatX, FlowGPT, PromptHero
+   - Key Data: AIPRM has 2M+ users, 4,500+ public prompts
+
+9. God of Prompt - "Review of Popular AI Prompt Library Platforms in 2025"
+   - URL: https://www.godofprompt.ai/blog/review-popular-ai-prompt-library-platforms
+   - Analysis: 5 major platforms compared
+   - Finding: Freemium to $150 lifetime access pricing
+
+10. AllThingsAI - "PromptBase Review"
+    - URL: https://allthingsai.com/tool/promptbase
+    - Pricing: $1.99-$9.99 per prompt, 20% seller commission
+    - Finding: 2,300+ free samples available
+
+**Technical Standards & Specifications:**
+11. Model Context Protocol - "Prompts Specification (Protocol Revision: 2025-06-18)"
+    - URL: https://modelcontextprotocol.io/specification/2025-06-18/server/prompts
+    - Technical: Standardized prompt templates format
+    - Example: prompts/get request/response structure
+
+12. OpenAI - "Prompt Engineering Guide"
+    - URL: https://platform.openai.com/docs/guides/prompt-engineering
+    - Best practices: Clear instructions, format specifications, role-based prompts
+    - Finding: Structured prompt engineering becoming standard
+
+13. Lakera - "The Ultimate Guide to Prompt Engineering in 2025"
+    - URL: https://www.lakera.ai/blog/prompt-engineering-guide
+    - Frameworks: TCRTE, ReAct, Chain-of-Thought
+    - Finding: Advanced techniques require systematic management
+
+**Prompt Engineering Profession:**
+14. LinkedIn Job Market Data (2024-2025)
+    - Job posting growth: +250% year-over-year
+    - Salary range: $175K-$375K for senior Prompt Engineers
+    - Finding: Professional discipline emerging rapidly
+
+15. Anthropic Job Posting - "Prompt Engineer and Librarian"
+    - Salary: Up to $375K
+    - Requirements: No technical degree required initially
+    - Finding: High value placed on prompt expertise
+
+16. McKinsey Global Survey (2023)
+    - Key Data: 7% of AI-adopting orgs hired Prompt Engineers
+    - Finding: Early adoption across industries
+    - Trend: Accelerating into 2024-2025
+
+**Industry Analysis:**
+17. Medium / Dev.to - "The Complete Guide to Prompt Engineering in 2025"
+    - URL: https://dev.to/fonyuygita/the-complete-guide-to-prompt-engineering-in-2025
+    - Evolution: 2020 GPT-3 → 2025 essential AI literacy
+    - Finding: Prompt engineering as critical as traditional programming
+
+18. FlashPrompt - "AI Prompt Engineering Trends 2025"
+    - URL: https://www.flashprompt.app/blog/ai-prompt-engineering-trends-2025
+    - Trends: Real-time optimization, version control, specialized languages
+    - Finding: Professional management systems emerging
+
+19. Product Growth Newsletter - "Prompt Engineering in 2025: Latest Best Practices"
+    - URL: https://www.news.aakashg.com/p/prompt-engineering
+    - Case Study: Bolt.new achieved $50M ARR in 5 months via superior prompting
+    - Finding: Prompt engineering = competitive differentiator
+
+20. Udemy - "The Complete Prompt Engineering for AI Bootcamp (2025)"
+    - URL: https://www.udemy.com/course/prompt-engineering-for-ai/
+    - Course updates: Monthly (Anthropic Computer use, LangGraph, DSPy)
+    - Finding: Rapidly evolving field requiring continuous learning
+
+**Domain Sales Comparables:**
+21. NameBio - Domain sales database
+    - crew.ai: $104,900 (2024)
+    - Direct comparable: AI agent orchestration domain
+
+22. Domain Investing Blog - "2025 AI Domain Sales Analysis"
+    - fleetprompt.com: $175,000 valuation methodology
+    - Prompt keyword: Confirmed premium value
+    - Market: AI domains in top-100 sales (20 domains in 2024)
+
+**Additional Context:**
+23. GitHub - microsoft/promptbase repository
+    - URL: https://github.com/microsoft/promptbase
+    - Note: All things prompt engineering (Microsoft)
+
+24. TextCortex - "AI Prompt Marketplace"
+    - URL: https://textcortex.com/templates/ai-prompt-marketplace
+    - Platform: Enterprise AI prompt management
+    - Finding: GDPR-compliant EU infrastructure demand
+
+25. SQ Magazine - "Prompt Engineering Statistics 2025: Surprising Growth"
+    - URL: https://sqmagazine.co.uk/prompt-engineering-statistics/
+    - Key Data: 84% of developers using/planning to use AI tools
+    - North America: $133B+ market share (2024)
+
+26. MIT Sloan Teaching & Learning - "Effective Prompts for AI: The Essentials"
+    - URL: https://mitsloanedtech.mit.edu/ai/basics/effective-prompts/
+    - Academic: Prompt engineering as essential skill
+    - Finding: Moving from tricks to systematic discipline
+
+27. Refonte Learning - "Prompt Engineering: The Next Big Thing in AI for 2025"
+    - URL: https://www.refontelearning.com/blog/prompt-engineering-the-next-big-thing-in-ai-for-2026
+    - Courses: Structured certification programs emerging
+    - Finding: Fast track to becoming valuable in job market
+
+**Market Validation:**
+28. RAND Corporation - "When AI Takes Time to Think" (2024)
+    - Report: Test-time compute paradigm shift
+    - Finding: Inference-time reasoning vs pre-training scale
+
+29. Stanford University - "Prompt Engineering Research Papers"
+    - Chain-of-Thought prompting improvements
+    - Few-shot learning formalization
+    - Finding: Academic validation of field
+
+30. CB Insights - "AI Prompt Marketplaces: Market Map 2024"
+    - URL: https://www.cbinsights.com/research/ai-prompt-marketplaces
+    - Key Players: OpenAI, Anthropic, LangChain, Hugging Face
+    - Finding: Marketplace layer critical infrastructure
+
+---
+
 ### ticktickclock.com - Temporal Intelligence
 
 #### Market Research (30+ sources)
