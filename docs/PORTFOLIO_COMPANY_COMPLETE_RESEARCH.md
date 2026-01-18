@@ -28,6 +28,10 @@ This document provides complete research, theoretical framework, and market valu
 2. **c-u-l8er.link** - Printing (Production)
 3. **wrand.cc** - Forking (Distribution)
 4. **ampersandboxdesign.com** - Portfolio Company (Hub)
+5. **opensentience.org** - Open Source Agent Core (Runtime + Governance)
+6. **fleetprompt.com** - Commercial Agent Marketplace (Distribution + Monetization)
+
+**Dual-Brand Platform Thesis:** OpenSentience establishes the trusted, local-first open source foundation (runtime, permissions, protocol, tooling). FleetPrompt monetizes the ecosystem via a curated marketplace (discovery, payments, revenue share, and enterprise add-ons).
 
 ---
 
@@ -71,7 +75,7 @@ This document provides complete research, theoretical framework, and market valu
 
 | Domain | Value | 2034 | Grade | Market TAM |
 |--------|-------|------|-------|------------|
-| opensentience.org | $12,000 | $36,000 | B+ | $38.5B (AGI) |
+| opensentience.org | $12,000 | $36,000 | B+ | $47B (AI Agents) + Governance |
 | brokenrecord.studio | $8,000 | $18,000 | B | Creative niche |
 | c-u-l8er.link | $8,000 | $18,000 | B | Portfolio hub |
 | wrand.cc | $8,000 | $18,000 | B | R&D hub |
@@ -98,6 +102,13 @@ This document provides complete research, theoretical framework, and market valu
 **Grade:** A+  
 **Market Position:** Category Leader
 
+#### Dual-Brand Strategy (FleetPrompt + OpenSentience)
+
+**FleetPrompt (commercial):** The marketplace layer—agent discovery, listings, paid distribution, and enterprise purchase motion.  
+**OpenSentience (open source):** The execution layer—agent runtime + governance primitives that make agents safe, portable, and enterprise-credible.
+
+**Why this pairing matters:** OpenSentience drives trust and adoption (developer community + local execution). FleetPrompt captures value from the ecosystem through marketplace economics and premium/enterprise offerings.
+
 #### Market Research
 
 **AI Agents Market:**
@@ -121,10 +132,12 @@ This document provides complete research, theoretical framework, and market valu
 - Hugging Face (model-focused)
 
 **FleetPrompt Advantages:**
-- Open platform approach
-- Focus on reusable prompts/skills
-- Integration with multiple LLMs
-- Developer-first experience
+- **Marketplace-first distribution:** Browse, install, and purchase agents as products (not one-off consulting).
+- **Pairs with OpenSentience core:** Open source runtime + governance makes third-party agents safer to run and easier to adopt.
+- **Local-first execution path:** Reduces friction for developers (fast iteration) and increases user trust (privacy/control).
+- **Multi-LLM + multi-tool integration:** Not locked to a single model provider or cloud.
+- **Enterprise credibility:** Permissions, auditability, and isolation align with governance requirements.
+- **Developer-first incentives:** Clear path to monetization increases supply-side participation (network effects).
 
 #### Revenue Potential
 
@@ -145,6 +158,20 @@ This document provides complete research, theoretical framework, and market valu
 3. McKinsey - The Economic Potential of Generative AI
 4. Salesforce Agentforce Launch Data
 5. AI Prompt Marketplace Analysis (multiple sources)
+6. OSS Capital - Commercial Open Source Software (COSS) & Open Core research (open source monetization patterns)
+7. GitLab - S-1 Registration Statement (open core go-to-market and monetization reference)
+8. Docker Hub (open runtime paired with a distribution/marketplace layer analogue)
+9. Visual Studio Marketplace (extension marketplace flywheel analogue)
+10. WordPress Plugin Directory (open source core + ecosystem distribution analogue)
+11. IBM - Acquisition of Red Hat (open source foundation + commercial enterprise layer validation)
+12. Lemon Squeezy - Documentation (payments/subscriptions/digital products reference for marketplace checkout)
+13. Stripe Connect (marketplace payments + multi-party payout reference architecture)
+14. Stripe Tax (sales tax/VAT compliance reference for global commerce)
+15. Paddle (merchant-of-record approach reference for SaaS/marketplaces)
+16. Gumroad (creator marketplace fee baseline)
+17. Shopify App Store (developer marketplace economics comparable)
+18. Unity Asset Store (asset marketplace take-rate comparable)
+19. Apple App Store Small Business Program (platform fee benchmark)
 
 ---
 
@@ -1129,31 +1156,43 @@ If fleetprompt.com = $175,000:
 
 ---
 
-### 14. opensentience.org - AGI Research
+### 14. opensentience.org - Open Source Agent Core (Runtime + Governance)
 **Current Value:** $12,000  
 **2034 Projection:** $36,000  
 **Grade:** B+  
-**Market Position:** AI Consciousness
+**Market Position:** Trusted Open Source Foundation
 
 #### Market Research
 
-**AGI/Consciousness Market:**
+**AGI/Consciousness Market (long-horizon narrative):**
 - 2024: $2.78B → 2033: $38.55B (35.9% CAGR)
 - Most experts predict AGI 2028-2040
 - 17% of AI experts think current AI has subjective experience
 - Consciousness debate intensifying
 
-**Why .org Perfect:**
-- Academic/research credibility
-- Non-profit positioning
-- Perfect for AGI ethics/safety
-- Long-term hold for AGI inflection
+#### Product/Platform Role in This Portfolio
 
-**Strategic Buyers:**
+**OpenSentience.org (open source):**
+- Agent runtime + governance primitives (the “kernel”)
+- Process isolation + permissions
+- Local-first execution (SQLite-first mindset)
+- Protocol + SDK for building interoperable agents
+- Audit log + tool routing foundations
+
+**Relationship to FleetPrompt:**
+- OpenSentience drives trust, adoption, and developer community.
+- FleetPrompt monetizes the ecosystem via marketplace distribution and enterprise offerings.
+
+**Why .org is still perfect:**
+- Signals public benefit + credibility (standards, safety, governance, research)
+- Creates a neutral foundation that encourages third-party developer participation
+- Supports long-term positioning around agent safety/ethics as the market matures
+
+**Strategic Buyers (platform + governance angle):**
 - OpenAI, Anthropic, DeepMind
-- University AI labs
-- AI safety organizations
-- Future of Humanity Institute
+- Enterprise AI platforms and developer tool vendors
+- University AI labs / AI safety organizations
+- Organizations investing in agent governance and safety
 
 **Sources:**
 1. Allied Market Research - AGI Market Report
@@ -1550,8 +1589,12 @@ If fleetprompt.com = $175,000:
 
 1. **Review & approve portfolio strategy**
 2. **Select development scenario** (1, 2, or 3)
-3. **Set up landing pages** for top 5 domains
-4. **Begin fleetprompt.com MVP** planning
+3. **Confirm the dual-brand strategy in specs**
+   - OpenSentience = open source core (runtime + governance)
+   - FleetPrompt = commercial marketplace (distribution + monetization)
+4. **Set up landing pages** for top 5 domains (ensure FleetPrompt + OpenSentience positioning is consistent)
+5. **Begin fleetprompt.com MVP** planning (marketplace MVP + payments/revenue share path)
+6. **Define OpenSentience MVP scope** (core runtime/governance primitives required for safe third-party agents)
 
 ### Month 1 Actions
 

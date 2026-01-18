@@ -22,7 +22,34 @@
 
 ### fleetprompt.com - AI Agents & Prompts
 
-#### Market Research (15 sources)
+#### Sources (market research + comparables + marketplace payments)
+
+#### Open Source Core + Commercial Marketplace Model (comparables)
+
+**Open Source + Commercial Layer (Open Core / Marketplaces):**
+1. OSS Capital - "Commercial Open Source Software (COSS) & Open Core" (research)
+   - URL: https://oss.capital
+   - Relevance: Open source monetization patterns, open core dynamics, and market outcomes
+
+2. GitLab - "GitLab Inc. S-1 Registration Statement" (business model + open core)
+   - URL: https://www.sec.gov/ixviewer/documents/20210618xslS1.htm
+   - Relevance: Canonical open core monetization and go-to-market mechanics
+
+3. Docker - "Docker Hub" (distribution layer for containers)
+   - URL: https://hub.docker.com
+   - Relevance: Marketplace-like distribution paired with an open runtime/engine
+
+4. Microsoft - "Visual Studio Marketplace" (extensions marketplace)
+   - URL: https://marketplace.visualstudio.com
+   - Relevance: Marketplace flywheel for developer-built extensions (distribution + trust)
+
+5. WordPress - "WordPress Plugin Directory" (ecosystem distribution)
+   - URL: https://wordpress.org/plugins
+   - Relevance: Open source core + plugin ecosystem as the adoption engine
+
+6. IBM - "IBM to Acquire Red Hat" (press release; open source + enterprise packaging)
+   - URL: https://newsroom.ibm.com/2018-10-28-IBM-to-Acquire-Red-Hat-Fully-Embracing-Open-Source
+   - Relevance: Market validation for open source foundation + commercial enterprise layer
 
 **AI Agents Market:**
 1. Markets and Markets - "AI Agents Market by Type, Deployment Mode, Industry Vertical - Global Forecast to 2030"
@@ -73,6 +100,40 @@
 13. The Information - "OpenAI GPT Store Performance Data" (2024)
 14. Bloomberg - "AI Tools Market Size and Growth" (2024)
 15. IDC - "Worldwide AI and Generative AI Spending Guide" (2024)
+
+#### Marketplace Payments & Revenue Share (implementation references)
+
+1. Lemon Squeezy - Help Center / Documentation (payments, subscriptions, digital products)
+   - URL: https://www.lemonsqueezy.com/help
+   - Relevance: Practical reference for implementing paid listings, checkout, customer management, and payouts
+
+2. Stripe - Connect (marketplace payments + multi-party payouts)
+   - URL: https://stripe.com/connect
+   - Relevance: Reference architecture for platforms that pay third-party sellers
+
+3. Stripe - Tax (sales tax/VAT support)
+   - URL: https://stripe.com/tax
+   - Relevance: Tax compliance considerations for global marketplaces
+
+4. Paddle - Platform / Payments (merchant-of-record approach)
+   - URL: https://www.paddle.com
+   - Relevance: Alternative approach for global payments + tax handling for SaaS/marketplaces
+
+5. Gumroad - Pricing / fees (creator marketplace baseline)
+   - URL: https://gumroad.com/pricing
+   - Relevance: Comparable fee structures and creator payout expectations
+
+6. Shopify - App Store (developer ecosystem economics)
+   - URL: https://apps.shopify.com
+   - Relevance: Mature two-sided marketplace dynamics for dev-built add-ons
+
+7. Unity - Asset Store (publisher marketplace baseline)
+   - URL: https://assetstore.unity.com
+   - Relevance: Established marketplace model with revenue-share incentives
+
+8. Apple - App Store Small Business Program (platform fee structure reference)
+   - URL: https://developer.apple.com/app-store/small-business-program/
+   - Relevance: Industry-standard marketplace take-rate benchmarks and incentives
 
 ---
 
@@ -742,49 +803,155 @@
 
 ---
 
-### opensentience.org - AGI / AI Consciousness
+### opensentience.org - Agent Governance, Sandboxing, Permissions, and Auditability (+ AGI/Sentience Research)
 
-#### Market Research (12 sources)
+#### Market Research & Technical References (governance + security + safety)
 
-**AGI Market:**
-1. Allied Market Research - "Artificial General Intelligence Market"
+**Agent Governance / Risk Management (enterprise-ready foundations):**
+1. NIST - "AI Risk Management Framework (AI RMF 1.0)"
+   - URL: https://www.nist.gov/itl/ai-risk-management-framework
+   - Relevance: Standard framework for AI governance, controls, and risk mapping
+
+2. NIST - "Secure Software Development Framework (SSDF)"
+   - URL: https://csrc.nist.gov/Projects/ssdf
+   - Relevance: Baseline secure engineering practices applicable to agent runtimes and tool execution
+
+3. UK AI Safety Institute (AISI) - Research & evaluations (program overview)
+   - URL: https://www.aisafetyinstitute.org
+   - Relevance: Safety evaluation direction-of-travel for advanced agentic systems
+
+4. Google - "Secure AI Framework (SAIF)"
+   - URL: https://blog.google/technology/safety-security/introducing-googles-secure-ai-framework/
+   - Relevance: Practical security posture for AI systems (threat modeling + controls)
+
+**LLM/Agent Security Threats (prompt injection, tool abuse, data exfiltration):**
+5. OWASP - "Top 10 for LLM Applications"
+   - URL: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+   - Relevance: Common failure modes and mitigations for LLM apps and agents
+
+6. MITRE - "ATLAS (Adversarial Threat Landscape for AI Systems)"
+   - URL: https://atlas.mitre.org
+   - Relevance: Threat techniques/tactics for AI systems (useful for security requirements)
+
+7. Microsoft - "AI/LLM security guidance" (security blog + documentation hub)
+   - URL: https://www.microsoft.com/security/blog/
+   - Relevance: Practical mitigations for prompt injection, data leakage, and tool misuse in production systems
+
+**Sandboxing / Process Isolation (safe execution for third-party agents/tools):**
+8. Firecracker - Documentation (microVM isolation)
+   - URL: https://firecracker-microvm.github.io
+   - Relevance: Lightweight VM isolation model for untrusted workloads
+
+9. gVisor - Documentation (user-space kernel sandbox)
+   - URL: https://gvisor.dev
+   - Relevance: Container sandboxing concepts and implementation patterns
+
+10. Wasmtime - Documentation (WebAssembly runtime)
+   - URL: https://wasmtime.dev
+   - Relevance: Capability-oriented sandboxing via WASM runtime constraints
+
+11. WebAssembly System Interface (WASI) - Specification
+   - URL: https://wasi.dev
+   - Relevance: Capability-based host access model (filesystem, sockets) for sandboxed execution
+
+12. Linux Kernel - Namespaces (process isolation)
+   - URL: https://man7.org/linux/man-pages/man7/namespaces.7.html
+   - Relevance: Isolation primitives (pid/net/mount/user namespaces)
+
+13. Linux Kernel - seccomp (syscall filtering)
+   - URL: https://man7.org/linux/man-pages/man2/seccomp.2.html
+   - Relevance: Restrict syscall surface for agent/tool processes
+
+14. AppArmor - Project documentation (MAC profiles)
+   - URL: https://apparmor.net
+   - Relevance: Confinement profiles for restricting agent/tool behaviors
+
+15. SELinux - Project documentation (MAC policies)
+   - URL: https://selinuxproject.org
+   - Relevance: Policy-driven access control for hardened deployments
+
+**Permissions / Authorization / Policy (least-privilege tools + governance):**
+16. Open Policy Agent (OPA) - Documentation
+   - URL: https://www.openpolicyagent.org
+   - Relevance: Policy-as-code model for permissioning tool access and governance rules
+
+17. AWS - Cedar Policy Language (authorization as code)
+   - URL: https://www.cedarpolicy.com
+   - Relevance: Fine-grained authorization patterns useful for agent permission systems
+
+18. Google Research - "Zanzibar: Google's consistent, global authorization system" (paper)
+   - URL: https://research.google/pubs/pub48190/
+   - Relevance: Reference model for scalable permission systems and relationship-based access control
+
+**Auditability / Observability / Supply Chain Integrity (prove what happened, when, and why):**
+19. OpenTelemetry - Specification
+   - URL: https://opentelemetry.io/docs/specs/
+   - Relevance: Standard for traces/metrics/logs; supports agent run audit trails and debugging
+
+20. in-toto - Supply chain security framework
+   - URL: https://in-toto.io
+   - Relevance: Attestation of build/packaging steps for distributable agents
+
+21. SLSA - Supply-chain Levels for Software Artifacts
+   - URL: https://slsa.dev
+   - Relevance: Provenance requirements for trustworthy agent packages/artifacts
+
+22. Sigstore - Documentation (signing + verification)
+   - URL: https://www.sigstore.dev
+   - Relevance: Signing/verification for agent bundles and publisher identity
+
+23. SPDX - Specification (SBOM standard)
+   - URL: https://spdx.dev/specifications/
+   - Relevance: Standard metadata for components; supports transparency and audit requirements
+
+24. CNCF - OCI Image Specification
+   - URL: https://github.com/opencontainers/image-spec
+   - Relevance: Packaging/distribution baseline concepts (useful if agents are shipped as artifacts/containers)
+
+**AGI / Sentience (long-horizon narrative; keep as supporting context):**
+25. Allied Market Research - "Artificial General Intelligence Market"
    - URL: https://www.alliedmarketresearch.com/artificial-general-intelligence-market
    - Key Data: $2.78B (2024) → $38.55B (2033), 35.9% CAGR
 
-2. Stanford HAI - "AI Index Report 2024"
+26. Stanford HAI - "AI Index Report 2024"
    - URL: https://aiindex.stanford.edu
    - Key Finding: Most experts predict AGI 2028-2040
 
-**AI Consciousness:**
-3. Journal of Artificial Intelligence Research - "Consciousness in AI Systems" (multiple papers)
+27. Journal of Artificial Intelligence Research - "Consciousness in AI Systems" (multiple papers)
    - Survey: 17% of AI experts think current AI has subjective experience
 
-4. Association for Mathematical Consciousness Science - "AI Sentience Research"
+28. Association for Mathematical Consciousness Science - "AI Sentience Research"
    - Analysis: Consciousness debate intensifying
 
-**Brain-Computer Interfaces:**
-5. MarketsandMarkets - "Brain Computer Interface Market"
+29. MarketsandMarkets - "Brain Computer Interface Market"
    - URL: https://www.marketsandmarkets.com/Market-Reports/brain-computer-interface-market
    - Key Data: $1.74B (2024) → $6.2B (2030)
 
-6. Neuralink - "Progress Updates 2024"
+30. Neuralink - "Progress Updates 2024"
+   - URL: https://neuralink.com/blog/
    - Status: Human trials approved
    - Impact: BCI mainstream coming
 
-**AI Safety & Ethics:**
-7. Future of Humanity Institute - "AGI Safety Research"
+31. Future of Humanity Institute - "AGI Safety Research"
    - URL: https://www.fhi.ox.ac.uk
    - Focus: Consciousness & alignment
 
-8. Machine Intelligence Research Institute - "MIRI Research Agenda"
+32. Machine Intelligence Research Institute - "MIRI Research Agenda"
    - URL: https://intelligence.org
    - Key Topics: AGI consciousness
 
 **Additional Sources (4):**
-9. MIT Technology Review - "The Consciousness Debate" (2024)
-10. Nature - "AI Consciousness Research" (journal articles)
-11. Science - "Machine Sentience" (research papers)
-12. Quanta Magazine - "Theories of Consciousness" (features)
+33. MIT Technology Review - "The Consciousness Debate" (2024)
+   - URL: https://www.technologyreview.com
+
+34. Nature - "AI Consciousness Research" (journal articles)
+   - URL: https://www.nature.com
+
+35. Science - "Machine Sentience" (research papers)
+   - URL: https://www.science.org
+
+36. Quanta Magazine - "Theories of Consciousness" (features)
+   - URL: https://www.quantamagazine.org
 
 ---
 
