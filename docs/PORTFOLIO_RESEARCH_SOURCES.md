@@ -1,8 +1,8 @@
 # [&] Portfolio Company - Complete Research Sources & References
 ## Comprehensive Citation Database
 
-**Document Date:** January 17, 2026  
-**Total Sources:** 190+  
+**Document Date:** January 19, 2026  
+**Total Sources:** 200+  
 **Research Period:** October 2024 - January 2026  
 **Methodology:** Tier-1 market research, domain sales data, industry reports
 
@@ -10,9 +10,9 @@
 
 ## Source Categories
 
-1. **Market Research Reports** (80+ sources)
-2. **Domain Sales Data** (20+ sources)
-3. **Industry Analysis** (40+ sources)
+1. **Market Research Reports** (85+ sources)
+2. **Domain Sales Data** (25+ sources)
+3. **Industry Analysis** (42+ sources)
 4. **Technical Documentation** (30+ sources)
 5. **Financial Reports** (20+ sources)
 
@@ -295,6 +295,92 @@
     - URL: https://www.cbinsights.com/research/ai-prompt-marketplaces
     - Key Players: OpenAI, Anthropic, LangChain, Hugging Face
     - Finding: Marketplace layer critical infrastructure
+
+---
+
+### agentromatic.com & agentelic.com - AI Agent Platforms
+
+#### Sources (15 sources)
+
+**AI Agents Market (2025-2034):**
+
+1. Precedence Research - "AI Agents Market Size to Hit USD 236.03 Billion by 2034"
+   - URL: https://www.precedenceresearch.com/ai-agents-market
+   - Key Data: $7.92B (2025) → $236.03B (2034), 45.82% CAGR
+   - Finding: North America leads with 40.4% market share
+
+2. MarketsandMarkets - "AI Agents Market worth $52.62 billion by 2030"
+   - URL: https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-15761548.html
+   - Key Data: $7.84B (2025) → $52.62B (2030), 46.3% CAGR
+   - Finding: Multi-agent systems segment growing at 48.5% CAGR
+
+3. Global Market Insights - "AI Agents Market Size, Share & Growth (2025-2034)"
+   - URL: https://www.gminsights.com/industry-analysis/ai-agents-market
+   - Key Data: $5.9B (2024) → $105.6B (2034), 38.5% CAGR
+   - Finding: Cloud-based agents dominate with 66.87% market share (2024)
+
+4. MarkNtel Advisors - "AI Agent Market Forecast to Reach $42.7 Billion by 2030"
+   - URL: https://www.marknteladvisors.com/research-library/ai-agent-market.html
+   - Key Data: $5.32B (2025) → $42.7B (2030), 41.50% CAGR
+   - Finding: Enterprise automation driving 80% of adoption
+
+5. BCC Research - "AI Agents: Technologies, Applications and Global Markets"
+   - Key Data: $8B (2025) → $48.3B (2030), 43.3% CAGR
+   - Finding: NLP and ML advances driving growth
+
+**Domain Comparable Sales:**
+
+6. NamePros - "Top 10 (.Ai) Domain name sales (MAY - 2024)"
+   - URL: https://www.namepros.com/threads/top-10-ai-artificial-intelligence-domain-name-sales-may-2024.1327696
+   - Key Sale: crew.ai for $104,900 (May 9, 2024) on Namecheap
+   - Direct comparable: AI agent orchestration domain
+
+7. Accio - "Top Selling AI Domain Sales 2024-2025: Trends & Record Prices"
+   - URL: https://www.accio.com/business/top-selling-ai-domain-sales-2024-2025
+   - Key Data: girlfriend.ai ($250,000), You.ai ($700,000), Fin.ai ($1M)
+   - Finding: .ai domains now 20 of top 100 sales in 2024
+
+8. Afternic/GoDaddy - "2024 Domain Sales Data"
+   - Finding: .ai ranked #3 globally by sales value (behind .com and .net)
+   - Average .ai resale price: $6,525 in 2024
+   - Sell-through rate significantly above average
+
+9. Sedo - "Global Domain Report 2025"
+   - URL: https://hub.internetx.com/en/global-domain-report-2025
+   - Key Data: "AI" most searched keyword on Sedo (8 of 12 months in 2024)
+   - Finding: .ai registrations: 60K (2022) → 551K (2025) = 9x growth
+
+10. Domain Name Wire - "Afternic's 2024 data shows the surge in .AI domain sales"
+    - URL: https://domainnamewire.com/2025/02/20/afternics-2024-data-shows-the-surge-in-ai-domain-sales
+    - Finding: .ai climbed from outside top 20 (2022) to #3 in sales value (2024)
+    - Analysis: 46% YoY growth in .ai registrations (2025)
+
+**Domain Valuation Methodology:**
+
+11. VPN.com - "How Do Premium Domain Names Get Their Value In 2025?"
+    - URL: https://www.vpn.com/guide/premium-domain-names-get-their-value
+    - Methodology: Tech keyword domains appreciate 12-18% annually
+    - Finding: AI-related domains showing 20-30% annual growth (2024-2026)
+
+12. NamePros Forum - "How much a Domain Name appreciates in value annually?"
+    - URL: https://www.namepros.com/threads/how-much-a-domain-name-appreciates-in-value-annually.1192307
+    - Industry consensus: Premium .com domains appreciate 5-10% annually baseline
+    - Tech/trending keywords: 10-20%+ annual appreciation
+
+13. Hostinger - "25 Domain name statistics and trends to know in 2026"
+    - URL: https://www.hostinger.com/tutorials/domain-name-statistics
+    - Key Sale: icon.com for $12M (2025), voice.com for $30M (2023)
+    - Finding: Premium domain sales increased 18% YoY (2023-2024)
+
+14. Hostinger - "Domain name market: The internet's billion-dollar real estate"
+    - URL: https://www.hostinger.com/blog/domain-name-market
+    - Key Data: Global registrations 369.5M (2023) → 464.8M (2030 projected)
+    - CAGR: 3.3% overall market, AI domains significantly higher
+
+15. Inkbot Design - "Is A Premium Domain Name Worth It? The Math Behind Value"
+    - URL: https://inkbotdesign.com/premium-domain-name
+    - Analysis: Premium domains with keyword relevance show 25% higher CTR
+    - Finding: Aged domains rank 25% faster for competitive terms
 
 ---
 
@@ -1366,12 +1452,13 @@
 
 ## Document Maintenance
 
-**Last Updated:** January 17, 2026  
+**Last Updated:** January 19, 2026  
 **Next Review:** Quarterly (April 2026)  
 **Responsibility:** Portfolio Research Team  
 **Contact:** research@ampersandboxdesign.com
 
 **Change Log:**
+- Jan 19, 2026: Added agentromatic.com & agentelic.com with AI agent market research (200+ sources)
 - Jan 17, 2026: Initial comprehensive compilation (190+ sources)
 - Jan 15, 2026: Added ticktickclock.com & graphonomous.com deep research
 - Jan 14, 2026: Added delegatic.com market validation
