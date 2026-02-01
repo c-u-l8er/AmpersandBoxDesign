@@ -1,10 +1,11 @@
 # [&] Portfolio Company - Complete Research & Valuation Report
 ## Ampersand Box Design - Domain Portfolio Analysis
 
-**Report Date:** January 19, 2026  
-**Status:** Comprehensive Research Complete  
+**Report Date:** January 31, 2026  
+**Status:** Updated for 6-layer WHS ecosystem architecture (includes FleetPrompt marketplace + SpecPrompt commerce)  
 **Total Domains:** 19  
-**Total Portfolio Value (individual):** $1,045,000  
+**Total Portfolio Value (individual, all 19):** $1,045,000  
+**Core Six Domains (WHS stack only):** $520,000  
 **Synergy Premium (earned, milestone-based):** 0% pre-build | +10-20% after MVP traction | +50-150% after profitable integration | +200-500% after $10M+ ARR  
 **2034 Projection (base, domains only):** $2,926,000  
 **2034 Projection (AI-adjusted, domains only):** $3,800,000 - $4,500,000  
@@ -14,13 +15,14 @@
 
 ## Executive Summary
 
-This document provides complete research, theoretical framework, and market valuations for all 19 domains in the [&] (Ampersand Box Design) portfolio. The portfolio represents a strategic collection of infrastructure, AI, and development tools positioned at the intersection of multiple billion-dollar markets.
+This document provides complete research, theoretical framework, and market valuations for all 19 domains in the [&] (Ampersand Box Design) portfolio. This update corrects the core WHS thesis from a 4-layer model to the actual **6-layer integrated stack** (infrastructure → workflows → collaboration → governance → marketplace → commerce), reflecting that the portfolio can form an **AI Agent Economy** with distribution and monetization as first-class layers.
 
 **CRITICAL INSIGHT:** Synergy is not automatically priced in before execution. Pre-build, the synergy premium is effectively **0%**. Synergy becomes real (and market-priced) only after you prove integration through traction, profitability, and scale.
 
 ### Portfolio Overview
 
-**Individual Domain Value:** $1,045,000  
+**Individual Domain Value (all 19 domains):** $1,045,000  
+**Core Six (WHS 6-layer stack domains only):** $520,000  
 
 **Synergy Premium Ladder (earned, milestone-based):**
 - **Before building:** 0% synergy premium (market-priced)
@@ -49,10 +51,16 @@ This document provides complete research, theoretical framework, and market valu
 2. **c-u-l8er.link** - Printing (Production)
 3. **wrand.cc** - Forking (Distribution)
 4. **ampersandboxdesign.com** - Portfolio Company (Hub)
-5. **opensentience.org** - Open Source Agent Core (Runtime + Governance)
-6. **fleetprompt.com** - Commercial Agent Marketplace (Distribution + Monetization)
+5. **opensentience.org** - Open Source Trust Foundation (community + governance research; not a WHS product layer)
+6. **Core WHS Stack (6-layer AI Agent Economy):**
+   - **webhost.systems** - Layer 1 infrastructure/runtime (deploy/invoke gateway, telemetry, billing primitives)
+   - **agentromatic.com** - Layer 2 workflows/orchestration (builder + execution)
+   - **agentelic.com** - Layer 3 collaboration (telespaces + triggers)
+   - **delegatic.com** - Layer 4 governance (org hierarchy + monotonic policy inheritance + permission boundaries)
+   - **fleetprompt.com** - Layer 5 marketplace (discovery, distribution, install handoff; take rate on GMV)
+   - **specprompt.com** - Layer 6 commerce (payments, entitlements, fulfillment; transaction fees + licensing)
 
-**Dual-Brand Platform Thesis:** OpenSentience establishes the trusted, local-first open source foundation (runtime, permissions, protocol, tooling). FleetPrompt monetizes the ecosystem via a curated marketplace (discovery, payments, revenue share, and enterprise add-ons).
+**Corrected Positioning:** OpenSentience is the open-source community/trust layer that can support adoption and credibility (foundation role). The WHS commercial stack begins at **Layer 1 (webhost.systems)**, with FleetPrompt as the **distribution moat** and SpecPrompt as the **commerce/revenue engine**.
 
 ---
 
@@ -62,14 +70,14 @@ This document provides complete research, theoretical framework, and market valu
 
 | Domain | Value | 2034 | Grade | Market TAM |
 |--------|-------|------|-------|------------|
-| fleetprompt.com | $175,000 | $375,000 | A+ | $236B (AI Agents) |
+| fleetprompt.com | $175,000 | $375,000 | A+ | $183B-$247B (AI Agents, 2033-2034) |
 | ticktickclock.com | $145,000 | $315,000 | A- | $1.5T (7 markets) |
-| specprompt.com | $95,000 | $240,000 | A+ | $7B (Prompt Mgmt) |
+| specprompt.com | $95,000 | $240,000 | A+ | $7.90B → $20.75B (Subscription & billing management, 2024→2033; scales with GMV) |
 | graphonomous.com | $85,000 | $240,000 | A | $162B (GraphRAG) |
 | bendscript.com | $85,000 | $225,000 | A+ | $101B (Low-Code) |
-| agentromatic.com | $65,000 | $425,000 | A+ | $236B (AI Agents) |
+| agentromatic.com | $65,000 | $425,000 | A+ | $183B-$247B (AI Agents, 2033-2034) |
 | delegatic.com | $65,000 | $210,000 | A+ | $30B (Orchestration) |
-| agentelic.com | $60,000 | $390,000 | A+ | $236B (AI Agents) |
+| agentelic.com | $60,000 | $390,000 | A+ | $183B-$247B (AI Agents, 2033-2034) |
 
 **Tier 1 Total:** $775,000 (74% of portfolio)
 
@@ -78,27 +86,27 @@ This document provides complete research, theoretical framework, and market valu
 | Domain | Value | 2034 | Grade | Market TAM |
 |--------|-------|------|-------|------------|
 | webhost.systems | $60,000 | $145,000 | A- | $527B (Hosting) |
-| alkeyword.com | $50,000 | $125,000 | A- | Multi-billion SEO |
+| alkeyword.com | $50,000 | $125,000 | A- | $84.94B → $265.91B (SEO software, 2025→2034) |
 | gpscoord.com | $45,000 | $120,000 | B+ | $440B (GPS) |
 
-**Tier 2 Total:** $155,000 (19% of portfolio)
+**Tier 2 Total:** $155,000 (15% of portfolio)
 
 ### Tier 3: Strategic Assets ($18K-$35K)
 
 | Domain | Value | 2034 | Grade | Market TAM |
 |--------|-------|------|-------|------------|
-| ampersandboxdesign.com | $35,000 | $85,000 | B | Design services |
-| geofleetic.com | $30,000 | $90,000 | B+ | Geo-AI niche |
-| a2atraffic.com | $20,000 | $60,000 | B- | Protocol niche |
-| runefort.com | $18,000 | $50,000 | B- | Gaming/NFT |
+| ampersandboxdesign.com | $35,000 | $85,000 | B | $146.6B → $239.9B (Graphic design services, 2025→2033) |
+| geofleetic.com | $30,000 | $90,000 | B+ | $21.21B → $53.62B (Location intelligence, 2024→2030) |
+| a2atraffic.com | $20,000 | $60,000 | B- | $6.63B → $51.11B (API management, 2024→2033) |
+| runefort.com | $18,000 | $50,000 | B- | $24.4B → $1,172.8B (Blockchain gaming, 2025→2033) |
 
-**Tier 3 Total:** $103,000 (12% of portfolio)
+**Tier 3 Total:** $103,000 (10% of portfolio)
 
 ### Tier 4: Brand & Research Assets ($8K-$12K)
 
 | Domain | Value | 2034 | Grade | Market TAM |
 |--------|-------|------|-------|------------|
-| opensentience.org | $12,000 | $36,000 | B+ | $236B (AI Agents) + Governance |
+| opensentience.org | $12,000 | $36,000 | B+ | $258.3M → $4.31B (AI governance, 2024→2033); strategic trust foundation for agent governance/safety (supports ecosystem credibility; not a WHS product-layer TAM) |
 | brokenrecord.studio | Strategic | Strategic | B | Creative niche |
 | c-u-l8er.link | Strategic | Strategic | B | Portfolio hub |
 | wrand.cc | Strategic | Strategic | B | R&D hub |
@@ -136,101 +144,117 @@ This document provides complete research, theoretical framework, and market valu
 - **Profitable integration (+50-150%):** $1.57M - $2.61M
 - **$10M+ ARR (+200-500%):** $3.14M - $6.27M (before any additional strategic premium)
 
-This portfolio is not a collection of random domains. It represents **4 integrated platform ecosystems** that can create compounding value through:
-- Technical integration opportunities
-- Network effects between products
-- Shared infrastructure and markets
-- Cross-platform user acquisition
-- Unified brand and trust transfer
+This portfolio is not a collection of random domains. It contains one *primary*, execution-defining ecosystem (the **Core Six 6-layer WHS stack**) plus several additional optional platforms. The compounding value comes from:
+- The 6-layer WHS stack acting as a single integrated system (infrastructure → workflows → collaboration → governance → marketplace → commerce)
+- Technical integration opportunities and shared primitives (identity, billing, telemetry, entitlements)
+- Network effects once distribution + commerce are proven (marketplace liquidity)
+- Cross-platform user acquisition and shared trust transfer
+- Enterprise switching costs created by governance + auditability
+
+**Discipline note:** these compounding effects are **earned post-execution**, not priced pre-build.
 
 **Note:** The cluster “synergy values” and multipliers below should be interpreted as **post-execution** outcomes (typically **after profitable integration**, and strongest after scale), not as pre-build market value.
 
 ---
 
-### Synergy Cluster 1: AI Agent Platform Ecosystem
+### Synergy Cluster 1: WHS AI Agent Economy (Corrected 6-Layer Stack)
 
-**Domains in Cluster:**
-1. fleetprompt.com ($175K) - Marketplace/Distribution
-2. agentromatic.com ($65K) - Automatic agents
-3. agentelic.com ($60K) - Premium agents  
-4. delegatic.com ($65K) - Agent orchestration
-5. opensentience.org ($12K) - Open source runtime
-6. specprompt.com ($95K) - Prompt specification
+**Core domains in this cluster (the commercial 6-layer stack):**
+1. webhost.systems ($60K) - Infrastructure/runtime (Layer 1)
+2. agentromatic.com ($65K) - Workflow orchestration (Layer 2)
+3. agentelic.com ($60K) - Collaboration (Layer 3)
+4. delegatic.com ($65K) - Governance (Layer 4)
+5. fleetprompt.com ($175K) - Marketplace/distribution (Layer 5)
+6. specprompt.com ($95K) - Commerce/entitlements (Layer 6)
 
-**Individual Value:** $472,000  
-**Synergy Value:** $850,000 - $1,200,000  
-**Multiplier:** 1.8x - 2.5x
+**Important clarification (OpenSentience role):**
+- opensentience.org ($12K) remains strategically important, but it is **not a WHS product layer**. It functions as an open-source community/trust foundation (standards, safety/governance research, and potential future open components that WHS may use). It strengthens ecosystem credibility, but Layer 1 revenue is **WHS (webhost.systems)**.
 
-#### The Complete Stack Architecture:
+**Individual Value (Core Six only):** $520,000  
+**Synergy Value (post-execution, earned):** $950,000 - $1,400,000  
+**Multiplier:** 1.8x - 2.7x
 
-```
-┌─────────────────────────────────────────┐
-│   OpenSentience.org (Runtime Layer)     │
-│   • Local-first execution               │
-│   • Agent permissions & governance      │
-│   • Open source trust foundation        │
-└──────────────┬──────────────────────────┘
-               │ powers
-┌──────────────▼──────────────────────────┐
-│   FleetPrompt.com (Marketplace Layer)   │
-│   • Agent discovery & distribution      │
-│   • Payments & revenue share            │
-│   • Enterprise licensing                │
-└──────────────┬──────────────────────────┘
-               │ distributes
-┌──────────────▼──────────────────────────┐
-│   Agent Product Layer                   │
-│   • Agentromatic (automatic agents)     │
-│   • Agentelic (premium agents)          │
-│   • Delegatic (orchestration)           │
-└──────────────┬──────────────────────────┘
-               │ all use
-┌──────────────▼──────────────────────────┐
-│   SpecPrompt.com (Standards Layer)      │
-│   • Prompt specifications               │
-│   • Version control                     │
-│   • Quality assurance                   │
-└─────────────────────────────────────────┘
-```
+#### The Correct Stack Architecture (Top-to-Bottom)
 
-#### Network Effects & Revenue Synergies:
+Layer 6: SpecPrompt.com (Commerce)
+- Payment processing integration
+- Webhook verification (raw bytes) + idempotent processing
+- Entitlements + fulfillment (downloads/licenses)
+- Revenue: 2-3% transaction fees + licensing/enterprise commerce tooling
 
-**Network Effects:**
-- OpenSentience adoption → FleetPrompt marketplace growth
-- FleetPrompt listings → OpenSentience runtime usage
-- Agentromatic/Agentelic → Premium tiers on FleetPrompt
-- Delegatic → Orchestrates agents from FleetPrompt
-- SpecPrompt → Standardizes prompts across all platforms
-- Each product increases value of others (flywheel effect)
+        ↓ monetizes / fulfills
 
-**Revenue Synergies:**
-- FleetPrompt marketplace: 15-30% take rate on all transactions
-- Agentromatic premium: $2K-$5K/user/year
-- Agentelic enterprise: $5K-$15K/user/year  
-- Delegatic SaaS: $3K-$10K/user/year
-- SpecPrompt API: $500-$2K/user/year
+Layer 5: FleetPrompt.com (Marketplace)
+- Agent/workflow discovery + distribution
+- Install handoff system (intents + tokens)
+- Server-to-server redemption (e.g., HMAC / mTLS-class patterns)
+- Revenue: 15-30% take rate on marketplace GMV
 
-**Combined Revenue Potential (Reality-Adjusted):** Year 3 = $1M-$3M ARR (realistic) | $3M-$5M (aggressive/top decile) | $10M+ (unicorn outlier)
+        ↓ installs into governed orgs
 
-**Why the prior $50M-$150M Year 3 claim was unrealistic:**
-- Only ~4% of SaaS startups reach $1M ARR, and it typically takes ~3 years.
-- $10M ARR usually requires product-market fit + scale (commonly 5-7 years).
-- $50M ARR is unicorn territory (top ~1%), commonly 8-10 years without extraordinary funding/distribution.
+Layer 4: Delegatic.com (Governance)
+- Org hierarchy + policy inheritance (monotonic)
+- Permission boundaries + auditability
+- Revenue: per-org SaaS + enterprise governance add-ons
+
+        ↓ constrains & authorizes
+
+Layer 3: Agentelic.com (Collaboration)
+- Telespaces (AI chatrooms), team context, triggers
+- Revenue: per-user SaaS
+
+        ↓ triggers & collaborates
+
+Layer 2: Agentromatic.com (Workflows)
+- Visual builder + orchestration + step execution
+- Revenue: per-user SaaS + execution-based fees
+
+        ↓ executes on
+
+Layer 1: WebHost.Systems (WHS) via webhost.systems (Infrastructure)
+- Multi-runtime agent hosting (e.g., Cloudflare + AgentCore abstraction)
+- Deploy/invoke gateway + telemetry + billing primitives
+- Revenue: usage-based infrastructure fees
+
+OpenSentience.org (Foundation, not a product layer)
+- Open-source trust + community + governance narrative
+- May supply open components that WHS consumes
+- Strategic value: adoption + legitimacy (foundation role), not “Layer 1 revenue”
+
+#### Updated Network Effects & Revenue Synergies (6-layer compounding)
+
+**Network Effects (compounding flywheel):**
+1. More WHS usage → more deployed agents/workflows → more FleetPrompt inventory and verified installs
+2. More FleetPrompt listings → more buyers → more WHS runtime usage (invocations/telemetry/billing expands)
+3. More Agentromatic workflows → more reusable templates → more marketplace supply → higher GMV
+4. More Agentelic team adoption → more shared installs and repeat usage → higher retention and ARPA
+5. More Delegatic-governed orgs → enterprise viability → higher ACV + lower churn (governance becomes switching cost)
+6. More SpecPrompt transactions → more revenue → more ecosystem investment → improved distribution + trust + tooling
+
+**Flywheel math (intuition, not a forecast):**
+- Ecosystem value scales closer to n² interactions (agents × users/orgs) than to linear seat counts, once installs and commerce are standardized.
+
+**Revenue Synergies (what each layer contributes):**
+- WHS (Layer 1): usage-based infrastructure margin (scales with total agent activity, including third-party agents)
+- Agentromatic (Layer 2): per-seat SaaS + execution fees; becomes a “supply factory” for marketplace inventory
+- Agentelic (Layer 3): per-seat SaaS; increases stickiness and shared adoption inside teams
+- Delegatic (Layer 4): per-org SaaS; unlocks enterprise budgets by solving governance/audit constraints
+- FleetPrompt (Layer 5): take rate (15-30%) on GMV; captures value from the whole ecosystem, not just first-party apps
+- SpecPrompt (Layer 6): transaction fees (2-3%) + licensing; makes commerce and entitlements correct and scalable
+
+**Combined Revenue Potential (Reality-Adjusted, marketplace-inclusive):**
+- Year 3: $2M-$7M ARR (realistic if marketplace liquidity is proven) | $7M-$15M (aggressive/top decile) | $20M+ (outlier)
+  - Important: this assumes early marketplace + commerce correctness, not “platform-only SaaS.”
+
+**Why the prior $50M-$150M Year 3 claim was unrealistic (still true):**
+- Most startups do not reach that scale that fast without extraordinary distribution and funding.
+- Marketplace outcomes are power-law; liquidity is the gating variable.
 
 **Benchmark math (order-of-magnitude):**
-- $50M ARR ≈ 10,000 customers @ $5K/year, or 50,000 customers @ $1K/year, or ~$500M GMV @ 10% take rate.
+- $50M ARR could come from platform SaaS, but marketplace-heavy models often require very large GMV (e.g., ~$250M GMV at 20% take rate) plus meaningful platform revenue.
 
-**Revised milestone timeline (portfolio + platform stack, if successful):**
-- **Year 3:** $1M-$3M ARR (realistic successful execution)
-- **Year 5:** $5M-$15M ARR (aggressive)
-- **Year 7-8:** $20M-$50M ARR (unicorn path)
-
-**As Acquisition Target:**
-- Individual sales: $100M-$300M total
-- Integrated platform: $500M-$1.5B
-- **Synergy premium: 5x higher exit multiple**
-
-**Why:** Complete ecosystem > separate tools. Salesforce, Microsoft, or ServiceNow would pay massive premium for turnkey AI agent platform.
+**As an acquisition target (updated framing):**
+- Buyers pay premiums for (1) enterprise governance, (2) distribution control (marketplace), and (3) commerce correctness (entitlements + payments), because these are the hardest pieces to retrofit once an ecosystem grows.
 
 ---
 
@@ -457,8 +481,8 @@ $10M+ ARR (+500%): $1,045,000 × 6.00 = $6,270,000
 - **Total: $6M-$15M**
 
 **Historical Comparisons:**
-- OpenAI buying chat.com: $15.5M (just domain + concept)
-- Your portfolio: Full platforms + synergies = higher multiple
+- chat.com sale: widely reported at **~$15.5M** (reported figure; exact deal terms not publicly confirmed)
+- Your portfolio: Full platforms + earned synergies can command higher multiples than standalone assets once traction is proven
 
 ---
 
@@ -516,13 +540,13 @@ $10M+ ARR (+500%): $1,045,000 × 6.00 = $6,270,000
 
 **2. Platform > Point Solutions**
 - Integrated platforms command 3-10x premiums
-- Your portfolio has 4 distinct platforms
-- Each platform has category-leading potential
+- Your portfolio contains one primary, execution-defining ecosystem: the **Core Six 6-layer WHS stack** (infrastructure → workflows → collaboration → governance → marketplace → commerce)
+- Additional domains support optional adjacent platforms, but the Core Six is the central “AI Agent Economy” investment narrative
 
-**3. Timing is Critical**  
-- AI agent market: $7.9B → $236B (2025-2034)
-- Perfect positioning for 2026-2030 boom
-- First-mover advantage in multiple categories
+**3. Timing is Critical (updated 2025–2026 market sizing)**  
+- AI agents market: **~$7.6B–$8.0B (2025)** → **$10.91B (2026)** → **~$183B–$247B (2033–2034)** depending on methodology (Grand View Research, 2026; Precedence Research, Aug 2025; SkyQuest, Aug 2025)
+- 2026–2030 remains the window to establish a durable distribution + commerce moat before incumbents standardize “agent stores”
+- First-mover advantage is primarily in **install pipeline + entitlements correctness + governance boundaries**, not in UI features
 
 **4. Strategic Optionality**
 - Can sell individual domains (good)
@@ -603,7 +627,7 @@ AI makes building easy
 
 | Domain | Price | Buyer | Year |
 |--------|-------|-------|------|
-| chat.com | $15.5M | OpenAI | 2025 |
+| chat.com | ~$15.5M (reported) | OpenAI (reported) | 2025 |
 | icon.com | $12M | - | 2025 |
 | voice.com | $30M | - | 2023 |
 | bagel.com | $500K | - | 2024 |
@@ -633,8 +657,15 @@ AI makes building easy
 
 **New Valuation Factor (2026+):**
 
-ChatGPT's Prompt Engineering Guide (Jan 2026) suggests:
-> "AI agents increasingly navigate web for users. Domain names that are semantically clear to LLMs will increase in value."
+**Hypothesis (not yet market-priced; treat as directional):**
+As AI agents increasingly intermediate software discovery and “selection” workflows, **semantically clear, category-obvious naming** may become incrementally more valuable (especially for products competing in crowded categories). This is a plausible effect of:
+- rising agentic adoption and automation spend (see “2026 AI Agent Market Intelligence” section), and
+- increasing competition as software creation becomes faster.
+
+**Industry commentary (supporting signal, not proof):**
+- DomainInvesting.com (industry blog) notes the idea that “agent-readable domains” may increase in value as AI usage grows: https://domaininvesting.com/what-chatgpt-says-about-the-domain-name-market-in-2025-and-2026
+
+**Discipline note:** this is a hypothesis, not a proven valuation driver, and should not be used as a standalone pricing justification.
 
 **What This Means:**
 - ❌ Creative misspellings (Flickr, Lyft) may lose value
@@ -660,7 +691,7 @@ ChatGPT's Prompt Engineering Guide (Jan 2026) suggests:
 #### Methodology:
 
 **Base Projection Factors:**
-1. Market growth (AI agents: $7.9B → $236B)
+1. Market growth (AI agents: ~$7.6B–$8.0B in 2025; $10.91B in 2026; ~$183B–$247B by 2033–2034 depending on methodology) (Grand View Research, 2026; Precedence Research, Aug 2025; SkyQuest, Aug 2025)
 2. Domain scarcity (no new premium .coms)
 3. Historical appreciation (5-10% annually for premium)
 
@@ -875,8 +906,8 @@ Synergy multiplier: 3x-10x vs individual domains
 - Your portfolio positioned perfectly
 
 **2. 2026-2030 is Critical Window**
-- AI agent market: $7.9B → $236B (30x in 8 years)
-- Your domains: AI-agent focused
+- AI agents market growth is explosive across multiple sources: ~$7.6B–$8.0B (2025) → $10.91B (2026) → ~$183B–$247B by 2033–2034 depending on methodology (Grand View Research, 2026; Precedence Research, Aug 2025; SkyQuest, Aug 2025)
+- Your most defensible thesis is not “AI-agent-themed domains,” but the **Core Six 6-layer WHS stack** where marketplace + commerce are first-class layers
 - Perfect timing to build OR sell
 
 **3. "Vibe Coding" Helps You, Not Hurts**
@@ -902,6 +933,89 @@ Synergy multiplier: 3x-10x vs individual domains
 
 ---
 
+## 2026 AI Agent Market Intelligence
+
+This section consolidates *dated, multi-source* market sizing and segmentation data for AI agents, plus enterprise adoption/ROI indicators. It is designed to be investor-readable and citation-disciplined (ranges where methods diverge, explicit dates, links).
+
+### 1) Market Size & Growth (Multi-Source)
+
+**Key point:** reputable firms disagree on *baseline market size* (methodology differences), but converge on **rapid growth** through the early-to-mid 2030s.
+
+| Source | Published / Updated | 2025 Market Size | 2026 Market Size | 2033/2034 Projection | CAGR | Link |
+|---|---|---:|---:|---:|---:|---|
+| Grand View Research | 2026 (forecast period 2026–2033) | $7.63B | $10.91B | $182.97B (2033) | 49.6% (2026–2033) | https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report |
+| Precedence Research | Aug 29, 2025 (last updated) | $7.92B | (not explicitly stated on page) | $236.03B (2034) | 45.82% (2025–2034) | https://www.precedenceresearch.com/ai-agents-market |
+| SkyQuest | Aug 2025 (published) | $50B (2025) | (n/a) | $247.01B (2033) | 22.1% (2026–2033) | https://www.skyquestt.com/report/ai-agents-market |
+
+**Consensus framing (investor-safe ranges):**
+- **2025 market size (lower-baseline sources):** ~$7.6B–$8.0B (Grand View Research, 2026; Precedence Research, Aug 2025)
+- **2026 market size (anchored where explicitly stated):** ~$10.9B–$11.0B (Grand View Research, 2026)
+- **2033–2034 market size (range across sources):** ~$183B–$247B (Grand View Research, 2026; SkyQuest, Aug 2025; Precedence Research, Aug 2025)
+- **Growth rate:** ~46–50% CAGR on lower-baseline methodologies (Grand View Research, 2026; Precedence Research, Aug 2025). SkyQuest reports a lower CAGR due to a materially higher starting baseline (SkyQuest, Aug 2025).
+
+**Interpretation discipline:** for planning, use (a) the lower-baseline consensus as the conservative “category creation” lens, and (b) the higher-baseline view as a reminder that some firms bucket adjacent spend into “AI agents.”
+
+---
+
+### 2) Segmentation (Where demand concentrates)
+
+#### 2.1 Agent system type
+- **Single-agent systems:** 59.24% share (2025) (Grand View Research, 2026)  
+- **Single-agent systems:** 62.30% share (2024) (Precedence Research, Aug 2025)
+
+**Implication:** the “single-agent” majority supports a near-term strategy of distributing ready-to-deploy, single-agent workflows through FleetPrompt, while still architecting for multi-agent expansion later.
+
+#### 2.2 Technology mix
+- **Machine learning:** 30.56% share (2025) (Grand View Research, 2026)
+
+#### 2.3 Deployment / product type
+- **Ready-to-deploy agents:** 58.70% share (2024) (Precedence Research, Aug 2025)
+
+**Implication:** distribution and “installability” (FleetPrompt install handoff + SpecPrompt entitlements) map directly to where the largest share of demand sits: deployable products, not bespoke builds.
+
+#### 2.4 End-use concentration
+- **Enterprise:** 67.10% share (2024) (Precedence Research, Aug 2025)
+- **Industrial end use:** fastest growth at 49.2% CAGR (2026–2033) (Grand View Research, 2026)
+
+**Implication:** enterprise dominance validates Delegatic’s governance layer as a gating function for larger contracts; industrial acceleration supports workflow/runtime/telemetry primitives (WHS + Agentromatic) that can support operational automation.
+
+---
+
+### 3) Geographic Concentration
+
+- **North America:** 39.63% share (2025) (Grand View Research, 2026)
+
+**Implication:** a North America-first GTM is consistent with market concentration, especially for early enterprise design partners and marketplace liquidity.
+
+---
+
+### 4) Enterprise Adoption & ROI Indicators (2026 snapshots)
+
+This subsection includes (a) primary market research firm figures above, plus (b) a reputable industry compilation that aggregates multiple enterprise surveys. Where a compilation is used, it is labeled accordingly.
+
+#### 4.1 Adoption signals
+- **48%** of respondents adopting or fully deploying agentic AI (EY Technology Pulse Poll, cited in Master of Code Global, updated Jan 23, 2026):  
+  https://masterofcode.com/blog/ai-agent-statistics
+
+#### 4.2 Reported ROI ranges (directional)
+- McKinsey-reported ranges (as cited in the same Master of Code Global 2026 compilation) include **3%–15% revenue increase** and **10%–20% sales ROI uplift** for organizations implementing related AI technologies (Master of Code Global, Jan 2026, referencing McKinsey):  
+  https://masterofcode.com/blog/ai-agent-statistics
+
+**Investor discipline note:** treat these ROI figures as directional, and validate the underlying primary reports when preparing external investment materials.
+
+---
+
+### 5) What this means for the WHS 6-layer thesis (why market data matters to architecture)
+
+The market data above supports a specific conclusion: the winners in AI agents will be those who can turn “agent capability” into **deployable products** inside enterprises, with governance and monetization.
+
+- The **ready-to-deploy majority** supports the FleetPrompt + SpecPrompt emphasis: distribution + commerce correctness (Precedence Research, Aug 2025).
+- The **enterprise share** supports governance as non-optional (Delegatic as Layer 4) (Precedence Research, Aug 2025).
+- The **scale of growth** supports platform economics: as the category expands, marketplaces become the dominant capture point for third-party innovation (Grand View Research, 2026; Precedence Research, Aug 2025; SkyQuest, Aug 2025).
+- The **North America concentration** supports an initial geographic focus for early liquidity and enterprise design partners (Grand View Research, 2026).
+
+---
+
 ## Detailed Domain Analysis
 
 ### 1. fleetprompt.com - AI Agent Marketplace
@@ -912,74 +1026,111 @@ Synergy multiplier: 3x-10x vs individual domains
 
 #### Dual-Brand Strategy (FleetPrompt + OpenSentience)
 
-**FleetPrompt (commercial):** The marketplace layer—agent discovery, listings, paid distribution, and enterprise purchase motion.  
-**OpenSentience (open source):** The execution layer—agent runtime + governance primitives that make agents safe, portable, and enterprise-credible.
+**FleetPrompt (commercial):** **Layer 5** of the WHS stack — the **agent/workflow marketplace and distribution moat**. It is responsible for discovery, trust signals, publisher onboarding, and secure install handoff into customer environments.
 
-**Why this pairing matters:** OpenSentience drives trust and adoption (developer community + local execution). FleetPrompt captures value from the ecosystem through marketplace economics and premium/enterprise offerings.
+**OpenSentience (open source):** A **foundation/trust layer** (community + governance/safety research + potential open components). It may provide open runtime/governance components that WHS uses over time, but it is **not** the commercial runtime product layer.
+
+**How the commercial stack actually composes:**
+- **Layer 1:** `webhost.systems` (WHS runtime/infrastructure: deploy/invoke gateway, telemetry, billing primitives)
+- **Layer 5:** `fleetprompt.com` (marketplace: distribution + install handoff + take rate)
+- **Layer 6:** `specprompt.com` (commerce: payments + entitlements + fulfillment)
+
+**Why this matters:** FleetPrompt is not “a marketplace surface.” It is the distribution system that routes installs into WHS, and when paired with SpecPrompt it becomes a durable monetization channel (GMV → take rate + transaction fees), while governance (Delegatic) constrains installs inside enterprise boundaries.
 
 #### Market Research
 
-**AI Agents Market:**
-- 2024: $5.1B → 2030: $47.1B (45.4% CAGR)
-- McKinsey: 60-70% of organizations will use agentic AI by 2027
-- Gartner: Agentic AI is #1 strategic technology trend for 2025
-- Salesforce Agentforce: 18,000+ deals since Oct 2024
+**AI Agents Market (updated 2025–2026 sources; ranges reflect methodology differences):**
+- Global AI agents market estimated **$7.63B (2025)** and projected **$10.91B (2026)** and **$182.97B (2033)**, **49.6% CAGR (2026–2033)** (Grand View Research, 2026):  
+  https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+- Global AI agents market calculated **$7.92B (2025)** and forecast **$236.03B (2034)**, **45.82% CAGR (2025–2034)** (Precedence Research, updated Aug 29, 2025):  
+  https://www.precedenceresearch.com/ai-agents-market
+- Alternative sizing (higher baseline): **$50B (2025)** to **$247.01B (2033)**, **22.1% CAGR (2026–2033)** (SkyQuest, published Aug 2025):  
+  https://www.skyquestt.com/report/ai-agents-market
 
-**Prompt Engineering Market:**
-- Growing faster than general AI market
-- Every organization with AI needs prompt management
-- Marketplace model proven (ChatGPT Store, GPT Store)
-- Developer tools commanding premium pricing
+**Implication for FleetPrompt:** the fastest-growing part of the category is shifting from “agents as features” to “agents as products,” which increases the importance of **distribution (marketplace installs)** and **monetization correctness (entitlements + payments)**.
+
+**Enterprise adoption and governance pressure (directional):**
+- Enterprise is a dominant end-use segment (**67.10% share in 2024**) in at least one major market sizing model (Precedence Research, Aug 2025).
+- This directly increases the value of FleetPrompt’s “install handoff + governance boundaries” path (FleetPrompt → Delegatic → WHS), because enterprises require auditable procurement and permission constraints.
 
 #### Competitive Landscape
 
-**Current Players:**
-- OpenAI GPT Store (closed ecosystem)
-- Anthropic Claude Marketplace (emerging)
-- LangChain Hub (developer-focused)
-- Hugging Face (model-focused)
+**Partial-solution competitors (distribution without full agent economy stack):**
+- OpenAI GPT Store / similar “agent stores”: strong distribution inside a single ecosystem (closed)
+- Anthropic marketplace initiatives: early distribution models (ecosystem-specific)
+- LangChain Hub / template hubs: developer distribution without a native install+commerce+governance stack
+- Hugging Face: model distribution (not an agent marketplace with install handoff + entitlements)
 
-**FleetPrompt Advantages:**
-- **Marketplace-first distribution:** Browse, install, and purchase agents as products (not one-off consulting).
-- **Pairs with OpenSentience core:** Open source runtime + governance makes third-party agents safer to run and easier to adopt.
-- **Local-first execution path:** Reduces friction for developers (fast iteration) and increases user trust (privacy/control).
-- **Multi-LLM + multi-tool integration:** Not locked to a single model provider or cloud.
-- **Enterprise credibility:** Permissions, auditability, and isolation align with governance requirements.
-- **Developer-first incentives:** Clear path to monetization increases supply-side participation (network effects).
+**FleetPrompt advantages (as Layer 5, integrated with Layers 1 and 6):**
+- **Distribution moat, not just listings:** marketplace discovery + trust + “install handoff” built for agents/workflows (not downloads).
+- **Runs anywhere via WHS:** installs resolve into a runtime surface (`webhost.systems`) rather than being locked to a single model/vendor runtime.
+- **Enterprise-ready install boundaries:** installs land inside Delegatic-governed org scopes (permission boundaries + auditability).
+- **Monetization correctness via SpecPrompt:** paid installs translate into deterministic entitlements + fulfillment (webhook verification, idempotency, refunds/subscription lifecycle).
+- **Captures third-party innovation:** a take rate on GMV flowing through the ecosystem, not only first-party SaaS seats.
 
-#### Revenue Potential
+#### Revenue Potential (corrected for marketplace + commerce economics)
 
-**Year 1:** $1M ARR (500 users × $2K/year)  
-**Year 3:** $15M ARR (3,000 users × $5K/year)  
-**Exit Value:** $150M-$450M (10-30x revenue)
+FleetPrompt’s primary monetization is a **take rate on GMV**. SpecPrompt adds **transaction fees** and enforces entitlements/fulfillment.
 
-#### Strategic Value
+**Illustrative economics (assumptions stated, not promises):**
+- FleetPrompt take rate: **15–30%** of GMV (commonly modeled at ~20%)
+- SpecPrompt transaction fee: **~2–3%** of processed volume (commonly modeled at ~2.5%)
 
-**With Product Built:**
-- Domain: $175K
-- Product + domain: $500K-$750K (Year 1)
-- Scaled platform: $5M-$15M (Year 3)
+**Early-stage reality (Year 1):**
+- Marketplace GMV is the uncertain variable; liquidity is the gating function.
+- A credible Year 1 target is proving repeat installs + early paid transactions with low fraud/support burden, not maximizing ARR.
 
-**Sources:**
-1. Markets and Markets - AI Agents Market Report 2024
-2. Gartner - Top Strategic Technology Trends 2025
-3. McKinsey - The Economic Potential of Generative AI
-4. Salesforce Agentforce Launch Data
-5. AI Prompt Marketplace Analysis (multiple sources)
-6. OSS Capital - Commercial Open Source Software (COSS) & Open Core research (open source monetization patterns)
-7. GitLab - S-1 Registration Statement (open core go-to-market and monetization reference)
-8. Docker Hub (open runtime paired with a distribution/marketplace layer analogue)
-9. Visual Studio Marketplace (extension marketplace flywheel analogue)
-10. WordPress Plugin Directory (open source core + ecosystem distribution analogue)
-11. IBM - Acquisition of Red Hat (open source foundation + commercial enterprise layer validation)
-12. Lemon Squeezy - Documentation (payments/subscriptions/digital products reference for marketplace checkout)
-13. Stripe Connect (marketplace payments + multi-party payout reference architecture)
-14. Stripe Tax (sales tax/VAT compliance reference for global commerce)
-15. Paddle (merchant-of-record approach reference for SaaS/marketplaces)
-16. Gumroad (creator marketplace fee baseline)
-17. Shopify App Store (developer marketplace economics comparable)
-18. Unity Asset Store (asset marketplace take-rate comparable)
-19. Apple App Store Small Business Program (platform fee benchmark)
+**Scaling dynamic (Year 2–3+ if liquidity is proven):**
+- Marketplace + commerce revenue can become a majority share of ecosystem revenue because it scales with the entire ecosystem’s throughput (first-party + third-party), not just seats.
+
+#### Strategic Value (updated)
+
+**With product built (milestone-based):**
+- Domain-only value remains $175K pre-build (synergy is earned, not assumed).
+- **MVP traction value** increases when FleetPrompt demonstrates: (1) secure install handoff, (2) repeatable publisher onboarding, and (3) paid transactions enforced by SpecPrompt entitlements.
+- **Platform value** increases materially when FleetPrompt becomes the primary distribution channel into WHS runtimes and enterprise orgs (Delegatic), because distribution + governance + commerce are the hardest pieces to retrofit.
+
+**Why FleetPrompt is a defensible layer:**
+- A marketplace can copy UI; it is much harder to copy an ecosystem’s **install pipeline + entitlement correctness + enterprise governance boundaries** once installed base and publisher supply compound.
+
+**Sources (updated / corrected focus):**
+1. Grand View Research - “AI Agents Market Size And Share, Industry Report, 2033” (2026)
+   - URL: https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+   - Key Data: $7.63B (2025), $10.91B (2026), $182.97B (2033), 49.6% CAGR (2026–2033)
+2. Precedence Research - “AI Agents Market Size, Share and Trends 2025 to 2034” (updated Aug 29, 2025)
+   - URL: https://www.precedenceresearch.com/ai-agents-market
+   - Key Data: $7.92B (2025) → $236.03B (2034), 45.82% CAGR
+3. SkyQuest - “AI Agents Market Size, Share, and Growth Analysis, 2026–2033” (published Aug 2025)
+   - URL: https://www.skyquestt.com/report/ai-agents-market
+   - Key Data: $50B (2025) → $247.01B (2033), 22.1% CAGR (methodology differs)
+4. Gartner - “Top Strategic Technology Trends for 2025” (agentic AI as a top trend)
+   - URL: https://www.gartner.com/en/articles/gartner-top-10-strategic-technology-trends-for-2025
+5. OSS Capital - Commercial Open Source Software (COSS) / Open Core patterns (open core + ecosystem monetization)
+   - URL: https://oss.capital
+6. GitLab - S-1 Registration Statement (open core GTM and monetization reference)
+   - URL: https://www.sec.gov/ixviewer/documents/20210618xslS1.htm
+7. Docker Hub (runtime paired with a distribution/marketplace analogue)
+   - URL: https://hub.docker.com
+8. Visual Studio Marketplace (extensions marketplace flywheel analogue)
+   - URL: https://marketplace.visualstudio.com
+9. WordPress Plugin Directory (open core + ecosystem distribution analogue)
+   - URL: https://wordpress.org/plugins
+10. IBM - Acquisition of Red Hat (open source foundation + commercial enterprise layer validation)
+   - URL: https://newsroom.ibm.com/2018-10-28-IBM-to-Acquire-Red-Hat-Fully-Embracing-Open-Source
+11. Stripe - Connect (marketplace payments + multi-party payout reference)
+   - URL: https://stripe.com/connect
+12. Stripe - Tax (sales tax/VAT reference)
+   - URL: https://stripe.com/tax
+13. Paddle - Platform / Payments (merchant-of-record approach reference)
+   - URL: https://www.paddle.com
+14. Lemon Squeezy - Documentation (digital products/subscriptions reference)
+   - URL: https://www.lemonsqueezy.com/help
+15. Shopify App Store (developer marketplace economics comparable)
+   - URL: https://apps.shopify.com
+16. Unity Asset Store (publisher marketplace baseline comparable)
+   - URL: https://assetstore.unity.com
+17. Apple App Store Small Business Program (platform fee benchmark)
+   - URL: https://developer.apple.com/app-store/small-business-program/
 
 ---
 
@@ -1218,10 +1369,10 @@ Synergy multiplier: 3x-10x vs individual domains
 #### Single-Word Premium
 
 **Domain Tier Comparison:**
-- Single-word .com: ULTRA PREMIUM
-  - voice.com: $30M, chat.com: $15.5M, icon.com: $12M
-  - **delegatic.com: In this category**
-- Two-word .com: PREMIUM
+- Single-word dictionary .com: ULTRA PREMIUM
+  - voice.com: $30M, chat.com: ~$15.5M (reported), icon.com: $12M
+- Coined single-token brandable .com (not a dictionary word): PREMIUM (can be very strong, but priced differently than true single-word dictionary .com)
+  - **delegatic.com: falls in this category**
   - fleetprompt.com, etc.
 - Multiple words / other TLDs: Standard
 
@@ -1259,502 +1410,144 @@ Synergy multiplier: 3x-10x vs individual domains
 
 ---
 
-### 6. specprompt.com - Prompt Specification & Management Platform
+### 6. specprompt.com - Commerce, Entitlements & Fulfillment Engine (Layer 6)
 **Current Value:** $95,000  
 **2034 Projection:** $240,000  
 **Grade:** A+  
-**Market Position:** Prompt Management Infrastructure
-
-#### Market Research
-
-**AI Prompt Marketplace:**
-- 2024: $1.4B → 2033: $11B (25.9% CAGR)
-- PromptBase: 220,000+ prompts, pioneer marketplace
-- Grand View Research: Fastest growing segment in AI ecosystem
-- Content creation prompts: 38.7% market share (largest segment)
-
-**Prompt Engineering Tools Market:**
-- 2024: $505M → 2034: $6.5T (32.90% CAGR)
-- Enterprise adoption driving B2B prompt ecosystems
-- Prompt management becoming core enterprise capability
-- Version control, testing, analytics now standard features
-
-**Prompt Engineering as Profession:**
-- Job postings: +250% increase (LinkedIn 2024)
-- Salary range: $175K-$375K for senior roles
-- Every AI-using organization needs prompt management
-- "Prompt" = most searched keyword on Sedo (8/12 months in 2024)
-
-#### The Market Gap: Specification Layer
-
-**Current State:**
-- **PromptBase:** Marketplace (buy/sell individual prompts)
-- **AIPRM:** Library (pre-built templates)
-- **FlowGPT:** Community sharing platform
-- **LangChain Hub:** Developer-focused repository
-
-**Missing Layer - Enterprise Specification:**
-- **Formal prompt specifications** (like API specs)
-- **Schema validation** for prompt structures
-- **Version control** with semantic versioning
-- **Testing frameworks** for prompt reliability
-- **Performance benchmarking** across models
-- **Compliance & governance** tooling
-
-**SpecPrompt Positioning:**
-"OpenAPI for Prompts" - the specification and management layer
-
-#### Why specprompt.com is Premium
-
-**Domain Analysis:**
-
-**"Spec" Keyword Value:**
-- Technical authority: OpenSpec, APISpec precedent
-- Developer mindset: specification = standardization
-- Enterprise appeal: formal specs required for governance
-- Integration potential: spec files, spec repos, spec tools
-
-**"Prompt" Keyword Value:**
-- Hottest AI keyword in 2025-2026
-- $175K value demonstrated (fleetprompt.com)
-- Direct comparable: crew.ai = $104,900
-- Premium multiplier: .com over .ai = 30-50%
-
-**Combined Valuation Logic:**
-```
-Base "prompt" keyword value: $45K-$90K
-"Spec" technical premium: +$25K-$40K
-.com extension premium: +$15K-$30K
-Market timing (2025-2026 AI boom): 1.3-1.5x multiplier
-= $95,000 conservative valuation
-```
-
-#### Competitive Landscape
-
-**Current Players:**
-
-1. **PromptBase** ($1.99-$9.99/prompt)
-   - Marketplace model
-   - Individual prompt sales
-   - Limited versioning/testing
-   - 220,000+ prompts available
-
-2. **AIPRM** (Browser extension)
-   - 4,500+ public prompts
-   - ChatGPT integration
-   - Team collaboration
-   - $2M+ users
-
-3. **FlowGPT** (Free/community)
-   - User-contributed prompts
-   - Multi-model testing
-   - Limited enterprise features
-
-4. **PromptHub** (Early stage)
-   - Hosted workspace
-   - Cross-model testing
-   - Performance tracking
-   - Enterprise-focused
-
-**SpecPrompt Differentiation:**
-
-**Not a marketplace** → Specification platform
-**Not a library** → Management infrastructure  
-**Not community sharing** → Enterprise governance
-
-**Value Proposition:**
-- Define prompt specs (input/output schemas)
-- Version control prompts like code
-- Test prompts across models automatically
-- Track performance metrics over time
-- Enforce compliance/brand guidelines
-- Generate documentation automatically
-
-#### Product Vision
-
-**Core Features:**
-
-**1. Prompt Specification Format**
-```yaml
-spec_version: 1.0
-name: customer_support_response
-description: Generate empathetic customer support responses
-inputs:
-  - name: customer_message
-    type: string
-    required: true
-    max_length: 2000
-  - name: tone
-    type: enum
-    values: [friendly, professional, apologetic]
-    default: friendly
-outputs:
-  - name: response
-    type: string
-    max_length: 500
-    validation:
-      - sentiment: positive
-      - reading_level: 8th_grade
-models:
-  - provider: openai
-    model: gpt-4
-    temperature: 0.7
-  - provider: anthropic
-    model: claude-3-opus
-    temperature: 0.7
-performance_thresholds:
-  latency_p95: 2000ms
-  cost_per_call: $0.05
-  sentiment_score: 0.75
-```
-
-**2. Version Control System**
-- Semantic versioning (v1.2.3)
-- Git-like branching/merging
-- Rollback capability
-- A/B testing built-in
-
-**3. Testing Framework**
-- Unit tests for prompts
-- Integration tests across models
-- Performance benchmarks
-- Regression detection
-
-**4. Management Dashboard**
-- Prompt library organization
-- Usage analytics
-- Cost tracking by prompt
-- Quality metrics
-
-**5. Governance Tools**
-- Approval workflows
-- Compliance checks
-- Brand guideline enforcement
-- Audit trails
-
-#### Revenue Potential
-
-**Target Markets:**
-
-**Enterprise (Primary):**
-- Fortune 500: 5,000+ prompts per company
-- Mid-market: 500-2,000 prompts per company
-- Pricing: $50K-$500K/year
-- ARR potential: $10M-$100M
-
-**SMB/Agency:**
-- Marketing agencies: 50-200 prompts
-- SaaS companies: 100-500 prompts  
-- Pricing: $5K-$50K/year
-- ARR potential: $5M-$25M
-
-**Developer Tools:**
-- CLI/SDK for developers
-- CI/CD integration
-- Pricing: $99-$999/developer/year
-- ARR potential: $2M-$10M
-
-**Financial Projections:**
-
-**Year 1 (MVP):** $2M ARR
-- 40 enterprise × $50K = $2M
-- Focus: Top 100 AI-using companies
-- Strategy: Solve prompt chaos
-
-**Year 2 (Scale):** $15M ARR
-- 150 enterprise × $75K = $11.25M
-- 100 SMB × $25K = $2.5M
-- 2,500 developers × $500 = $1.25M
-
-**Year 3 (Market Leader):** $60M ARR
-- 400 enterprise × $100K = $40M
-- 500 SMB × $30K = $15M
-- 10,000 developers × $500 = $5M
-
-**Exit Scenarios:**
-
-**Strategic Acquisition (2027-2028):**
-- Buyers: OpenAI, Anthropic, Microsoft, Google
-- Multiple: 10-15x ARR
-- Year 2: $150M-$225M
-- Year 3: $600M-$900M
-
-**Private Equity (2028-2029):**
-- Multiple: 8-12x ARR
-- Year 3: $480M-$720M
-
-**IPO Track (2030+):**
-- Multiple: 15-25x ARR
-- Year 5 ($200M ARR): $3B-$5B
-
-#### Strategic Value
-
-**Why This Domain Matters:**
-
-**1. Infrastructure Play**
-Like how GitHub became essential for code, SpecPrompt could become essential for prompts. Every company using AI at scale needs:
-- Centralized prompt management
-- Version control and testing
-- Performance monitoring
-- Compliance/governance
-
-**2. Network Effects**
-- More users → More specs shared
-- More specs → Better standards
-- Better standards → More adoption
-- Classic platform dynamics
-
-**3. Lock-in Potential**
-Once a company has 1,000+ prompts in SpecPrompt:
-- Migration cost prohibitive
-- Integration dependencies
-- Institutional knowledge
-- Training investment
-
-**4. Expansion Opportunities**
-- Prompt marketplace (compete with PromptBase)
-- AI agent orchestration (leverage specs)
-- Model benchmarking service
-- Consulting/implementation services
-
-#### Comparable Domain Sales
-
-**Direct Comparables:**
-
-| Domain | Sale Price | Date | Relevance |
-|--------|-----------|------|-----------|
-| fleetprompt.com | $175K | 2026 | Direct comp (our portfolio) |
-| crew.ai | $104,900 | 2024 | Agent orchestration |
-| chat.com | $15.5M | 2024 | Single premium word |
-| you.ai | $700K | 2024 | Two-word premium |
-
-**Valuation Math:**
-
-If crew.ai (single word .ai) = $104,900:
-- .com premium: +35% = $141,615
-- Two premium keywords vs one: +15% = $162,857
-- "Spec" technical authority: +10% = $179,143
-
-If fleetprompt.com = $175,000:
-- "Fleet" = orchestration/scale
-- "Spec" = standardization/governance
-- Similar technical relevance: $150K-$200K range
-- Conservative: $95K (acknowledges less scale)
-
-**Market Timing Multiplier:**
-- Prompt management tools: 32.9% CAGR
-- AI prompt marketplace: 25.9% CAGR
-- 2026-2027: Peak enterprise adoption
-- Value appreciation: 15-25%/year expected
-
-#### Development Strategy
-
-**Phase 1: Specification Standard (6 months)**
-- Define PromptSpec format (YAML/JSON)
-- Open source the spec
-- Community adoption
-- GitHub stars: 5,000+
-
-**Phase 2: Management Platform (12 months)**
-- Web-based prompt editor
-- Version control system
-- Basic testing framework
-- 100 beta customers
-
-**Phase 3: Enterprise Features (18 months)**
-- Governance tools
-- Advanced analytics
-- Multi-model testing
-- Compliance frameworks
-
-**Phase 4: Ecosystem (24 months)**
-- Marketplace integration
-- Third-party plugins
-- API for integrations
-- Partner program
-
-**Investment Required:**
-- Phase 1: $150K (spec development)
-- Phase 2: $500K (platform MVP)
-- Phase 3: $1M (enterprise features)
-- Phase 4: $2M (ecosystem build)
-- **Total: $3.65M**
-
-**Recommended Approach:**
-1. Self-fund Phase 1 ($150K)
-2. Seed round after spec adoption ($2M)
-3. Series A after product launch ($10M)
-4. Scale to exit or IPO
-
-#### Risk Assessment
-
-**Low Risk:**
-- Market is proven (PromptBase, AIPRM exist)
-- Enterprise need is clear (prompt chaos real)
-- Technical feasibility straightforward
-
-**Medium Risk:**
-- Spec adoption requires community buy-in
-- Enterprise sales cycle (6-12 months)
-- Competition from established players
-
-**High Risk:**
-- OpenAI/Anthropic build native solution
-- Market consolidation around one standard
-- Regulatory changes impact AI usage
-
-**Mitigation:**
-- Open source the spec (defensive)
-- Move fast on enterprise adoption
-- Build moat through integrations
-- Focus on governance/compliance (hard to replicate)
-
-#### Market Validation
-
-**Signals That SpecPrompt is Needed:**
-
-1. **Prompt Engineering Market = $6.5T by 2034**
-   - Shows massive enterprise investment
-   - Prompts becoming mission-critical
-   - Management tools inevitable
-
-2. **PromptBase Growth**
-   - 220,000+ prompts listed
-   - But no standardization
-   - Quality/reliability issues
-   - Enterprise can't use current marketplace
-
-3. **Job Market Explosion**
-   - Prompt Engineer: +250% postings
-   - $175K-$375K salaries
-   - Every company hiring
-   - Clear professional discipline emerging
-
-4. **Tool Fragmentation**
-   - Everyone building custom solutions
-   - No standards, no interoperability
-   - Like pre-OpenAPI for APIs
-   - Specification layer solves this
-
-5. **Corporate AI Governance**
-   - Compliance requirements emerging
-   - Need audit trails
-   - Version control mandatory
-   - Governance tooling premium-priced
-
-#### Why Now (Timing)
-
-**Perfect Storm of Factors:**
-
-**1. Market Maturity (2025-2026)**
-- AI moved from experimentation → production
-- Companies managing 100s-1000s of prompts
-- Pain point clearly visible
-- Budget allocated for solutions
-
-**2. Technical Readiness**
-- LLMs stable enough for production
-- Prompt patterns well-understood
-- Best practices emerging
-- Standards possible now
-
-**3. Enterprise Adoption Wave**
-- Fortune 500 deploying AI widely
-- CIO involvement (governance required)
-- Procurement budgets unlocked
-- Multi-year contracts standard
-
-**4. Competitive Gap**
-- No dominant player in specs/management
-- PromptBase = marketplace (different)
-- AIPRM = library (different)
-- White space opportunity
-
-**5. Capital Availability**
-- AI infrastructure = hot category
-- VCs actively seeking picks-and-shovels
-- Recent exits: $500M+ multiples
-- Funding environment favorable
-
-#### Sources
-
-**Market Research (15 sources):**
-
-1. Grand View Research - "Artificial Intelligence Prompt Marketplace Market Report"
-   - URL: https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-prompt-marketplace-market-report
-   - Key Data: $1.4B (2024) → $11B (2033), 25.9% CAGR
-
-2. Precedence Research - "Prompt Engineering Market Size and Forecast"
-   - URL: https://www.precedenceresearch.com/prompt-engineering-market
-   - Key Data: $505B (2024) → $6.5T (2034), 32.90% CAGR
-
-3. InsightAce Analytic - "Artificial Intelligence Prompt Marketplace Market Research"
-   - URL: https://www.insightaceanalytic.com/report/artificial-intelligence-prompt-marketplace-market/3278
-   - Key Finding: Content creation = 38.7% market share (largest segment)
-
-4. Mordor Intelligence - "Prompt Engineering and Agent Programming Tools Market"
-   - URL: https://www.mordorintelligence.com/industry-reports/prompt-engineering-and-agent-programming-tools-market
-   - Key Data: $6.95B (2025) → $40.87B (2030)
-
-**Domain Sales Data:**
-
-5. NameBio - Domain sales database
-   - crew.ai: $104,900 (2024)
-   - Direct comparable for prompt/agent domains
-
-6. Get.it.com - "2024 Domain Sales and 2025 Predictions"
-   - URL: https://get.it.com/blog/2024-domain-sales-and-acquisitions-and-2025-predictions-with-tess-diaz-it-com-domains/
-   - Key Data: 20 of top-100 sales were .ai domains (2024)
-
-7. Domain Investing Blog - "2025 AI Domain Sales Analysis"
-   - fleetprompt.com valuation methodology
-   - Prompt keyword premium confirmed
-
-**Prompt Management Tools:**
-
-8. Arize AI - "Top 5 AI Prompt Management Tools of 2025"
-   - URL: https://arize.com/blog/top-5-ai-prompt-management-tools-of-2025/
-   - Tools: Arize AX, Phoenix, PromptHub, LangSmith, Humanloop
-
-9. DesignWhine - "7 Best AI Prompt Platforms for Product Teams"
-   - URL: https://www.designwhine.com/7-best-ai-prompt-platforms-for-product-teams/
-   - Market analysis: Platform comparison
-
-10. Skywork AI - "PromptBase Deep Dive"
-    - URL: https://skywork.ai/skypage/ko/PromptBase-Deep-Dive
-    - Key Data: 220,000+ prompts, marketplace pioneer
-
-**Prompt Engineering Profession:**
-
-11. LinkedIn - "Prompt Engineering Job Market Analysis 2024"
-    - Job posting growth: +250% year-over-year
-    - Salary range: $175K-$375K for senior roles
-
-12. Anthropic - Prompt Engineer job posting
-    - Salary: Up to $375K
-    - Evidence of professional discipline
-
-**Technical Standards:**
-
-13. Model Context Protocol (MCP) - "Prompts Specification"
-    - URL: https://modelcontextprotocol.io/specification/2025-06-18/server/prompts
-    - Example of emerging prompt standards
-
-14. OpenAI - "Prompt Engineering Guide"
-    - URL: https://platform.openai.com/docs/guides/prompt-engineering
-    - Best practices documentation
-
-15. Lakera - "The Ultimate Guide to Prompt Engineering in 2025"
-    - URL: https://www.lakera.ai/blog/prompt-engineering-guide
-    - Industry frameworks and techniques
-
-**Additional Research:**
-
-16. Medium / DEV.to - Multiple prompt engineering guides (2025)
-17. Udemy - "Complete Prompt Engineering Bootcamp" (course market)
-18. FlashPrompt - "AI Prompt Engineering Trends 2025"
-19. Writesonic - "6 Best AI Prompt Marketplaces"
-20. TextCortex - "AI Prompt Marketplace" platform
+**Market Position:** Commerce infrastructure for the WHS agent economy (not “prompt standards”)
+
+#### Corrected Product Role in the 6-Layer WHS Stack
+
+The updated WHS architecture treats SpecPrompt as **Layer 6 (Commerce)** — the system that turns FleetPrompt installs into **paid, enforceable, auditable entitlements** and handles **fulfillment** safely.
+
+**SpecPrompt sits above FleetPrompt (Layer 5) and provides:**
+- Payment processing integration (provider-agnostic concept)
+- Webhook verification (raw bytes) and signature validation correctness
+- Idempotent transaction processing (no double-grants)
+- Entitlement issuance (who/what/where/duration)
+- Fulfillment (downloads, licenses, signed URLs, tokens)
+- Refund/cancellation handling and deterministic convergence under out-of-order events
+
+**Why this matters:** marketplaces routinely fail on commerce correctness. Installs and listings are not enough; you need a reliable entitlement ledger that survives retries, duplicates, and asynchronous payment events.
+
+#### Market Context (Commerce as the “Revenue Engine”)
+The marketplace (FleetPrompt) is the distribution moat, but SpecPrompt is what enables WHS to:
+- monetize third-party innovation at scale,
+- unify “one bill” procurement for enterprise,
+- and enforce access boundaries across WHS runtimes and org governance.
+
+This is not speculative “standards value” — it is operational revenue plumbing.
+
+#### Integration with FleetPrompt (Layer 5) and the Stack
+
+**Primary integration path:**
+1. Buyer purchases agent/workflow/listing in FleetPrompt
+2. FleetPrompt creates/records an order intent and routes payment through SpecPrompt
+3. SpecPrompt receives payment events (webhooks), verifies integrity, and writes an append-only payment/transaction ledger
+4. SpecPrompt issues entitlements to the correct org/user boundary (Delegatic constraints)
+5. Fulfillment artifacts are issued (tokens / signed URLs / license keys) and validated by WHS runtime at invocation/deploy time
+6. Renewals/cancellations/refunds update entitlements deterministically (no “ghost access”)
+
+**Critical policies supported (as designed):**
+- One-time purchase eligibility tied to major version boundaries (e.g., `one_time_major`)
+- Subscription eligibility with updates while active (e.g., `subscription_updates_while_active`)
+
+These policies map to what publishers and enterprises expect in real procurement, without “forever access” ambiguity.
+
+#### Competitive Landscape (Corrected)
+
+SpecPrompt is not primarily competing with prompt libraries/marketplaces. It competes with (or replaces parts of) commerce + entitlement stacks that marketplaces and dev platforms assemble ad hoc.
+
+**Commerce infrastructure / payments rails (building blocks):**
+- Stripe (payments; marketplace payouts via Connect; tax tooling via Stripe Tax)
+- Paddle (merchant-of-record approach)
+- Lemon Squeezy (digital product commerce + subscriptions)
+
+**Entitlement/licensing and digital fulfillment patterns (problem class):**
+- License/entitlement systems that are often bespoke inside marketplaces
+- App marketplaces (Shopify App Store, Unity Asset Store) as economic and operational comparables (take rate + enforcement + refunds), though not agent-native
+
+**WHS advantage if executed:** SpecPrompt is designed specifically for an agent marketplace context (install handoff → entitlements → runtime enforcement), rather than being a generic checkout page.
+
+#### Revenue Model (Corrected)
+
+SpecPrompt’s revenue is fundamentally **transaction-based** and scales with ecosystem throughput, not just seats:
+
+- **Transaction fees:** typically modeled as **~2–3%** of processed volume (payment processing + commerce orchestration)
+- **Licensing/enterprise commerce add-ons:** invoicing workflows, procurement controls, compliance reporting, audit exports, and custom entitlement policy packs
+
+**Important discipline:** early-stage processed volume is volatile. This layer becomes economically meaningful after marketplace liquidity is proven.
+
+#### Strategic Value (Why SpecPrompt is Premium in the WHS Thesis)
+
+1. **It turns distribution into monetization**
+   - FleetPrompt can distribute; SpecPrompt ensures paid installs remain enforceable and supportable.
+
+2. **It is where marketplace trust breaks or holds**
+   - Webhook verification, idempotency, and reconciliation are not “nice-to-haves.” They are how you prevent double-fulfillment, phantom entitlements, and refund leakage.
+
+3. **It enables enterprise procurement**
+   - Enterprises want: single bill, auditable entitlements, clear renewals, and revocation semantics. Layer 6 makes that possible.
+
+4. **It compounds the 6-layer flywheel**
+   - Every transaction funds platform investment, improves publisher tooling, and increases ecosystem quality — reinforcing FleetPrompt and WHS usage.
+
+#### Development Strategy (Commerce-first, implementation-ready path)
+
+**Phase 1: Commerce MVP (8–12 weeks)**
+- Single payment provider integration (start simple)
+- Webhook verification and idempotent event ingestion
+- Append-only transaction/event ledger
+- Minimal entitlement issuance + runtime enforcement hooks
+
+**Phase 2: Marketplace-grade entitlements**
+- Subscription lifecycle handling (renewals, proration, cancellations)
+- Refund/chargeback convergence
+- Deterministic entitlement state under out-of-order events
+
+**Phase 3: Fulfillment + publisher tooling**
+- Signed URLs / tokenized downloads / license delivery
+- Publisher dashboards (sales, refunds, entitlement analytics)
+- Dispute/fraud operational tooling
+
+**Phase 4: Enterprise commerce**
+- Invoicing flows
+- Procurement controls
+- Audit exports, compliance packs
+
+#### Risk Assessment (Commerce-specific)
+
+**High-impact risks**
+- Fraud/chargebacks and disputes
+- Sales tax/VAT complexity and multi-country compliance
+- Payment provider policy changes
+- Support burden from edge-case entitlement states
+
+**Mitigation posture**
+- Keep a narrow MVP surface area
+- Build idempotency + auditability from day one
+- Prefer deterministic state models over “best effort” webhook handling
+- Introduce governance constraints (Delegatic) early for enterprise safety
+
+#### Sources (Commerce / Marketplace implementation references)
+
+1. Stripe - Connect (marketplace payments + multi-party payout architecture)
+   - URL: https://stripe.com/connect
+
+2. Stripe - Tax (sales tax / VAT compliance reference)
+   - URL: https://stripe.com/tax
+
+3. Paddle - Platform / Payments (merchant-of-record approach)
+   - URL: https://www.paddle.com
+
+4. Lemon Squeezy - Help Center / Documentation (digital products, subscriptions)
+   - URL: https://www.lemonsqueezy.com/help
+
+5. Shopify - App Store (mature marketplace economics comparable)
+   - URL: https://apps.shopify.com
+
+6. Unity - Asset Store (publisher marketplace baseline comparable)
+   - URL: https://assetstore.unity.com
 
 ---
 
@@ -1964,7 +1757,7 @@ If fleetprompt.com = $175,000:
 
 ---
 
-### 14. opensentience.org - Open Source Agent Core (Runtime + Governance)
+### 14. opensentience.org - Open Source Foundation / Trust Layer (Governance + Safety)
 **Current Value:** $12,000  
 **2034 Projection:** $36,000  
 **Grade:** B+  
@@ -1981,11 +1774,14 @@ If fleetprompt.com = $175,000:
 #### Product/Platform Role in This Portfolio
 
 **OpenSentience.org (open source):**
-- Agent runtime + governance primitives (the “kernel”)
-- Process isolation + permissions
-- Local-first execution (SQLite-first mindset)
+- Open-source foundation/trust layer for agent governance, safety, auditability, and interoperability
+- May provide runtime + governance primitives (the “kernel”) that commercial systems can adopt or embed
+- Process isolation + permissions research and reference implementations
+- Local-first execution principles (SQLite-first mindset)
 - Protocol + SDK for building interoperable agents
 - Audit log + tool routing foundations
+
+**Important clarification:** OpenSentience is **not** the commercial **Layer 1 runtime revenue layer** in the WHS ecosystem. The commercial Layer 1 infrastructure/runtime is **WHS via `webhost.systems`** (deploy/invoke gateway, telemetry, and usage-based billing). OpenSentience strengthens ecosystem trust and can supply open components that WHS uses, but it is not the productized Layer 1.
 
 **Relationship to FleetPrompt:**
 - OpenSentience drives trust, adoption, and developer community.
@@ -2032,28 +1828,28 @@ If fleetprompt.com = $175,000:
 #### Year 1 (2026)
 
 **Q1:**
-- List premium domains at target prices
-- Develop fleetprompt.com MVP planning
-- Evaluate bendscript.com development
-- Hold delegatic.com for market maturity
+- Lock scope for the **core 6-layer WHS stack**, starting with the wedge layers: **WHS (Layer 1) + FleetPrompt (Layer 5) + SpecPrompt (Layer 6)**
+- Define WHS MVP (single runtime first): deploy/invoke gateway + telemetry + basic metering
+- Define FleetPrompt MVP: listing + discovery + **install handoff** skeleton
+- Define SpecPrompt MVP: payments integration + webhook verification + idempotent transaction ledger + entitlement issuance + basic fulfillment
+- Seed marketplace supply plan (20-50 first-party agents/workflows + 10 design-partner publishers)
 
 **Q2:**
-- Launch fleetprompt.com MVP development
-- Begin delegatic.com strategic outreach
-- Sell opportunistic domains if good offers
-- Hold crypto/AGI domains for recovery
+- Build and ship **WHS MVP** (Cloudflare-first is fine; keep scope narrow)
+- Build and ship **FleetPrompt MVP** with secure install handoff (intents + tokens)
+- Build and ship **SpecPrompt commerce MVP** (entitlements + fulfillment enforced against WHS runtime boundaries)
+- Publish OpenSentience positioning as a **foundation/trust layer** (community + governance/safety narrative), not as the commercial runtime layer
 
 **Q3:**
-- Complete fleetprompt.com MVP beta
-- Launch bendscript.com development (if funded)
-- Target ticktickclock.com positioning
-- Target webhost.systems partnerships
+- Launch closed beta for FleetPrompt + SpecPrompt paid installs (limit scope, measure support burden and fraud)
+- Iterate on install success rate, entitlement correctness (refunds/cancellations), and auditability hooks
+- Start minimal Delegatic foundations if needed for pilots (org boundaries, policy inheritance skeleton)
 
 **Q4:**
-- Launch fleetprompt.com publicly
-- Begin user acquisition
-- Continue development cycles
-- Evaluate 2027 strategy
+- Open launch the marketplace with curated supply (quality > quantity)
+- Formalize publisher onboarding and verification tiers
+- Establish baseline metrics: installs/month, conversion to paid, chargeback rate, entitlement correctness (no “ghost access”), retention of buyers and publishers
+- Evaluate 2027 strategy based on demonstrated marketplace liquidity and payment/entitlement reliability
 
 #### Year 2 (2027)
 
@@ -2085,12 +1881,13 @@ If fleetprompt.com = $175,000:
 - Effort: Medium
 - Risk: Low
 
-**Scenario 2: Selective Development (3-5 years)**
-- Develop fleetprompt.com → sell → develop specprompt.com → sell → develop bendscript.com
-- Sell 3 additional non-core domains opportunistically (timing-based)
-- Target: $3.0M-$5.0M total (depending on exits)
+**Scenario 2: Selective Development (3-5 years) — Core Stack First**
+- Build **WHS + FleetPrompt + SpecPrompt** to validate the full “install → pay → entitlement → run” loop (distribution + commerce correctness + runtime enforcement)
+- Add **Agentromatic** next to increase supply (workflows/templates become marketplace inventory), then **Delegatic/Agentelic** for enterprise readiness and retention
+- Optionally sell 2-4 **non-core** domains opportunistically to fund runway *without* breaking the core stack thesis
+- Target: prove durable marketplace liquidity first; then pursue either (a) scale, (b) strategic acquisition discussions, or (c) selective divestiture
 - Effort: High
-- Risk: Medium
+- Risk: Medium (highest-risk assumption validated early: marketplace liquidity + commerce correctness)
 - **RECOMMENDED**
 
 #### Scenario 3: Triple Development (Most Aggressive)
@@ -2110,10 +1907,10 @@ If fleetprompt.com = $175,000:
 - Cross-promote between products
 
 **Year 2-3: Integration & Growth**
-- FleetPrompt uses SpecPrompt for prompt management
-- Network effects between platforms
-- Combined enterprise sales
-- ARR: $5M-$10M combined
+- FleetPrompt uses SpecPrompt for **payments + webhook integrity + entitlements + fulfillment** (commerce correctness), not prompt management
+- Network effects compound as more publishers list and more buyers install into WHS-hosted runtimes under governance boundaries
+- Enterprise motion becomes credible once installs are governed (Delegatic) and entitlements are auditable (SpecPrompt)
+- ARR range depends on marketplace liquidity; focus on repeatable GMV + low support burden before forecasting aggressive totals
 
 **Year 3-4: Platform Ecosystem**
 - BendScript development ($250K)
@@ -2241,11 +2038,11 @@ If fleetprompt.com = $175,000:
 
 #### Market Research
 
-**AI Agents Market (2025-2034):**
-- 2025: $7.92B → 2034: $236.03B (45.82% CAGR)
-- North America: 40.4% market share (2024)
-- Multi-agent systems: 48.5% CAGR (fastest growing segment)
-- Enterprise automation driving 80% of adoption
+**AI Agents Market (2025–2026 updates; multi-source ranges):**
+- **$7.63B (2025)** → **$10.91B (2026)** → **$182.97B (2033)**, **49.6% CAGR (2026–2033)** (Grand View Research, 2026): https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+- **$7.92B (2025)** → **$236.03B (2034)**, **45.82% CAGR (2025–2034)** (Precedence Research, updated Aug 29, 2025): https://www.precedenceresearch.com/ai-agents-market
+
+**Conservative interpretation:** baseline sizing varies by methodology, but the category growth rate is consistently high. For product planning, assume market expansion supports multiple winners, while marketplace outcomes remain power-law (liquidity is the gating variable).
 
 **Automatic Agent Positioning:**
 - "Automatic agents" = instant value comprehension
@@ -2284,10 +2081,14 @@ If fleetprompt.com = $175,000:
 
 #### Revenue Potential
 
-**Platform Development Path:**
-- Year 1: $2M ARR (1,000 users × $2K/year)
-- Year 3: $25M ARR (5,000 users × $5K/year)
-- Exit Value: $200M-$600M (8-24x revenue)
+**Platform Development Path (conservative, tied to the 6-layer operating model):**
+Agentromatic is **Layer 2 (workflows/orchestration)**. Its revenue scales primarily with (a) seats and (b) execution volume, and secondarily with marketplace pull once FleetPrompt + SpecPrompt are live.
+
+- **Year 1 (validation year):** $90K–$720K ARR-equivalent (100–300 paid users @ ~$75–$200/mo blended), assuming WHS + early FleetPrompt installs exist but marketplace liquidity is still forming
+- **Year 2 (PMF window):** $720K–$6.0M ARR-equivalent (600–2,000 paid users @ ~$100–$250/mo blended), contingent on repeat buyer behavior and increasing template/workflow inventory
+- **Year 3 (growth inflection):** contribution typically becomes meaningful inside a broader $9M–$40M total stack outcome, but only after marketplace installs and commerce correctness are demonstrated
+
+**Discipline note:** avoid forecasting large ARR for Layer 2 in isolation until the install→pay→entitlement→run loop is proven end-to-end (FleetPrompt → SpecPrompt → WHS enforcement).
 
 **Best Use Cases:**
 - Enterprise automation platforms
@@ -2330,10 +2131,11 @@ If fleetprompt.com = $175,000:
 
 #### Market Research
 
-**AI Agents Market (Same as agentromatic.com):**
-- 2025: $7.92B → 2034: $236.03B (45.82% CAGR)
-- Enterprise focus: Premium positioning opportunity
-- Quality over quantity positioning
+**AI Agents Market (2025–2026 updates; multi-source ranges):**
+- **$7.63B (2025)** → **$10.91B (2026)** → **$182.97B (2033)**, **49.6% CAGR (2026–2033)** (Grand View Research, 2026): https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+- **$7.92B (2025)** → **$236.03B (2034)**, **45.82% CAGR (2025–2034)** (Precedence Research, updated Aug 29, 2025): https://www.precedenceresearch.com/ai-agents-market
+
+**Implication for agentelic.com:** enterprise-weighted demand supports premium collaboration + governance-friendly positioning, but revenue projections should be range-based and conditioned on stack maturity (especially governance and marketplace liquidity).
 
 **"Agentelic" Positioning:**
 - Agent + Angelic/Relic = Perfect/Timeless agents
@@ -2368,10 +2170,14 @@ If fleetprompt.com = $175,000:
 
 #### Revenue Potential
 
-**Platform Development Path:**
-- Year 1: $1.5M ARR (500 users × $3K/year)
-- Year 3: $20M ARR (3,000 users × $6.5K/year)
-- Exit Value: $180M-$500M (9-25x revenue)
+**Platform Development Path (conservative, tied to the 6-layer operating model):**
+Agentelic is **Layer 3 (collaboration / telespaces)**. It primarily drives (a) seat-based SaaS revenue and (b) retention/expansion by making agents shared inside teams (which indirectly increases marketplace installs and runtime usage).
+
+- **Year 1 (validation year):** $0–$120K ARR-equivalent (0–200 seats @ ~$20–$50/mo blended), depending on whether collaboration is shipped in Year 1 or held until liquidity exists
+- **Year 2 (PMF window):** $120K–$1.5M ARR-equivalent (500–2,500 seats @ ~$20–$50/mo blended), contingent on repeat team adoption and integration with Agentromatic workflows
+- **Year 3 (growth inflection):** becomes strategically important for stickiness and distribution, but should be modeled as a contributor inside a broader $9M–$40M total stack outcome once marketplace + commerce is proven
+
+**Discipline note:** Layer 3 should not be used to “carry” early ARR targets; it is primarily a retention and adoption multiplier that compounds after installs and entitlements are reliable.
 
 **Best Use Cases:**
 - Premium AI agent platforms
@@ -2404,6 +2210,16 @@ Additional positioning insights:
 ---
 
 ## Financial Projections (2026-2034)
+
+This section is split into two parts:
+- **A) Legacy portfolio scenarios (domain-led).** These are preserved for continuity and keep the “domains-only / selective build” framing.
+- **B) 6-layer WHS operating model (company-led).** This is the updated model that explicitly includes marketplace + commerce economics (FleetPrompt + SpecPrompt) and layer-by-layer revenue.
+
+The core discipline remains: **synergy is earned, not assumed**. Marketplace outcomes are power-law; early-stage plans should focus on validating liquidity and repeat installs, not maximizing near-term ARR.
+
+---
+
+## A) Legacy Portfolio Scenarios (Domain-Led; preserved)
 
 ### Scenario 1: Conservative Hold (No Development, Domain Appreciation Only)
 
@@ -2480,22 +2296,127 @@ Additional positioning insights:
 **Historical Comparables:**
 - Zapier: $5B valuation (workflow automation)
 - Datadog: $35B market cap (observability)
-- OpenAI buying chat.com: $15.5M (just domain)
-- Your complete platform: $50M+ potential
+- chat.com sale: widely reported at **~$15.5M** (reported figure; exact deal terms not publicly confirmed)
+- Your complete platform: $50M+ potential (scenario-dependent; requires proven liquidity, retention, and enterprise adoption)
+
+---
+
+## B) 6-Layer WHS Operating Model (Company-Led; updated)
+
+### B1) Revenue streams by layer (what actually monetizes)
+
+| Layer | Product | Revenue mechanism | Primary unit |
+|---|---|---|---|
+| L1 | WHS (`webhost.systems`) | Usage-based infrastructure fees | invocations / compute / storage |
+| L2 | Agentromatic | SaaS + execution fees | seats + workflow runs |
+| L3 | Agentelic | SaaS | seats |
+| L4 | Delegatic | SaaS | orgs |
+| L5 | FleetPrompt | Marketplace take rate | GMV |
+| L6 | SpecPrompt | Commerce fee + licensing | processed volume + enterprise add-ons |
+
+### B2) Core pricing assumptions (explicit; adjustable)
+These are modeling inputs, not commitments.
+
+**Marketplace + commerce**
+- FleetPrompt take rate: **15–30%** (base case: **20%**)
+- SpecPrompt transaction fee: **2–3%** (base case: **2.5%**)
+
+**SaaS + infra (illustrative blended averages)**
+- WHS ARPA: $40–$120/mo depending on usage and plan mix
+- Agentromatic ARPA: $75–$250/mo depending on plan mix
+- Agentelic ARPA: $15–$60/mo depending on collaboration scope
+- Delegatic ARPA: $199–$1,500+/mo depending on org size and compliance features
+
+### B3) Year-by-year projections (base case with ranges)
+The base case is intentionally conservative about marketplace liquidity and assumes sequential activation of layers.
+
+#### Year 1 (first 6–12 months post-launch): validate liquidity + correctness
+**Primary objective:** prove FleetPrompt installs + SpecPrompt entitlements are reliable; prove WHS is a credible runtime surface.
+
+| Layer | Base-case driver | Revenue (ARR-equivalent range) |
+|---|---|---:|
+| WHS | 300–700 paid users @ $40–$80/mo blended | $144K–$672K |
+| Agentromatic | 100–300 paid users @ $75–$200/mo blended | $90K–$720K |
+| Agentelic | optional early pilots (0–200 seats) | $0–$120K |
+| Delegatic | limited pilots (0–50 orgs) | $0–$120K |
+| FleetPrompt | $0.3M–$2.0M GMV @ 20% take rate | $60K–$400K |
+| SpecPrompt | $0.3M–$2.0M processed @ 2.5% | $7.5K–$50K |
+| **Total** |  | **$300K–$2.1M ARR** |
+
+**Reality check:** if marketplace GMV is near-zero, the plan still works if WHS/Agentromatic establish paid usage and the install pipeline is validated.
+
+#### Year 2 (PMF validation window): expand supply + repeat buyers
+**Primary objective:** expand supply-side publishers and prove repeat buyer behavior.
+
+| Layer | Base-case driver | Revenue (ARR-equivalent range) |
+|---|---|---:|
+| WHS | 1,000–3,000 paid users @ $60–$120/mo | $720K–$4.3M |
+| Agentromatic | 600–2,000 paid users @ $100–$250/mo | $720K–$6.0M |
+| Agentelic | 500–2,500 seats @ $20–$50/mo | $120K–$1.5M |
+| Delegatic | 100–600 orgs @ $199–$750/mo | $239K–$5.4M |
+| FleetPrompt | $3M–$20M GMV @ 20% | $600K–$4.0M |
+| SpecPrompt | $3M–$20M processed @ 2.5% | $75K–$500K |
+| **Total** |  | **$2.5M–$21.7M ARR** |
+
+**Interpretation:** wide range reflects the marketplace’s power-law risk. If GMV is modest, the total still clears meaningful ARR via WHS + Agentromatic + Delegatic.
+
+#### Year 3 (growth inflection): marketplace becomes a real revenue rail
+**Primary objective:** move from “marketplace exists” to “marketplace is the primary distribution channel.”
+
+| Revenue rail | Year 3 range (ARR) | Notes |
+|---|---:|---|
+| Platform SaaS + infra (L1–L4) | $6M–$25M | depends on enterprise conversion and retention |
+| Marketplace + commerce (L5–L6) | $3M–$15M | depends on liquidity + take rate + processed volume |
+| **Total** | **$9M–$40M** | exit window begins to open once GMV is durable |
+
+### B4) Valuation multiple rationale (blended; milestone-dependent)
+Multiples are outcome-dependent and should be treated as scenario tools, not promises.
+
+**Why the multiple can expand with FleetPrompt + SpecPrompt**
+- Pure SaaS typically prices on recurring revenue + retention.
+- Marketplaces price on (a) GMV durability, (b) take rate sustainability, (c) two-sided network effects, and (d) ecosystem lock-in.
+- A commerce/entitlements layer reduces leakage and improves “trust,” which supports higher durable GMV and better enterprise procurement.
+
+**Practical blended multiple framework (illustrative):**
+- Early product with limited liquidity: **8–15x ARR** (SaaS-like)
+- Proven liquidity + repeat GMV + low fraud/support burden: **15–30x ARR** (marketplace premium often emerges here)
+- Category leader with strong network effects: **30x+ ARR** is possible in strong markets, but should not be used as a base case
+
+### B5) Capital requirements roadmap (what funding buys)
+This is structured as “what you must accomplish before raising the next round.”
+
+#### Pre-Seed (validate marketplace mechanics + commerce correctness)
+- **Capital:** $3M–$5M
+- **Use of funds:** WHS MVP runtime, FleetPrompt MVP, SpecPrompt commerce MVP, security, moderation basics, initial publisher partnerships
+- **Milestones:** repeatable installs + paid transactions; low support burden; early enterprise design partners
+
+#### Seed (scale supply + start demand)
+- **Capital:** $8M–$12M
+- **Use of funds:** publisher acquisition, marketplace growth, onboarding tooling, Agentromatic scaling, early enterprise sales motion
+- **Milestones:** consistent GMV growth, repeat buyers, retention; early Delegatic governance rollout for enterprise
+
+#### Series A (scale demand + enterprise expansion)
+- **Capital:** $25M–$40M
+- **Use of funds:** enterprise go-to-market, governance/compliance expansion (Delegatic), Agentelic collaboration scale, deeper runtime features
+- **Milestones:** multi-layer revenue mix; strong net revenue retention; clear path to $20M+ ARR
+
+**Discipline note:** if you can reach PMF with less capital, the model gets strictly better (less dilution). The above ranges reflect a “move fast in a winner-take-most window” posture, not the only viable path.
 
 ---
 
 ## Geographic Market Focus
 
-**Primary Markets:**
-- **North America:** 41% web hosting, 38% GPS/location
-- **Asia-Pacific:** Fastest growth, location services booming
-- **Europe:** Digital Twin adoption, GDPR compliance
+This section focuses on **AI agents market geography** (not web hosting or GPS/location services).
 
-**Recommended Focus:**
-- North America (immediate revenue)
-- Europe (enterprise/compliance)
-- Asia-Pacific (long-term growth)
+**Primary Markets (AI Agents):**
+- **North America:** 39.63% revenue share in 2025 (Grand View Research, 2026): https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+- **Asia Pacific:** expected to register the fastest CAGR over the forecast period (Grand View Research, 2026): https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+- **Europe:** a major market with growth supported by government/regulatory frameworks for responsible AI adoption (Grand View Research, 2026): https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report
+
+**Recommended Focus (WHS stack GTM alignment):**
+- **North America first** to maximize early enterprise design partners and marketplace liquidity (largest share) (Grand View Research, 2026).
+- **Asia Pacific next** once install + commerce correctness is stable (fastest growth region) (Grand View Research, 2026).
+- **Europe** for enterprise governance/compliance-led adoption and regulated-industry partnerships (Grand View Research, 2026).
 
 ---
 
@@ -2505,66 +2426,213 @@ Additional positioning insights:
 
 | Category | Our Domain | Market Leader | Our Advantage |
 |----------|-----------|---------------|---------------|
-| AI Agents | fleetprompt.com | OpenAI GPT Store | Open platform |
-| Premium Agents | agentromatic.com | None (new positioning) | Clear value prop |
-| Sophisticated AI | agentelic.com | None (new positioning) | Premium tier |
-| Prompt Mgmt | specprompt.com | PromptBase, AIPRM | Specification layer |
-| Delegation | delegatic.com | None (new category) | Category creator |
-| Low-Code | bendscript.com | Zapier, Retool | "Bend" positioning |
-| GraphRAG | graphonomous.com | None (emerging) | Early mover |
-| Time-Series | ticktickclock.com | Datadog, Grafana | Multi-market play |
+| AI Agents | fleetprompt.com | OpenAI GPT Store | Open platform + agent-native install/distribution path (not locked to one runtime) |
+| Premium Agents | agentromatic.com | None (new positioning) | Clear value prop + workflow/orchestration wedge |
+| Sophisticated AI | agentelic.com | None (new positioning) | Premium collaboration + team adoption positioning |
+| Commerce / Entitlements | specprompt.com | Stripe / Paddle / Lemon Squeezy (rails) | Agent-native commerce layer: entitlements + fulfillment + webhook integrity + idempotency |
+| Delegation / Governance | delegatic.com | None (new category) | Org hierarchy + monotonic policy inheritance + permission boundaries (enterprise gating layer) |
+| Low-Code | bendscript.com | Zapier, Retool | "Bend" positioning + workflow-native integration potential |
+| GraphRAG | graphonomous.com | None (emerging) | Early mover + agent-ready knowledge layer integration |
+| Time-Series | ticktickclock.com | Datadog, Grafana | Multi-market convergence + observability narrative |
 | SEO Tools | alkeyword.com | SEMrush, Ahrefs | AI-first approach |
+
+### Why No One Else Has This Stack (6-Layer Coverage Matrix)
+
+Legend: ✅ strong coverage | ⚠️ partial coverage | ❌ missing
+
+| Company / Product | L1 Runtime | L2 Workflows | L3 Collaboration | L4 Governance | L5 Marketplace | L6 Commerce |
+|---|---|---|---|---|---|---|
+| **WHS (webhost.systems + agentromatic + agentelic + delegatic + fleetprompt + specprompt)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Zapier | ❌ | ✅ | ⚠️ | ❌ | ❌ | ❌ |
+| Salesforce Agentforce + AppExchange | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| Microsoft Copilot ecosystem | ⚠️ | ⚠️ | ✅ | ⚠️ | ❌ | ⚠️ |
+| OpenAI (GPT Store / Operator direction) | ⚠️ | ❌ | ❌ | ❌ | ⚠️ | ⚠️ |
+| AWS Marketplace | ❌ (agent runtime) | ❌ | ❌ | ❌ | ✅ (generic marketplace) | ⚠️ |
+
+**Interpretation (conservative):**
+- Many incumbents have strong pieces, but very few have an agent-native stack that integrates **distribution (marketplace)** + **governance (enterprise boundaries)** + **commerce correctness (entitlements, idempotency, webhook integrity)** end-to-end.
+
+### Strategic Buyer Analysis (Updated)
+
+**What strategic buyers pay for (in this category):**
+- **Distribution control:** marketplace liquidity + publisher ecosystem + install pipeline
+- **Enterprise readiness:** governance boundaries + auditability + policy inheritance
+- **Monetization rails:** commerce correctness (entitlements, refunds/subscriptions, fulfillment) at scale
+- **Time-to-market:** “buy vs build” when category timing matters
+
+**Microsoft**
+- Strategic gap: agent marketplace distribution + agent-native commerce/entitlements that can sit across runtimes, not just inside one product surface.
+- Fit: Azure + Teams distribution; governance story supports enterprise procurement; marketplace accelerates ecosystem building.
+
+**Salesforce**
+- Strategic gap: deeper agent marketplace + more general runtime abstraction + stronger governance semantics.
+- Fit: extends Agentforce + AppExchange into a more agent-native economy with standardized installs and entitlements.
+
+**ServiceNow**
+- Strategic gap: full agent economy stack, especially marketplace distribution + commerce + install pipeline semantics.
+- Fit: workflow leader can expand into “agent products” procurement and deployment.
+
+**AWS/Amazon**
+- Strategic gap: agent-native runtime abstraction + agent-specific marketplace experience + install handoff semantics.
+- Fit: natural extension of AWS Marketplace into agent products that install cleanly into governed enterprise environments.
+
+**Emerging AI companies (Anthropic / OpenAI / others)**
+- Strategic gap: cross-ecosystem distribution + governance controls that enterprises demand (and commerce correctness beyond “storefront”).
+- Fit: accelerate ecosystem monetization and reduce enterprise friction.
+
+**Discipline note:** acquisition pricing depends on proven liquidity, retention, and enterprise adoption; the strategic-buyer thesis is strongest after marketplace transactions and governance-backed installs are demonstrated.
 
 ### Strategic Gaps (Blue Ocean)
 
 **No major incumbents in:**
-- Prompt specification/management (specprompt)
-- Agentic delegation (delegatic)
-- Fleet-based prompt engineering (fleetprompt)
-- "Bend" scripting (bendscript)
-- Autonomous graph intelligence (graphonomous)
-- Automatic agent platforms (agentromatic)
-- Premium/sophisticated agent branding (agentelic)
+- Agent-native marketplace install handoff (fleetprompt)
+- Agent-native commerce/entitlements/fulfillment correctness (specprompt)
+- Monotonic org governance for autonomous systems (delegatic)
+- Integrated infra→workflow→collaboration→governance→marketplace→commerce stack (core WHS thesis)
 
-**First-mover advantage in 7 categories**
+**First-mover advantage in the fully integrated 6-layer category**
 
 ---
 
-## Success Metrics
+## Comparable Companies & Ecosystems (Structural Comparables)
 
-### Technical KPIs
+This section lists *structural* comparables to the WHS 6-layer thesis (open core + marketplace distribution + enterprise governance + commerce). The goal is not to claim parity on scale today, but to anchor the **business model archetype** and clarify where durable moats come from.
 
-**Product Development:**
-- fleetprompt.com MVP: 100+ users (6 months)
-- bendscript.com MVP: 1,000+ users (12 months)
-- Tool latency: <100ms p95
-- Uptime: 99.9%+
+### 1) Open Core + Distribution (ecosystem flywheels)
 
-**Market Traction:**
-- GitHub stars: 5,000+ (fleetprompt)
-- Community: 10,000+ Discord/Slack
-- Contributors: 100+
-- Case studies: 50+
+| Comparable | Archetype | What maps to WHS |
+|---|---|---|
+| **GitHub** | Developer platform + ecosystem gravity | Demonstrates that developer ecosystems can be strategic infrastructure; distribution and network effects can justify large strategic acquisition prices |
+| Docker Hub | Runtime distribution + ecosystem | “Runtime + distribution” pairing (analog to WHS runtime + FleetPrompt distribution) |
+| WordPress Plugin Directory | Open core + plugin ecosystem | Open foundation + third-party ecosystem supply-side flywheel |
 
-### Business KPIs
+**Primary citation (strategic acquisition example):**
+- Microsoft press release: “Microsoft to acquire GitHub for $7.5 billion” (June 4, 2018): https://news.microsoft.com/2018/06/04/microsoft-to-acquire-github-for-7-5-billion/  
+  (This is a primary source for the deal headline number and the strategic rationale.)
 
-**Year 1:**
-- 1,000+ registered users
-- 100+ paying customers
-- $1M+ ARR
-- 50+ marketplace agents
+### 2) Developer Marketplaces (monetization via third parties)
 
-**Year 2:**
-- 10,000+ registered users
-- 2,000+ paying customers
-- $25M+ ARR
-- 500+ marketplace agents
+| Comparable | Archetype | What maps to WHS |
+|---|---|---|
+| Visual Studio Marketplace | Extension marketplace | Marketplace distribution layer where third parties create most of the long-tail value |
+| Shopify App Store | Platform + app ecosystem | Take-rate economics and ecosystem expansion dynamics (numbers vary by product and program; treat as category reference, not a single fixed rate) |
+| Unity Asset Store | Creator/publisher marketplace | “Publisher inventory + buyer discovery + platform share” mechanics |
 
-**Year 3:**
-- 100,000+ registered users
-- 10,000+ paying customers
-- $85M+ ARR
-- 5,000+ marketplace agents
+### 3) Workflow Automation Platforms (why workflows matter as supply)
+
+| Comparable | Archetype | What maps to WHS |
+|---|---|---|
+| Zapier | Workflow automation (SaaS) | Demonstrates demand for packaged automation; WHS extends this by adding runtime + governance + marketplace + commerce layers |
+| ServiceNow / Salesforce platform ecosystems | Enterprise platform ecosystems | Show why enterprise-grade governance, procurement, and ecosystem packaging increase willingness-to-pay and strategic value (figures should be treated as reported/approximate unless linked to primary filings) |
+
+### 4) What this implies for WHS valuation logic (conservative framing)
+- **Infrastructure + workflows (Layers 1–2)** create repeatable “agent products,” not bespoke services.
+- **Governance (Layer 4)** is a gating layer for enterprise adoption; it creates switching costs.
+- **Marketplace + commerce (Layers 5–6)** are the primary candidates for *multiple expansion* once liquidity exists, because they scale with ecosystem throughput, not just first-party seats.
+
+---
+
+## Spec Quality Analysis (Implementation-Ready Spec Corpus)
+
+This portfolio includes an implementation-ready specification corpus described as **~22,800 lines** spanning the full WHS stack. This matters because execution risk in marketplaces is often driven by *integration correctness* (installs, payments, entitlements, governance), not by UI polish.
+
+**Important note on counts:** the line counts below are **internal estimates** and should be treated as directional until verified by a repo-level line-count audit.
+
+### Spec Inventory (internal estimates)
+
+| Layer | Spec corpus | Est. lines | What it de-risks (high level) |
+|---|---|---:|---|
+| Layer 1 | WHS | ~4,900 | Runtime boundaries, deploy/invoke gateway semantics, telemetry + billing primitives |
+| Layer 2 | Agentromatic | ~3,900 | Workflow orchestration semantics, step execution invariants, template packaging |
+| Layer 3 | Agentelic | ~3,500 | Collaboration/event-trigger semantics, shared context and team automation boundaries |
+| Layer 4 | Delegatic | ~3,200 | Org hierarchy, monotonic policy inheritance, permission boundaries and auditability |
+| Layer 5 | FleetPrompt | ~3,400 | Marketplace distribution, install handoff, redemption security model, UGC safety |
+| Layer 6 | SpecPrompt | ~3,900 | Commerce correctness: webhook integrity, idempotency, entitlements, fulfillment |
+|  | **TOTAL** | **~22,800** |  |
+
+### Conservative Asset Value (replacement-cost framing)
+
+This is **not** “pre-build synergy value.” It is a *risk reduction and time-to-market* asset with an estimated replacement cost.
+
+| Category | Conservative range | Notes |
+|---|---:|---|
+| Dev cost saved (replacement cost) | **$2.1M–$2.8M** | Equivalent engineering time avoided vs building from scratch |
+| Asset value (conservative) | **$2.0M–$2.4M** | Discounted vs replacement cost to reflect execution dependence |
+| Time saved | **~12–15 months** | Directional estimate; should be audited |
+
+### Why FleetPrompt + SpecPrompt specs reduce execution risk (what normally breaks)
+
+**FleetPrompt (Marketplace) risk reducers:**
+- Install handoff system (intents + tokens) specified as a first-class flow (reduces “listing-to-install” failure).
+- Server-to-server redemption and authentication patterns (reduces spoofing and confused-deputy classes of bugs).
+- UGC safety and sanitization requirements (reduces moderation + XSS/abuse tail risk).
+- Data model invariants and anti-drift guidance (reduces “spec drift” as features accumulate).
+
+**SpecPrompt (Commerce) risk reducers:**
+- Webhook verification on raw bytes (prevents subtle signature-check mistakes).
+- Idempotent transaction processing + append-only event/transaction ledger patterns (prevents double-fulfillment and reconciliation bugs).
+- Entitlement eligibility policies aligned to common purchase models (reduces “forever access” ambiguity and refund leakage).
+- Deterministic convergence under out-of-order events (reduces “ghost access” and support burden).
+
+### Validation plan (to make this investor-grade)
+To treat this spec corpus as an investable asset, the next step is to:
+1. Run an objective **line-count audit** across the spec corpus (and store results).
+2. Produce a short **independent technical review** (security + payments correctness + governance semantics).
+3. Track “spec → implementation” linkage to prove the specs are actually implementation-ready (not aspirational).
+
+## Success Metrics (Revised for Marketplace-First + Conservative Validation)
+
+These metrics are structured to validate the highest-risk assumptions early (liquidity, install correctness, entitlement correctness), rather than projecting large ARR targets before the marketplace flywheel exists.
+
+### Technical KPIs (leading indicators)
+
+**Install + entitlement correctness (FleetPrompt + SpecPrompt):**
+- Install success rate (intent → redeemed install): target improving trend; investigate every failed install
+- Median time-to-install (listing view → working install): target monotonic improvement
+- Webhook verification correctness: 0 accepted invalid signatures (audit sampled)
+- Idempotency correctness: 0 double-grants under retries / duplicate events (measured)
+- Entitlement correctness: 0 “ghost access” after refund/cancellation (measured via tests + audits)
+
+**Runtime credibility (WHS):**
+- Invocation success rate (p95): stable and improving
+- Telemetry completeness: % of invocations with trace + cost attribution
+- Billing/usage reconciliation: close to deterministic (variance explained and shrinking)
+
+### Marketplace KPIs (liquidity and supply/demand health)
+
+**Supply-side:**
+- Active publishers (listed ≥1 product and updated in last 30–60 days)
+- New quality listings/week (post-review), not raw submissions
+- Publisher retention (publishers who list again after first listing)
+
+**Demand-side:**
+- Active buyers/month (made ≥1 install)
+- Repeat buyers/month (install again within 30–60 days)
+- Conversion: listing views → installs → paid transactions
+
+### Commerce KPIs (risk control + revenue integrity)
+
+- GMV/month (range is fine; trend matters)
+- Take-rate realized vs. nominal (leakage due to refunds/chargebacks)
+- Chargeback rate, refund rate, dispute win rate
+- Support burden per 100 transactions (should fall over time)
+
+### Business KPIs (conservative milestones)
+
+**Year 1 (validation year; focus on correctness + repeat behavior):**
+- Demonstrate repeat installs and at least some paid transactions with low fraud/support burden
+- Prove install handoff + entitlement correctness end-to-end (FleetPrompt → SpecPrompt → WHS enforcement)
+- Revenue target (optional): $0.3M–$1.0M ARR-equivalent across layers is a credible early range if the wedge works
+
+**Year 2 (PMF window; expand supply + repeat buyers):**
+- Repeat buyer behavior becomes consistent (not anecdotal)
+- Publisher onboarding becomes repeatable (documentation + tooling)
+- Revenue target (range): $2M–$9M ARR-equivalent is plausible if marketplace liquidity is forming; otherwise the plan should be re-scoped
+
+**Year 3 (growth inflection; marketplace becomes a real revenue rail):**
+- Marketplace + commerce revenue becomes a material share of total revenue
+- Governance adoption enables enterprise ACV expansion (Delegatic)
+- Revenue target (range): $9M–$40M ARR-equivalent is scenario-dependent and should only be used after liquidity is demonstrated
 
 ---
 
@@ -2592,6 +2660,23 @@ Additional positioning insights:
 **Risk:** Enterprise sales too long  
 **Mitigation:** Start SMB/agencies, build to enterprise
 
+### Marketplace & Commerce Risks (FleetPrompt + SpecPrompt)
+
+**Risk:** Chicken-egg marketplace liquidity (no supply → no buyers)  
+**Mitigation:** Seed 20-50 high-quality first-party agents/workflows; recruit 10+ design-partner publishers; curated launch (quality > quantity)
+
+**Risk:** Fraud, chargebacks, and payment disputes  
+**Mitigation:** Strict webhook verification and idempotent transaction processing; append-only event/transaction ledger; conservative fulfillment defaults; staged rollout of higher-risk product types
+
+**Risk:** Entitlement drift (refunds/cancellations/out-of-order events create “ghost access”)  
+**Mitigation:** Deterministic entitlement state convergence; explicit entitlement eligibility policies; runtime enforcement at deploy/invoke boundaries
+
+**Risk:** Marketplace moderation burden (UGC safety, malicious listings, policy violations)  
+**Mitigation:** Clear policies + enforcement tools; pre-moderation for new publishers; sanitization and confused-deputy protections; progressive trust tiers
+
+**Risk:** Take rate resistance from publishers  
+**Mitigation:** Start with an attractive early take rate; raise only when value is proven (distribution, trust, installs, enterprise procurement); offer optional paid promotion/verification instead of blanket fee increases
+
 ### Execution Risks
 
 **Risk:** Scope creep  
@@ -2612,11 +2697,13 @@ Additional positioning insights:
 1. **Review & approve portfolio strategy**
 2. **Select development scenario** (1, 2, or 3)
 3. **Confirm the dual-brand strategy in specs**
-   - OpenSentience = open source core (runtime + governance)
-   - FleetPrompt = commercial marketplace (distribution + monetization)
-4. **Set up landing pages** for top 5 domains (ensure FleetPrompt + OpenSentience positioning is consistent)
-5. **Begin fleetprompt.com MVP** planning (marketplace MVP + payments/revenue share path)
-6. **Define OpenSentience MVP scope** (core runtime/governance primitives required for safe third-party agents)
+   - OpenSentience = open-source foundation/trust layer (community + governance/safety narrative; may later supply open components that WHS consumes)
+   - FleetPrompt = commercial marketplace (distribution + install handoff; take rate on GMV)
+   - SpecPrompt = commerce engine (payments, webhook integrity, idempotency, entitlements, fulfillment)
+4. **Set up landing pages** for top 5 domains (ensure WHS 6-layer positioning is consistent: infrastructure → workflows → collaboration → governance → marketplace → commerce)
+5. **Begin fleetprompt.com MVP** planning (marketplace MVP + install handoff path)
+6. **Define OpenSentience scope** (foundation messaging, governance/safety principles, community artifacts; not positioned as the commercial runtime layer)
+7. **Define SpecPrompt MVP scope** (payment integration + webhook verification + idempotent transaction ledger + entitlement issuance + basic fulfillment)
 
 ### Month 1 Actions
 
@@ -2636,37 +2723,45 @@ Additional positioning insights:
 
 ## Conclusion
 
-The [&] portfolio represents **$1,045,000 in individual domain assets** with **platform integration potential that creates an earned synergy premium**. Synergy is **0% pre-build**, then increases only after you prove traction, profitable integration, and scale. This portfolio is positioned at the exact inflection point of the AI agent revolution (2026-2030), where AI makes building easier and brands/domains more valuable.
+The [&] portfolio represents **$1,045,000 in individual domain assets** (all 19 domains), anchored by a **Core Six** that forms a coherent **6-layer WHS AI Agent Economy** (infrastructure → workflows → collaboration → governance → marketplace → commerce). The critical correction in this update is that the ecosystem is not “a platform with a marketplace”; it is an end-to-end stack where **distribution (FleetPrompt)** and **monetization (SpecPrompt)** are first-class layers.
+
+**CRITICAL INSIGHT (unchanged):** Synergy is **earned**, not assumed. Pre-build, the market largely prices this as a sum-of-parts domain portfolio. The platform premium becomes real only after you prove installs, transactions, retention, and enterprise viability.
 
 ### Updated Portfolio Valuation Summary (Milestone-Based)
 
-**Individual Domain Sum (pre-build):** $1,045,000  
-**Synergy Premium Ladder (earned):**
-- After MVP traction: **$1.15M - $1.25M** (+10-20%)
-- After profitable integration: **$1.57M - $2.61M** (+50-150%)
-- After $10M+ ARR: **$3.14M - $6.27M** (+200-500%)
+**Individual Domain Sum (pre-build, all 19):** $1,045,000  
+**Core Six Domains (pre-build, WHS stack only):** $520,000  
+
+**Synergy Premium Ladder (earned, milestone-based):**
+- After MVP traction: **+10–20%**
+- After profitable integration: **+50–150%**
+- After $10M+ ARR: **+200–500%**
+
+**Market timing (updated 2025–2026 data):**
+- AI agents market estimated **~$7.6B–$8.0B in 2025** (Grand View Research, 2026; Precedence Research, Aug 2025)
+- Projected **$10.91B in 2026** (Grand View Research, 2026)
+- Projected **~$183B–$247B by 2033–2034** (Grand View Research, 2026; SkyQuest, Aug 2025; Precedence Research, Aug 2025)
+
+**Interpretation:** 2026–2030 remains the key window to establish a defensible marketplace + commerce layer before incumbents standardize distribution.
 
 **2034 Hold Value (domains only):** $2,926,000 (base) | $3.8M-$4.5M (AI-adjusted)  
-**2034 Platform Outcome (if you build + integrate):** $8M-$25M (selective dev) | $50M+ (full integration)
+**2034 Platform Outcome (if you build + integrate):** depends on demonstrated marketplace liquidity + enterprise adoption; success remains power-law distributed.
 
 ### Why This Portfolio is Exceptional
 
-**1. Perfect Market Timing**
-- AI agent market: $7.9B → $236B (2025-2034)
-- 2026-2030 = explosive growth window
-- Your domains: Positioned at exact inflection point
+**1. Perfect Market Timing (2025–2026 market sizing updated)**
+- 2025 market size commonly estimated **~$7.6B–$8.0B**, with **$10.91B projected for 2026** (Grand View Research, 2026; Precedence Research, Aug 2025)
+- Long-range projections cluster around **~$183B–$247B by 2033–2034** depending on methodology (Grand View Research, 2026; SkyQuest, Aug 2025; Precedence Research, Aug 2025)
+- 2026–2030 remains the window where early distribution moats can be established before “agent stores” consolidate.
 
-**2. The AI Code Generation Paradox**
-- 50% of code now AI-generated
-- But: Premium domain sales UP 18%
-- Insight: Easier building = domain MORE valuable
-- Your advantage: Can leverage AI to build 10x faster
+**2. The AI Code Generation Paradox (still directionally true)**
+- Building is faster, so competition is higher; naming/branding and distribution become more valuable.
+- Your advantage is not “AI alone”; it is **AI tooling + a pre-architected 6-layer stack thesis + premium domains**.
 
-**3. Synergy Effects Are Massive**
-- 4 integrated platform clusters
-- Network effects between products
-- Platform multiplier: 3x-10x vs individual sales
-- Strategic buyers pay premium for ecosystems
+**3. Synergy Effects Are Material — because the stack is complete (6 layers, not 4 clusters)**
+- The corrected thesis is a single integrated system: **WHS → Agentromatic → Agentelic → Delegatic → FleetPrompt → SpecPrompt**
+- Marketplace + commerce layers convert linear SaaS economics into ecosystem throughput economics (once liquidity exists).
+- Strategic buyers pay premiums primarily for **distribution control + enterprise governance + monetization correctness**, not for standalone feature sets.
 
 **4. Technical Execution Capability**
 - 18 years web development experience
@@ -2701,29 +2796,37 @@ The [&] portfolio represents **$1,045,000 in individual domain assets** with **p
 
 ### Strategic Recommendation (Updated)
 
-**Primary Strategy: Selective Platform Development (Scenario 2)**
+**Primary Strategy: Marketplace-First Validation of the 6-Layer WHS Thesis (FleetPrompt + SpecPrompt + WHS)**
 
-**Rationale:**
-- Highest risk-adjusted return (1,300% ROI)
-- Shortest timeline (4 years to major exit)
-- Leverages your technical skills
-- Uses AI tools to reduce costs 80%
-- Captures synergy value through building
-- Exit timing aligns with market peak (2028-2030)
+This recommendation updates the execution plan to match the corrected architecture: you de-risk the hardest assumptions early by proving **distribution + commerce correctness**, while keeping the overall tone conservative (synergy is earned).
 
-**Execution Plan:**
-1. **2026 (Q1-Q2):** Plan FleetPrompt + OpenSentience architecture
-2. **2026 (Q3-Q4):** Build MVP using AI code gen tools (Claude, Cursor)
-3. **2027 (Q1-Q2):** Launch beta, acquire first 100-500 users
-4. **2027 (Q3-Q4):** Scale to 2,000+ users, $1M+ ARR
-5. **2028 (Q1-Q2):** Raise seed round OR pursue strategic acquisition
-6. **2028 (Q3-Q4):** Exit FleetPrompt for $5M-$10M
-7. **2029-2030:** Repeat with Agentromatic OR hold remaining domains
+**Rationale (corrected for the 6-layer stack):**
+- The largest moat is not “an agent platform UI” — it is the **install + entitlement + governance pipeline** that turns agents into deployable products inside organizations.
+- **FleetPrompt (Layer 5)** is the distribution moat; **SpecPrompt (Layer 6)** is the revenue engine; **WHS (Layer 1)** is the runtime surface that everything actually runs on.
+- This approach validates the highest-risk variable early: **marketplace liquidity** (repeat installs and paid transactions), rather than over-building adjacent layers.
 
-**Required Capital:** $400K-$600K over 4 years  
-**Expected Return:** $15M-$25M  
-**Your Share:** 80-100% (minimal dilution)  
-**Timeline:** 4 years to first major exit
+**Execution Plan (phased, marketplace-first):**
+1. **Phase 1 (Months 1–6): Prove distribution mechanics**
+   - Ship WHS MVP (start with one runtime; keep scope narrow).
+   - Ship FleetPrompt MVP (listing + discovery + install handoff skeleton).
+   - Seed supply (first-party agents/workflows + 10 design-partner publishers).
+   - Success metrics: repeat installs/month, time-to-install friction falling, first trusted publishers onboarded.
+2. **Phase 2 (Months 6–12): Prove monetization correctness**
+   - Ship SpecPrompt commerce MVP: webhook verification, idempotent ledger, entitlements, basic fulfillment.
+   - Enable paid installs and renewals/refunds without “ghost access.”
+   - Success metrics: paid transactions with low support burden and low fraud/chargeback exposure.
+3. **Phase 3 (Months 12–18): Scale supply with workflows**
+   - Ship Agentromatic as the “supply factory” (workflows/templates that become marketplace inventory).
+   - Recruit additional publishers; improve onboarding and install success rates.
+4. **Phase 4 (Months 18–24): Enterprise readiness**
+   - Ship Delegatic governance for org policy boundaries + auditability.
+   - Layer in Agentelic collaboration patterns that increase stickiness and team adoption.
+
+**Capital posture (discipline):**
+- If you can reach Phase 2 with minimal capital, dilution improves.
+- If the goal is to win a narrow 2026–2028 window, raise capital once you can demonstrate: (1) installs, (2) paid transactions, and (3) entitlement correctness.
+
+**Timeline:** 6–12 months to validate marketplace + commerce mechanics; 18–24 months to prove enterprise readiness (if execution is strong).
 
 ### Alternative Strategies
 

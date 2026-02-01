@@ -143,6 +143,11 @@
 
 #### Market Research (20 sources)
 
+**Subscription & billing management (relevant to payments + invoicing + subscription entitlements):**
+- IMARC Group - "Subscription and Billing Management Market"
+  - URL: https://www.imarcgroup.com/subscription-billing-management-market
+  - Key Data: $7.90B (2024) → $20.75B (2033), 11.33% CAGR
+
 **AI Prompt Marketplace:**
 1. Grand View Research - "Artificial Intelligence Prompt Marketplace Market Report"
    - URL: https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-prompt-marketplace-market-report
@@ -906,19 +911,23 @@
 #### Market Research (15 sources)
 
 **SEO Tools Market:**
-1. Grand View Research - "SEO Software Market Size & Share Report"
-   - URL: https://www.grandviewresearch.com/industry-analysis/seo-software-market
-   - Key Data: Multi-billion dollar market
+1. Precedence Research - "SEO Software Market Size, Share and Trends 2025 to 2034"
+   - URL: https://www.precedenceresearch.com/seo-software-market
+   - Key Data: $84.94B (2025) → $265.91B (2034), 13.52% CAGR
 
-2. SEMrush - "Financial Reports & Public Data"
+2. Grand View Research - "SEO Software Market Size & Share Report"
+   - URL: https://www.grandviewresearch.com/industry-analysis/seo-software-market
+   - Key Data: Market report landing page (free excerpt varies by access/login)
+
+3. SEMrush - "Financial Reports & Public Data"
    - Revenue: $300M+/year
    - Users: 10M+
 
-3. Ahrefs - "Public Revenue Data"
+4. Ahrefs - "Public Revenue Data"
    - Revenue: $100M+/year (estimated)
    - Customers: Enterprise SEO standard
 
-4. Moz - "Acquisition Details"
+5. Moz - "Acquisition Details"
    - Sale price: $47M (to J2 Global)
    - Established market validation
 
@@ -978,13 +987,17 @@
 6. Verizon Connect - "Fleet Technology Trends Report"
    - Key Finding: Real-time tracking essential
 
-**Additional Sources (6):**
+**Additional Sources (7):**
 7. TrimbleMAPS - "Transportation & Logistics Market" (analysis)
 8. Samsara - "Connected Operations Cloud" (IoT fleet tracking)
 9. GPS World Magazine - "Industry Trends 2024" (technical)
 10. Transport Topics - "Fleet Technology Investment" (survey)
 11. Fleet Owner - "Technology Adoption Report" (data)
 12. Automotive Fleet - "Telematics Market Overview" (analysis)
+
+13. Grand View Research - "Location Intelligence Market Size And Share Report"
+   - URL: https://www.grandviewresearch.com/industry-analysis/location-intelligence-market
+   - Key Data: $21.21B (2024) → $53.62B (2030), 16.8% CAGR
 
 ---
 
@@ -1033,6 +1046,11 @@
 ### opensentience.org - Agent Governance, Sandboxing, Permissions, and Auditability (+ AGI/Sentience Research)
 
 #### Market Research & Technical References (governance + security + safety)
+
+**Market sizing (AI governance category):**
+0. IMARC Group - "AI Governance Market"
+   - URL: https://www.imarcgroup.com/ai-governance-market
+   - Key Data: $258.3M (2024) → $4,307.9M (2033), 36.71% CAGR
 
 **Agent Governance / Risk Management (enterprise-ready foundations):**
 1. NIST - "AI Risk Management Framework (AI RMF 1.0)"
@@ -1188,6 +1206,9 @@
 1. IBISWorld - "Brand Identity Design Services Market"
 2. Clutch - "Design Agency Market Research"
 3. 99designs - "Design Industry Statistics"
+4. Cognitive Market Research - "Graphic Design Services Market Analysis 2026"
+   - URL: https://www.cognitivemarketresearch.com/graphic-design-services-market-report
+   - Key Data (example figures shown on page): $159.6B (2023) and CAGR 12.0% (2023–2030); also provides regional revenue table (e.g., 2025 and 2033 values)
 
 **geofleetic.com:**
 1. GraphRAG sources (see graphonomous.com)
@@ -1196,6 +1217,9 @@
 **a2atraffic.com:**
 1. Multi-agent systems sources (see delegatic.com)
 2. Protocol adoption research
+3. IMARC Group - "API Management Market"
+   - URL: https://www.imarcgroup.com/api-management-market
+   - Key Data: $6.63B (2024) → $51.11B (2033), 24.20% CAGR
 
 **brokenrecord.studio:**
 1. Creative studio market research
