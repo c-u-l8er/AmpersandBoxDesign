@@ -1,201 +1,233 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            [&] Ampersand Box Design - AI Infrastructure for the Future
-        </title>
+        <title>[&] Ampersand Box Design — The Stack That Makes AI Learn</title>
         <meta
             name="description"
-            content="We build the platforms that power intelligent systems. From autonomous knowledge graphs to delegatic agents, we're making AI infrastructure accessible."
+            content="We build the infrastructure that makes AI agents learn, adapt, and decide. From continual learning engines to skill marketplaces, we're making intelligence that grows."
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=DM+Sans:wght@300;400;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
             rel="stylesheet"
         />
         <style>
+            :root {
+                --bg: #08090c;
+                --surface: #0e1017;
+                --surface-2: #14161e;
+                --border: rgba(255, 255, 255, 0.06);
+                --text: #e2e0db;
+                --dim: #6b6980;
+                --muted: #3d3b4a;
+                --cyan: #4af5c6;
+                --blue: #7b8cff;
+                --rose: #ff6b8a;
+                --amber: #ffc46b;
+                --purple: #b48cff;
+                --cyan-glow: rgba(74, 245, 198, 0.12);
+                --blue-glow: rgba(123, 140, 255, 0.12);
+            }
+
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
 
-            :root {
-                --black: #0a0a0a;
-                --near-black: #141414;
-                --gray-900: #1a1a1a;
-                --gray-800: #2a2a2a;
-                --gray-700: #3a3a3a;
-                --gray-500: #6a6a6a;
-                --gray-300: #9a9a9a;
-                --white: #f5f5f5;
-                --accent-cyan: #00d9ff;
-                --accent-green: #00ff88;
-                --accent-red: #ff3366;
-                --accent-yellow: #ffaa00;
-                --accent-purple: #9933ff;
-            }
-
             body {
-                font-family: "DM Sans", sans-serif;
-                background: var(--black);
-                color: var(--white);
+                font-family: "JetBrains Mono", monospace;
+                background: var(--bg);
+                color: var(--text);
                 overflow-x: hidden;
                 line-height: 1.6;
             }
 
-            /* Animated grid background */
-            .grid-bg {
+            /* Grain */
+            body::before {
+                content: "";
                 position: fixed;
-                top: 0;
-                left: 0;
+                inset: 0;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+                pointer-events: none;
+                z-index: 9999;
+            }
+
+            canvas#bg {
+                position: fixed;
+                inset: 0;
                 width: 100%;
                 height: 100%;
-                background-image:
-                    linear-gradient(
-                        rgba(0, 217, 255, 0.03) 1px,
-                        transparent 1px
-                    ),
-                    linear-gradient(
-                        90deg,
-                        rgba(0, 217, 255, 0.03) 1px,
-                        transparent 1px
-                    );
-                background-size: 50px 50px;
-                animation: gridMove 20s linear infinite;
-                pointer-events: none;
                 z-index: 0;
             }
 
-            @keyframes gridMove {
-                0% {
-                    transform: translate(0, 0);
-                }
-                100% {
-                    transform: translate(50px, 50px);
-                }
-            }
-
-            .container {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 0 2rem;
+            .page {
                 position: relative;
                 z-index: 1;
             }
-
-            /* Header */
-            header {
-                padding: 2rem 0;
-                position: relative;
-                z-index: 100;
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
             }
 
-            .header-content {
+            /* ─── Header ─── */
+            header {
+                padding: 1.75rem 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                background: rgba(8, 9, 12, 0.8);
+                backdrop-filter: blur(16px);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .header-inner {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
             .logo {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 2rem;
-                font-weight: 800;
-                letter-spacing: -0.03em;
-                color: var(--white);
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.6rem;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: -0.02em;
+                color: var(--text);
+                text-decoration: none;
             }
 
-            .logo .ampersand {
-                color: var(--accent-cyan);
-                font-size: 2.5rem;
+            .logo .amp {
+                color: var(--cyan);
+                font-size: 1.4rem;
                 line-height: 1;
             }
 
-            .header-nav {
+            .nav {
                 display: flex;
-                gap: 2.5rem;
+                gap: 2rem;
                 align-items: center;
             }
 
-            .nav-link {
-                color: var(--gray-300);
+            .nav a {
+                color: var(--dim);
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 0.8rem;
                 font-weight: 500;
+                letter-spacing: 0.03em;
                 transition: color 0.2s;
-                font-family: "JetBrains Mono", monospace;
+            }
+            .nav a:hover {
+                color: var(--cyan);
             }
 
-            .nav-link:hover {
-                color: var(--accent-cyan);
+            .nav-cta {
+                padding: 0.5rem 1.25rem;
+                background: var(--surface-2);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                color: var(--text) !important;
+                font-size: 0.75rem !important;
+                transition: all 0.2s !important;
+            }
+            .nav-cta:hover {
+                background: var(--cyan) !important;
+                color: var(--bg) !important;
+                border-color: var(--cyan) !important;
             }
 
-            /* Hero */
+            /* ─── Hero ─── */
             .hero {
-                min-height: 90vh;
+                min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                padding: 4rem 0;
-                position: relative;
+                padding: 8rem 2rem 4rem;
             }
 
-            .hero-content {
-                max-width: 900px;
+            .hero-inner {
+                max-width: 780px;
             }
 
             .hero-eyebrow {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.875rem;
-                color: var(--accent-cyan);
-                letter-spacing: 0.2em;
+                font-size: 0.7rem;
+                font-weight: 500;
+                letter-spacing: 0.25em;
                 text-transform: uppercase;
+                color: var(--cyan);
                 margin-bottom: 2rem;
-                font-weight: 700;
-                animation: fadeInUp 0.8s ease-out;
+                opacity: 0;
+                animation: fadeUp 1s ease 0.2s forwards;
             }
 
             .hero h1 {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 5rem;
-                font-weight: 800;
-                line-height: 1.1;
-                margin-bottom: 2rem;
-                letter-spacing: -0.03em;
-                animation: fadeInUp 0.8s ease-out 0.2s backwards;
-            }
-
-            .hero h1 .bracket {
-                color: var(--accent-cyan);
-            }
-
-            .hero-description {
-                font-size: 1.5rem;
-                color: var(--gray-300);
-                margin-bottom: 3rem;
-                line-height: 1.7;
+                font-family: "Newsreader", serif;
+                font-size: clamp(2.8rem, 6vw, 4.5rem);
                 font-weight: 300;
-                animation: fadeInUp 0.8s ease-out 0.4s backwards;
+                line-height: 1.15;
+                letter-spacing: -0.03em;
+                margin-bottom: 2rem;
+                opacity: 0;
+                animation: fadeUp 1s ease 0.4s forwards;
+            }
+
+            .hero h1 em {
+                font-style: italic;
+                color: var(--cyan);
+            }
+
+            .hero-sub {
+                font-size: clamp(0.85rem, 1.2vw, 1rem);
+                font-weight: 300;
+                color: var(--dim);
+                line-height: 1.9;
+                margin-bottom: 3rem;
+                max-width: 560px;
+                margin-left: auto;
+                margin-right: auto;
+                opacity: 0;
+                animation: fadeUp 1s ease 0.6s forwards;
             }
 
             .hero-cta {
                 display: flex;
                 gap: 1rem;
                 justify-content: center;
-                animation: fadeInUp 0.8s ease-out 0.6s backwards;
+                opacity: 0;
+                animation: fadeUp 1s ease 0.8s forwards;
             }
 
-            @keyframes fadeInUp {
+            @keyframes fadeUp {
                 from {
                     opacity: 0;
-                    transform: translateY(30px);
+                    transform: translateY(28px);
                 }
                 to {
                     opacity: 1;
@@ -203,781 +235,927 @@
                 }
             }
 
-            /* Buttons */
             .btn {
-                padding: 1rem 2rem;
+                padding: 0.85rem 2rem;
                 font-family: "JetBrains Mono", monospace;
-                font-size: 0.95rem;
+                font-size: 0.78rem;
                 font-weight: 700;
                 text-decoration: none;
-                border-radius: 4px;
-                transition: all 0.2s;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                transition: all 0.25s ease;
+                border: none;
                 cursor: pointer;
-                border: 2px solid transparent;
             }
 
             .btn-primary {
-                background: var(--accent-cyan);
-                color: var(--black);
+                background: var(--cyan);
+                color: var(--bg);
             }
-
             .btn-primary:hover {
-                background: var(--white);
+                background: #fff;
                 transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(74, 245, 198, 0.2);
             }
 
-            .btn-secondary {
+            .btn-ghost {
                 background: transparent;
-                color: var(--white);
-                border: 2px solid var(--gray-700);
+                color: var(--dim);
+                border: 1px solid var(--muted);
+            }
+            .btn-ghost:hover {
+                border-color: var(--cyan);
+                color: var(--cyan);
             }
 
-            .btn-secondary:hover {
-                border-color: var(--accent-cyan);
-                color: var(--accent-cyan);
-            }
-
-            /* Products Section */
-            .products {
+            /* ─── Thesis Section ─── */
+            .thesis {
                 padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .thesis-inner {
+                max-width: 680px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .thesis-label {
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 2.5rem;
+            }
+
+            .thesis-quote {
+                font-family: "Newsreader", serif;
+                font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+                font-weight: 300;
+                font-style: italic;
+                line-height: 1.7;
+                color: var(--dim);
+                margin-bottom: 2rem;
+            }
+
+            .thesis-quote strong {
+                color: var(--text);
+                font-weight: 600;
+                font-style: normal;
+            }
+
+            .thesis-attr {
+                font-size: 0.75rem;
+                color: var(--muted);
+                letter-spacing: 0.05em;
+            }
+
+            /* ─── Centerpiece: Graphonomous ─── */
+            .centerpiece {
+                padding: 6rem 0 8rem;
                 position: relative;
             }
 
-            .section-header {
+            .centerpiece-badge {
                 text-align: center;
-                margin-bottom: 5rem;
+                margin-bottom: 3rem;
             }
 
-            .section-header h2 {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 3rem;
-                font-weight: 800;
-                margin-bottom: 1.5rem;
-                letter-spacing: -0.02em;
+            .centerpiece-badge span {
+                display: inline-block;
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--cyan);
+                padding: 0.5rem 1.5rem;
+                border: 1px solid rgba(74, 245, 198, 0.2);
+                background: rgba(74, 245, 198, 0.04);
             }
 
-            .section-header p {
-                font-size: 1.25rem;
-                color: var(--gray-300);
-                max-width: 600px;
+            .centerpiece-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                padding: 4rem;
+                max-width: 900px;
                 margin: 0 auto;
-                font-weight: 300;
-            }
-
-            .products-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .product-card {
-                background: var(--near-black);
-                border: 2px solid var(--gray-800);
-                border-radius: 8px;
-                padding: 3rem;
-                transition: all 0.3s;
                 position: relative;
                 overflow: hidden;
             }
 
-            .product-card::before {
+            .centerpiece-card::before {
                 content: "";
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 4px;
-                background: var(--accent-cyan);
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 0.3s;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    var(--cyan),
+                    var(--blue),
+                    var(--rose)
+                );
             }
 
-            .product-card:hover::before {
-                transform: scaleX(1);
-            }
-
-            .product-card:hover {
-                border-color: var(--gray-700);
-                transform: translateY(-4px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            }
-
-            .product-card:nth-child(1)::before {
-                background: var(--accent-cyan);
-            }
-            .product-card:nth-child(2)::before {
-                background: var(--accent-green);
-            }
-            .product-card:nth-child(3)::before {
-                background: var(--accent-red);
-            }
-            .product-card:nth-child(4)::before {
-                background: var(--accent-yellow);
-            }
-
-            .product-icon {
-                width: 64px;
-                height: 64px;
-                background: var(--gray-900);
-                border-radius: 8px;
+            .cp-header {
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 2rem;
-                font-family: "JetBrains Mono", monospace;
-                font-size: 2rem;
-                font-weight: 800;
-                color: var(--accent-cyan);
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 2.5rem;
+                gap: 2rem;
             }
 
-            .product-card:nth-child(2) .product-icon {
-                color: var(--accent-green);
-            }
-            .product-card:nth-child(3) .product-icon {
-                color: var(--accent-red);
-            }
-            .product-card:nth-child(4) .product-icon {
-                color: var(--accent-yellow);
-            }
-
-            .product-header {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .product-card h3 {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 1.75rem;
-                font-weight: 800;
+            .cp-title-group h2 {
+                font-family: "Newsreader", serif;
+                font-size: 2.75rem;
+                font-weight: 600;
+                letter-spacing: -0.03em;
                 margin-bottom: 0.5rem;
             }
 
-            .product-card .product-domain {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.875rem;
-                color: var(--accent-cyan);
-                margin-bottom: 1.5rem;
+            .cp-title-group .domain {
+                font-size: 0.8rem;
+                color: var(--cyan);
+                font-weight: 500;
             }
 
-            .product-card:nth-child(2) .product-domain {
-                color: var(--accent-green);
-            }
-            .product-card:nth-child(3) .product-domain {
-                color: var(--accent-red);
-            }
-            .product-card:nth-child(4) .product-domain {
-                color: var(--accent-yellow);
-            }
-
-            .product-card p {
-                color: var(--gray-300);
-                font-size: 1rem;
-                line-height: 1.7;
-                margin-bottom: 2rem;
-            }
-
-            .product-tags {
+            .cp-status {
+                flex-shrink: 0;
                 display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .tag {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.75rem;
-                padding: 0.4rem 0.8rem;
-                background: var(--gray-900);
-                border-radius: 4px;
-                color: var(--gray-300);
-                font-weight: 600;
-            }
-
-            .product-link {
-                display: inline-flex;
                 align-items: center;
                 gap: 0.5rem;
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.875rem;
-                color: var(--accent-cyan);
-                text-decoration: none;
-                font-weight: 700;
-                transition: gap 0.2s;
+                font-size: 0.7rem;
+                color: var(--dim);
+                padding: 0.4rem 1rem;
+                background: var(--surface-2);
+                border: 1px solid var(--border);
             }
 
-            .product-link:hover {
-                gap: 1rem;
+            .cp-status .dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--cyan);
+                animation: pulse 2s ease-in-out infinite;
             }
 
-            .product-card:nth-child(2) .product-link {
-                color: var(--accent-green);
-            }
-            .product-card:nth-child(3) .product-link {
-                color: var(--accent-red);
-            }
-            .product-card:nth-child(4) .product-link {
-                color: var(--accent-yellow);
-            }
-
-            /* Tech Stack Section */
-            .tech-stack {
-                padding: 8rem 0;
-                background: var(--near-black);
+            @keyframes pulse {
+                0%,
+                100% {
+                    opacity: 0.5;
+                }
+                50% {
+                    opacity: 1;
+                }
             }
 
-            .stack-grid {
+            .cp-description {
+                font-size: 1.05rem;
+                font-weight: 300;
+                color: var(--dim);
+                line-height: 1.85;
+                margin-bottom: 2.5rem;
+                max-width: 640px;
+            }
+
+            .cp-features {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-                margin-top: 4rem;
+                gap: 1.5rem;
+                margin-bottom: 2.5rem;
             }
 
-            .stack-card {
-                padding: 2.5rem;
-                background: var(--gray-900);
-                border: 2px solid var(--gray-800);
-                border-radius: 8px;
-                transition: all 0.3s;
+            .cp-feature {
+                padding: 1.5rem;
+                background: var(--surface-2);
+                border: 1px solid var(--border);
             }
 
-            .stack-card:hover {
-                border-color: var(--gray-700);
-                transform: translateY(-4px);
-            }
-
-            .stack-icon {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .stack-card h3 {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 1.25rem;
+            .cp-feature h4 {
+                font-size: 0.75rem;
                 font-weight: 700;
-                margin-bottom: 1rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                margin-bottom: 0.75rem;
             }
 
-            .stack-card p {
-                color: var(--gray-300);
-                font-size: 0.95rem;
+            .cp-feature:nth-child(1) h4 {
+                color: var(--cyan);
+            }
+            .cp-feature:nth-child(2) h4 {
+                color: var(--blue);
+            }
+            .cp-feature:nth-child(3) h4 {
+                color: var(--rose);
+            }
+
+            .cp-feature p {
+                font-size: 0.8rem;
+                color: var(--dim);
                 line-height: 1.7;
-            }
-
-            /* Philosophy Section */
-            .philosophy {
-                padding: 8rem 0;
-            }
-
-            .philosophy-content {
-                max-width: 800px;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .philosophy-quote {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 2rem;
-                font-weight: 700;
-                line-height: 1.5;
-                margin-bottom: 3rem;
-                color: var(--accent-cyan);
-            }
-
-            .philosophy-text {
-                font-size: 1.25rem;
-                color: var(--gray-300);
-                line-height: 1.8;
                 font-weight: 300;
             }
 
-            /* Footer */
-            footer {
-                padding: 4rem 0;
-                border-top: 2px solid var(--gray-900);
-                margin-top: 8rem;
+            .cp-cta {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
             }
 
-            .footer-content {
+            .cp-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--cyan);
+                text-decoration: none;
+                letter-spacing: 0.03em;
+                transition: gap 0.2s;
+            }
+            .cp-link:hover {
+                gap: 0.85rem;
+            }
+
+            .cp-tags {
+                display: flex;
+                gap: 0.5rem;
+            }
+
+            .tag {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.7rem;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid var(--border);
+                color: var(--dim);
+                letter-spacing: 0.05em;
+            }
+
+            /* ─── Ecosystem ─── */
+            .ecosystem {
+                padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .eco-header {
+                text-align: center;
+                margin-bottom: 5rem;
+            }
+
+            .eco-header h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+
+            .eco-header p {
+                font-size: 0.9rem;
+                color: var(--dim);
+                font-weight: 300;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .eco-grid {
                 display: grid;
-                grid-template-columns: 2fr 1fr 1fr 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+
+            .eco-card {
+                background: var(--bg);
+                padding: 2.5rem;
+                transition: background 0.3s ease;
+                position: relative;
+            }
+
+            .eco-card:hover {
+                background: var(--surface);
+            }
+
+            .eco-card .eco-icon {
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                margin-bottom: 1.25rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .eco-card:nth-child(1) .eco-icon {
+                color: var(--amber);
+            }
+            .eco-card:nth-child(2) .eco-icon {
+                color: var(--blue);
+            }
+            .eco-card:nth-child(3) .eco-icon {
+                color: var(--rose);
+            }
+            .eco-card:nth-child(4) .eco-icon {
+                color: var(--purple);
+            }
+            .eco-card:nth-child(5) .eco-icon {
+                color: var(--cyan);
+            }
+            .eco-card:nth-child(6) .eco-icon {
+                color: var(--amber);
+            }
+            .eco-card:nth-child(7) .eco-icon {
+                color: var(--blue);
+            }
+            .eco-card:nth-child(8) .eco-icon {
+                color: var(--rose);
+            }
+            .eco-card:nth-child(9) .eco-icon {
+                color: var(--purple);
+            }
+
+            .eco-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: currentColor;
+            }
+
+            .eco-card h3 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                margin-bottom: 0.4rem;
+            }
+
+            .eco-card .eco-domain {
+                font-size: 0.75rem;
+                color: var(--muted);
+                margin-bottom: 1rem;
+            }
+
+            .eco-card p {
+                font-size: 0.82rem;
+                color: var(--dim);
+                line-height: 1.7;
+                font-weight: 300;
+            }
+
+            .eco-card a {
+                display: inline-block;
+                margin-top: 1.25rem;
+                font-size: 0.72rem;
+                font-weight: 700;
+                color: inherit;
+                text-decoration: none;
+                opacity: 0.5;
+                transition: opacity 0.2s;
+            }
+            .eco-card:hover a {
+                opacity: 1;
+            }
+
+            /* ─── Stack ─── */
+            .stack {
+                padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .stack-header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            .stack-header h2 {
+                font-family: "Newsreader", serif;
+                font-size: 2rem;
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+
+            .stack-row {
+                display: flex;
+                justify-content: center;
+                gap: 3rem;
+                flex-wrap: wrap;
+            }
+
+            .stack-item {
+                text-align: center;
+                padding: 1.5rem 2rem;
+            }
+
+            .stack-item h4 {
+                font-size: 0.85rem;
+                font-weight: 700;
+                margin-bottom: 0.35rem;
+            }
+
+            .stack-item p {
+                font-size: 0.72rem;
+                color: var(--muted);
+                font-weight: 400;
+            }
+
+            /* ─── Footer ─── */
+            footer {
+                padding: 4rem 0 3rem;
+                border-top: 1px solid var(--border);
+                margin-top: 4rem;
+            }
+
+            .footer-inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
                 gap: 4rem;
             }
 
             .footer-brand {
-                font-family: "JetBrains Mono", monospace;
+                max-width: 320px;
             }
 
             .footer-brand .logo-footer {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 1rem;
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
+                font-weight: 700;
+                font-size: 1rem;
+                margin-bottom: 1rem;
             }
 
-            .footer-brand .ampersand {
-                color: var(--accent-cyan);
-                font-size: 2.5rem;
+            .footer-brand .amp {
+                color: var(--cyan);
+                font-size: 1.3rem;
             }
 
             .footer-brand p {
-                color: var(--gray-300);
-                font-size: 0.95rem;
+                font-size: 0.8rem;
+                color: var(--muted);
                 line-height: 1.7;
-                margin-bottom: 2rem;
+                font-weight: 300;
             }
 
-            .social-links {
+            .footer-cols {
                 display: flex;
-                gap: 1rem;
+                gap: 4rem;
             }
 
-            .social-link {
-                width: 40px;
-                height: 40px;
-                background: var(--gray-900);
-                border-radius: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--gray-300);
-                text-decoration: none;
-                transition: all 0.2s;
-                font-size: 1.25rem;
-            }
-
-            .social-link:hover {
-                background: var(--accent-cyan);
-                color: var(--black);
-            }
-
-            .footer-col h4 {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.875rem;
+            .footer-col h5 {
+                font-size: 0.65rem;
                 font-weight: 700;
-                margin-bottom: 1.5rem;
+                letter-spacing: 0.2em;
                 text-transform: uppercase;
-                letter-spacing: 0.1em;
+                color: var(--muted);
+                margin-bottom: 1.25rem;
             }
 
-            .footer-links {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .footer-links a {
-                color: var(--gray-300);
+            .footer-col a {
+                display: block;
+                color: var(--dim);
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 0.82rem;
+                margin-bottom: 0.75rem;
                 transition: color 0.2s;
+                font-weight: 400;
             }
-
-            .footer-links a:hover {
-                color: var(--accent-cyan);
+            .footer-col a:hover {
+                color: var(--cyan);
             }
 
             .footer-bottom {
-                margin-top: 4rem;
+                margin-top: 3rem;
                 padding-top: 2rem;
-                border-top: 2px solid var(--gray-900);
+                border-top: 1px solid var(--border);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
             .footer-bottom p {
-                color: var(--gray-500);
-                font-size: 0.875rem;
-                font-family: "JetBrains Mono", monospace;
+                font-size: 0.7rem;
+                color: var(--muted);
             }
 
-            /* Responsive */
-            @media (max-width: 968px) {
-                .hero h1 {
-                    font-size: 3.5rem;
-                }
-
-                .products-grid {
+            /* ─── Responsive ─── */
+            @media (max-width: 900px) {
+                .cp-features {
                     grid-template-columns: 1fr;
                 }
-
-                .stack-grid {
+                .eco-grid {
                     grid-template-columns: 1fr;
                 }
-
-                .footer-content {
-                    grid-template-columns: 1fr;
-                    gap: 3rem;
-                }
-
-                .footer-bottom {
+                .cp-header {
                     flex-direction: column;
-                    gap: 1rem;
-                    text-align: center;
+                }
+                .footer-inner {
+                    flex-direction: column;
+                }
+                .footer-cols {
+                    flex-direction: column;
+                    gap: 2rem;
+                }
+                .centerpiece-card {
+                    padding: 2.5rem;
                 }
             }
 
             @media (max-width: 640px) {
+                .nav {
+                    display: none;
+                }
                 .hero h1 {
-                    font-size: 2.5rem;
+                    font-size: 2.2rem;
                 }
-
-                .hero-description {
-                    font-size: 1.25rem;
-                }
-
                 .hero-cta {
                     flex-direction: column;
                 }
-
                 .btn {
                     width: 100%;
                     text-align: center;
                 }
-
-                .header-nav {
-                    display: none;
+                .cp-title-group h2 {
+                    font-size: 2rem;
+                }
+                .stack-row {
+                    gap: 1.5rem;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="grid-bg"></div>
+        <canvas id="bg"></canvas>
 
-        <header>
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo">
-                        <span class="ampersand">[&amp;]</span>
-                        <span>AMPERSAND BOX</span>
+        <div class="page">
+            <header>
+                <div class="container">
+                    <div class="header-inner">
+                        <a href="./index.html" class="logo">
+                            <span class="amp">[&]</span>
+                            <span>AMPERSAND BOX</span>
+                        </a>
+                        <nav class="nav">
+                            <a href="#thesis">Thesis</a>
+                            <a href="#engine">Engine</a>
+                            <a href="#ecosystem">Ecosystem</a>
+                            <a href="#stack">Stack</a>
+                            <a
+                                href="mailto:contact@ampersandboxbox.invalid"
+                                class="nav-cta"
+                                >Contact</a
+                            >
+                        </nav>
                     </div>
-                    <nav class="header-nav">
-                        <a href="#products" class="nav-link">Products</a>
-                        <a href="#stack" class="nav-link">Stack</a>
-                        <a href="#philosophy" class="nav-link">Philosophy</a>
-                    </nav>
                 </div>
-            </div>
-        </header>
+            </header>
 
-        <main>
             <section class="hero">
                 <div class="container">
-                    <div class="hero-content">
-                        <div class="hero-eyebrow">Building the Future</div>
+                    <div class="hero-inner">
+                        <p class="hero-eyebrow">
+                            AI Infrastructure for the Next Decade
+                        </p>
                         <h1>
-                            AI Infrastructure<br />
-                            for <span class="bracket">[</span>Everyone<span
-                                class="bracket"
-                                >]</span
-                            >
+                            We build the stack<br />that makes AI <em>learn</em>
                         </h1>
-                        <p class="hero-description">
-                            We build the platforms that power intelligent
-                            systems. From autonomous knowledge graphs to
-                            delegatic agents, we're making AI infrastructure
-                            accessible.
+                        <p class="hero-sub">
+                            Your AI doesn't forget. It evolves. From continual
+                            learning engines to skill marketplaces to managed
+                            hosting — we build the infrastructure that makes
+                            small models brilliant over time.
                         </p>
                         <div class="hero-cta">
-                            <a href="#products" class="btn btn-primary"
-                                >Explore Products</a
+                            <a href="#engine" class="btn btn-primary"
+                                >Our CL Engine</a
                             >
                             <a
-                                href="mailto:hello@ampersandboxdesign.com"
-                                class="btn btn-secondary"
-                                >Get in Touch</a
+                                href="./portfolio_company_complete_research.html"
+                                class="btn btn-ghost"
+                                >Research & Valuation</a
                             >
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="products" id="products">
+            <section class="thesis" id="thesis">
                 <div class="container">
-                    <div class="section-header">
-                        <h2>Our Platform</h2>
-                        <p>
-                            Four interconnected products building the next
-                            generation of AI infrastructure
+                    <div class="thesis-inner">
+                        <p class="thesis-label">Our Thesis</p>
+                        <p class="thesis-quote">
+                            "Scaling context windows to millions of tokens isn't
+                            solving continual learning — it's buying your way
+                            around it.
+                            <strong
+                                >If AGI only works at datacenter scale, it's not
+                                general intelligence, it's expensive
+                                intelligence.</strong
+                            >
+                            True generality means the architecture itself
+                            supports learning over time."
                         </p>
+                        <p class="thesis-attr">— The problem we're solving</p>
                     </div>
-                    <div class="products-grid">
-                        <!-- WebHost.Systems -->
-                        <div class="product-card">
-                            <div class="product-icon">WH</div>
-                            <div>
-                                <h3>WebHost.Systems</h3>
-                                <div class="product-domain">
-                                    webhost.systems
-                                </div>
-                                <p>
-                                    Multi-tenant infrastructure platform.
-                                    Schema-per-tenant architecture, tenant
-                                    provisioning, connection pooling, and
-                                    everything you need to build scalable B2B
-                                    SaaS applications.
-                                </p>
-                                <div class="product-tags">
-                                    <span class="tag">Infrastructure</span>
-                                    <span class="tag">Multi-Tenant</span>
-                                    <span class="tag">Elixir</span>
-                                    <span class="tag">Open Source</span>
-                                </div>
-                                <a
-                                    href="https://webhost.systems"
-                                    class="product-link"
-                                >
-                                    Explore →
-                                </a>
+                </div>
+            </section>
+
+            <section class="centerpiece" id="engine">
+                <div class="container">
+                    <div class="centerpiece-badge">
+                        <span>Hero Product</span>
+                    </div>
+                    <div class="centerpiece-card">
+                        <div class="cp-header">
+                            <div class="cp-title-group">
+                                <h2>Graphonomous</h2>
+                                <span class="domain">graphonomous.com</span>
+                            </div>
+                            <div class="cp-status">
+                                <span class="dot"></span>
+                                In Development
                             </div>
                         </div>
-
-                        <!-- FleetPrompt -->
-                        <div class="product-card">
-                            <div class="product-icon">FP</div>
-                            <div>
-                                <h3>FleetPrompt</h3>
-                                <div class="product-domain">
-                                    fleetprompt.com
-                                </div>
+                        <p class="cp-description">
+                            A continual learning engine that makes small
+                            language models (1B–8B) get smarter over time in
+                            their deployment context. Self-evolving knowledge
+                            graphs that learn, consolidate, and prune at
+                            inference time — no retraining, no cloud dependency,
+                            no catastrophic forgetting.
+                        </p>
+                        <div class="cp-features">
+                            <div class="cp-feature">
+                                <h4>Learn</h4>
                                 <p>
-                                    Multi-agent marketplace and execution
-                                    engine. Package system with Signals +
-                                    Directives primitives. The operating system
-                                    for agentic AI.
+                                    Graph-based memory that grows with every
+                                    interaction. Episodic, semantic, procedural,
+                                    and temporal knowledge — structured
+                                    relationships, not flat vectors.
                                 </p>
-                                <div class="product-tags">
-                                    <span class="tag">Marketplace</span>
-                                    <span class="tag">Agents</span>
-                                    <span class="tag">Phoenix</span>
-                                    <span class="tag">Production Ready</span>
-                                </div>
-                                <a
-                                    href="https://fleetprompt.com"
-                                    class="product-link"
-                                >
-                                    Explore →
-                                </a>
+                            </div>
+                            <div class="cp-feature">
+                                <h4>Adapt</h4>
+                                <p>
+                                    Multi-timescale consolidation inspired by
+                                    the brain's sleep cycles. Fast memory
+                                    promotes to slow memory. Weak connections
+                                    decay. Strong patterns crystallize.
+                                </p>
+                            </div>
+                            <div class="cp-feature">
+                                <h4>Decide</h4>
+                                <p>
+                                    MCP-first API means any AI client can
+                                    connect directly. Graph-aware context
+                                    injection makes every inference smarter than
+                                    the last.
+                                </p>
                             </div>
                         </div>
-
-                        <!-- GeoFleetic -->
-                        <div class="product-card">
-                            <div class="product-icon">GF</div>
-                            <div>
-                                <h3>GeoFleetic</h3>
-                                <div class="product-domain">geofleetic.com</div>
-                                <p>
-                                    Graph-native multi-agent coordination.
-                                    GraphRAG retrieval, explainable AI reasoning
-                                    paths, and enterprise compliance built-in.
-                                    The knowledge layer for intelligent systems.
-                                </p>
-                                <div class="product-tags">
-                                    <span class="tag">GraphRAG</span>
-                                    <span class="tag">Knowledge Graphs</span>
-                                    <span class="tag">Arcana</span>
-                                    <span class="tag">Enterprise</span>
-                                </div>
-                                <a
-                                    href="https://geofleetic.com"
-                                    class="product-link"
-                                >
-                                    Explore →
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- GPSCoord -->
-                        <div class="product-card">
-                            <div class="product-icon">GPS</div>
-                            <div>
-                                <h3>GPS Coord</h3>
-                                <div class="product-domain">gpscoord.com</div>
-                                <p>
-                                    Fleet intelligence and real-time GPS
-                                    coordination. Dijkstra-based routing,
-                                    geofencing, and logistics optimization.
-                                    Modern fleet tracking for modern teams.
-                                </p>
-                                <div class="product-tags">
-                                    <span class="tag">Geospatial</span>
-                                    <span class="tag">Logistics</span>
-                                    <span class="tag">Real-Time</span>
-                                    <span class="tag">API-First</span>
-                                </div>
-                                <a
-                                    href="https://gpscoord.com"
-                                    class="product-link"
-                                >
-                                    Explore →
-                                </a>
+                        <div class="cp-cta">
+                            <a href="https://graphonomous.com" class="cp-link"
+                                >Visit Graphonomous →</a
+                            >
+                            <div class="cp-tags">
+                                <span class="tag">Elixir/OTP</span>
+                                <span class="tag">SQLite + sqlite-vec</span>
+                                <span class="tag">MCP Server</span>
+                                <span class="tag">Edge-Native</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="tech-stack" id="stack">
+            <section class="ecosystem" id="ecosystem">
                 <div class="container">
-                    <div class="section-header">
+                    <div class="eco-header">
+                        <h2>The Ecosystem</h2>
+                        <p>
+                            Every product connects. Every domain has a role.
+                            Together they form the infrastructure for AI that
+                            learns over time.
+                        </p>
+                    </div>
+                    <div class="eco-grid">
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Runtime
+                            </div>
+                            <h3>OpenSentience</h3>
+                            <div class="eco-domain">opensentience.org</div>
+                            <p>
+                                The agent runtime. Manages agent lifecycles,
+                                permissions, tool routing, and MCP server
+                                connections. The OS for intelligent agents.
+                            </p>
+                            <a href="https://opensentience.org">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Skills
+                            </div>
+                            <h3>FleetPrompt</h3>
+                            <div class="eco-domain">fleetprompt.com</div>
+                            <p>
+                                The skill marketplace. Install CL strategies,
+                                agent workflows, and domain-specific knowledge
+                                as versioned packages.
+                            </p>
+                            <a href="https://fleetprompt.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Orchestration
+                            </div>
+                            <h3>Delegatic</h3>
+                            <div class="eco-domain">delegatic.com</div>
+                            <p>
+                                Multi-agent delegation and orchestration.
+                                Coordinate learning agents across teams with
+                                systematic task routing and governance.
+                            </p>
+                            <a href="https://delegatic.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Specifications
+                            </div>
+                            <h3>SpecPrompt</h3>
+                            <div class="eco-domain">specprompt.com</div>
+                            <p>
+                                Spec-driven agent development. Define
+                                capabilities, contracts, and acceptance criteria
+                                before building. The source of truth for agent
+                                behavior.
+                            </p>
+                            <a href="https://specprompt.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Agent Builder
+                            </div>
+                            <h3>Agentelic</h3>
+                            <div class="eco-domain">agentelic.com</div>
+                            <p>
+                                Premium agent creation platform. Build, test,
+                                and deploy individual AI agents with built-in
+                                reputation scoring and capability profiles.
+                            </p>
+                            <a href="https://agentelic.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Automation
+                            </div>
+                            <h3>AgentRomatic</h3>
+                            <div class="eco-domain">agentromatic.com</div>
+                            <p>
+                                Automatic multi-agent workflows with
+                                deliberation. Agents bid on tasks, argue
+                                fitness, and self-organize — no human
+                                orchestrator required.
+                            </p>
+                            <a href="https://agentromatic.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Hosting
+                            </div>
+                            <h3>WebHost Systems</h3>
+                            <div class="eco-domain">webhost.systems</div>
+                            <p>
+                                Managed Graphonomous instances.
+                                PostgreSQL-backed, multi-tenant, with monitoring
+                                dashboards and usage-based billing.
+                            </p>
+                            <a href="https://webhost.systems">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Spatial
+                            </div>
+                            <h3>GeoFleetic</h3>
+                            <div class="eco-domain">geofleetic.com</div>
+                            <p>
+                                Geo-distributed fleet intelligence. Vehicles and
+                                devices that learn routes, predict demand, and
+                                optimize logistics over time.
+                            </p>
+                            <a href="https://geofleetic.com">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Temporal
+                            </div>
+                            <h3>TickTickClock</h3>
+                            <div class="eco-domain">ticktickclock.com</div>
+                            <p>
+                                Time-series continual learning. Detect patterns,
+                                anomalies, and trends that evolve over time —
+                                the temporal intelligence layer.
+                            </p>
+                            <a href="https://ticktickclock.com">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stack" id="stack">
+                <div class="container">
+                    <div class="stack-header">
                         <h2>Built on Solid Foundations</h2>
-                        <p>
-                            Production-grade technology stack powering
-                            mission-critical systems
-                        </p>
                     </div>
-                    <div class="stack-grid">
-                        <div class="stack-card">
-                            <div class="stack-icon">⚡</div>
-                            <h3>Elixir + Phoenix</h3>
-                            <p>
-                                Concurrent, fault-tolerant systems built on the
-                                BEAM VM. Real-time capabilities with LiveView
-                                for responsive UIs.
-                            </p>
+                    <div class="stack-row">
+                        <div class="stack-item">
+                            <h4>Elixir / OTP</h4>
+                            <p>Fault-tolerant concurrency</p>
                         </div>
-                        <div class="stack-card">
-                            <div class="stack-icon">🗄️</div>
-                            <h3>PostgreSQL + Extensions</h3>
-                            <p>
-                                Enterprise-grade database with pgvector for
-                                embeddings, PostGIS for geospatial, and robust
-                                multi-tenant support.
-                            </p>
+                        <div class="stack-item">
+                            <h4>Phoenix</h4>
+                            <p>Real-time LiveView</p>
                         </div>
-                        <div class="stack-card">
-                            <div class="stack-icon">🎯</div>
-                            <h3>Ash Framework</h3>
-                            <p>
-                                Declarative resource framework for building
-                                maintainable, scalable applications with
-                                built-in authorization.
-                            </p>
+                        <div class="stack-item">
+                            <h4>SQLite + pgvector</h4>
+                            <p>Edge to enterprise</p>
                         </div>
-                        <div class="stack-card">
-                            <div class="stack-icon">🧠</div>
-                            <h3>Arcana RAG</h3>
-                            <p>
-                                Embeddable RAG library with GraphRAG support,
-                                agentic pipelines, and production-ready
-                                knowledge retrieval.
-                            </p>
+                        <div class="stack-item">
+                            <h4>Hermes MCP</h4>
+                            <p>Industry-standard protocol</p>
                         </div>
-                        <div class="stack-card">
-                            <div class="stack-icon">🚀</div>
-                            <h3>Fly.io + Docker</h3>
-                            <p>
-                                Global deployment with edge computing
-                                capabilities. Close to users, resilient
-                                infrastructure.
-                            </p>
+                        <div class="stack-item">
+                            <h4>Bumblebee / Nx</h4>
+                            <p>Local ML inference</p>
                         </div>
-                        <div class="stack-card">
-                            <div class="stack-icon">🎨</div>
-                            <h3>Svelte + Inertia</h3>
-                            <p>
-                                Modern frontend with server-driven rendering.
-                                Fast, reactive, and maintainable UIs.
-                            </p>
+                        <div class="stack-item">
+                            <h4>Fly.io</h4>
+                            <p>Global edge deployment</p>
                         </div>
                     </div>
                 </div>
             </section>
+        </div>
 
-            <section class="philosophy" id="philosophy">
-                <div class="container">
-                    <div class="philosophy-content">
-                        <div class="philosophy-quote">
-                            "Build infrastructure that enables innovation, not
-                            complexity that impedes it."
-                        </div>
-                        <p class="philosophy-text">
-                            We believe the future of AI is multi-tenant,
-                            graph-native, and built on solid foundations. Every
-                            line of code we write is production-ready. Every
-                            architecture decision is documented. Every product
-                            is built to last. We're not building for demos—we're
-                            building for the next decade of intelligent systems.
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
+        <footer style="position: relative; z-index: 1">
             <div class="container">
-                <div class="footer-content">
+                <div class="footer-inner">
                     <div class="footer-brand">
                         <div class="logo-footer">
-                            <span class="ampersand">[&amp;]</span>
+                            <span class="amp">[&]</span>
                             <span>AMPERSAND BOX</span>
                         </div>
                         <p>
-                            Building AI infrastructure for the future.
-                            Production-grade platforms that scale.
+                            Building the infrastructure that makes AI agents
+                            learn, adapt, and decide. Production-grade platforms
+                            designed for the next decade.
                         </p>
-                        <div class="social-links">
-                            <a href="https://github.com" class="social-link"
-                                >⚡</a
+                    </div>
+                    <div class="footer-cols">
+                        <div class="footer-col">
+                            <h5>Portfolio</h5>
+                            <a href="https://graphonomous.com">Graphonomous</a>
+                            <a href="https://opensentience.org"
+                                >OpenSentience</a
                             >
-                            <a href="https://twitter.com" class="social-link"
-                                >🐦</a
-                            >
-                            <a href="https://linkedin.com" class="social-link"
-                                >💼</a
+                            <a href="https://fleetprompt.com">FleetPrompt</a>
+                            <a href="https://delegatic.com">Delegatic</a>
+                            <a href="https://specprompt.com">SpecPrompt</a>
+                            <a href="https://agentelic.com">Agentelic</a>
+                            <a href="https://agentromatic.com">AgentRomatic</a>
+                            <a href="https://webhost.systems"
+                                >WebHost Systems</a
                             >
                         </div>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Portfolio Companies</h4>
-                        <div class="footer-links">
-                            <a href="https://traaviis.com"
-                                >Building Infrastructure</a
+                        <div class="footer-col">
+                            <h5>Resources</h5>
+                            <a href="./portfolio_company_complete_research.html"
+                                >Research & Valuation</a
                             >
-                            <a href="https://c-u-l8er.link"
-                                >Printing Intelligence</a
-                            >
-                            <a href="https://wrand.cc">Forking Landscapes</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Resources</h4>
-                        <div class="footer-links">
-                            <a href="/portfolio_company_complete_research.html"
-                                >Research/Value</a
+                            <a href="https://github.com/AmpersandBoxDesign"
+                                >GitHub</a
                             >
                             <a href="#">Documentation</a>
-                            <a href="#">API Reference</a>
-                            <a href="#">GitHub</a>
-                            <a href="#">Blog</a>
                         </div>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Company</h4>
-                        <div class="footer-links">
-                            <a href="#">About</a>
-                            <a href="#">Careers</a>
-                            <a href="mailto:hello@ampersandboxdesign.com"
+                        <div class="footer-col">
+                            <h5>Company</h5>
+                            <a href="https://traaviis.com">traaviis.com</a>
+                            <a href="https://c-u-l8er.link">c-u-l8er.link</a>
+                            <a href="mailto:contact@ampersandboxbox.invalid"
                                 >Contact</a
                             >
-                            <a href="#">Privacy</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-bottom">
                     <p>
-                        &copy; <span id="currentYear"></span> Ampersand Box
-                        Design. Building the future.
+                        &copy; <span id="year"></span> Ampersand Box Design.
+                        Building the infrastructure of tomorrow.
                     </p>
                     <p>All systems operational ✓</p>
                 </div>
@@ -985,51 +1163,167 @@
         </footer>
 
         <script>
-            // Set current year dynamically
-            document.getElementById("currentYear").textContent =
+            document.getElementById("year").textContent =
                 new Date().getFullYear();
 
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                anchor.addEventListener("click", function (e) {
+            // Smooth scroll (skip bare '#')
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    const href = a.getAttribute("href") || "";
+                    if (href === "#" || href.length <= 1) return;
+
+                    const id = href.slice(1);
+                    const t = document.getElementById(id);
+                    if (!t) return;
+
                     e.preventDefault();
-                    const target = document.querySelector(
-                        this.getAttribute("href"),
-                    );
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                        });
-                    }
+                    t.scrollIntoView({ behavior: "smooth", block: "start" });
                 });
             });
 
-            // Add scroll-triggered animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px",
-            };
+            // ─── Subtle living particle system ───
+            const canvas = document.getElementById("bg");
+            const ctx = canvas.getContext("2d");
+            let W, H;
+            let particles = [];
+            let edges = [];
+            let mouse = { x: -1000, y: -1000 };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+
+            const COLORS = [
+                "74,245,198",
+                "123,140,255",
+                "255,107,138",
+                "255,196,107",
+            ];
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * W;
+                    this.y = Math.random() * H;
+                    this.vx = (Math.random() - 0.5) * 0.2;
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.r = 1 + Math.random() * 1.5;
+                    this.color =
+                        COLORS[Math.floor(Math.random() * COLORS.length)];
+                    this.alpha = 0.1 + Math.random() * 0.3;
+                    this.phase = Math.random() * Math.PI * 2;
+                }
+                update(t) {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.phase += 0.005;
+                    // Mouse repulsion
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150 && dist > 0) {
+                        const force = (150 - dist) * 0.0003;
+                        this.vx += (dx / dist) * force;
+                        this.vy += (dy / dist) * force;
                     }
-                });
-            }, observerOptions);
+                    this.vx *= 0.999;
+                    this.vy *= 0.999;
+                    if (this.x < 0) this.x = W;
+                    if (this.x > W) this.x = 0;
+                    if (this.y < 0) this.y = H;
+                    if (this.y > H) this.y = 0;
+                }
+                draw() {
+                    const a = this.alpha * (0.7 + 0.3 * Math.sin(this.phase));
+                    ctx.fillStyle = `rgba(${this.color},${a})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
 
-            // Observe product cards
-            document
-                .querySelectorAll(".product-card, .stack-card")
-                .forEach((card) => {
-                    card.style.opacity = "0";
-                    card.style.transform = "translateY(30px)";
-                    card.style.transition =
-                        "opacity 0.6s ease-out, transform 0.6s ease-out";
-                    observer.observe(card);
+            function init() {
+                resize();
+                particles = [];
+                const count = Math.min(80, Math.floor((W * H) / 20000));
+                for (let i = 0; i < count; i++) particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.fillStyle = "rgba(8,9,12,0.25)";
+                ctx.fillRect(0, 0, W, H);
+
+                // Draw edges
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 160) {
+                            const a = (1 - dist / 160) * 0.06;
+                            ctx.strokeStyle = `rgba(${particles[i].color},${a})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                particles.forEach((p) => {
+                    p.update();
+                    p.draw();
                 });
+                requestAnimationFrame(animate);
+            }
+
+            document.addEventListener("mousemove", (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+            window.addEventListener("resize", init);
+
+            // Scroll-triggered reveals
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.style.opacity = "1";
+                            e.target.style.transform = "translateY(0)";
+                        }
+                    });
+                },
+                { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+            );
+
+            document
+                .querySelectorAll(
+                    ".centerpiece-card, .eco-card, .thesis-inner, .stack-item",
+                )
+                .forEach((el) => {
+                    // Set initial hidden state
+                    el.style.opacity = "0";
+                    el.style.transform = "translateY(14px)";
+                    el.style.transition =
+                        "opacity 800ms ease, transform 800ms ease";
+                    observer.observe(el);
+                });
+
+            const prefersReducedMotion =
+                window.matchMedia &&
+                window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            // Initialize canvas + animation
+            resize();
+            if (!prefersReducedMotion) {
+                init();
+                requestAnimationFrame(animate);
+            } else {
+                // Reduced motion: paint a subtle static background once
+                ctx.fillStyle = "rgba(8,9,12,1)";
+                ctx.fillRect(0, 0, W, H);
+            }
         </script>
     </body>
 </html>

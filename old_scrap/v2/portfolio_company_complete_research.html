@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>[&] Portfolio Company — Complete Research</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=DM+Sans:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --black: #0a0a0a;
+                --near-black: #141414;
+                --gray-950: #101010;
+                --gray-900: #1a1a1a;
+                --gray-850: #222222;
+                --gray-800: #2a2a2a;
+                --gray-700: #3a3a3a;
+                --gray-600: #505050;
+                --gray-500: #6a6a6a;
+                --gray-300: #9a9a9a;
+                --white: #f5f5f5;
+
+                --accent-cyan: #00d9ff;
+                --accent-green: #00ff88;
+                --accent-red: #ff3366;
+                --accent-yellow: #ffaa00;
+                --accent-purple: #9933ff;
+
+                --content-max: 1120px;
+                --radius: 10px;
+            }
+
+            body {
+                font-family: "DM Sans", sans-serif;
+                background: var(--black);
+                color: var(--white);
+                overflow-x: hidden;
+                line-height: 1.6;
+            }
+
+            /* Animated grid background (like index.html) */
+            .grid-bg {
+                position: fixed;
+                inset: 0;
+                background-image:
+                    linear-gradient(
+                        rgba(0, 217, 255, 0.03) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(0, 217, 255, 0.03) 1px,
+                        transparent 1px
+                    );
+                background-size: 50px 50px;
+                animation: gridMove 20s linear infinite;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            @keyframes gridMove {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(50px, 50px);
+                }
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                padding: 1.25rem 0;
+                backdrop-filter: blur(10px);
+                background: rgba(10, 10, 10, 0.78);
+                border-bottom: 2px solid rgba(26, 26, 26, 0.9);
+            }
+
+            .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.25rem;
+            }
+
+            .logo {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 1.35rem;
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                color: var(--white);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+            .logo .ampersand {
+                color: var(--accent-cyan);
+                font-size: 1.6rem;
+                line-height: 1;
+            }
+
+            .header-nav {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .nav-link {
+                color: var(--gray-300);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 700;
+                font-family: "JetBrains Mono", monospace;
+                padding: 0.55rem 0.8rem;
+                border-radius: 8px;
+                border: 2px solid transparent;
+                transition:
+                    color 0.2s,
+                    background 0.2s,
+                    border-color 0.2s;
+            }
+
+            .nav-link:hover {
+                color: var(--accent-cyan);
+                border-color: rgba(0, 217, 255, 0.25);
+                background: rgba(0, 217, 255, 0.06);
+            }
+
+            .nav-link.active {
+                color: var(--black);
+                background: var(--accent-cyan);
+                border-color: var(--accent-cyan);
+            }
+
+            main {
+                padding: 2.5rem 0 5rem;
+            }
+
+            .page-hero {
+                text-align: center;
+                padding: 1.25rem 0 1.75rem;
+            }
+
+            .page-eyebrow {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.8rem;
+                color: var(--accent-cyan);
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+                font-weight: 800;
+            }
+
+            .page-title {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 2.6rem;
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                line-height: 1.12;
+                margin-bottom: 1rem;
+            }
+
+            .page-subtitle {
+                max-width: var(--content-max);
+                margin: 0 auto;
+                color: var(--gray-300);
+                font-size: 1.1rem;
+                font-weight: 300;
+                line-height: 1.85;
+            }
+
+            .status {
+                max-width: var(--content-max);
+                margin: 1.25rem auto 0;
+                padding: 0.9rem 1.1rem;
+                border-radius: var(--radius);
+                border: 2px solid var(--gray-900);
+                background: rgba(16, 16, 16, 0.55);
+                font-family: "JetBrains Mono", monospace;
+                color: var(--gray-300);
+                font-size: 0.85rem;
+                text-align: left;
+            }
+
+            .status strong {
+                color: var(--white);
+            }
+
+            .status.error {
+                border-color: rgba(255, 51, 102, 0.35);
+                background: rgba(255, 51, 102, 0.06);
+            }
+
+            .layout {
+                margin-top: 2rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .toc {
+                max-width: var(--content-max);
+                margin: 0 auto;
+                width: 100%;
+                background: rgba(16, 16, 16, 0.55);
+                border: 2px solid var(--gray-900);
+                border-radius: var(--radius);
+                padding: 1rem 1.25rem;
+            }
+
+            .toc-header {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .toc-title {
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 800;
+                font-size: 0.95rem;
+                color: var(--white);
+                letter-spacing: -0.02em;
+            }
+
+            .toc-meta {
+                font-family: "JetBrains Mono", monospace;
+                color: var(--gray-500);
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .toc nav {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+
+            .toc a {
+                color: var(--gray-300);
+                text-decoration: none;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.86rem;
+                padding: 0.55rem 0.65rem;
+                border-radius: 8px;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                transition:
+                    color 0.2s,
+                    background 0.2s,
+                    border-color 0.2s;
+            }
+
+            .toc a:hover {
+                color: var(--accent-cyan);
+                border-color: rgba(0, 217, 255, 0.25);
+                background: rgba(0, 217, 255, 0.06);
+            }
+
+            .toc a.is-active {
+                color: var(--black);
+                background: var(--accent-cyan);
+                border-color: var(--accent-cyan);
+            }
+
+            .toc a.depth-2 {
+                padding-left: 1.25rem;
+            }
+
+            .toc a.depth-3 {
+                padding-left: 2rem;
+                color: var(--gray-500);
+            }
+
+            .panel {
+                max-width: var(--content-max);
+                margin: 0 auto;
+                width: 100%;
+                background: rgba(20, 20, 20, 0.9);
+                border: 2px solid var(--gray-800);
+                border-radius: var(--radius);
+                overflow: hidden;
+            }
+
+            .panel-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                padding: 1.1rem 1.25rem;
+                border-bottom: 2px solid var(--gray-900);
+                background: rgba(26, 26, 26, 0.65);
+            }
+
+            .panel-title {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 800;
+                letter-spacing: -0.02em;
+                font-size: 0.95rem;
+                color: var(--white);
+            }
+
+            .badge {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.75rem;
+                padding: 0.35rem 0.6rem;
+                border-radius: 999px;
+                border: 1px solid rgba(0, 217, 255, 0.3);
+                background: rgba(0, 217, 255, 0.08);
+                color: var(--accent-cyan);
+                font-weight: 800;
+                white-space: nowrap;
+            }
+
+            .panel-actions {
+                display: flex;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .btn {
+                padding: 0.7rem 0.95rem;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.85rem;
+                font-weight: 800;
+                border-radius: 8px;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: all 0.2s;
+                background: transparent;
+                color: var(--white);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                user-select: none;
+            }
+
+            .btn-secondary {
+                border-color: var(--gray-700);
+            }
+
+            .btn-secondary:hover {
+                border-color: var(--accent-cyan);
+                color: var(--accent-cyan);
+            }
+
+            .btn-primary {
+                background: var(--accent-cyan);
+                color: var(--black);
+                border-color: var(--accent-cyan);
+            }
+
+            .btn-primary:hover {
+                background: var(--white);
+                border-color: var(--white);
+                transform: translateY(-1px);
+            }
+
+            .panel-body {
+                padding: 1.25rem;
+            }
+
+            /* Rendered Markdown */
+            .md {
+                font-size: 1rem;
+                color: var(--white);
+            }
+
+            .md :where(h1, h2, h3, h4, h5, h6) {
+                font-family: "JetBrains Mono", monospace;
+                letter-spacing: -0.02em;
+                line-height: 1.25;
+                margin: 1.5rem 0 0.75rem;
+                scroll-margin-top: 120px;
+            }
+
+            .md h1 {
+                font-size: 2rem;
+                margin-top: 0.5rem;
+            }
+
+            .md h2 {
+                font-size: 1.6rem;
+            }
+
+            .md h3 {
+                font-size: 1.25rem;
+            }
+
+            .md h4 {
+                font-size: 1.05rem;
+                color: var(--gray-300);
+            }
+
+            .md p {
+                color: var(--gray-300);
+                margin: 0.75rem 0;
+                line-height: 1.85;
+                font-weight: 300;
+            }
+
+            .md strong {
+                color: var(--white);
+                font-weight: 700;
+            }
+
+            .md a {
+                color: var(--accent-cyan);
+                text-decoration: none;
+                border-bottom: 1px solid rgba(0, 217, 255, 0.35);
+            }
+
+            .md a:hover {
+                border-bottom-color: var(--accent-cyan);
+            }
+
+            .md hr {
+                border: 0;
+                border-top: 2px solid var(--gray-900);
+                margin: 1.5rem 0;
+            }
+
+            .md blockquote {
+                margin: 1rem 0;
+                padding: 1rem 1.25rem;
+                border-left: 4px solid rgba(0, 217, 255, 0.55);
+                background: rgba(0, 217, 255, 0.06);
+                border-radius: 10px;
+            }
+
+            .md blockquote p {
+                margin: 0.25rem 0;
+                color: var(--white);
+                font-weight: 400;
+            }
+
+            .md ul,
+            .md ol {
+                margin: 0.75rem 0 0.75rem 1.25rem;
+                color: var(--gray-300);
+            }
+
+            .md li {
+                margin: 0.35rem 0;
+                line-height: 1.8;
+            }
+
+            .md code {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.92em;
+                background: rgba(26, 26, 26, 0.9);
+                border: 1px solid rgba(58, 58, 58, 0.8);
+                padding: 0.1rem 0.35rem;
+                border-radius: 6px;
+                color: var(--white);
+            }
+
+            .md pre {
+                margin: 1rem 0;
+                padding: 1rem 1.1rem;
+                background: rgba(16, 16, 16, 0.9);
+                border: 2px solid var(--gray-900);
+                border-radius: 10px;
+                overflow: auto;
+            }
+
+            .md pre code {
+                background: transparent;
+                border: none;
+                padding: 0;
+                color: var(--white);
+                font-size: 0.9rem;
+                line-height: 1.7;
+            }
+
+            .md table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1rem 0 1.5rem;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 2px solid var(--gray-900);
+                background: rgba(16, 16, 16, 0.7);
+            }
+
+            .md thead th {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.82rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                text-align: left;
+                padding: 0.85rem;
+                background: rgba(0, 217, 255, 0.09);
+                border-bottom: 2px solid var(--gray-900);
+                color: var(--white);
+            }
+
+            .md tbody td {
+                padding: 0.85rem;
+                border-bottom: 1px solid rgba(42, 42, 42, 0.9);
+                color: var(--gray-300);
+                vertical-align: top;
+            }
+
+            .md tbody tr:hover td {
+                background: rgba(0, 217, 255, 0.03);
+            }
+
+            .raw-wrap {
+                margin-top: 1.25rem;
+                display: none;
+            }
+
+            footer {
+                padding: 3.5rem 0 4rem;
+                border-top: 2px solid var(--gray-900);
+                margin-top: 4rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .footer-bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .footer-bottom p {
+                color: var(--gray-500);
+                font-size: 0.85rem;
+                font-family: "JetBrains Mono", monospace;
+            }
+
+            @media (max-width: 760px) {
+                .container {
+                    padding: 0 1.25rem;
+                }
+
+                .page-title {
+                    font-size: 2.1rem;
+                }
+
+                .panel-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .panel-actions {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+
+                .header-nav {
+                    display: none;
+                }
+            }
+
+            @media print {
+                .grid-bg,
+                header,
+                footer,
+                .panel-actions,
+                .toc,
+                .status {
+                    display: none !important;
+                }
+
+                body {
+                    background: #ffffff;
+                    color: #000000;
+                }
+
+                .panel {
+                    border: none;
+                    background: transparent;
+                }
+
+                .md p,
+                .md li,
+                .md td {
+                    color: #000000;
+                }
+
+                .md a {
+                    color: #000000;
+                    border: none;
+                    text-decoration: underline;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="grid-bg"></div>
+
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <a
+                        class="logo"
+                        href="index.html"
+                        aria-label="Ampersand Box Design home"
+                    >
+                        <span class="ampersand">[&amp;]</span>
+                        <span>AMPERSAND BOX</span>
+                    </a>
+
+                    <nav class="header-nav" aria-label="Site navigation">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a
+                            href="portfolio_company_complete_research.html"
+                            class="nav-link active"
+                            >Complete Research</a
+                        >
+                        <a
+                            href="portfolio_research_sources.html"
+                            class="nav-link"
+                            >Research Sources</a
+                        >
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <section class="page-hero">
+                    <div class="page-eyebrow">Portfolio Research</div>
+                    <h1 class="page-title</main>">
+                        Complete Research &amp; Valuation Report
+                    </h1>
+
+                    <div
+                        id="status"
+                        class="status"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        <strong>Status:</strong> Loading markdown…
+                    </div>
+                </section>
+
+                <div class="layout">
+                    <section class="toc" aria-label="Table of contents">
+                        <div class="toc-header">
+                            <div class="toc-title">Table of Contents</div>
+                            <div class="toc-meta" id="tocMeta">—</div>
+                        </div>
+                        <nav id="tocLinks" aria-label="TOC links"></nav>
+                    </section>
+
+                    <section class="panel" aria-label="Rendered report">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <span class="badge">Markdown → HTML</span>
+                                <span>Rendered Document</span>
+                            </div>
+
+                            <div class="panel-actions">
+                                <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    id="copyLinkBtn"
+                                    title="Copy the current page link (including section hash)"
+                                >
+                                    Copy Link
+                                </button>
+                                <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    id="toggleRawBtn"
+                                    title="Show/hide raw Markdown source"
+                                >
+                                    View Raw Markdown
+                                </button>
+                                <button
+                                    class="btn btn-primary"
+                                    type="button"
+                                    id="printBtn"
+                                    title="Print or save as PDF"
+                                >
+                                    Print / Save PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div
+                                id="content"
+                                class="md"
+                                aria-label="Markdown content"
+                            ></div>
+
+                            <div
+                                class="raw-wrap"
+                                id="rawWrap"
+                                aria-label="Raw markdown"
+                            >
+                                <pre><code id="rawMd"></code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-bottom">
+                    <p>
+                        &copy; <span id="currentYear"></span> Ampersand Box
+                        Design
+                    </p>
+                    <p>All systems operational ✓</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Markdown rendering (CDN) -->
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+        <script>
+            const DOC_PATH = "docs/PORTFOLIO_COMPANY_COMPLETE_RESEARCH.md";
+
+            const statusEl = document.getElementById("status");
+            const tocMetaEl = document.getElementById("tocMeta");
+            const tocLinksEl = document.getElementById("tocLinks");
+            const contentEl = document.getElementById("content");
+
+            const rawWrapEl = document.getElementById("rawWrap");
+            const rawMdEl = document.getElementById("rawMd");
+
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+
+            function setStatus(message, kind) {
+                statusEl.classList.remove("error");
+                if (kind === "error") statusEl.classList.add("error");
+                statusEl.innerHTML = `<strong>Status:</strong> ${message}`;
+            }
+
+            function configureMarked() {
+                if (!window.marked) return;
+                marked.setOptions({
+                    gfm: true,
+                    breaks: true,
+                    headerIds: true,
+                    mangle: false,
+                });
+            }
+
+            function slugify(text) {
+                return (text || "")
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^\w\s-]/g, "")
+                    .replace(/\s+/g, "-")
+                    .replace(/-+/g, "-");
+            }
+
+            function renderMarkdown(mdText) {
+                // If marked is not available, show plain text.
+                if (!window.marked) {
+                    contentEl.innerHTML = "<pre><code></code></pre>";
+                    contentEl.querySelector("code").textContent = mdText;
+                    return;
+                }
+
+                const rawHtml = marked.parse(mdText);
+
+                const safeHtml =
+                    window.DOMPurify && typeof DOMPurify.sanitize === "function"
+                        ? DOMPurify.sanitize(rawHtml, {
+                              USE_PROFILES: { html: true },
+                          })
+                        : rawHtml;
+
+                contentEl.innerHTML = safeHtml;
+
+                // Normalize/guarantee unique heading IDs.
+                const headings = contentEl.querySelectorAll("h1, h2, h3");
+                const used = new Set();
+                headings.forEach((h) => {
+                    const base =
+                        h.id && h.id.length ? h.id : slugify(h.textContent);
+                    let id = base || "section";
+                    let i = 2;
+                    while (used.has(id)) id = `${base || "section"}-${i++}`;
+                    used.add(id);
+                    h.id = id;
+                });
+            }
+
+            function buildToc() {
+                tocLinksEl.innerHTML = "";
+
+                const headings = [...contentEl.querySelectorAll("h1, h2, h3")];
+                const items = headings
+                    .map((h) => {
+                        const tag = h.tagName.toLowerCase();
+                        const depth = tag === "h1" ? 1 : tag === "h2" ? 2 : 3;
+                        return {
+                            depth,
+                            id: h.id,
+                            text: (h.textContent || "").trim(),
+                        };
+                    })
+                    // Skip the first H1 (usually the doc title)
+                    .filter((item, idx) => !(idx === 0 && item.depth === 1));
+
+                items.forEach((item) => {
+                    const a = document.createElement("a");
+                    a.href = `#${item.id}`;
+                    a.textContent = item.text;
+                    a.dataset.targetId = item.id;
+
+                    if (item.depth === 2) a.classList.add("depth-2");
+                    if (item.depth === 3) a.classList.add("depth-3");
+
+                    a.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        const target = document.getElementById(item.id);
+                        if (!target) return;
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                        history.replaceState(null, "", `#${item.id}`);
+                    });
+
+                    tocLinksEl.appendChild(a);
+                });
+
+                tocMetaEl.textContent = `${items.length} sections`;
+            }
+
+            function hydrateDeepLink() {
+                const hash = window.location.hash || "";
+                if (!hash) return;
+                const id = hash.replace(/^#/, "");
+                const el = document.getElementById(id);
+                if (!el) return;
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 100);
+            }
+
+            function enableActiveTocHighlight() {
+                const tocLinks = [
+                    ...document.querySelectorAll("#tocLinks a[data-target-id]"),
+                ];
+                if (!tocLinks.length) return;
+
+                const byId = new Map(
+                    tocLinks.map((a) => [a.dataset.targetId, a]),
+                );
+                const headings = [
+                    ...document.querySelectorAll(
+                        "#content h1, #content h2, #content h3",
+                    ),
+                ];
+
+                const obs = new IntersectionObserver(
+                    (entries) => {
+                        const visible = entries
+                            .filter((e) => e.isIntersecting)
+                            .sort(
+                                (a, b) =>
+                                    (a.boundingClientRect.top || 0) -
+                                    (b.boundingClientRect.top || 0),
+                            )[0];
+                        if (!visible) return;
+
+                        tocLinks.forEach((a) =>
+                            a.classList.remove("is-active"),
+                        );
+                        const link = byId.get(visible.target.id);
+                        if (link) link.classList.add("is-active");
+                    },
+                    { threshold: 0.15, rootMargin: "-10% 0px -70% 0px" },
+                );
+
+                headings.forEach((h) => obs.observe(h));
+            }
+
+            async function loadMarkdown() {
+                const res = await fetch(DOC_PATH, { cache: "no-store" });
+                if (!res.ok) {
+                    throw new Error(
+                        `Failed to load ${DOC_PATH} (HTTP ${res.status})`,
+                    );
+                }
+                return await res.text();
+            }
+
+            async function boot() {
+                configureMarked();
+
+                try {
+                    setStatus(`Loading <code>${DOC_PATH}</code>…`);
+                    const mdText = await loadMarkdown();
+
+                    window.__mdText = mdText;
+                    rawMdEl.textContent = mdText.trim();
+
+                    setStatus("Rendering…");
+                    renderMarkdown(mdText);
+                    buildToc();
+                    hydrateDeepLink();
+                    enableActiveTocHighlight();
+
+                    setStatus(`Loaded <code>${DOC_PATH}</code>.`);
+                } catch (err) {
+                    const details =
+                        err && err.message
+                            ? err.message
+                            : String(err || "Unknown error");
+                    window.__mdText = "";
+
+                    setStatus("Load failed. See details below.", "error");
+
+                    const fallback = [
+                        "# Load Error",
+                        "",
+                        `Could not load \`${DOC_PATH}\`.`,
+                        "",
+                        "**Common causes:**",
+                        "- You opened this page via `file://` (many browsers block `fetch()` for local files).",
+                        "- The site isn't being served by a local HTTP server.",
+                        "",
+                        "**Fix (recommended):** run a local server in the project root:",
+                        "",
+                        "```",
+                        "python3 -m http.server 8000",
+                        "```",
+                        "",
+                        "Then open:",
+                        "`http://localhost:8000/portfolio_company_complete_research.html`",
+                        "",
+                        "**Details:**",
+                        "",
+                        "```",
+                        details,
+                        "```",
+                    ].join("\n");
+
+                    window.__mdText = fallback;
+                    rawMdEl.textContent = fallback;
+                    renderMarkdown(fallback);
+                    buildToc();
+                }
+            }
+
+            // Actions
+            document
+                .getElementById("printBtn")
+                .addEventListener("click", () => {
+                    window.print();
+                });
+
+            document
+                .getElementById("toggleRawBtn")
+                .addEventListener("click", () => {
+                    const isHidden =
+                        rawWrapEl.style.display === "" ||
+                        rawWrapEl.style.display === "none";
+                    rawWrapEl.style.display = isHidden ? "block" : "none";
+                    document.getElementById("toggleRawBtn").textContent =
+                        isHidden ? "Hide Raw Markdown" : "View Raw Markdown";
+                });
+
+            document
+                .getElementById("copyLinkBtn")
+                .addEventListener("click", async () => {
+                    const url = window.location.href;
+                    try {
+                        await navigator.clipboard.writeText(url);
+                        const btn = document.getElementById("copyLinkBtn");
+                        const original = btn.textContent;
+                        btn.textContent = "Copied!";
+                        setTimeout(() => (btn.textContent = original), 900);
+                    } catch {
+                        window.prompt("Copy this link:", url);
+                    }
+                });
+
+            boot();
+        </script>
+    </body>
+</html>
