@@ -1702,7 +1702,7 @@ SpecPrompt’s revenue is fundamentally **transaction-based** and scales with ec
 
 **Market Opportunity:**
 - Graph-native orchestration
-- Geo-distributed fleet intelligence
+- Geo-distributed fleet intelligence collaboration
 - FleetPrompt integration
 - GraphRAG positioning
 
