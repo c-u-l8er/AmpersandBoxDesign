@@ -311,6 +311,340 @@
                 letter-spacing: 0.05em;
             }
 
+            /* ─── Shared Section Elements ─── */
+            .section-label {
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 1.25rem;
+            }
+
+            .section-sub {
+                font-size: 0.9rem;
+                color: var(--dim);
+                font-weight: 300;
+                max-width: 760px;
+                margin: 0 auto;
+                line-height: 1.9;
+            }
+
+            /* ─── Why Now ─── */
+            .why-now {
+                padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .why-now-header {
+                text-align: center;
+                margin-bottom: 5rem;
+            }
+
+            .why-now-header h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+
+            .why-now-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+
+            .why-now-card {
+                background: var(--bg);
+                padding: 2.5rem;
+                transition:
+                    background 0.3s ease,
+                    box-shadow 0.3s ease;
+                position: relative;
+                border-left: 2px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .why-now-card:hover {
+                background: var(--surface);
+            }
+
+            .why-now-card.wn-cyan {
+                border-left-color: rgba(74, 245, 198, 0.9);
+            }
+            .why-now-card.wn-rose {
+                border-left-color: rgba(255, 107, 138, 0.9);
+            }
+            .why-now-card.wn-blue {
+                border-left-color: rgba(123, 140, 255, 0.9);
+            }
+
+            .why-now-source {
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 1rem;
+            }
+
+            .why-now-card h3 {
+                font-size: 1.05rem;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                margin-bottom: 0.9rem;
+                line-height: 1.35;
+            }
+
+            .why-now-card p {
+                font-size: 0.82rem;
+                color: var(--dim);
+                line-height: 1.75;
+                font-weight: 300;
+            }
+
+            .why-now-cite {
+                margin-top: 1.15rem;
+                font-size: 0.72rem;
+                color: var(--muted);
+                line-height: 1.7;
+                font-weight: 400;
+            }
+
+            .why-now-highlight {
+                margin-top: 2rem;
+                background: rgba(74, 245, 198, 0.04);
+                border: 1px solid rgba(74, 245, 198, 0.18);
+                border-left: 3px solid var(--cyan);
+                padding: 1.75rem 2rem;
+            }
+
+            .why-now-highlight p {
+                font-family: "Newsreader", serif;
+                font-size: 1.15rem;
+                font-weight: 300;
+                font-style: italic;
+                color: var(--dim);
+                line-height: 1.65;
+            }
+
+            .why-now-highlight strong {
+                color: var(--text);
+                font-weight: 600;
+                font-style: normal;
+            }
+
+            /* ─── How It Connects ─── */
+            .connects {
+                padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .connects-header {
+                text-align: center;
+                margin-bottom: 5rem;
+            }
+
+            .connects-header h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+
+            .layer-stack {
+                display: flex;
+                flex-direction: column;
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+
+            .layer-row {
+                background: var(--bg);
+                padding: 2rem 2.5rem;
+                display: grid;
+                grid-template-columns: 160px 1fr 340px;
+                gap: 2rem;
+                align-items: start;
+                transition:
+                    background 0.3s ease,
+                    box-shadow 0.3s ease,
+                    transform 0.3s ease;
+                position: relative;
+                border-left: 2px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .layer-row:hover {
+                background: var(--surface);
+            }
+
+            .layer-row:not(:last-child)::after {
+                content: "";
+                position: absolute;
+                left: 2.5rem;
+                right: 2.5rem;
+                bottom: 0;
+                border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+                opacity: 0.6;
+                pointer-events: none;
+            }
+
+            .layer-row.lr-purple {
+                border-left-color: rgba(180, 140, 255, 0.9);
+            }
+            .layer-row.lr-blue {
+                border-left-color: rgba(123, 140, 255, 0.9);
+            }
+            .layer-row.lr-amber {
+                border-left-color: rgba(255, 196, 107, 0.9);
+            }
+            .layer-row.lr-rose {
+                border-left-color: rgba(255, 107, 138, 0.9);
+            }
+            .layer-row.lr-cyan {
+                border-left-color: rgba(74, 245, 198, 0.9);
+            }
+            .layer-row.lr-dim {
+                border-left-color: rgba(107, 105, 128, 0.8);
+            }
+
+            .layer-row.layer-emphasis {
+                border-left-width: 3px;
+                box-shadow: 0 18px 70px rgba(74, 245, 198, 0.06);
+                background: rgba(74, 245, 198, 0.03);
+            }
+
+            .layer-title {
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 0.1rem;
+            }
+
+            .layer-desc {
+                font-size: 0.82rem;
+                color: var(--dim);
+                font-weight: 300;
+                line-height: 1.7;
+            }
+
+            .layer-products {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.65rem 0.85rem;
+                justify-content: flex-end;
+                align-items: baseline;
+            }
+
+            .layer-products a {
+                color: var(--dim);
+                text-decoration: none;
+                font-size: 0.82rem;
+                font-weight: 500;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+                transition:
+                    color 0.2s ease,
+                    border-color 0.2s ease;
+            }
+
+            .layer-products a:hover {
+                color: var(--cyan);
+                border-color: rgba(74, 245, 198, 0.35);
+            }
+
+            /* ─── Philosophy ─── */
+            .philosophy {
+                padding: 8rem 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .philosophy-inner {
+                max-width: 760px;
+                margin: 0 auto;
+            }
+
+            .philosophy-head {
+                text-align: center;
+                margin-bottom: 3.5rem;
+            }
+
+            .philosophy-head h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+
+            .philosophy-positions {
+                display: grid;
+                gap: 1rem;
+            }
+
+            .philosophy-position {
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid var(--border);
+                padding: 1.5rem 1.75rem;
+            }
+
+            .philosophy-position h3 {
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--text);
+                margin-bottom: 0.65rem;
+            }
+
+            .philosophy-position p {
+                font-size: 0.86rem;
+                color: var(--dim);
+                font-weight: 300;
+                line-height: 1.85;
+            }
+
+            .philosophy-callout {
+                display: block;
+                margin-top: 1.75rem;
+                text-decoration: none;
+                background: rgba(180, 140, 255, 0.04);
+                border: 1px solid rgba(180, 140, 255, 0.18);
+                border-left: 3px solid var(--purple);
+                padding: 1.75rem 2rem;
+                transition:
+                    background 0.25s ease,
+                    border-color 0.25s ease;
+            }
+
+            .philosophy-callout:hover {
+                background: rgba(180, 140, 255, 0.06);
+                border-color: rgba(180, 140, 255, 0.26);
+            }
+
+            .philosophy-callout .callout-title {
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--purple);
+                margin-bottom: 0.65rem;
+            }
+
+            .philosophy-callout .callout-body {
+                font-family: "Newsreader", serif;
+                font-size: 1.1rem;
+                font-weight: 300;
+                font-style: italic;
+                color: var(--dim);
+                line-height: 1.65;
+            }
+
             /* ─── Centerpiece: Graphonomous ─── */
             .centerpiece {
                 padding: 6rem 0 8rem;
@@ -784,6 +1118,16 @@
                 .eco-grid {
                     grid-template-columns: 1fr;
                 }
+                .why-now-grid {
+                    grid-template-columns: 1fr;
+                }
+                .layer-row {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+                .layer-products {
+                    justify-content: flex-start;
+                }
                 .cp-header {
                     flex-direction: column;
                 }
@@ -819,6 +1163,9 @@
                 .stack-row {
                     gap: 1.5rem;
                 }
+                .layer-row {
+                    padding: 1.5rem 1.25rem;
+                }
             }
         </style>
     </head>
@@ -835,9 +1182,12 @@
                         </a>
                         <nav class="nav">
                             <a href="#thesis">Thesis</a>
+                            <a href="#why-now">Why Now</a>
                             <a href="#engine">Engine</a>
                             <a href="#ecosystem">Ecosystem</a>
+                            <a href="#how-it-connects">How It Connects</a>
                             <a href="#stack">Stack</a>
+                            <a href="#philosophy">Open Source</a>
                             <a
                                 href="mailto:hello@ampersandboxdesign.com"
                                 class="nav-cta"
@@ -894,6 +1244,111 @@
                             supports learning over time."
                         </p>
                         <p class="thesis-attr">— The problem we're solving</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="why-now" id="why-now">
+                <div class="container">
+                    <div class="why-now-header">
+                        <p class="section-label">MARKET CONVERGENCE</p>
+                        <h2>The world is building toward this</h2>
+                        <p class="section-sub">
+                            Every major lab and analyst firm is independently
+                            arriving at the same conclusion: AI needs memory,
+                            deliberation, and edge-native architecture. Here's
+                            what they're saying.
+                        </p>
+                    </div>
+
+                    <div class="why-now-grid">
+                        <article class="why-now-card wn-cyan">
+                            <div class="why-now-source">
+                                Google Research — NeurIPS 2025
+                            </div>
+                            <h3>"Nested Learning" & the HOPE Architecture</h3>
+                            <p>
+                                Google's Nested Learning paradigm reframes AI
+                                models as nested, multi-level optimization
+                                systems — fast-updating modules for immediate
+                                context, slow-updating modules for long-term
+                                knowledge. Their proof-of-concept HOPE
+                                architecture demonstrates continual learning
+                                without catastrophic forgetting. This is exactly
+                                the architecture philosophy Graphonomous
+                                implements at the infrastructure level:
+                                multi-timescale memory consolidation,
+                                edge-native, no retraining required.
+                            </p>
+                            <p class="why-now-cite">
+                                Behrouz & Mirrokni, NeurIPS 2025 — "Nested
+                                Learning: The Illusion of Deep Learning
+                                Architectures"
+                            </p>
+                        </article>
+
+                        <article class="why-now-card wn-rose">
+                            <div class="why-now-source">
+                                ACL 2025 + arXiv 2025
+                            </div>
+                            <h3>Structured Consensus &gt; Opaque Confidence</h3>
+                            <p>
+                                A wave of 2025 research (ACL Findings, multiple
+                                arXiv papers) demonstrates that multi-agent
+                                deliberation protocols — where AI agents argue,
+                                critique, and iterate toward consensus —
+                                consistently outperform simple voting and
+                                single-agent approaches. Deliberatic
+                                operationalizes this: Dung's argumentation
+                                framework extended into weighted bipolar systems
+                                with Byzantine fault tolerance and
+                                Merkle-chained evidence. This isn't theoretical
+                                — it's the deliberation infrastructure the
+                                research says agents need.
+                            </p>
+                            <p class="why-now-cite">
+                                Kaesberg et al., ACL 2025 — "Voting or
+                                Consensus? Decision-Making in Multi-Agent
+                                Debate"
+                            </p>
+                        </article>
+
+                        <article class="why-now-card wn-blue">
+                            <div class="why-now-source">
+                                Industry — 2025/2026
+                            </div>
+                            <h3>MCP + A2A: The HTTP Moment for Agents</h3>
+                            <p>
+                                Anthropic's MCP (agent-to-tool) and Google's A2A
+                                (agent-to-agent) are establishing the equivalent
+                                of HTTP for AI agents. MCP standardizes tool
+                                access; A2A standardizes agent collaboration.
+                                Gartner predicts 40% of enterprise apps will
+                                embed AI agents by end of 2026. The entire [&]
+                                stack is MCP-first and A2A-ready — not as an
+                                afterthought, but as the foundational design
+                                decision. Every product in the portfolio speaks
+                                these protocols natively.
+                            </p>
+                            <p class="why-now-cite">
+                                Gartner 2025; Linux Foundation Agentic AI
+                                Foundation; A2A Protocol (Google + 50 partners)
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="why-now-highlight why-now-card">
+                        <p>
+                            VentureBeat (Jan 2026): "Continual learning shifts
+                            rigor toward memory provenance and retention… The
+                            winners will not only pick strong models, they will
+                            build the control plane that keeps those models
+                            correct, current, and cost-efficient." —
+                            <strong
+                                >That control plane is what we're
+                                building.</strong
+                            >
+                        </p>
                     </div>
                 </div>
             </section>
@@ -1200,6 +1655,119 @@
                 </div>
             </section>
 
+            <section class="connects" id="how-it-connects">
+                <div class="container">
+                    <div class="connects-header">
+                        <p class="section-label">ARCHITECTURE</p>
+                        <h2>One system, not ten products</h2>
+                        <p class="section-sub">
+                            Every product in the portfolio occupies a specific
+                            layer. Together they form a complete infrastructure
+                            for AI that learns, decides, and acts.
+                        </p>
+                    </div>
+
+                    <div class="layer-stack">
+                        <div class="layer-row lr-purple">
+                            <div class="layer-title">Interface</div>
+                            <div class="layer-desc">
+                                Define agent behavior with specs and contracts
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://specprompt.com">SpecPrompt</a>
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-blue">
+                            <div class="layer-title">Creation</div>
+                            <div class="layer-desc">
+                                Build and deploy individual agents
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://agentelic.com">Agentelic</a>
+                                <a href="https://bendscript.com">BendScript</a>
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-amber">
+                            <div class="layer-title">Orchestration</div>
+                            <div class="layer-desc">
+                                Coordinate multi-agent teams and workflows
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://delegatic.com">Delegatic</a>
+                                <a href="https://agentromatic.com"
+                                    >AgenTroMatic</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-rose">
+                            <div class="layer-title">Deliberation</div>
+                            <div class="layer-desc">
+                                Structured argumentation and consensus for
+                                decisions
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://deliberatic.com"
+                                    >Deliberatic</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-cyan layer-emphasis">
+                            <div class="layer-title">Memory</div>
+                            <div class="layer-desc">
+                                Continual learning engine — the knowledge
+                                substrate
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://graphonomous.com"
+                                    >Graphonomous</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-purple">
+                            <div class="layer-title">Distribution</div>
+                            <div class="layer-desc">
+                                Package and distribute CL strategies as skills
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://fleetprompt.com"
+                                    >FleetPrompt</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-blue">
+                            <div class="layer-title">Intelligence</div>
+                            <div class="layer-desc">
+                                Temporal and spatial intelligence layers
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://ticktickclock.com"
+                                    >TickTickClock</a
+                                >
+                                <a href="https://geofleetic.com">GeoFleetic</a>
+                            </div>
+                        </div>
+
+                        <div class="layer-row lr-dim">
+                            <div class="layer-title">Infrastructure</div>
+                            <div class="layer-desc">
+                                Managed hosting and multi-tenant deployment
+                            </div>
+                            <div class="layer-products">
+                                <a href="https://webhost.systems"
+                                    >WebHost Systems</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="stack" id="stack">
                 <div class="container">
                     <div class="stack-header">
@@ -1230,6 +1798,84 @@
                             <h4>Fly.io</h4>
                             <p>Global edge deployment</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="philosophy" id="philosophy">
+                <div class="container">
+                    <div class="philosophy-inner">
+                        <div class="philosophy-head">
+                            <p class="section-label">PHILOSOPHY</p>
+                            <h2>What we believe</h2>
+                        </div>
+
+                        <div class="philosophy-positions">
+                            <div class="philosophy-position">
+                                <h3>
+                                    1. Memory is infrastructure, not a feature
+                                </h3>
+                                <p>
+                                    Intelligence without memory is just
+                                    expensive pattern matching. Real learning
+                                    requires structured, persistent, evolvable
+                                    knowledge — not bigger context windows. We
+                                    build memory as a first-class infrastructure
+                                    layer, not a bolted-on retrieval system.
+                                </p>
+                            </div>
+
+                            <div class="philosophy-position">
+                                <h3>2. Decisions should ship with proofs</h3>
+                                <p>
+                                    When agents make decisions, you deserve to
+                                    know <em>why</em>. Not a confidence score —
+                                    an auditable chain of evidence, arguments,
+                                    and constitutional constraints. Deliberatic
+                                    exists because opacity is a liability, not a
+                                    feature.
+                                </p>
+                            </div>
+
+                            <div class="philosophy-position">
+                                <h3>3. Small models, long horizons</h3>
+                                <p>
+                                    The future isn't a single trillion-parameter
+                                    model running in a datacenter. It's millions
+                                    of small, specialized models that get
+                                    smarter in their deployment context over
+                                    weeks, months, and years. Edge-native.
+                                    Always learning. Never forgetting.
+                                </p>
+                            </div>
+
+                            <div class="philosophy-position">
+                                <h3>4. Open protocols, open standards</h3>
+                                <p>
+                                    MCP-first. A2A-ready. Apache 2.0 where
+                                    possible. We build on open standards because
+                                    vendor lock-in is the opposite of
+                                    interoperability, and interoperability is
+                                    the whole point of an ecosystem.
+                                </p>
+                            </div>
+                        </div>
+
+                        <a
+                            class="philosophy-callout philosophy-position"
+                            href="https://opensentience.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="callout-title">OpenSentience.org</div>
+                            <div class="callout-body">
+                                Our open research initiative exploring the
+                                boundaries of machine cognition, structured
+                                memory, and what it means for an AI system to
+                                "understand." Because the questions matter as
+                                much as the products.
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1433,7 +2079,7 @@
 
             document
                 .querySelectorAll(
-                    ".centerpiece-card, .eco-card, .thesis-inner, .stack-item",
+                    ".centerpiece-card, .eco-card, .thesis-inner, .stack-item, .why-now-card, .layer-row, .philosophy-position",
                 )
                 .forEach((el) => {
                     // Set initial hidden state
