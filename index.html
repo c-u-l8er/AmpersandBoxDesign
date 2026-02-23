@@ -334,6 +334,33 @@
                 background: rgba(74, 245, 198, 0.04);
             }
 
+            .centerpiece-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .centerpiece-grid .centerpiece-card {
+                max-width: none;
+                margin: 0;
+                padding: 2.5rem;
+            }
+
+            .centerpiece-grid .cp-features {
+                grid-template-columns: 1fr;
+            }
+
+            .centerpiece-card.cp-rose::before {
+                background: linear-gradient(
+                    90deg,
+                    var(--rose),
+                    var(--blue),
+                    var(--cyan)
+                );
+            }
+
             .centerpiece-card {
                 background: var(--surface);
                 border: 1px solid var(--border);
@@ -578,6 +605,9 @@
             .eco-card:nth-child(9) .eco-icon {
                 color: var(--purple);
             }
+            .eco-card:nth-child(10) .eco-icon {
+                color: var(--cyan);
+            }
 
             .eco-dot {
                 width: 6px;
@@ -745,6 +775,9 @@
 
             /* ─── Responsive ─── */
             @media (max-width: 900px) {
+                .centerpiece-grid {
+                    grid-template-columns: 1fr;
+                }
                 .cp-features {
                     grid-template-columns: 1fr;
                 }
@@ -868,65 +901,136 @@
             <section class="centerpiece" id="engine">
                 <div class="container">
                     <div class="centerpiece-badge">
-                        <span>Hero Product</span>
+                        <span>Hero Products</span>
                     </div>
-                    <div class="centerpiece-card">
-                        <div class="cp-header">
-                            <div class="cp-title-group">
-                                <h2>Graphonomous</h2>
-                                <span class="domain">graphonomous.com</span>
+                    <div class="centerpiece-grid">
+                        <div class="centerpiece-card">
+                            <div class="cp-header">
+                                <div class="cp-title-group">
+                                    <h2>Graphonomous</h2>
+                                    <span class="domain">graphonomous.com</span>
+                                </div>
+                                <div class="cp-status">
+                                    <span class="dot"></span>
+                                    In Development
+                                </div>
                             </div>
-                            <div class="cp-status">
-                                <span class="dot"></span>
-                                In Development
+                            <p class="cp-description">
+                                A continual learning engine that makes small
+                                language models (1B–8B) get smarter over time in
+                                their deployment context. Self-evolving
+                                knowledge graphs that learn, consolidate, and
+                                prune at inference time — no retraining, no
+                                cloud dependency, no catastrophic forgetting.
+                            </p>
+                            <div class="cp-features">
+                                <div class="cp-feature">
+                                    <h4>Learn</h4>
+                                    <p>
+                                        Graph-based memory that grows with every
+                                        interaction. Episodic, semantic,
+                                        procedural, and temporal knowledge —
+                                        structured relationships, not flat
+                                        vectors.
+                                    </p>
+                                </div>
+                                <div class="cp-feature">
+                                    <h4>Adapt</h4>
+                                    <p>
+                                        Multi-timescale consolidation inspired
+                                        by the brain's sleep cycles. Fast memory
+                                        promotes to slow memory. Weak
+                                        connections decay. Strong patterns
+                                        crystallize.
+                                    </p>
+                                </div>
+                                <div class="cp-feature">
+                                    <h4>Decide</h4>
+                                    <p>
+                                        MCP-first API means any AI client can
+                                        connect directly. Graph-aware context
+                                        injection makes every inference smarter
+                                        than the last.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="cp-cta">
+                                <a
+                                    href="https://graphonomous.com"
+                                    class="cp-link"
+                                    >Visit Graphonomous →</a
+                                >
+                                <div class="cp-tags">
+                                    <span class="tag">Elixir/OTP</span>
+                                    <span class="tag">SQLite + sqlite-vec</span>
+                                    <span class="tag">MCP Server</span>
+                                    <span class="tag">Edge-Native</span>
+                                </div>
                             </div>
                         </div>
-                        <p class="cp-description">
-                            A continual learning engine that makes small
-                            language models (1B–8B) get smarter over time in
-                            their deployment context. Self-evolving knowledge
-                            graphs that learn, consolidate, and prune at
-                            inference time — no retraining, no cloud dependency,
-                            no catastrophic forgetting.
-                        </p>
-                        <div class="cp-features">
-                            <div class="cp-feature">
-                                <h4>Learn</h4>
-                                <p>
-                                    Graph-based memory that grows with every
-                                    interaction. Episodic, semantic, procedural,
-                                    and temporal knowledge — structured
-                                    relationships, not flat vectors.
-                                </p>
+                        <div class="centerpiece-card cp-rose">
+                            <div class="cp-header">
+                                <div class="cp-title-group">
+                                    <h2>Deliberatic</h2>
+                                    <span class="domain">deliberatic.com</span>
+                                </div>
+                                <div class="cp-status">
+                                    <span class="dot"></span>
+                                    In Development
+                                </div>
                             </div>
-                            <div class="cp-feature">
-                                <h4>Adapt</h4>
-                                <p>
-                                    Multi-timescale consolidation inspired by
-                                    the brain's sleep cycles. Fast memory
-                                    promotes to slow memory. Weak connections
-                                    decay. Strong patterns crystallize.
-                                </p>
+                            <p class="cp-description">
+                                An open-source deliberation protocol for
+                                multi-agent AI. Structured argumentation,
+                                Byzantine fault-tolerant consensus,
+                                constitutional guardrails, and Merkle-chained
+                                evidence chains — giving agent clusters
+                                auditable, principled decisions instead of
+                                opaque confidence scores.
+                            </p>
+                            <div class="cp-features">
+                                <div class="cp-feature">
+                                    <h4>Argue</h4>
+                                    <p>
+                                        Extends Dung's argumentation framework
+                                        into a weighted bipolar system. Agents
+                                        submit formal positions with typed
+                                        evidence. Attack and support relations
+                                        are explicit, not implicit.
+                                    </p>
+                                </div>
+                                <div class="cp-feature">
+                                    <h4>Decide</h4>
+                                    <p>
+                                        Two-phase adaptive consensus — Raft
+                                        fast-path when the winner is clear, PBFT
+                                        conflict-path when positions are close.
+                                        Byzantine fault tolerant.
+                                    </p>
+                                </div>
+                                <div class="cp-feature">
+                                    <h4>Prove</h4>
+                                    <p>
+                                        Merkle-chained evidence logs,
+                                        constitutional governance with hard
+                                        boundaries and soft preferences, and
+                                        vindicated dissent tracking. Every
+                                        decision ships a proof.
+                                    </p>
+                                </div>
                             </div>
-                            <div class="cp-feature">
-                                <h4>Decide</h4>
-                                <p>
-                                    MCP-first API means any AI client can
-                                    connect directly. Graph-aware context
-                                    injection makes every inference smarter than
-                                    the last.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="cp-cta">
-                            <a href="https://graphonomous.com" class="cp-link"
-                                >Visit Graphonomous →</a
-                            >
-                            <div class="cp-tags">
-                                <span class="tag">Elixir/OTP</span>
-                                <span class="tag">SQLite + sqlite-vec</span>
-                                <span class="tag">MCP Server</span>
-                                <span class="tag">Edge-Native</span>
+                            <div class="cp-cta">
+                                <a
+                                    href="https://deliberatic.com"
+                                    class="cp-link"
+                                    >Visit Deliberatic →</a
+                                >
+                                <div class="cp-tags">
+                                    <span class="tag">Elixir/OTP</span>
+                                    <span class="tag">A2A + MCP</span>
+                                    <span class="tag">DAF Semantics</span>
+                                    <span class="tag">Apache 2.0</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -944,6 +1048,34 @@
                         </p>
                     </div>
                     <div class="eco-grid">
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Memory
+                            </div>
+                            <h3>Graphonomous</h3>
+                            <div class="eco-domain">opensentience.org</div>
+                            <p>
+                                A continual learning engine that makes small
+                                language models (1B–8B) get smarter over time.
+                                Self-evolving knowledge graphs that learn,
+                                consolidate, and prune at inference time
+                            </p>
+                            <a href="https://opensentience.org">Explore →</a>
+                        </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Decisions
+                            </div>
+                            <h3>Deliberatic</h3>
+                            <div class="eco-domain">deliberatic.com</div>
+                            <p>
+                                The decision protocol. Formal argumentation
+                                semantics, Byzantine-tolerant consensus,
+                                constitutional guardrails, and Merkle-chained
+                                evidence chains for auditable agent decisions.
+                            </p>
+                            <a href="https://deliberatic.com">Explore →</a>
+                        </div>
                         <div class="eco-card">
                             <div class="eco-icon">
                                 <span class="eco-dot"></span> Runtime
@@ -1121,6 +1253,7 @@
                         <div class="footer-col">
                             <h5>Portfolio</h5>
                             <a href="https://graphonomous.com">Graphonomous</a>
+                            <a href="https://deliberatic.com">Deliberatic</a>
                             <a href="https://opensentience.org"
                                 >OpenSentience</a
                             >
