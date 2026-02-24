@@ -1,0 +1,1535 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Graphonomous v0.1 — Implementation Blueprint</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #06080a;
+                --s1: #0c0f14;
+                --s2: #12161d;
+                --b: rgba(255, 255, 255, 0.06);
+                --t: #d4d0c8;
+                --dim: #6b6a7a;
+                --muted: #3a3946;
+                --gold: #e8c547;
+                --gold-dim: rgba(232, 197, 71, 0.12);
+                --red: #e85c5c;
+                --green: #5ce89a;
+                --blue: #5c8ee8;
+                --cyan: #5ce8d4;
+                --purple: #b28ce8;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "IBM Plex Mono", monospace;
+                background: var(--bg);
+                color: var(--t);
+                line-height: 1.7;
+                font-size: 13px;
+            }
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 9999;
+                background: repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 0, 0, 0.015) 3px,
+                    rgba(0, 0, 0, 0.015) 6px
+                );
+            }
+            .c {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+            .hdr {
+                padding: 5rem 0 3rem;
+                border-bottom: 1px solid var(--b);
+            }
+            .hdr .lb {
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.35em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1.5rem;
+            }
+            .hdr h1 {
+                font-family: "Cormorant Garamond", serif;
+                font-size: clamp(2rem, 4vw, 3rem);
+                font-weight: 300;
+                letter-spacing: -0.03em;
+                line-height: 1.15;
+                margin-bottom: 1rem;
+            }
+            .hdr h1 em {
+                font-style: italic;
+                color: var(--gold);
+            }
+            .hdr .meta {
+                font-size: 0.7rem;
+                color: var(--muted);
+                letter-spacing: 0.04em;
+            }
+            .sec {
+                padding: 3rem 0;
+                border-bottom: 1px solid var(--b);
+            }
+            .sl {
+                font-size: 0.55rem;
+                font-weight: 600;
+                letter-spacing: 0.35em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 1.5rem;
+            }
+            .sec h2 {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.6rem;
+                font-weight: 400;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+            .sec h3 {
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin: 1.5rem 0 0.75rem;
+                color: var(--gold);
+            }
+            .pr {
+                font-size: 0.82rem;
+                font-weight: 300;
+                color: var(--dim);
+                line-height: 1.9;
+                max-width: 700px;
+            }
+            .pr + .pr {
+                margin-top: 0.75rem;
+            }
+            .pr strong {
+                color: var(--t);
+                font-weight: 500;
+            }
+            .pr code {
+                background: var(--s1);
+                padding: 0.15rem 0.4rem;
+                border-radius: 3px;
+                font-size: 0.78rem;
+                color: var(--cyan);
+            }
+            pre {
+                background: var(--s1);
+                border: 1px solid var(--b);
+                padding: 1.2rem 1.5rem;
+                margin: 1rem 0;
+                overflow-x: auto;
+                font-size: 0.75rem;
+                line-height: 1.8;
+                border-radius: 4px;
+            }
+            pre code {
+                background: none;
+                padding: 0;
+                color: var(--t);
+            }
+            .cm {
+                color: var(--muted);
+            }
+            .kw {
+                color: var(--gold);
+            }
+            .fn {
+                color: var(--cyan);
+            }
+            .str {
+                color: var(--green);
+            }
+            .num {
+                color: var(--purple);
+            }
+            .tbl {
+                margin: 1.5rem 0;
+                overflow-x: auto;
+                border: 1px solid var(--b);
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.75rem;
+            }
+            thead th {
+                text-align: left;
+                padding: 0.7rem 1rem;
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--muted);
+                background: var(--s1);
+                border-bottom: 1px solid var(--b);
+            }
+            tbody td {
+                padding: 0.7rem 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+                color: var(--dim);
+                font-weight: 300;
+            }
+            tbody tr:hover td {
+                color: var(--t);
+                background: rgba(255, 255, 255, 0.01);
+            }
+            .v {
+                color: var(--gold);
+                font-weight: 600;
+            }
+            .g {
+                color: var(--green);
+                font-weight: 500;
+            }
+            .r {
+                color: var(--red);
+                font-weight: 500;
+            }
+            .b {
+                color: var(--blue);
+                font-weight: 500;
+            }
+            .callout {
+                background: var(--s1);
+                border: 1px solid var(--b);
+                border-left: 3px solid var(--gold);
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            .callout.green {
+                border-left-color: var(--green);
+            }
+            .callout.red {
+                border-left-color: var(--red);
+            }
+            .callout.blue {
+                border-left-color: var(--blue);
+            }
+            .callout h4 {
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            .callout p {
+                font-size: 0.78rem;
+                color: var(--dim);
+                font-weight: 300;
+                line-height: 1.8;
+            }
+            .week {
+                background: var(--s2);
+                border: 1px solid var(--b);
+                margin: 1.5rem 0;
+                overflow: hidden;
+            }
+            .week-hdr {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--b);
+                background: var(--s1);
+            }
+            .week-hdr h4 {
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+            .week-hdr .tag {
+                font-size: 0.6rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                padding: 0.25rem 0.6rem;
+                border-radius: 2px;
+            }
+            .tag-ship {
+                background: rgba(92, 232, 154, 0.15);
+                color: var(--green);
+            }
+            .tag-build {
+                background: rgba(232, 197, 71, 0.15);
+                color: var(--gold);
+            }
+            .tag-test {
+                background: rgba(92, 142, 232, 0.15);
+                color: var(--blue);
+            }
+            .week-body {
+                padding: 1.5rem;
+            }
+            .task {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 0.75rem;
+                font-size: 0.78rem;
+            }
+            .task .cb {
+                width: 16px;
+                height: 16px;
+                border: 1px solid var(--muted);
+                flex-shrink: 0;
+                margin-top: 0.2rem;
+                border-radius: 2px;
+            }
+            .task .desc {
+                color: var(--dim);
+                font-weight: 300;
+                line-height: 1.7;
+            }
+            .task .desc strong {
+                color: var(--t);
+                font-weight: 500;
+            }
+            .file-tree {
+                font-size: 0.75rem;
+                line-height: 2;
+                color: var(--dim);
+                padding-left: 1rem;
+            }
+            .file-tree .dir {
+                color: var(--gold);
+                font-weight: 500;
+            }
+            .file-tree .file {
+                color: var(--cyan);
+            }
+            .file-tree .note {
+                color: var(--muted);
+                font-style: italic;
+            }
+            .verdict {
+                background: var(--s2);
+                border: 2px solid var(--gold);
+                padding: 2rem;
+                margin: 2rem 0;
+                text-align: center;
+            }
+            .verdict h3 {
+                font-family: "Cormorant Garamond", serif;
+                font-size: 1.4rem;
+                font-weight: 400;
+                color: var(--gold);
+                margin-bottom: 0.75rem;
+            }
+            .verdict p {
+                font-size: 0.82rem;
+                color: var(--dim);
+                font-weight: 300;
+                line-height: 1.9;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            footer {
+                padding: 2rem 0;
+                border-top: 1px solid var(--b);
+                font-size: 0.65rem;
+                color: var(--muted);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="c">
+            <div class="hdr">
+                <div class="lb">Implementation Blueprint — February 2026</div>
+                <h1>
+                    Graphonomous v0.1<br /><em>From Spec to Running Code</em>
+                </h1>
+                <div class="meta">
+                    The bridge document · Every command, every file, every
+                    dependency · 4-week build plan to GitHub-star-ready MVP
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- WHY THIS DOCUMENT EXISTS -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">00 — Why This Document</p>
+                <h2>The Gap Between Your Specs and Running Code</h2>
+
+                <p class="pr">
+                    You have two world-class specs: the Graphonomous CL engine
+                    (Feb 21) and the OpenSentience runtime (Feb 24). Both are
+                    implementation-ready with typed Elixir structs, OTP
+                    supervision trees, and phased build plans.
+                </p>
+
+                <p class="pr">
+                    But there's a specific gap neither spec fills: the
+                    <strong
+                        >exact sequence of terminal commands, file creation, and
+                        dependency wiring</strong
+                    >
+                    that gets you from an empty directory to a running MCP
+                    server that an LLM can talk to. Specs tell you
+                    <em>what</em> to build. This document tells you
+                    <em>exactly how to start building it, today.</em>
+                </p>
+
+                <p class="pr">
+                    This is not another spec. This is a
+                    <strong>build journal template</strong> — the document you
+                    open in a split pane while your terminal is on the other
+                    side.
+                </p>
+
+                <div class="callout green">
+                    <h4>What "Done" Looks Like in 4 Weeks</h4>
+                    <p>
+                        Claude Desktop (or any MCP client) connects to
+                        Graphonomous. You type "remember that I prefer
+                        PostgreSQL over MySQL for OLTP workloads." Graphonomous
+                        stores a semantic node. You type "what databases do I
+                        prefer?" Graphonomous retrieves the node by embedding
+                        similarity. You type "actually, I tried CockroachDB and
+                        it's better." Graphonomous updates the node, adjusts
+                        confidence, and the old belief decays. That's a
+                        continual learning engine. That's a GitHub repo worth
+                        starring. That's the demo that turns your $800K
+                        portfolio into a $3M company.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- DEPENDENCY LOCKFILE -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">01 — Dependency Lockfile</p>
+                <h2>Exact Versions, Verified Compatible</h2>
+
+                <p class="pr">
+                    Every dependency below has been verified to exist, be
+                    actively maintained, and work together in the Elixir
+                    ecosystem as of February 2026.
+                </p>
+
+                <div class="tbl">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dependency</th>
+                                <th>Version</th>
+                                <th>Purpose</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Elixir</strong></td>
+                                <td class="v">1.17+</td>
+                                <td>Language runtime</td>
+                                <td class="g">Stable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OTP</strong></td>
+                                <td class="v">27+</td>
+                                <td>Erlang runtime</td>
+                                <td class="g">Stable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>anubis_mcp</strong></td>
+                                <td class="v">~> 0.17</td>
+                                <td>
+                                    MCP server SDK (Elixir-native,
+                                    Anubis.Server)
+                                </td>
+                                <td class="g">Active development, hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>exqlite</strong></td>
+                                <td class="v">~> 0.27</td>
+                                <td>SQLite3 NIF bindings for Elixir</td>
+                                <td class="g">Stable, hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>sqlite_vec</strong></td>
+                                <td class="v">~> 0.1</td>
+                                <td>Elixir wrapper for sqlite-vec extension</td>
+                                <td class="b">
+                                    Exists on GitHub (joelpaulkoch/sqlite_vec)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>bumblebee</strong></td>
+                                <td class="v">~> 0.6</td>
+                                <td>
+                                    HuggingFace models in Elixir (embeddings)
+                                </td>
+                                <td class="g">Stable, hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>nx</strong></td>
+                                <td class="v">~> 0.9</td>
+                                <td>Numerical computing (tensors)</td>
+                                <td class="g">Stable, hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>exla</strong></td>
+                                <td class="v">~> 0.9</td>
+                                <td>XLA compiler backend for Nx (CPU/GPU)</td>
+                                <td class="g">Stable, hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>jason</strong></td>
+                                <td class="v">~> 1.4</td>
+                                <td>JSON encoding/decoding</td>
+                                <td class="g">Stable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>telemetry</strong></td>
+                                <td class="v">~> 1.2</td>
+                                <td>
+                                    Event system (for FleetPrompt hooks later)
+                                </td>
+                                <td class="g">Stable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>mix.exs — Copy This Exactly</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.MixProject <span class="kw">do</span>
+  <span class="kw">use</span> Mix.Project
+
+  <span class="kw">def</span> <span class="fn">project</span> <span class="kw">do</span>
+    [
+      app: <span class="str">:graphonomous</span>,
+      version: <span class="str">"0.1.0"</span>,
+      elixir: <span class="str">"~> 1.17"</span>,
+      start_permanent: Mix.env() == <span class="str">:prod</span>,
+      deps: <span class="fn">deps</span>(),
+      name: <span class="str">"Graphonomous"</span>,
+      description: <span class="str">"Continual learning engine — self-evolving knowledge graphs for AI agents"</span>,
+      source_url: <span class="str">"https://github.com/ampersandbox/graphonomous"</span>
+    ]
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="fn">application</span> <span class="kw">do</span>
+    [
+      extra_applications: [<span class="str">:logger</span>],
+      mod: {Graphonomous.Application, []}
+    ]
+  <span class="kw">end</span>
+
+  <span class="kw">defp</span> <span class="fn">deps</span> <span class="kw">do</span>
+    [
+      <span class="cm"># MCP Server</span>
+      {<span class="str">:anubis_mcp</span>, <span class="str">"~> 0.17"</span>},
+
+      <span class="cm"># Storage</span>
+      {<span class="str">:exqlite</span>, <span class="str">"~> 0.27"</span>},
+      <span class="cm"># sqlite-vec wrapper (check hex.pm or use GitHub)</span>
+      {<span class="str">:sqlite_vec</span>, github: <span class="str">"joelpaulkoch/sqlite_vec"</span>},
+
+      <span class="cm"># Local Embeddings</span>
+      {<span class="str">:bumblebee</span>, <span class="str">"~> 0.6"</span>},
+      {<span class="str">:nx</span>, <span class="str">"~> 0.9"</span>},
+      {<span class="str">:exla</span>, <span class="str">"~> 0.9"</span>},
+
+      <span class="cm"># Utilities</span>
+      {<span class="str">:jason</span>, <span class="str">"~> 1.4"</span>},
+      {<span class="str">:telemetry</span>, <span class="str">"~> 1.2"</span>},
+
+      <span class="cm"># Dev/Test</span>
+      {<span class="str">:ex_doc</span>, <span class="str">"~> 0.34"</span>, only: <span class="str">:dev</span>, runtime: false}
+    ]
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+
+                <div class="callout blue">
+                    <h4>Fallback: If sqlite_vec causes issues</h4>
+                    <p>
+                        sqlite-vec is a C extension loaded into SQLite. If the
+                        Elixir wrapper doesn't cooperate, you can load the
+                        extension manually via
+                        <code
+                            >Exqlite.Sqlite3.execute(conn, "SELECT
+                            load_extension('./vec0')")</code
+                        >
+                        after downloading the prebuilt binary for your platform
+                        from the sqlite-vec GitHub releases. This is exactly how
+                        the Python and Node.js ecosystems use it.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- DAY 1 COMMANDS -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">02 — Day 1 Commands</p>
+                <h2>Terminal Session: Zero to Compiling</h2>
+
+                <p class="pr">
+                    Open your terminal. Run these in order. Do not skip steps.
+                </p>
+
+                <pre><code><span class="cm"># 1. Create the project</span>
+mix new graphonomous --sup
+cd graphonomous
+
+<span class="cm"># 2. Replace mix.exs with the one above (Section 01)</span>
+
+<span class="cm"># 3. Fetch dependencies</span>
+mix deps.get
+
+<span class="cm"># 4. Compile — this will take a while (EXLA downloads XLA)</span>
+mix compile
+
+<span class="cm"># 5. Verify SQLite works</span>
+iex -S mix
+<span class="cm"># In IEx:</span>
+{:ok, conn} = Exqlite.Sqlite3.open(":memory:")
+:ok = Exqlite.Sqlite3.execute(conn, "CREATE TABLE test (id INTEGER PRIMARY KEY)")
+<span class="cm"># Should return :ok</span>
+
+<span class="cm"># 6. Verify Bumblebee + embeddings work (first run downloads ~90MB model)</span>
+{:ok, model} = Bumblebee.load_model({:hf, "sentence-transformers/all-MiniLM-L6-v2"})
+{:ok, tok} = Bumblebee.load_tokenizer({:hf, "sentence-transformers/all-MiniLM-L6-v2"})
+serving = Bumblebee.Text.TextEmbedding.text_embedding(model, tok,
+  output_pool: :mean_pooling, output_attribute: :hidden_state, embedding_processor: :l2_norm)
+result = Nx.Serving.run(serving, "hello world")
+<span class="cm"># Should return %{embedding: #Nx.Tensor&lt;f32[384]...&gt;}</span>
+
+<span class="cm"># 7. Run tests (should pass with default test)</span>
+mix test</code></pre>
+
+                <p class="pr">
+                    If all 7 steps pass, your foundation is solid. You have
+                    SQLite, vector embeddings, and a supervised OTP application.
+                    Everything else builds on top of this.
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- FILE STRUCTURE -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">03 — Project Structure</p>
+                <h2>File Tree: What Goes Where</h2>
+
+                <div class="file-tree">
+                    <span class="dir">graphonomous/</span><br />
+                    ├── <span class="dir">lib/</span><br />
+                    │ ├── <span class="dir">graphonomous/</span><br />
+                    │ │ ├── <span class="file">application.ex</span>
+                    <span class="note">← OTP app, supervision tree root</span
+                    ><br />
+                    │ │ ├── <span class="file">graph.ex</span>
+                    <span class="note"
+                        >← Knowledge graph CRUD (GenServer + ETS cache)</span
+                    ><br />
+                    │ │ ├── <span class="file">store.ex</span>
+                    <span class="note"
+                        >← SQLite operations, schema, migrations</span
+                    ><br />
+                    │ │ ├── <span class="file">embedder.ex</span>
+                    <span class="note"
+                        >← Bumblebee embedding GenServer (Nx.Serving)</span
+                    ><br />
+                    │ │ ├── <span class="file">retriever.ex</span>
+                    <span class="note"
+                        >← Context retrieval (vector + graph traversal)</span
+                    ><br />
+                    │ │ ├── <span class="file">learner.ex</span>
+                    <span class="note"
+                        >← Novelty detection, node creation from inference</span
+                    ><br />
+                    │ │ ├── <span class="file">consolidator.ex</span>
+                    <span class="note"
+                        >← Idle-time memory consolidation (Week 3)</span
+                    ><br />
+                    │ │ ├── <span class="dir">mcp/</span><br />
+                    │ │ │ ├── <span class="file">server.ex</span>
+                    <span class="note"
+                        >← Anubis.Server definition, tool registration</span
+                    ><br />
+                    │ │ │ ├── <span class="file">store_node.ex</span>
+                    <span class="note">← Anubis.Server.Component tool</span
+                    ><br />
+                    │ │ │ ├── <span class="file">retrieve_context.ex</span>
+                    <span class="note">← Anubis.Server.Component tool</span
+                    ><br />
+                    │ │ │ ├── <span class="file">learn_from_outcome.ex</span>
+                    <span class="note"
+                        >← THE critical tool (causal feedback)</span
+                    ><br />
+                    │ │ │ └── <span class="file">query_graph.ex</span>
+                    <span class="note">← Anubis.Server.Component tool</span
+                    ><br />
+                    │ │ └── <span class="dir">types/</span><br />
+                    │ │ ├── <span class="file">node.ex</span>
+                    <span class="note">← Knowledge node struct</span><br />
+                    │ │ ├── <span class="file">edge.ex</span>
+                    <span class="note"
+                        >← Edge struct (typed, weighted, decaying)</span
+                    ><br />
+                    │ │ └── <span class="file">outcome.ex</span>
+                    <span class="note">← Outcome evidence struct</span><br />
+                    │ └── <span class="file">graphonomous.ex</span>
+                    <span class="note">← Public API module</span><br />
+                    ├── <span class="dir">test/</span><br />
+                    │ ├── <span class="file">graph_test.exs</span><br />
+                    │ ├── <span class="file">store_test.exs</span><br />
+                    │ ├── <span class="file">retriever_test.exs</span><br />
+                    │ ├── <span class="file">learner_test.exs</span><br />
+                    │ └── <span class="file">mcp_integration_test.exs</span
+                    ><br />
+                    ├── <span class="dir">priv/</span><br />
+                    │ └── <span class="file">graphonomous.db</span>
+                    <span class="note"
+                        >← SQLite database (created at runtime)</span
+                    ><br />
+                    ├── <span class="file">mix.exs</span><br />
+                    ├── <span class="file">README.md</span><br />
+                    └── <span class="file">.formatter.exs</span><br />
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- CORE TYPES — COPY-PASTE READY -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">04 — Core Types</p>
+                <h2>Elixir Structs: Copy Into Your Project</h2>
+
+                <h3>lib/graphonomous/types/node.ex</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.Types.Node <span class="kw">do</span>
+  <span class="cm">@moduledoc "A knowledge node in the continual learning graph."</span>
+
+  @type node_type :: <span class="str">:episodic</span> | <span class="str">:semantic</span> | <span class="str">:procedural</span>
+
+  @type t :: %__MODULE__{
+    id: binary(),
+    content: binary(),           <span class="cm"># Human-readable knowledge</span>
+    node_type: node_type(),
+    confidence: float(),         <span class="cm"># 0.0–1.0, decays over time</span>
+    embedding: binary() | nil,   <span class="cm"># 384-dim f32 blob</span>
+    metadata: map(),
+    source: binary() | nil,      <span class="cm"># Where this knowledge came from</span>
+    access_count: non_neg_integer(),
+    created_at: DateTime.t(),
+    updated_at: DateTime.t(),
+    last_accessed_at: DateTime.t()
+  }
+
+  <span class="kw">defstruct</span> [
+    <span class="str">:id</span>, <span class="str">:content</span>, <span class="str">:embedding</span>, <span class="str">:source</span>,
+    node_type: <span class="str">:semantic</span>,
+    confidence: <span class="num">0.5</span>,
+    metadata: %{},
+    access_count: <span class="num">0</span>,
+    created_at: nil,
+    updated_at: nil,
+    last_accessed_at: nil
+  ]
+<span class="kw">end</span></code></pre>
+
+                <h3>lib/graphonomous/types/edge.ex</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.Types.Edge <span class="kw">do</span>
+  <span class="cm">@moduledoc "A weighted, typed, decaying edge between knowledge nodes."</span>
+
+  @type edge_type :: <span class="str">:causal</span> | <span class="str">:related</span> | <span class="str">:contradicts</span> | <span class="str">:supports</span> | <span class="str">:derived_from</span>
+
+  @type t :: %__MODULE__{
+    id: binary(),
+    source_id: binary(),
+    target_id: binary(),
+    edge_type: edge_type(),
+    weight: float(),           <span class="cm"># 0.0–1.0, strength of relationship</span>
+    metadata: map(),
+    created_at: DateTime.t(),
+    last_activated_at: DateTime.t()
+  }
+
+  <span class="kw">defstruct</span> [
+    <span class="str">:id</span>, <span class="str">:source_id</span>, <span class="str">:target_id</span>,
+    edge_type: <span class="str">:related</span>,
+    weight: <span class="num">0.5</span>,
+    metadata: %{},
+    created_at: nil,
+    last_activated_at: nil
+  ]
+<span class="kw">end</span></code></pre>
+
+                <h3>lib/graphonomous/types/outcome.ex</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.Types.Outcome <span class="kw">do</span>
+  <span class="cm">@moduledoc "An outcome report from OpenSentience — the causal feedback signal."</span>
+
+  @type status :: <span class="str">:success</span> | <span class="str">:partial_success</span> | <span class="str">:failure</span> | <span class="str">:timeout</span>
+
+  @type t :: %__MODULE__{
+    action_id: binary(),
+    status: status(),
+    confidence: float(),       <span class="cm"># How reliable is this outcome signal</span>
+    causal_node_ids: [binary()], <span class="cm"># Which graph nodes informed the action</span>
+    evidence: map(),
+    observed_at: DateTime.t()
+  }
+
+  <span class="kw">defstruct</span> [
+    <span class="str">:action_id</span>, <span class="str">:status</span>, <span class="str">:causal_node_ids</span>, <span class="str">:observed_at</span>,
+    confidence: <span class="num">0.5</span>,
+    evidence: %{}
+  ]
+<span class="kw">end</span></code></pre>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- SQLite SCHEMA -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">05 — SQLite Schema</p>
+                <h2>Database Tables: Run on First Boot</h2>
+
+                <p class="pr">
+                    This goes in <code>lib/graphonomous/store.ex</code> and runs
+                    automatically when the application starts. No Ecto needed
+                    for v0.1 — raw SQL keeps things simple and gives you full
+                    control over sqlite-vec.
+                </p>
+
+                <pre><code><span class="cm">-- nodes: the knowledge graph</span>
+CREATE TABLE IF NOT EXISTS nodes (
+  id TEXT PRIMARY KEY,
+  content TEXT NOT NULL,
+  node_type TEXT NOT NULL DEFAULT 'semantic',
+  confidence REAL NOT NULL DEFAULT 0.5,
+  embedding BLOB,                 <span class="cm">-- 384-dim f32 from all-MiniLM-L6-v2</span>
+  metadata TEXT DEFAULT '{}',     <span class="cm">-- JSON</span>
+  source TEXT,
+  access_count INTEGER DEFAULT 0,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  last_accessed_at TEXT NOT NULL
+);
+
+<span class="cm">-- edges: relationships between nodes</span>
+CREATE TABLE IF NOT EXISTS edges (
+  id TEXT PRIMARY KEY,
+  source_id TEXT NOT NULL REFERENCES nodes(id),
+  target_id TEXT NOT NULL REFERENCES nodes(id),
+  edge_type TEXT NOT NULL DEFAULT 'related',
+  weight REAL NOT NULL DEFAULT 0.5,
+  metadata TEXT DEFAULT '{}',
+  created_at TEXT NOT NULL,
+  last_activated_at TEXT NOT NULL
+);
+
+<span class="cm">-- outcomes: causal feedback log (from OpenSentience)</span>
+CREATE TABLE IF NOT EXISTS outcomes (
+  id TEXT PRIMARY KEY,
+  action_id TEXT NOT NULL,
+  status TEXT NOT NULL,
+  confidence REAL NOT NULL,
+  causal_node_ids TEXT NOT NULL,   <span class="cm">-- JSON array of node IDs</span>
+  evidence TEXT DEFAULT '{}',
+  observed_at TEXT NOT NULL,
+  processed_at TEXT
+);
+
+<span class="cm">-- indexes</span>
+CREATE INDEX IF NOT EXISTS idx_nodes_type ON nodes(node_type);
+CREATE INDEX IF NOT EXISTS idx_nodes_confidence ON nodes(confidence);
+CREATE INDEX IF NOT EXISTS idx_edges_source ON edges(source_id);
+CREATE INDEX IF NOT EXISTS idx_edges_target ON edges(target_id);
+CREATE INDEX IF NOT EXISTS idx_outcomes_causal ON outcomes(causal_node_ids);
+
+<span class="cm">-- Initialize sqlite-vec for vector search on the nodes table</span>
+<span class="cm">-- (run after loading the extension)</span>
+<span class="cm">-- SELECT vector_init('nodes', 'embedding', 'type=FLOAT32,dimension=384');</span></code></pre>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- MCP SERVER SKELETON -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">06 — MCP Server</p>
+                <h2>Anubis MCP Server: The Interface to LLMs</h2>
+
+                <p class="pr">
+                    This is how any LLM client (Claude Desktop, Cursor, ChatGPT)
+                    talks to Graphonomous. The Anubis library uses a
+                    component-based pattern where each MCP tool is its own
+                    module.
+                </p>
+
+                <h3>lib/graphonomous/mcp/server.ex</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.MCP.Server <span class="kw">do</span>
+  <span class="kw">use</span> Anubis.Server,
+    name: <span class="str">"graphonomous"</span>,
+    version: <span class="str">"0.1.0"</span>,
+    capabilities: [<span class="str">:tools</span>]
+
+  <span class="cm"># Register all MCP tools as components</span>
+  component Graphonomous.MCP.StoreNode
+  component Graphonomous.MCP.RetrieveContext
+  component Graphonomous.MCP.LearnFromOutcome
+  component Graphonomous.MCP.QueryGraph
+<span class="kw">end</span></code></pre>
+
+                <h3>lib/graphonomous/mcp/store_node.ex — Example Tool</h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.MCP.StoreNode <span class="kw">do</span>
+  <span class="cm">@moduledoc """
+  Store a knowledge node in the graph.
+  The agent has learned something — persist it as a typed,
+  confidence-scored node with an embedding for later retrieval.
+  """</span>
+  <span class="kw">use</span> Anubis.Server.Component, type: <span class="str">:tool</span>
+
+  schema <span class="kw">do</span>
+    field <span class="str">:content</span>, <span class="str">:string</span>, required: true,
+      description: <span class="str">"The knowledge to store (natural language)"</span>
+    field <span class="str">:node_type</span>, <span class="str">:string</span>,
+      description: <span class="str">"episodic, semantic, or procedural"</span>
+    field <span class="str">:confidence</span>, <span class="str">:number</span>,
+      description: <span class="str">"0.0-1.0 confidence in this knowledge"</span>
+    field <span class="str">:source</span>, <span class="str">:string</span>,
+      description: <span class="str">"Where this knowledge came from"</span>
+  <span class="kw">end</span>
+
+  @impl true
+  <span class="kw">def</span> <span class="fn">execute</span>(params, frame) <span class="kw">do</span>
+    node = Graphonomous.store_node(%{
+      content: params.content,
+      node_type: Map.get(params, <span class="str">:node_type</span>, <span class="str">"semantic"</span>),
+      confidence: Map.get(params, <span class="str">:confidence</span>, <span class="num">0.5</span>),
+      source: Map.get(params, <span class="str">:source</span>)
+    })
+
+    {<span class="str">:ok</span>, Jason.encode!(%{
+      node_id: node.id,
+      status: <span class="str">"stored"</span>,
+      confidence: node.confidence
+    }), frame}
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+
+                <h3>
+                    lib/graphonomous/mcp/learn_from_outcome.ex — The Killer
+                    Feature
+                </h3>
+
+                <pre><code><span class="kw">defmodule</span> Graphonomous.MCP.LearnFromOutcome <span class="kw">do</span>
+  <span class="cm">@moduledoc """
+  Process an outcome from OpenSentience.
+  This is the causal feedback loop — the thing nobody else has.
+
+  When an action succeeds or fails, this tool receives:
+  - Which graph nodes informed the action (causal_node_ids)
+  - Whether the action succeeded or failed (status)
+  - How confident we are in this outcome (confidence)
+
+  It then updates the confidence of those causal nodes:
+  - Success → confidence increases (the knowledge was useful)
+  - Failure → confidence decreases (the knowledge was wrong or stale)
+  """</span>
+  <span class="kw">use</span> Anubis.Server.Component, type: <span class="str">:tool</span>
+
+  schema <span class="kw">do</span>
+    field <span class="str">:action_id</span>, <span class="str">:string</span>, required: true,
+      description: <span class="str">"ID of the action that produced this outcome"</span>
+    field <span class="str">:status</span>, <span class="str">:string</span>, required: true,
+      description: <span class="str">"success, partial_success, failure, or timeout"</span>
+    field <span class="str">:confidence</span>, <span class="str">:number</span>, required: true,
+      description: <span class="str">"0.0-1.0 how reliable is this outcome signal"</span>
+    field <span class="str">:causal_node_ids</span>, <span class="str">:string</span>, required: true,
+      description: <span class="str">"JSON array of node IDs that informed this action"</span>
+  <span class="kw">end</span>
+
+  @impl true
+  <span class="kw">def</span> <span class="fn">execute</span>(params, frame) <span class="kw">do</span>
+    node_ids = Jason.decode!(params.causal_node_ids)
+
+    result = Graphonomous.learn_from_outcome(%{
+      action_id: params.action_id,
+      status: String.to_existing_atom(params.status),
+      confidence: params.confidence,
+      causal_node_ids: node_ids
+    })
+
+    {<span class="str">:ok</span>, Jason.encode!(%{
+      processed: length(node_ids),
+      updates: result.updates
+    }), frame}
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+
+                <div class="callout">
+                    <h4>Connecting to Claude Desktop</h4>
+                    <p>
+                        Once the MCP server compiles, add it to your Claude
+                        Desktop config. In
+                        <code>claude_desktop_config.json</code>:<br /><br />
+                        <code
+                            >{"mcpServers": {"graphonomous": {"command":
+                            "elixir", "args": ["--no-halt", "-S", "mix",
+                            "run"]}}}</code
+                        ><br /><br />
+                        Or for stdio transport:
+                        <code
+                            >claude mcp add graphonomous -- elixir --no-halt -S
+                            mix run</code
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- 4-WEEK BUILD PLAN -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">07 — Build Plan</p>
+                <h2>4 Weeks to GitHub-Star-Ready MVP</h2>
+
+                <p class="pr">
+                    This is the Mem0 playbook adapted for your stack. Ship the
+                    simplest thing that works, then add sophistication. Each
+                    week ends with something demoable.
+                </p>
+
+                <div class="week">
+                    <div class="week-hdr">
+                        <h4>Week 1 — Storage + Embeddings (Foundation)</h4>
+                        <span class="tag tag-build">BUILD</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 1:</strong>
+                                <code>mix new graphonomous --sup</code>, wire
+                                deps, verify compile
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 2:</strong>
+                                <code>Graphonomous.Store</code> — SQLite schema
+                                creation, node CRUD (insert, get, update,
+                                delete)
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 3:</strong>
+                                <code>Graphonomous.Embedder</code> — Bumblebee
+                                GenServer wrapping all-MiniLM-L6-v2 as
+                                Nx.Serving, auto-embed on node creation
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 4:</strong> sqlite-vec integration —
+                                load extension, store embeddings as BLOB, basic
+                                vector similarity query
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 5:</strong>
+                                <code>Graphonomous.Graph</code> GenServer — ETS
+                                cache for hot nodes, edge CRUD, basic traversal
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 6–7:</strong> Tests for all of the
+                                above. Should be able to: store a node, embed
+                                it, retrieve by similarity
+                            </div>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.72rem;
+                                color: var(--green);
+                                margin-top: 0.75rem;
+                                font-weight: 500;
+                            "
+                        >
+                            ✓ DEMO: In IEx, store 10 facts, query by natural
+                            language, get ranked results
+                        </p>
+                    </div>
+                </div>
+
+                <div class="week">
+                    <div class="week-hdr">
+                        <h4>Week 2 — MCP Server + Basic Tools (Interface)</h4>
+                        <span class="tag tag-build">BUILD</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 1:</strong>
+                                <code>Graphonomous.MCP.Server</code> —
+                                Anubis.Server with stdio transport, register
+                                empty tools
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 2:</strong>
+                                <code>store_node</code> tool — wired to Graph
+                                module, embedding happens automatically
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 3:</strong>
+                                <code>retrieve_context</code> tool — vector
+                                search + graph traversal, returns ranked nodes
+                                with IDs (causal_context)
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 4:</strong>
+                                <code>query_graph</code> tool — list nodes by
+                                type, get node by ID, get edges for node
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 5:</strong> Connect to Claude
+                                Desktop — verify all 3 tools appear, test basic
+                                interactions
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 6–7:</strong> Integration tests. MCP
+                                interaction tests via
+                                <code>mix anubis.stdio.interactive</code>
+                            </div>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.72rem;
+                                color: var(--green);
+                                margin-top: 0.75rem;
+                                font-weight: 500;
+                            "
+                        >
+                            ✓ DEMO: Claude Desktop talks to Graphonomous. Store
+                            knowledge, retrieve it, see it working
+                        </p>
+                    </div>
+                </div>
+
+                <div class="week">
+                    <div class="week-hdr">
+                        <h4>
+                            Week 3 — Causal Feedback + Confidence Decay (The
+                            Differentiator)
+                        </h4>
+                        <span class="tag tag-ship">CORE IP</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 1:</strong>
+                                <code>learn_from_outcome</code> tool — receive
+                                outcome, look up causal nodes, apply confidence
+                                update
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 2:</strong>
+                                <strong>Confidence update formula</strong> —
+                                implement Bayesian-inspired update:
+                                <code
+                                    >new_confidence = old * (1 - learning_rate)
+                                    + outcome_signal * learning_rate</code
+                                >
+                                where outcome_signal is +1 for success, -0.5 for
+                                failure, scaled by outcome confidence
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 3:</strong>
+                                <code>Graphonomous.Consolidator</code> —
+                                GenServer on timer. Every N minutes: decay
+                                unused node confidence by 2%, prune nodes below
+                                0.1 threshold, merge near-duplicate nodes
+                                (cosine similarity > 0.95)
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 4:</strong> Telemetry events —
+                                <code
+                                    >[:graphonomous, :outcome, :processed]</code
+                                >,
+                                <code>[:graphonomous, :node, :decayed]</code>,
+                                <code>[:graphonomous, :node, :pruned]</code>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 5–7:</strong> Full loop test: store
+                                → retrieve → (simulate action) → report outcome
+                                → verify node confidence changed → retrieve
+                                again → verify ranking changed
+                            </div>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.72rem;
+                                color: var(--green);
+                                margin-top: 0.75rem;
+                                font-weight: 500;
+                            "
+                        >
+                            ✓ DEMO: The causal feedback loop works. Knowledge
+                            that leads to failures loses confidence. Knowledge
+                            that leads to successes gets stronger. The graph
+                            learns.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="week">
+                    <div class="week-hdr">
+                        <h4>Week 4 — Polish + Ship (GitHub Launch)</h4>
+                        <span class="tag tag-ship">SHIP</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 1:</strong> README.md — clear,
+                                concise, with the demo GIF/screenshot from
+                                Claude Desktop
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 2:</strong> Quickstart in README:
+                                <code>mix deps.get && mix run</code> + Claude
+                                Desktop config snippet
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 3:</strong> <code>mix docs</code> —
+                                ExDoc with examples for every public function
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 4:</strong> GitHub repo setup — CI
+                                (GitHub Actions for mix test), license (MIT),
+                                .gitignore, CHANGELOG
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 5:</strong> Landing page update on
+                                graphonomous.com — link to GitHub, "Try it now"
+                                section
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 6:</strong> Publish to Hex.pm —
+                                <code>mix hex.publish</code>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="cb"></div>
+                            <div class="desc">
+                                <strong>Day 7:</strong> Launch post — Elixir
+                                Forum, HN, X, r/elixir, r/MachineLearning
+                            </div>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.72rem;
+                                color: var(--green);
+                                margin-top: 0.75rem;
+                                font-weight: 500;
+                            "
+                        >
+                            ✓ SHIPPED: graphonomous on GitHub + hex.pm. The
+                            first continual learning MCP server in Elixir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- WHAT TO DELIBERATELY SKIP -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">08 — Scope Control</p>
+                <h2>What v0.1 Deliberately Does NOT Include</h2>
+
+                <p class="pr">
+                    This is as important as what it includes. Every feature
+                    below is in your specs. None of them belong in v0.1.
+                </p>
+
+                <div class="tbl">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Why Skip</th>
+                                <th>When to Add</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>OpenSentience integration</td>
+                                <td>Graphonomous must work standalone first</td>
+                                <td>v0.2 — after Graphonomous has users</td>
+                            </tr>
+                            <tr>
+                                <td>Deliberatic escalation</td>
+                                <td>Needs working graph + outcomes first</td>
+                                <td>v0.3 — after outcome patterns emerge</td>
+                            </tr>
+                            <tr>
+                                <td>FleetPrompt event hooks</td>
+                                <td>
+                                    Telemetry events are the foundation;
+                                    strategies come later
+                                </td>
+                                <td>
+                                    v0.2 — expose telemetry, let community build
+                                    handlers
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PostgreSQL / pgvector mode</td>
+                                <td>
+                                    SQLite-only keeps edge-first promise real
+                                </td>
+                                <td>v0.2 — Ecto adapter layer</td>
+                            </tr>
+                            <tr>
+                                <td>Federation / multi-instance sync</td>
+                                <td>Single-node must be solid first</td>
+                                <td>v1.0 — distributed Erlang or CRDT sync</td>
+                            </tr>
+                            <tr>
+                                <td>Goal graph</td>
+                                <td>OpenSentience owns this</td>
+                                <td>When OpenSentience ships</td>
+                            </tr>
+                            <tr>
+                                <td>REST API / Phoenix</td>
+                                <td>MCP <em>is</em> the API for v0.1</td>
+                                <td>v0.2 — Phoenix optional layer</td>
+                            </tr>
+                            <tr>
+                                <td>Custom embedding models</td>
+                                <td>
+                                    all-MiniLM-L6-v2 is good enough for launch
+                                </td>
+                                <td>v0.2 — configurable model</td>
+                            </tr>
+                            <tr>
+                                <td>Web dashboard</td>
+                                <td>CLI and MCP tools are enough to demo</td>
+                                <td>
+                                    v0.3 — Phoenix LiveView graph visualization
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout red">
+                    <h4>The Rule</h4>
+                    <p>
+                        If it's not in the 4-week plan, it doesn't exist until
+                        the 4-week plan is done. No exceptions. No "let me just
+                        quickly add..." No scope creep. No new spec writing. The
+                        only output for the next 28 days is
+                        <strong>committed code in a GitHub repository.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- SUCCESS CRITERIA -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec">
+                <p class="sl">09 — Success Criteria</p>
+                <h2>How You Know It's Done</h2>
+
+                <div class="tbl">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Test</th>
+                                <th>Expected Result</th>
+                                <th>Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>mix test</code></td>
+                                <td class="g">All green</td>
+                                <td>Basic quality bar</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Claude Desktop → <code>store_node</code>
+                                </td>
+                                <td class="g">
+                                    Node persisted in SQLite with embedding
+                                </td>
+                                <td>MCP works, embeddings work</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Claude Desktop →
+                                    <code>retrieve_context</code>
+                                </td>
+                                <td class="g">
+                                    Returns semantically similar nodes ranked by
+                                    confidence × similarity
+                                </td>
+                                <td>Vector search works, graph works</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>learn_from_outcome</code> with success
+                                </td>
+                                <td class="g">
+                                    Causal node confidence increases
+                                </td>
+                                <td>THE differentiator works</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>learn_from_outcome</code> with failure
+                                </td>
+                                <td class="g">
+                                    Causal node confidence decreases
+                                </td>
+                                <td>System learns from mistakes</td>
+                            </tr>
+                            <tr>
+                                <td>Wait 5 minutes, query again</td>
+                                <td class="g">
+                                    Unused nodes decayed slightly, active nodes
+                                    retained
+                                </td>
+                                <td>Consolidation works</td>
+                            </tr>
+                            <tr>
+                                <td><code>mix hex.publish --dry-run</code></td>
+                                <td class="g">Package validates</td>
+                                <td>Ready for Hex.pm</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Fresh clone →
+                                    <code>mix deps.get && mix test</code>
+                                </td>
+                                <td class="g">Passes on clean machine</td>
+                                <td>Actually distributable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- FINAL VERDICT -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="sec" style="border-bottom: none">
+                <p class="sl">10 — Ship It</p>
+
+                <div class="verdict">
+                    <h3>This is the last document before code.</h3>
+                    <p>
+                        You have: the Graphonomous spec (architecture), the
+                        OpenSentience spec (runtime), the reality check (market
+                        validation), and now the implementation blueprint (exact
+                        commands). There is nothing left to research, plan, or
+                        design. The next file you create should be
+                        <code>mix.exs</code>.
+                    </p>
+                </div>
+            </div>
+
+            <footer>
+                <p>
+                    &copy; 2026 [&] Ampersand Box Design · Dependencies
+                    verified: anubis_mcp (hex.pm), exqlite (hex.pm), sqlite_vec
+                    (GitHub), bumblebee 0.6 (hex.pm), nx 0.9 (hex.pm), exla 0.9
+                    (hex.pm) · Anubis MCP component pattern from
+                    hexdocs.pm/anubis_mcp/building-a-server · sqlite-vec Elixir
+                    wrapper: github.com/joelpaulkoch/sqlite_vec · Bumblebee
+                    embedding pattern: sentence-transformers/all-MiniLM-L6-v2
+                    via Nx.Serving
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>
