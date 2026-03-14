@@ -27,7 +27,7 @@
         </title>
         <meta
             name="description"
-            content="Ampersand builds the memory, reasoning, runtime, spatial, and temporal infrastructure that lets AI agents learn, deliberate, and coordinate over time."
+            content="Ampersand builds the memory, reasoning, spatial, and temporal infrastructure that lets AI agents learn, deliberate, and coordinate. The [&] DSL is an Elixir macro protocol where &memory, &time, &space, and &reason compose into intelligent agent systems."
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1183,12 +1183,10 @@
                             <span>AMPERSAND BOX</span>
                         </a>
                         <nav class="nav">
-                            <a href="#thesis">Thesis</a>
-                            <a href="#why-now">Why Now</a>
-                            <a href="#engine">Engine</a>
+                            <a href="./protocol.html">Protocol</a>
                             <a href="#ecosystem">Ecosystem</a>
-                            <a href="#how-it-connects">How It Connects</a>
-                            <a href="#stack">Stack</a>
+                            <a href="#how-it-connects">Architecture</a>
+                            <a href="#why-now">Research</a>
                             <a href="#philosophy">Open Source</a>
                             <a
                                 href="mailto:hello@ampersandboxdesign.com"
@@ -1209,15 +1207,27 @@
                         <h1>
                             The <em>substrate</em><br />for agent civilizations.
                         </h1>
+                        <p
+                            class="hero-sub"
+                            style="
+                                font-size: 1.15rem;
+                                color: var(--text);
+                                margin-bottom: 0.75rem;
+                                font-weight: 400;
+                            "
+                        >
+                            Build AI agents with composable capabilities.
+                        </p>
                         <p class="hero-sub">
-                            Ampersand builds the memory, deliberation, runtime,
-                            spatial, and temporal systems that let AI agents
-                            accumulate knowledge, justify decisions, and
-                            coordinate over long horizons.
+                            Memory, reasoning, time, and space are not features
+                            — they are infrastructure primitives composed
+                            through the <strong>[&] protocol</strong>. Define
+                            what your agent knows, how it decides, when it acts,
+                            and where it operates.
                         </p>
                         <div class="hero-cta">
-                            <a href="#engine" class="btn btn-primary"
-                                >Explore Graphonomous</a
+                            <a href="./protocol.html" class="btn btn-primary"
+                                >The [&] Protocol</a
                             >
                             <a href="#ecosystem" class="btn btn-ghost"
                                 >View the Ecosystem</a
@@ -1234,15 +1244,17 @@
                         <p class="thesis-quote">
                             "Models are not the civilization.
                             <strong
-                                >Memory, evidence, time, and coordination are
-                                the substrate that turns model outputs into
-                                durable intelligence.</strong
+                                >Memory & evidence & time & space are the
+                                substrate that turns model outputs into durable
+                                intelligence.</strong
                             >
-                            If agents are going to persist, deliberate, and work
-                            together over time, they need infrastructure beneath
-                            the model layer."
+                            The ampersand isn't a logo — it's a composition
+                            operator. Capabilities don't exist in isolation.
+                            They compose:
+                            <code>agent & memory & reason & time & space</code
+                            >."
                         </p>
-                        <p class="thesis-attr">— Ampersand Box Design</p>
+                        <p class="thesis-attr">— The [&] thesis</p>
                     </div>
                 </div>
             </section>
@@ -1267,22 +1279,13 @@
                             </div>
                             <h3>"Nested Learning" & the HOPE Architecture</h3>
                             <p>
-                                Google's Nested Learning paradigm reframes AI
-                                models as nested, multi-level optimization
-                                systems — fast-updating modules for immediate
-                                context, slow-updating modules for long-term
-                                knowledge. Their proof-of-concept HOPE
-                                architecture demonstrates continual learning
-                                without catastrophic forgetting. This is exactly
-                                the architecture philosophy Graphonomous
-                                implements at the infrastructure level:
-                                multi-timescale memory consolidation,
-                                edge-native, no retraining required.
+                                AI systems require multi-timescale memory: fast
+                                modules for immediate context, slow modules for
+                                long-term knowledge. Catastrophic forgetting is
+                                solved by architecture, not retraining.
                             </p>
                             <p class="why-now-cite">
-                                Behrouz & Mirrokni, NeurIPS 2025 — "Nested
-                                Learning: The Illusion of Deep Learning
-                                Architectures"
+                                Behrouz & Mirrokni, NeurIPS 2025
                             </p>
                         </article>
 
@@ -1290,25 +1293,16 @@
                             <div class="why-now-source">
                                 ACL 2025 + arXiv 2025
                             </div>
-                            <h3>Structured Consensus &gt; Opaque Confidence</h3>
+                            <h3>Structured Consensus > Opaque Confidence</h3>
                             <p>
-                                A wave of 2025 research (ACL Findings, multiple
-                                arXiv papers) demonstrates that multi-agent
-                                deliberation protocols — where AI agents argue,
-                                critique, and iterate toward consensus —
-                                consistently outperform simple voting and
-                                single-agent approaches. Deliberatic
-                                operationalizes this: Dung's argumentation
-                                framework extended into weighted bipolar systems
-                                with Byzantine fault tolerance and
-                                Merkle-chained evidence. This isn't theoretical
-                                — it's the deliberation infrastructure the
-                                research says agents need.
+                                Multi-agent deliberation protocols — where
+                                agents argue, critique, and iterate —
+                                consistently outperform voting and single-agent
+                                approaches. Decisions need evidence chains, not
+                                scores.
                             </p>
                             <p class="why-now-cite">
-                                Kaesberg et al., ACL 2025 — "Voting or
-                                Consensus? Decision-Making in Multi-Agent
-                                Debate"
+                                Kaesberg et al., ACL 2025
                             </p>
                         </article>
 
@@ -1319,19 +1313,12 @@
                             <h3>MCP + A2A: The HTTP Moment for Agents</h3>
                             <p>
                                 Anthropic's MCP (agent-to-tool) and Google's A2A
-                                (agent-to-agent) are establishing the equivalent
-                                of HTTP for AI agents. MCP standardizes tool
-                                access; A2A standardizes agent collaboration.
-                                Gartner predicts 40% of enterprise apps will
-                                embed AI agents by end of 2026. The entire [&]
-                                stack is MCP-first and A2A-ready — not as an
-                                afterthought, but as the foundational design
-                                decision. Every product in the portfolio speaks
-                                these protocols natively.
+                                (agent-to-agent) are the foundational protocols.
+                                40% of enterprise apps will embed AI agents by
+                                end of 2026. The [&] stack speaks both natively.
                             </p>
                             <p class="why-now-cite">
-                                Gartner 2025; Linux Foundation Agentic AI
-                                Foundation; A2A Protocol (Google + 50 partners)
+                                Gartner 2025; Linux Foundation AAIF
                             </p>
                         </article>
                     </div>
@@ -1348,6 +1335,410 @@
                                 building.</strong
                             >
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="thesis"
+                id="protocol"
+                style="border-top: 1px solid var(--border)"
+            >
+                <div class="container">
+                    <div style="text-align: center; margin-bottom: 4rem">
+                        <p class="section-label">THE [&] PROTOCOL</p>
+                        <h2
+                            style="
+                                font-family: &quot;Newsreader&quot;, serif;
+                                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                                font-weight: 300;
+                                letter-spacing: -0.02em;
+                                margin-bottom: 1rem;
+                            "
+                        >
+                            Agent cognition <em>as code</em>
+                        </h2>
+                        <p class="section-sub">
+                            An Elixir macro DSL where agent capabilities are
+                            compose-time verified, MCP-bound, and deployable.
+                            The <code style="color: var(--cyan)">&</code> isn't
+                            branding — it's an operator.
+                        </p>
+                    </div>
+
+                    <div
+                        style="
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 1px;
+                            background: var(--border);
+                            border: 1px solid var(--border);
+                            margin-bottom: 3rem;
+                        "
+                    >
+                        <div style="background: var(--bg); padding: 2.5rem">
+                            <h3
+                                style="
+                                    font-size: 0.75rem;
+                                    font-weight: 700;
+                                    letter-spacing: 0.1em;
+                                    text-transform: uppercase;
+                                    color: var(--cyan);
+                                    margin-bottom: 1rem;
+                                "
+                            >
+                                Capability Composition
+                            </h3>
+                            <pre
+                                style="
+                                    font-size: 0.82rem;
+                                    color: var(--dim);
+                                    line-height: 1.9;
+                                    overflow-x: auto;
+                                "
+                            ><code style="color:var(--text)"><span style="color:var(--cyan)">capabilities</span> [
+  <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">memory</span>(<span style="color:var(--amber)">:graphonomous</span>),
+  <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">time</span>(<span style="color:var(--amber)">:ticktickclock</span>),
+  <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">space</span>(<span style="color:var(--amber)">:geofleetic</span>),
+  <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">reason</span>(<span style="color:var(--amber)">:deliberatic</span>)
+]</code></pre>
+                            <p
+                                style="
+                                    font-size: 0.78rem;
+                                    color: var(--dim);
+                                    margin-top: 1rem;
+                                    line-height: 1.7;
+                                "
+                            >
+                                Each
+                                <code style="color: var(--cyan)">&</code> is a
+                                macro that expands at compile time into an MCP
+                                capability binding. Mismatches are caught before
+                                deployment.
+                            </p>
+                        </div>
+                        <div style="background: var(--bg); padding: 2.5rem">
+                            <h3
+                                style="
+                                    font-size: 0.75rem;
+                                    font-weight: 700;
+                                    letter-spacing: 0.1em;
+                                    text-transform: uppercase;
+                                    color: var(--blue);
+                                    margin-bottom: 1rem;
+                                "
+                            >
+                                Pipeline Intelligence
+                            </h3>
+                            <pre
+                                style="
+                                    font-size: 0.82rem;
+                                    color: var(--dim);
+                                    line-height: 1.9;
+                                    overflow-x: auto;
+                                "
+                            ><code style="color:var(--text)">context
+|&gt; <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">memory</span>.recall(<span style="color:var(--amber)">"incidents"</span>)
+|&gt; <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">time</span>.predict(<span style="color:var(--amber)">:load</span>)
+|&gt; <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">space</span>.enrich(<span style="color:var(--amber)">:regions</span>)
+|&gt; <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">reason</span>.deliberate()
+|&gt; <span style="color:var(--cyan)">&</span><span style="color:var(--blue)">memory</span>.learn()</code></pre>
+                            <p
+                                style="
+                                    font-size: 0.78rem;
+                                    color: var(--dim);
+                                    margin-top: 1rem;
+                                    line-height: 1.7;
+                                "
+                            >
+                                Elixir's pipe operator
+                                <code style="color: var(--cyan)">|&gt;</code>
+                                flows data through composed capabilities. Two
+                                symbols for agent intelligence:
+                                <code style="color: var(--cyan)">&</code>
+                                composes,
+                                <code style="color: var(--cyan)">|&gt;</code>
+                                flows.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 1px;
+                            background: var(--border);
+                            border: 1px solid var(--border);
+                        "
+                    >
+                        <div
+                            style="
+                                background: var(--bg);
+                                padding: 1.75rem;
+                                text-align: center;
+                            "
+                        >
+                            <div
+                                style="
+                                    font-size: 1.5rem;
+                                    color: var(--cyan);
+                                    margin-bottom: 0.5rem;
+                                    font-weight: 700;
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                "
+                            >
+                                &memory
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.7rem;
+                                    color: var(--dim);
+                                    letter-spacing: 0.05em;
+                                "
+                            >
+                                Graphonomous
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.62rem;
+                                    color: var(--muted);
+                                    margin-top: 0.3rem;
+                                    letter-spacing: 0.08em;
+                                    text-transform: uppercase;
+                                "
+                            >
+                                Knowledge Graphs
+                            </div>
+                        </div>
+                        <div
+                            style="
+                                background: var(--bg);
+                                padding: 1.75rem;
+                                text-align: center;
+                            "
+                        >
+                            <div
+                                style="
+                                    font-size: 1.5rem;
+                                    color: var(--blue);
+                                    margin-bottom: 0.5rem;
+                                    font-weight: 700;
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                "
+                            >
+                                &reason
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.7rem;
+                                    color: var(--dim);
+                                    letter-spacing: 0.05em;
+                                "
+                            >
+                                Deliberatic
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.62rem;
+                                    color: var(--muted);
+                                    margin-top: 0.3rem;
+                                    letter-spacing: 0.08em;
+                                    text-transform: uppercase;
+                                "
+                            >
+                                Argumentation
+                            </div>
+                        </div>
+                        <div
+                            style="
+                                background: var(--bg);
+                                padding: 1.75rem;
+                                text-align: center;
+                            "
+                        >
+                            <div
+                                style="
+                                    font-size: 1.5rem;
+                                    color: var(--rose);
+                                    margin-bottom: 0.5rem;
+                                    font-weight: 700;
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                "
+                            >
+                                &time
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.7rem;
+                                    color: var(--dim);
+                                    letter-spacing: 0.05em;
+                                "
+                            >
+                                TickTickClock
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.62rem;
+                                    color: var(--muted);
+                                    margin-top: 0.3rem;
+                                    letter-spacing: 0.08em;
+                                    text-transform: uppercase;
+                                "
+                            >
+                                Temporal SSM
+                            </div>
+                        </div>
+                        <div
+                            style="
+                                background: var(--bg);
+                                padding: 1.75rem;
+                                text-align: center;
+                            "
+                        >
+                            <div
+                                style="
+                                    font-size: 1.5rem;
+                                    color: var(--amber);
+                                    margin-bottom: 0.5rem;
+                                    font-weight: 700;
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                "
+                            >
+                                &space
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.7rem;
+                                    color: var(--dim);
+                                    letter-spacing: 0.05em;
+                                "
+                            >
+                                GeoFleetic
+                            </div>
+                            <div
+                                style="
+                                    font-size: 0.62rem;
+                                    color: var(--muted);
+                                    margin-top: 0.3rem;
+                                    letter-spacing: 0.08em;
+                                    text-transform: uppercase;
+                                "
+                            >
+                                Spatial CRDTs
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem">
+                        <a
+                            href="./protocol.html"
+                            class="btn btn-primary"
+                            style="display: inline-block"
+                            >Read the full protocol specification →</a
+                        >
+                    </div>
+
+                    <div
+                        style="
+                            margin-top: 4rem;
+                            border-top: 1px solid var(--border);
+                            padding-top: 3rem;
+                        "
+                    >
+                        <div style="text-align: center; margin-bottom: 2rem">
+                            <p class="section-label">QUICKSTART</p>
+                            <h2
+                                style="
+                                    font-family: &quot;Newsreader&quot;, serif;
+                                    font-size: clamp(1.5rem, 2.5vw, 2rem);
+                                    font-weight: 300;
+                                    letter-spacing: -0.02em;
+                                "
+                            >
+                                Build an agent in
+                                <em style="color: var(--cyan)">30 seconds</em>
+                            </h2>
+                        </div>
+                        <div
+                            style="
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 1px;
+                                background: var(--border);
+                                border: 1px solid var(--border);
+                            "
+                        >
+                            <div style="background: var(--bg); padding: 2rem">
+                                <h3
+                                    style="
+                                        font-size: 0.72rem;
+                                        font-weight: 700;
+                                        letter-spacing: 0.1em;
+                                        text-transform: uppercase;
+                                        color: var(--cyan);
+                                        margin-bottom: 1rem;
+                                    "
+                                >
+                                    1. Define capabilities
+                                </h3>
+                                <pre
+                                    style="
+                                        font-size: 0.82rem;
+                                        color: var(--text);
+                                        line-height: 1.9;
+                                        overflow-x: auto;
+                                        background: transparent;
+                                        border: none;
+                                        padding: 0;
+                                        margin: 0;
+                                    "
+                                ><code><span style="color:var(--cyan)">agent</span> <span style="color:var(--amber)">"support-ops"</span> <span style="color:var(--cyan)">do</span>
+  <span style="color:var(--cyan)">capabilities</span> [
+    <span style="color:var(--cyan)">&</span><span style="color:#7b8cff">memory.graph</span>(<span style="color:var(--rose)">:graphonomous</span>),
+    <span style="color:var(--cyan)">&</span><span style="color:#7b8cff">reason.argument</span>(<span style="color:var(--rose)">:deliberatic</span>),
+    <span style="color:var(--cyan)">&</span><span style="color:#7b8cff">time.anomaly</span>(<span style="color:var(--rose)">:ticktickclock</span>)
+  ]
+<span style="color:var(--cyan)">end</span></code></pre>
+                            </div>
+                            <div style="background: var(--bg); padding: 2rem">
+                                <h3
+                                    style="
+                                        font-size: 0.72rem;
+                                        font-weight: 700;
+                                        letter-spacing: 0.1em;
+                                        text-transform: uppercase;
+                                        color: var(--amber);
+                                        margin-bottom: 1rem;
+                                    "
+                                >
+                                    2. Deploy
+                                </h3>
+                                <pre
+                                    style="
+                                        font-size: 0.82rem;
+                                        color: var(--text);
+                                        line-height: 1.9;
+                                        overflow-x: auto;
+                                        background: transparent;
+                                        border: none;
+                                        padding: 0;
+                                        margin: 0;
+                                    "
+                                ><code><span style="color:var(--muted)">$</span> mix ampersand.check
+<span style="color:var(--cyan)">✓</span> capabilities valid
+<span style="color:var(--cyan)">✓</span> contracts satisfied
+<span style="color:var(--cyan)">✓</span> governance compiled
+
+<span style="color:var(--muted)">$</span> mix ampersand.deploy
+<span style="color:var(--cyan)">→</span> deployed to webhost.systems
+<span style="color:var(--cyan)">→</span> agent card published</code></pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1497,78 +1888,86 @@
                         <h2>The Ecosystem</h2>
                         <p>
                             Every product connects. Every domain has a role.
-                            Together they form the infrastructure for AI that
-                            learns over time.
+                            Together they form the operating system for agent
+                            intelligence.
                         </p>
                     </div>
+
+                    <p class="section-label" style="margin-bottom: 1.5rem">
+                        COGNITIVE PRIMITIVES —
+                        <code
+                            style="
+                                color: var(--cyan);
+                                background: rgba(74, 245, 198, 0.08);
+                                padding: 0.1rem 0.4rem;
+                                border: none;
+                            "
+                            >&memory &reason &time &space</code
+                        >
+                    </p>
                     <div class="eco-grid">
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Memory
+                                <span class="eco-dot"></span> &memory
                             </div>
                             <h3>Graphonomous</h3>
                             <div class="eco-domain">graphonomous.com</div>
                             <p>
-                                A continual learning engine for edge AI.
-                                Self-evolving knowledge graphs that make small
-                                models brilliant — no retraining, no cloud, no
+                                Continual learning knowledge graphs.
+                                Self-evolving memory that makes small models
+                                brilliant — no retraining, no cloud, no
                                 forgetting.
                             </p>
                             <a href="https://graphonomous.com">Explore →</a>
                         </div>
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Decisions
+                                <span class="eco-dot"></span> &reason
                             </div>
                             <h3>Deliberatic</h3>
                             <div class="eco-domain">deliberatic.com</div>
                             <p>
-                                The decision protocol. Formal argumentation
-                                semantics, Byzantine-tolerant consensus,
-                                constitutional guardrails, and Merkle-chained
-                                evidence chains for auditable agent decisions.
+                                Structured argumentation, Byzantine-tolerant
+                                consensus, and Merkle-chained evidence chains.
+                                Every decision ships a proof.
                             </p>
                             <a href="https://deliberatic.com">Explore →</a>
                         </div>
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Runtime
+                                <span class="eco-dot"></span> &time
                             </div>
-                            <h3>OpenSentience</h3>
-                            <div class="eco-domain">opensentience.org</div>
+                            <h3>TickTickClock</h3>
+                            <div class="eco-domain">ticktickclock.com</div>
                             <p>
-                                The agent runtime. Manages agent lifecycles,
-                                permissions, tool routing, and MCP server
-                                connections. The OS for intelligent agents.
+                                Temporal intelligence — anomaly detection,
+                                pattern prediction, and time-series continual
+                                learning via Mamba SSM.
                             </p>
-                            <a href="https://opensentience.org">Explore →</a>
+                            <a href="https://ticktickclock.com">Explore →</a>
                         </div>
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Skills
+                                <span class="eco-dot"></span> &space
                             </div>
-                            <h3>FleetPrompt</h3>
-                            <div class="eco-domain">fleetprompt.com</div>
+                            <h3>GeoFleetic</h3>
+                            <div class="eco-domain">geofleetic.com</div>
                             <p>
-                                The skill marketplace. Install CL strategies,
-                                agent workflows, and domain-specific knowledge
-                                as versioned packages.
+                                Spatial intelligence — fleet tracking,
+                                geo-routing, and delta-CRDT state sync across
+                                distributed edge locations.
                             </p>
-                            <a href="https://fleetprompt.com">Explore →</a>
+                            <a href="https://geofleetic.com">Explore →</a>
                         </div>
-                        <div class="eco-card">
-                            <div class="eco-icon">
-                                <span class="eco-dot"></span> Orchestration
-                            </div>
-                            <h3>Delegatic</h3>
-                            <div class="eco-domain">delegatic.com</div>
-                            <p>
-                                Multi-agent delegation and orchestration.
-                                Coordinate learning agents across teams with
-                                systematic task routing and governance.
-                            </p>
-                            <a href="https://delegatic.com">Explore →</a>
-                        </div>
+                    </div>
+
+                    <p
+                        class="section-label"
+                        style="margin-top: 3rem; margin-bottom: 1.5rem"
+                    >
+                        AGENT PLATFORM — build, orchestrate, distribute
+                    </p>
+                    <div class="eco-grid">
                         <div class="eco-card">
                             <div class="eco-icon">
                                 <span class="eco-dot"></span> Specifications
@@ -1577,9 +1976,8 @@
                             <div class="eco-domain">specprompt.com</div>
                             <p>
                                 Spec-driven agent development. Define
-                                capabilities, contracts, and acceptance criteria
-                                before building. The source of truth for agent
-                                behavior.
+                                capabilities, contracts, and criteria before
+                                building. Generates <code>ampersand.json</code>.
                             </p>
                             <a href="https://specprompt.com">Explore →</a>
                         </div>
@@ -1590,26 +1988,49 @@
                             <h3>Agentelic</h3>
                             <div class="eco-domain">agentelic.com</div>
                             <p>
-                                Premium agent creation platform. Build, test,
-                                and deploy individual AI agents with built-in
-                                reputation scoring and capability profiles.
+                                Visual agent creation. Build, test, and deploy
+                                agents with drag-and-drop capability
+                                composition.
                             </p>
                             <a href="https://agentelic.com">Explore →</a>
                         </div>
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Automation
+                                <span class="eco-dot"></span> Orchestration
                             </div>
-                            <h3>AgenTroMatic</h3>
-                            <div class="eco-domain">agentromatic.com</div>
+                            <h3>Delegatic + AgenTroMatic</h3>
+                            <div class="eco-domain">
+                                delegatic.com · agentromatic.com
+                            </div>
                             <p>
-                                Automatic multi-agent workflows with
-                                deliberation. Agents bid on tasks, argue
-                                fitness, and self-organize — no human
+                                Multi-agent coordination. Agents bid on tasks,
+                                argue fitness, and self-organize — no human
                                 orchestrator required.
                             </p>
-                            <a href="https://agentromatic.com">Explore →</a>
+                            <a href="https://delegatic.com">Explore →</a>
                         </div>
+                        <div class="eco-card">
+                            <div class="eco-icon">
+                                <span class="eco-dot"></span> Skills
+                            </div>
+                            <h3>FleetPrompt</h3>
+                            <div class="eco-domain">fleetprompt.com</div>
+                            <p>
+                                Skill marketplace. Install capabilities as
+                                versioned packages — each skill is a packaged
+                                <code>ampersand.json</code>.
+                            </p>
+                            <a href="https://fleetprompt.com">Explore →</a>
+                        </div>
+                    </div>
+
+                    <p
+                        class="section-label"
+                        style="margin-top: 3rem; margin-bottom: 1.5rem"
+                    >
+                        RUNTIME — deploy and operate
+                    </p>
+                    <div class="eco-grid">
                         <div class="eco-card">
                             <div class="eco-icon">
                                 <span class="eco-dot"></span> Hosting
@@ -1617,38 +2038,25 @@
                             <h3>WebHost Systems</h3>
                             <div class="eco-domain">webhost.systems</div>
                             <p>
-                                Managed Graphonomous instances.
-                                PostgreSQL-backed, multi-tenant, with monitoring
-                                dashboards and usage-based billing.
+                                The infrastructure agents operate on.
+                                Multi-runtime execution, immutable deploys,
+                                signed telemetry, MCP-native. The people who run
+                                the internet are becoming agents.
                             </p>
                             <a href="https://webhost.systems">Explore →</a>
                         </div>
                         <div class="eco-card">
                             <div class="eco-icon">
-                                <span class="eco-dot"></span> Spatial
+                                <span class="eco-dot"></span> Runtime
                             </div>
-                            <h3>GeoFleetic</h3>
-                            <div class="eco-domain">geofleetic.com</div>
+                            <h3>OpenSentience</h3>
+                            <div class="eco-domain">opensentience.org</div>
                             <p>
-                                Geo-distributed fleet intelligence
-                                collaboration. Vehicles and devices that learn
-                                routes, predict demand, and optimize logistics
-                                over time.
+                                Agent lifecycle, permissions, tool routing, and
+                                MCP connections. Open research into machine
+                                cognition foundations.
                             </p>
-                            <a href="https://geofleetic.com">Explore →</a>
-                        </div>
-                        <div class="eco-card">
-                            <div class="eco-icon">
-                                <span class="eco-dot"></span> Temporal
-                            </div>
-                            <h3>TickTickClock</h3>
-                            <div class="eco-domain">ticktickclock.com</div>
-                            <p>
-                                Time-series continual learning. Detect patterns,
-                                anomalies, and trends that evolve over time —
-                                the temporal intelligence layer.
-                            </p>
-                            <a href="https://ticktickclock.com">Explore →</a>
+                            <a href="https://opensentience.org">Explore →</a>
                         </div>
                     </div>
                 </div>
@@ -1774,6 +2182,10 @@
                     </div>
                     <div class="stack-row">
                         <div class="stack-item">
+                            <h4>[&] DSL</h4>
+                            <p>Macro-based composition</p>
+                        </div>
+                        <div class="stack-item">
                             <h4>Elixir / OTP</h4>
                             <p>Fault-tolerant concurrency</p>
                         </div>
@@ -1814,13 +2226,26 @@
                                 <h3>
                                     1. Memory is infrastructure, not a feature
                                 </h3>
+                                <p
+                                    style="
+                                        font-family:
+                                            &quot;Newsreader&quot;, serif;
+                                        font-size: 1.35rem;
+                                        font-style: italic;
+                                        line-height: 1.5;
+                                        color: var(--text);
+                                        margin-bottom: 1rem;
+                                    "
+                                >
+                                    "Intelligence without memory is just
+                                    expensive pattern matching."
+                                </p>
                                 <p>
-                                    Intelligence without memory is just
-                                    expensive pattern matching. Real learning
-                                    requires structured, persistent, evolvable
-                                    knowledge — not bigger context windows. We
-                                    build memory as a first-class infrastructure
-                                    layer, not a bolted-on retrieval system.
+                                    Real learning requires structured,
+                                    persistent, evolvable knowledge — not bigger
+                                    context windows. We build memory as a
+                                    first-class infrastructure layer, not a
+                                    bolted-on retrieval system.
                                 </p>
                             </div>
 
@@ -1858,6 +2283,22 @@
                                     the whole point of an ecosystem.
                                 </p>
                             </div>
+
+                            <div class="philosophy-position">
+                                <h3>5. The symbol is the system</h3>
+                                <p>
+                                    The ampersand isn't branding. It's an Elixir
+                                    macro that compiles to MCP bindings, OTP
+                                    supervision trees, and WHS deploy configs.
+                                    <code
+                                        >&memory & &time & &space &
+                                        &reason</code
+                                    >
+                                    isn't a tagline — it's executable code that
+                                    produces a running, metered, fault-tolerant
+                                    agent system.
+                                </p>
+                            </div>
                         </div>
 
                         <a
@@ -1889,9 +2330,10 @@
                             <span>AMPERSAND BOX</span>
                         </div>
                         <p>
-                            Building the infrastructure that makes AI agents
-                            learn, adapt, and decide. Production-grade platforms
-                            designed for the next decade.
+                            The [&] protocol composes memory, reasoning, time,
+                            and space into intelligent agent systems.
+                            Production-grade infrastructure designed for the
+                            next decade.
                         </p>
                     </div>
                     <div class="footer-cols">
@@ -1916,7 +2358,8 @@
                             <a href="./portfolio_company_complete_research.html"
                                 >Research & Valuation</a
                             >
-                            <a href="https://github.com/AmpersandBoxDesign"
+                            <a
+                                href="https://github.com/c-u-l8er/AmpersandBoxDesign"
                                 >GitHub</a
                             >
                             <a href="#">Documentation</a>
