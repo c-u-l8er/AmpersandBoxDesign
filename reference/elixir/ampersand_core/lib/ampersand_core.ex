@@ -32,6 +32,7 @@ defmodule AmpersandCore do
   @type validation_result :: {:ok, document()} | {:error, [String.t()]}
   @type compose_result :: {:ok, capability_map()} | {:error, term()}
   @type contract_result :: :ok | {:error, [String.t()]}
+  @type artifact_result :: {:ok, map()} | {:error, [String.t()]}
   @type mcp_result :: {:ok, map()} | {:error, [String.t()]}
   @type a2a_result :: {:ok, map()} | {:error, [String.t()]}
 
@@ -123,6 +124,30 @@ defmodule AmpersandCore do
   """
   @spec check_pipeline(contract_registry(), [pipeline_step()], keyword()) :: contract_result()
   defdelegate check_pipeline(contracts, pipeline, opts), to: Contracts
+
+  @doc """
+  Loads capability contract artifacts from the canonical contracts directory.
+  """
+  @spec load_contracts() :: artifact_result()
+  defdelegate load_contracts(), to: Contracts
+
+  @doc """
+  Loads capability contract artifacts from a specific contracts directory.
+  """
+  @spec load_contracts(Path.t()) :: artifact_result()
+  defdelegate load_contracts(path), to: Contracts
+
+  @doc """
+  Loads the canonical capability registry artifact.
+  """
+  @spec load_registry() :: artifact_result()
+  defdelegate load_registry(), to: AmpersandCore.Registry, as: :load
+
+  @doc """
+  Loads a capability registry artifact from the given path.
+  """
+  @spec load_registry(Path.t()) :: artifact_result()
+  defdelegate load_registry(path), to: AmpersandCore.Registry, as: :load
 
   @doc """
   Generates MCP server configuration from a validated protocol document.

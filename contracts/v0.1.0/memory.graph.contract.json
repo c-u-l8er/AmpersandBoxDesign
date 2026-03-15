@@ -1,0 +1,60 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&memory.graph",
+  "provider": "graphonomous",
+  "version": "0.1.0",
+  "description": "Graph-structured memory contract for relationship-aware recall, enrichment, and consolidation across incident, research, and operational contexts.",
+  "operations": {
+    "recall": {
+      "in": "query_context",
+      "out": "memory_hits",
+      "description": "Retrieve graph-linked facts, incidents, entities, and relationships relevant to the current query.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "learn": {
+      "in": "observation",
+      "out": "ack",
+      "description": "Persist a new observation or derived relationship into graph memory.",
+      "deterministic": true,
+      "side_effects": true
+    },
+    "consolidate": {
+      "in": "memory_batch",
+      "out": "graph_update",
+      "description": "Merge repeated observations into more durable graph structure.",
+      "deterministic": false,
+      "side_effects": true
+    },
+    "enrich": {
+      "in": "anomaly_set",
+      "out": "enriched_context",
+      "description": "Add linked historical incidents, dependencies, or related entities to a current anomaly set.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&time.*",
+    "&reason.*",
+    "query_context",
+    "observation",
+    "memory_batch"
+  ],
+  "feeds_into": [
+    "&reason.*",
+    "&space.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "graph-memory-recall",
+    "context-enrichment",
+    "memory-consolidation"
+  ],
+  "metadata": {
+    "primitive": "&memory",
+    "subtype": "graph",
+    "supports_provenance": true,
+    "supports_incremental_learning": true
+  }
+}

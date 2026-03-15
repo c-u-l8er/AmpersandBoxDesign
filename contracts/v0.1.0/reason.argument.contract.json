@@ -1,0 +1,61 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&reason.argument",
+  "provider": "deliberatic",
+  "version": "0.1.0",
+  "description": "Argumentative reasoning contract for evidence-weighted evaluation, policy-aware deliberation, and auditable decision selection.",
+  "operations": {
+    "evaluate": {
+      "in": "enriched_context",
+      "out": "decision",
+      "description": "Evaluate enriched evidence and return a decision artifact.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "deliberate": {
+      "in": "candidate_set",
+      "out": "ranked_options",
+      "description": "Compare candidate actions or explanations and rank them by support and policy fit.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "justify": {
+      "in": "decision",
+      "out": "justification",
+      "description": "Produce an auditable justification for a selected decision.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "learn": {
+      "in": "observation",
+      "out": "ack",
+      "description": "Accept post-decision observations for future policy or argument refinement.",
+      "deterministic": false,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&memory.*",
+    "&time.*",
+    "&space.*",
+    "context",
+    "candidate_set"
+  ],
+  "feeds_into": [
+    "&memory.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "decision-evaluation",
+    "evidence-based-deliberation",
+    "decision-justification"
+  ],
+  "metadata": {
+    "governance_modes": [
+      "constitutional",
+      "evidence-first",
+      "customer-safe"
+    ],
+    "notes": "Representative contract for argumentative reasoning providers in the [&] Protocol."
+  }
+}

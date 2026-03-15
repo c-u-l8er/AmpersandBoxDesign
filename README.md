@@ -129,6 +129,25 @@ This repository is the canonical home for the protocol and its reference artifac
 - `examples/infra-operator.ampersand.json`
 - `examples/research-agent.ampersand.json`
 - `examples/fleet-manager.ampersand.json`
+- `examples/customer-support.ampersand.json`
+- `examples/README.md` — explains the reference declarations and how to use them
+
+### Contracts
+- `contracts/v0.1.0/memory.graph.contract.json`
+- `contracts/v0.1.0/memory.episodic.contract.json`
+- `contracts/v0.1.0/reason.argument.contract.json`
+- `contracts/v0.1.0/time.forecast.contract.json`
+- `contracts/v0.1.0/space.fleet.contract.json`
+
+### Registry
+- `registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata
+
+### Capability pages
+- `capabilities/memory.graph.md`
+- `capabilities/memory.episodic.md`
+- `capabilities/reason.argument.md`
+- `capabilities/time.forecast.md`
+- `capabilities/space.fleet.md`
 
 ### Reference implementation
 - `reference/elixir/ampersand_core/` — minimal Elixir implementation with:

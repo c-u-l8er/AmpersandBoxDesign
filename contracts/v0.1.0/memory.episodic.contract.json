@@ -1,0 +1,51 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&memory.episodic",
+  "provider": "graphonomous",
+  "version": "0.1.0",
+  "description": "Episodic memory contract for storing, replaying, and enriching agents with prior experiences and session history.",
+  "operations": {
+    "recall": {
+      "in": "query_context",
+      "out": "episode_set",
+      "description": "Retrieve prior episodes relevant to the current context."
+    },
+    "store": {
+      "in": "episode_event",
+      "out": "ack",
+      "description": "Persist a new episode or session event."
+    },
+    "replay": {
+      "in": "episode_set",
+      "out": "replayed_context",
+      "description": "Reconstruct ordered prior context from stored episodes."
+    },
+    "enrich": {
+      "in": "context",
+      "out": "enriched_context",
+      "description": "Augment the current context with relevant prior experiences."
+    }
+  },
+  "accepts_from": [
+    "&reason.*",
+    "&time.*",
+    "context",
+    "episode_event",
+    "query_context"
+  ],
+  "feeds_into": [
+    "&reason.*",
+    "&memory.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "episodic-memory-recall",
+    "experience-replay",
+    "session-history-enrichment"
+  ],
+  "metadata": {
+    "retention_model": "rolling-window",
+    "sensitive": true,
+    "provenance_recommended": true
+  }
+}

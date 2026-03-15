@@ -144,6 +144,8 @@ defmodule AmpersandCore.CLI do
         "capabilities" => capabilities,
         "capability_count" => length(capabilities),
         "aci" => aci_report(document),
+        "contracts" => contract_report(document),
+        "registry" => registry_report(document),
         "composed" => composed
       })
     else
@@ -217,6 +219,91 @@ defmodule AmpersandCore.CLI do
     do: AmpersandCore.associative?(left, middle, %{})
 
   defp associative_report(_), do: true
+
+  defp contract_report(document) do
+    capabilities = declared_capabilities(document)
+
+    case AmpersandCore.load_contracts() do
+      {:ok, contracts} ->
+        loaded =
+          contracts
+          |> Enum.filter(fn {capability, _contract} -> capability in capabilities end)
+          |> Enum.into(%{})
+
+        %{
+          "loaded" => loaded |> Map.keys() |> Enum.sort(),
+          "missing" => capabilities |> Enum.reject(&Map.has_key?(loaded, &1)),
+          "contract_count" => map_size(loaded)
+        }
+
+      {:error, errors} ->
+        %{
+          "loaded" => [],
+          "missing" => capabilities,
+          "errors" => errors
+        }
+    end
+  end
+
+  defp registry_report(document) do
+    capabilities = declared_capabilities(document)
+    providers = declared_providers(document)
+
+    case AmpersandCore.load_registry() do
+      {:ok, registry} ->
+        %{
+          "known_capabilities" =>
+            capabilities
+            |> Enum.filter(&AmpersandCore.Registry.capability_defined?(registry, &1))
+            |> Enum.sort(),
+          "unknown_capabilities" =>
+            capabilities
+            |> Enum.reject(&AmpersandCore.Registry.capability_defined?(registry, &1))
+            |> Enum.sort(),
+          "known_providers" =>
+            providers
+            |> Enum.filter(&(not is_nil(AmpersandCore.Registry.provider(registry, &1))))
+            |> Enum.sort(),
+          "unknown_providers" =>
+            providers
+            |> Enum.reject(&(not is_nil(AmpersandCore.Registry.provider(registry, &1))))
+            |> Enum.sort(),
+          "provider_matches" =>
+            capabilities
+            |> Enum.map(fn capability ->
+              {capability,
+               registry
+               |> AmpersandCore.Registry.providers_for_capability(capability)
+               |> Enum.map(& &1["id"])
+               |> Enum.sort()}
+            end)
+            |> Enum.into(%{})
+        }
+
+      {:error, errors} ->
+        %{
+          "known_capabilities" => [],
+          "unknown_capabilities" => capabilities,
+          "known_providers" => [],
+          "unknown_providers" => providers,
+          "provider_matches" => %{},
+          "errors" => errors
+        }
+    end
+  end
+
+  defp declared_capabilities(document) do
+    AmpersandCore.normalize_capabilities(document)
+  end
+
+  defp declared_providers(document) do
+    document
+    |> Map.get("capabilities", %{})
+    |> Enum.map(fn {_capability, binding} -> Map.get(binding, "provider") end)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.uniq()
+    |> Enum.sort()
+  end
 
   defp emit_and_halt({:ok, output}) do
     IO.binwrite(output)

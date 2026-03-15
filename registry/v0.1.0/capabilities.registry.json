@@ -1,0 +1,238 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/registry.schema.json",
+  "version": "0.1.0",
+  "registry": "registry.ampersandboxdesign.com",
+  "generated_at": "2026-03-15T00:00:00Z",
+  "&memory": {
+    "description": "Persistence and retrieval capabilities that let agents store, recall, enrich, and consolidate knowledge over time.",
+    "subtypes": {
+      "graph": {
+        "ops": ["recall", "learn", "consolidate", "enrich"],
+        "description": "Graph-structured memory for relationship-aware recall and durable contextual enrichment.",
+        "contract_ref": "/contracts/v0.1.0/memory.graph.contract.json",
+        "a2a_skills": [
+          "graph-memory-recall",
+          "context-enrichment",
+          "memory-consolidation"
+        ]
+      },
+      "vector": {
+        "ops": ["search", "upsert", "enrich"],
+        "description": "Semantic retrieval memory over embedded documents and knowledge corpora.",
+        "a2a_skills": ["semantic-retrieval", "knowledge-base-enrichment"]
+      },
+      "episodic": {
+        "ops": ["recall", "store", "replay", "enrich"],
+        "description": "Replayable experience memory for prior sessions, incidents, routes, and case histories.",
+        "contract_ref": "/contracts/v0.1.0/memory.episodic.contract.json",
+        "a2a_skills": [
+          "episodic-memory-recall",
+          "experience-replay",
+          "session-history-enrichment"
+        ]
+      }
+    },
+    "providers": [
+      {
+        "id": "graphonomous",
+        "name": "Graphonomous",
+        "description": "Graph and episodic memory provider with MCP-compatible runtime surfaces.",
+        "subtypes": ["graph", "episodic"],
+        "protocol": "mcp_v1",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "graphonomous",
+          "--db",
+          "~/.graphonomous/knowledge.db",
+          "--embedder-backend",
+          "fallback"
+        ],
+        "env": {
+          "GRAPHONOMOUS_EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "contract_ref": "/contracts/v0.1.0/memory.graph.contract.json",
+        "status": "stable",
+        "metadata": {
+          "homepage": "https://graphonomous.com",
+          "notes": "Default ecosystem provider for graph and episodic memory examples."
+        }
+      },
+      {
+        "id": "neo4j-memory",
+        "name": "Neo4j Memory",
+        "description": "Representative graph-memory provider backed by graph database primitives.",
+        "subtypes": ["graph"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://example.com/providers/neo4j-memory",
+        "contract_ref": "/contracts/v0.1.0/memory.graph.contract.json",
+        "status": "experimental"
+      },
+      {
+        "id": "pgvector",
+        "name": "pgvector",
+        "description": "Representative vector memory provider for semantic retrieval over indexed corpora.",
+        "subtypes": ["vector"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://github.com/pgvector/pgvector",
+        "status": "stable"
+      },
+      {
+        "id": "weaviate",
+        "name": "Weaviate",
+        "description": "Representative vector database provider for semantic retrieval workflows.",
+        "subtypes": ["vector"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://weaviate.io",
+        "status": "stable"
+      }
+    ],
+    "metadata": {
+      "research_focus": ["semantic memory", "episodic memory", "graph recall"]
+    }
+  },
+  "&reason": {
+    "description": "Deliberation and decision capabilities that evaluate context, compare options, and produce decisions under governance constraints.",
+    "subtypes": {
+      "argument": {
+        "ops": ["evaluate", "deliberate", "justify", "learn"],
+        "description": "Argumentative reasoning over evidence, policy, and tradeoffs.",
+        "contract_ref": "/contracts/v0.1.0/reason.argument.contract.json",
+        "a2a_skills": [
+          "decision-evaluation",
+          "evidence-based-deliberation",
+          "decision-justification"
+        ]
+      },
+      "vote": {
+        "ops": ["propose", "vote", "aggregate", "select"],
+        "description": "Consensus-oriented reasoning for committee or multi-agent selection.",
+        "a2a_skills": ["multi-agent-consensus", "candidate-ranking"]
+      },
+      "plan": {
+        "ops": ["plan", "revise", "simulate", "commit"],
+        "description": "Goal-directed planning over candidate steps and constrained action sequences.",
+        "a2a_skills": ["goal-plan-generation", "plan-revision"]
+      }
+    },
+    "providers": [
+      {
+        "id": "deliberatic",
+        "name": "Deliberatic",
+        "description": "Representative reasoning provider for argumentative and governance-aware deliberation.",
+        "subtypes": ["argument", "vote"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://deliberatic.com",
+        "contract_ref": "/contracts/v0.1.0/reason.argument.contract.json",
+        "status": "beta",
+        "metadata": {
+          "governance_modes": [
+            "constitutional",
+            "evidence-first",
+            "customer-safe"
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "research_focus": ["argumentation", "planning", "deliberation"]
+    }
+  },
+  "&time": {
+    "description": "Temporal intelligence capabilities for anomaly detection, forecasting, and recurring pattern recognition.",
+    "subtypes": {
+      "anomaly": {
+        "ops": ["detect", "enrich", "learn"],
+        "description": "Temporal anomaly detection over streaming or historical signals.",
+        "a2a_skills": ["temporal-anomaly-detection"]
+      },
+      "forecast": {
+        "ops": ["predict", "explain", "enrich", "learn"],
+        "description": "Forecasting capability for demand, capacity, and other time-oriented outcomes.",
+        "contract_ref": "/contracts/v0.1.0/time.forecast.contract.json",
+        "a2a_skills": [
+          "temporal-forecasting",
+          "demand-prediction",
+          "trend-explanation"
+        ]
+      },
+      "pattern": {
+        "ops": ["detect", "summarize", "enrich"],
+        "description": "Recurring-pattern detection across time windows, seasonality, and trend cycles.",
+        "a2a_skills": ["temporal-pattern-detection", "seasonality-analysis"]
+      }
+    },
+    "providers": [
+      {
+        "id": "ticktickclock",
+        "name": "TickTickClock",
+        "description": "Representative provider for temporal anomaly, forecast, and pattern capabilities.",
+        "subtypes": ["anomaly", "forecast", "pattern"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://ticktickclock.com",
+        "contract_ref": "/contracts/v0.1.0/time.forecast.contract.json",
+        "status": "beta",
+        "metadata": {
+          "recommended_horizons": ["1h", "24h", "7d"]
+        }
+      }
+    ],
+    "metadata": {
+      "research_focus": [
+        "time-series analysis",
+        "forecasting",
+        "anomaly detection"
+      ]
+    }
+  },
+  "&space": {
+    "description": "Spatial intelligence capabilities for fleets, regions, routes, geofences, and topology-aware decision support.",
+    "subtypes": {
+      "fleet": {
+        "ops": ["locate", "enrich", "capacity", "route"],
+        "description": "Fleet-state and regional context capability for localized operational awareness.",
+        "contract_ref": "/contracts/v0.1.0/space.fleet.contract.json",
+        "a2a_skills": [
+          "fleet-state-enrichment",
+          "regional-capacity-lookup",
+          "route-feasibility-evaluation"
+        ]
+      },
+      "geofence": {
+        "ops": ["contains", "enter_exit", "enrich"],
+        "description": "Boundary-aware spatial capability for restricted zones, service areas, and compliance regions.",
+        "a2a_skills": ["geofence-membership-evaluation", "boundary-alerting"]
+      },
+      "route": {
+        "ops": ["route", "optimize", "explain"],
+        "description": "Routing and path-evaluation capability over spatial constraints and operating conditions.",
+        "a2a_skills": ["route-generation", "route-optimization"]
+      }
+    },
+    "providers": [
+      {
+        "id": "geofleetic",
+        "name": "GeoFleetic",
+        "description": "Representative provider for spatial fleet context, route awareness, and regional operations.",
+        "subtypes": ["fleet", "route", "geofence"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://geofleetic.com",
+        "contract_ref": "/contracts/v0.1.0/space.fleet.contract.json",
+        "status": "beta",
+        "metadata": {
+          "example_regions": ["us-east", "us-central", "eu-west"]
+        }
+      }
+    ],
+    "metadata": {
+      "research_focus": ["spatial reasoning", "fleet operations", "routing"]
+    }
+  }
+}

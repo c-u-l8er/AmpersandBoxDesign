@@ -45,6 +45,7 @@ defmodule AmpersandCore.MCP do
       AmpersandCore.MCP.generate(document, provider_registry: custom_registry)
   """
 
+  alias AmpersandCore.Registry
   alias AmpersandCore.Schema
 
   @type document :: map()
@@ -153,14 +154,15 @@ defmodule AmpersandCore.MCP do
     include_metadata? = Keyword.get(opts, :include_metadata, true)
 
     bindings = normalize_bindings(document)
-    registry = provider_registry(opts)
+    resolver_registry = provider_registry(opts)
+    capability_registry = load_registry_metadata(opts)
 
     {resolved, unresolved} =
       bindings
       |> Enum.group_by(& &1.provider)
       |> Enum.sort_by(fn {provider, _bindings} -> provider end)
       |> Enum.reduce({%{}, []}, fn {provider, provider_bindings}, {resolved_acc, unresolved_acc} ->
-        case resolve_provider(provider, provider_bindings, registry, opts) do
+        case resolve_provider(provider, provider_bindings, resolver_registry, capability_registry, opts) do
           {:ok, {server_name, server_config}} ->
             {
               Map.put(resolved_acc, server_name, strip_internal_fields(server_config)),
@@ -168,11 +170,14 @@ defmodule AmpersandCore.MCP do
             }
 
           {:unresolved, reason} ->
-            unresolved_entry = %{
-              "provider" => provider,
-              "capabilities" => provider_bindings |> Enum.map(& &1.capability) |> Enum.sort(),
-              "reason" => reason
-            }
+            unresolved_entry =
+              %{
+                "provider" => provider,
+                "capabilities" => provider_bindings |> Enum.map(& &1.capability) |> Enum.sort(),
+                "reason" => reason
+              }
+              |> maybe_put("published_in_registry", registry_provider_entry(capability_registry, provider) != nil)
+              |> maybe_put("registry_provider", registry_provider_entry(capability_registry, provider))
 
             {resolved_acc, unresolved_acc ++ [unresolved_entry]}
         end
@@ -191,12 +196,21 @@ defmodule AmpersandCore.MCP do
          resolved,
          unresolved,
          bindings,
-         include_metadata?
+         include_metadata?,
+         capability_registry
        )}
     end
   end
 
-  defp build_manifest(document, format, resolved_servers, unresolved, bindings, include_metadata?) do
+  defp build_manifest(
+         document,
+         format,
+         resolved_servers,
+         unresolved,
+         bindings,
+         include_metadata?,
+         capability_registry
+       ) do
     config = %{root_key(format) => resolved_servers}
 
     base_manifest = %{
@@ -204,7 +218,7 @@ defmodule AmpersandCore.MCP do
       "version" => document["version"],
       "format" => format_name(format),
       "config" => config,
-      "providers" => provider_summary(bindings, resolved_servers),
+      "providers" => provider_summary(bindings, resolved_servers, capability_registry),
       "unresolved_providers" => unresolved
     }
 
@@ -213,6 +227,7 @@ defmodule AmpersandCore.MCP do
         %{}
         |> maybe_put("governance", document["governance"])
         |> maybe_put("provenance", document["provenance"])
+        |> maybe_put("registry", registry_metadata(capability_registry))
 
       Map.merge(base_manifest, metadata)
     else
@@ -220,7 +235,7 @@ defmodule AmpersandCore.MCP do
     end
   end
 
-  defp provider_summary(bindings, resolved_servers) do
+  defp provider_summary(bindings, resolved_servers, capability_registry) do
     bindings
     |> Enum.group_by(& &1.provider)
     |> Enum.sort_by(fn {provider, _} -> provider end)
@@ -231,11 +246,28 @@ defmodule AmpersandCore.MCP do
           if Map.get(config, "provider") == provider, do: name, else: nil
         end)
 
+      registry_provider = registry_provider_entry(capability_registry, provider)
+      capability_ids = provider_bindings |> Enum.map(& &1.capability) |> Enum.sort()
+
       {provider,
-       %{
-         "server_name" => server_name,
-         "capabilities" => provider_bindings |> Enum.map(& &1.capability) |> Enum.sort()
-       }}
+       %{}
+       |> maybe_put("server_name", server_name)
+       |> maybe_put("capabilities", capability_ids)
+       |> maybe_put("published_in_registry", registry_provider != nil)
+       |> maybe_put("protocol", registry_provider && registry_provider["protocol"])
+       |> maybe_put("transport", registry_provider && registry_provider["transport"])
+       |> maybe_put("status", registry_provider && registry_provider["status"])
+       |> maybe_put("url", registry_provider && registry_provider["url"])
+       |> maybe_put(
+         "contract_refs",
+         capability_ids
+         |> Enum.map(fn capability ->
+           registry_contract_ref(capability_registry, capability)
+         end)
+         |> Enum.reject(&is_nil/1)
+         |> Enum.uniq()
+         |> Enum.sort()
+       )}
     end)
   end
 
@@ -253,19 +285,74 @@ defmodule AmpersandCore.MCP do
     |> Enum.sort_by(&{&1.provider || "", &1.capability})
   end
 
-  defp resolve_provider(provider, bindings, registry, opts) do
+  defp resolve_provider(provider, bindings, registry, capability_registry, opts) do
     case Map.get(registry, provider) do
       resolver when is_function(resolver, 3) ->
         resolver.(provider, bindings, opts)
 
+      _ when provider == "auto" ->
+        {:unresolved, "provider resolution required from capability registry"}
+
       _ ->
-        {:unresolved, "no MCP resolver registered for provider"}
+        case registry_provider_entry(capability_registry, provider) do
+          %{} ->
+            {:unresolved, "provider is published in registry but no local MCP resolver is implemented"}
+
+          _ ->
+            {:unresolved, "no MCP resolver registered for provider"}
+        end
     end
   end
 
   defp provider_registry(opts) do
     Map.merge(default_provider_registry(), Keyword.get(opts, :provider_registry, %{}))
   end
+
+  defp load_registry_metadata(opts) do
+    case Keyword.get(opts, :capability_registry) do
+      %{} = registry ->
+        registry
+
+      nil ->
+        case Keyword.get(opts, :registry_path) do
+          path when is_binary(path) ->
+            case Registry.load(path) do
+              {:ok, registry} -> registry
+              _ -> %{}
+            end
+
+          _ ->
+            case Registry.load() do
+              {:ok, registry} -> registry
+              _ -> %{}
+            end
+        end
+
+      _ ->
+        %{}
+    end
+  end
+
+  defp registry_metadata(%{} = capability_registry) do
+    %{}
+    |> maybe_put("id", capability_registry["registry"])
+    |> maybe_put("version", capability_registry["version"])
+    |> maybe_put("generated_at", capability_registry["generated_at"])
+  end
+
+  defp registry_metadata(_capability_registry), do: %{}
+
+  defp registry_provider_entry(%{} = capability_registry, provider) when is_binary(provider) do
+    Registry.provider(capability_registry, provider)
+  end
+
+  defp registry_provider_entry(_capability_registry, _provider), do: nil
+
+  defp registry_contract_ref(%{} = capability_registry, capability) when is_binary(capability) do
+    Registry.contract_ref_for(capability_registry, capability)
+  end
+
+  defp registry_contract_ref(_capability_registry, _capability), do: nil
 
   defp default_provider_registry do
     %{

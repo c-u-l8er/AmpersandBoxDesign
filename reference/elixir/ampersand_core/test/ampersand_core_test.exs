@@ -9,6 +9,14 @@ defmodule AmpersandCore.TestFixtures do
     Path.join(project_root(), "schema/v0.1.0/ampersand.schema.json")
   end
 
+  def registry_path do
+    Path.join(project_root(), "registry/v0.1.0/capabilities.registry.json")
+  end
+
+  def contracts_dir do
+    Path.join(project_root(), "contracts/v0.1.0")
+  end
+
   def example_path(filename) do
     Path.join(project_root(), "examples/#{filename}")
   end
@@ -103,6 +111,54 @@ defmodule AmpersandCoreSchemaTest do
 
     assert {:error, errors} = AmpersandCore.Schema.validate(invalid_document)
     assert Enum.any?(errors, &String.contains?(&1, "capability"))
+  end
+end
+
+defmodule AmpersandCoreArtifactLoadingTest do
+  use ExUnit.Case, async: true
+
+  alias AmpersandCore.TestFixtures, as: Fixtures
+
+  test "contract artifacts load from the versioned contracts directory" do
+    assert {:ok, contracts} = AmpersandCore.load_contracts()
+
+    assert Map.has_key?(contracts, "&memory.graph")
+    assert Map.has_key?(contracts, "&memory.episodic")
+    assert Map.has_key?(contracts, "&reason.argument")
+    assert Map.has_key?(contracts, "&time.forecast")
+    assert Map.has_key?(contracts, "&space.fleet")
+
+    assert contracts["&memory.graph"]["operations"]["recall"]["out"] == "memory_hits"
+
+    assert contracts["&time.forecast"]["a2a_skills"] == [
+             "temporal-forecasting",
+             "demand-prediction",
+             "trend-explanation"
+           ]
+  end
+
+  test "registry artifact loads from the canonical registry path" do
+    assert {:ok, registry} = AmpersandCore.load_registry()
+
+    assert AmpersandCore.Registry.default_registry_path() == Fixtures.registry_path()
+    assert "&memory.graph" in AmpersandCore.Registry.list_capabilities(registry)
+
+    assert registry["&time"]["subtypes"]["forecast"]["contract_ref"] ==
+             "/contracts/v0.1.0/time.forecast.contract.json"
+
+    assert AmpersandCore.Registry.provider(registry, "graphonomous")["protocol"] == "mcp_v1"
+  end
+
+  test "artifact-backed contract loading can be scoped to a declaration" do
+    infra = Fixtures.load_example!("infra-operator.ampersand.json")
+
+    assert {:ok, contracts} = AmpersandCore.Contracts.load_contracts_for_document(infra)
+
+    assert Map.keys(contracts) |> Enum.sort() == [
+             "&memory.graph",
+             "&reason.argument",
+             "&space.fleet"
+           ]
   end
 end
 
@@ -329,24 +385,27 @@ defmodule AmpersandCoreMCPTest do
     assert manifest["agent"] == "InfraOperator"
     assert manifest["format"] == "context_servers"
     assert manifest["providers"]["graphonomous"]["capabilities"] == ["&memory.graph"]
+    assert manifest["providers"]["graphonomous"]["published_in_registry"] == true
+    assert manifest["providers"]["graphonomous"]["protocol"] == "mcp_v1"
 
-    assert manifest["unresolved_providers"] == [
-             %{
-               "provider" => "deliberatic",
-               "capabilities" => ["&reason.argument"],
-               "reason" => "no MCP resolver registered for provider"
-             },
-             %{
-               "provider" => "geofleetic",
-               "capabilities" => ["&space.fleet"],
-               "reason" => "no MCP resolver registered for provider"
-             },
-             %{
-               "provider" => "ticktickclock",
-               "capabilities" => ["&time.anomaly"],
-               "reason" => "no MCP resolver registered for provider"
-             }
+    assert manifest["registry"] == %{
+             "generated_at" => "2026-03-15T00:00:00Z",
+             "id" => "registry.ampersandboxdesign.com",
+             "version" => "0.1.0"
+           }
+
+    assert Enum.map(manifest["unresolved_providers"], & &1["provider"]) == [
+             "deliberatic",
+             "geofleetic",
+             "ticktickclock"
            ]
+
+    assert Enum.all?(manifest["unresolved_providers"], fn entry ->
+             entry["published_in_registry"] == true and
+               entry["reason"] ==
+                 "provider is published in registry but no local MCP resolver is implemented" and
+               is_map(entry["registry_provider"])
+           end)
   end
 
   test "client config accepts provider registry overrides for local development" do
@@ -388,6 +447,7 @@ defmodule AmpersandCoreMCPTest do
     assert {:ok, manifest} = AmpersandCore.MCP.generate(fleet)
 
     assert manifest["config"] == %{"context_servers" => %{}}
+    assert manifest["registry"]["id"] == "registry.ampersandboxdesign.com"
 
     assert manifest["unresolved_providers"] == [
              %{
@@ -398,7 +458,8 @@ defmodule AmpersandCoreMCPTest do
                  "&space.fleet",
                  "&time.forecast"
                ],
-               "reason" => "no MCP resolver registered for provider"
+               "reason" => "provider resolution required from capability registry",
+               "published_in_registry" => false
              }
            ]
   end
@@ -453,10 +514,26 @@ defmodule AmpersandCoreA2ATest do
     assert card["metadata"]["providers"] == ["auto"]
 
     assert card["metadata"]["a2a_skill_map"] == %{
-             "&memory.episodic" => ["memory-episodic"],
-             "&reason.argument" => ["reason-argument"],
-             "&space.fleet" => ["space-fleet"],
-             "&time.forecast" => ["time-forecast"]
+             "&memory.episodic" => [
+               "episodic-memory-recall",
+               "experience-replay",
+               "session-history-enrichment"
+             ],
+             "&reason.argument" => [
+               "decision-evaluation",
+               "decision-justification",
+               "evidence-based-deliberation"
+             ],
+             "&space.fleet" => [
+               "fleet-state-enrichment",
+               "regional-capacity-lookup",
+               "route-feasibility-evaluation"
+             ],
+             "&time.forecast" => [
+               "demand-prediction",
+               "temporal-forecasting",
+               "trend-explanation"
+             ]
            }
 
     assert Enum.all?(card["skills"], fn skill ->
@@ -516,19 +593,51 @@ defmodule AmpersandCoreCLITest do
     assert Enum.any?(decoded["skills"], &(&1["capability"] == "&time.anomaly"))
   end
 
-  test "compose command summarizes normalized capabilities" do
+  test "compose command summarizes normalized capabilities and artifact coverage" do
     path = Fixtures.example_path("infra-operator.ampersand.json")
 
     assert {:ok, output} = AmpersandCore.CLI.run(["compose", path])
 
-    assert output =~ "&memory.graph"
-    assert output =~ "&reason.argument"
-    assert output =~ "&space.fleet"
-    assert output =~ "&time.anomaly"
-    assert output =~ "commutative"
-    assert output =~ "associative"
-    assert output =~ "idempotent"
-    assert output =~ "identity"
+    decoded = Jason.decode!(output)
+
+    assert decoded["command"] == "compose"
+    assert decoded["capabilities"] == [
+             "&memory.graph",
+             "&reason.argument",
+             "&space.fleet",
+             "&time.anomaly"
+           ]
+
+    assert decoded["aci"] == %{
+             "associative" => true,
+             "commutative" => true,
+             "idempotent" => true,
+             "identity" => true
+           }
+
+    assert decoded["contracts"] == %{
+             "contract_count" => 3,
+             "loaded" => [
+               "&memory.graph",
+               "&reason.argument",
+               "&space.fleet"
+             ],
+             "missing" => ["&time.anomaly"]
+           }
+
+    assert decoded["registry"]["known_capabilities"] == [
+             "&memory.graph",
+             "&reason.argument",
+             "&space.fleet",
+             "&time.anomaly"
+           ]
+
+    assert decoded["registry"]["known_providers"] == [
+             "deliberatic",
+             "geofleetic",
+             "graphonomous",
+             "ticktickclock"
+           ]
   end
 
   test "unknown generate target returns a helpful error" do

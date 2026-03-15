@@ -30,6 +30,7 @@ defmodule AmpersandCore.A2A do
       merged into generated skills
   """
 
+  alias AmpersandCore.Contracts
   alias AmpersandCore.Schema
 
   @type document :: map()
@@ -83,7 +84,7 @@ defmodule AmpersandCore.A2A do
 
   defp build_card(document, opts) do
     capabilities = Map.get(document, "capabilities", %{})
-    contract_registry = Keyword.get(opts, :contract_registry, %{})
+    contract_registry = resolve_contract_registry(document, opts)
     include_metadata? = Keyword.get(opts, :include_metadata, true)
 
     skills =
@@ -107,6 +108,22 @@ defmodule AmpersandCore.A2A do
       Map.put(card, "metadata", build_metadata(document, capabilities, contract_registry))
     else
       card
+    end
+  end
+
+  defp resolve_contract_registry(document, opts) do
+    case Keyword.fetch(opts, :contract_registry) do
+      {:ok, %{} = registry} ->
+        registry
+
+      {:ok, _other} ->
+        %{}
+
+      :error ->
+        case Contracts.load_contracts_for_document(document) do
+          {:ok, registry} -> registry
+          {:error, _errors} -> %{}
+        end
     end
   end
 
