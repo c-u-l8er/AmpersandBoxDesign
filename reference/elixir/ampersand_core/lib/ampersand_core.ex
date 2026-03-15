@@ -8,6 +8,7 @@ defmodule AmpersandCore do
   * `AmpersandCore.Compose` — normalize and compose capability sets with ACI semantics
   * `AmpersandCore.Contracts` — validate capability pipelines against typed contracts
   * `AmpersandCore.MCP` — generate MCP server configuration from protocol declarations
+  * `AmpersandCore.A2A` — generate A2A agent cards from protocol declarations
 
   This facade keeps the public surface area small while the underlying modules
   stay independently testable.
@@ -32,6 +33,7 @@ defmodule AmpersandCore do
   @type compose_result :: {:ok, capability_map()} | {:error, term()}
   @type contract_result :: :ok | {:error, [String.t()]}
   @type mcp_result :: {:ok, map()} | {:error, [String.t()]}
+  @type a2a_result :: {:ok, map()} | {:error, [String.t()]}
 
   @doc """
   Returns the default path to the canonical `ampersand.schema.json`.
@@ -150,6 +152,37 @@ defmodule AmpersandCore do
   def generate_mcp_config_file(path, opts \\ []) when is_binary(path) and is_list(opts) do
     with {:ok, document} <- validate_file(path) do
       generate_mcp_config(document, opts)
+    end
+  end
+
+  @doc """
+  Generates an A2A agent card from a validated protocol document.
+
+  If the dedicated A2A generator module is not yet available, this function
+  returns an informative error instead of raising.
+  """
+  @spec generate_a2a_card(document(), keyword()) :: a2a_result()
+  def generate_a2a_card(document, opts \\ []) when is_map(document) and is_list(opts) do
+    cond do
+      Code.ensure_loaded?(AmpersandCore.A2A) and function_exported?(AmpersandCore.A2A, :generate, 2) ->
+        AmpersandCore.A2A.generate(document, opts)
+
+      true ->
+        {:error, ["A2A agent card generator is not available"]}
+    end
+  end
+
+  @doc """
+  Reads an `ampersand.json` file, validates it, and generates an A2A agent card
+  from the resulting declaration.
+
+  If the dedicated A2A generator module is not yet available, this function
+  returns an informative error instead of raising.
+  """
+  @spec generate_a2a_card_file(Path.t(), keyword()) :: a2a_result()
+  def generate_a2a_card_file(path, opts \\ []) when is_binary(path) and is_list(opts) do
+    with {:ok, document} <- validate_file(path) do
+      generate_a2a_card(document, opts)
     end
   end
 end

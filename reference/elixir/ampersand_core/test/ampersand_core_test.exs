@@ -403,3 +403,141 @@ defmodule AmpersandCoreMCPTest do
            ]
   end
 end
+
+defmodule AmpersandCoreA2ATest do
+  use ExUnit.Case, async: true
+
+  alias AmpersandCore.TestFixtures, as: Fixtures
+
+  test "agent card generation advertises composed capabilities as skills" do
+    infra = Fixtures.load_example!("infra-operator.ampersand.json")
+
+    assert {:ok, card} = AmpersandCore.A2A.generate(infra)
+
+    assert card["name"] == "InfraOperator"
+    assert card["version"] == "1.0.0"
+
+    skill_ids =
+      card["skills"]
+      |> Enum.map(& &1["capability"])
+      |> Enum.sort()
+
+    assert skill_ids == [
+             "&memory.graph",
+             "&reason.argument",
+             "&space.fleet",
+             "&time.anomaly"
+           ]
+
+    assert Enum.any?(card["skills"], fn skill ->
+             skill["capability"] == "&memory.graph" and
+               skill["provider"] == "graphonomous" and
+               "memory" in skill["tags"]
+           end)
+
+    assert card["metadata"]["providers"] == [
+             "deliberatic",
+             "geofleetic",
+             "graphonomous",
+             "ticktickclock"
+           ]
+  end
+
+  test "agent card keeps unresolved auto providers visible in metadata" do
+    fleet = Fixtures.load_example!("fleet-manager.ampersand.json")
+
+    assert {:ok, card} = AmpersandCore.A2A.generate(fleet)
+
+    assert card["name"] == "FleetManager"
+
+    assert card["metadata"]["providers"] == ["auto"]
+
+    assert card["metadata"]["a2a_skill_map"] == %{
+             "&memory.episodic" => ["memory-episodic"],
+             "&reason.argument" => ["reason-argument"],
+             "&space.fleet" => ["space-fleet"],
+             "&time.forecast" => ["time-forecast"]
+           }
+
+    assert Enum.all?(card["skills"], fn skill ->
+             skill["provider"] == "auto" and "provider:auto" not in (skill["tags"] || [])
+           end)
+
+    assert Enum.map(card["skills"], & &1["capability"]) == [
+             "&memory.episodic",
+             "&reason.argument",
+             "&space.fleet",
+             "&time.forecast"
+           ]
+  end
+end
+
+defmodule AmpersandCoreCLITest do
+  use ExUnit.Case, async: true
+
+  alias AmpersandCore.TestFixtures, as: Fixtures
+
+  test "validate command returns ok for a valid declaration" do
+    path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["validate", path])
+    assert output =~ "valid"
+    assert output =~ "InfraOperator"
+  end
+
+  test "generate mcp command returns direct client configuration JSON" do
+    path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["generate", "mcp", path])
+
+    decoded = Jason.decode!(output)
+
+    assert decoded["context_servers"]["graphonomous"]["command"] == "npx"
+
+    assert decoded["context_servers"]["graphonomous"]["args"] == [
+             "-y",
+             "graphonomous",
+             "--db",
+             "~/.graphonomous/knowledge.db",
+             "--embedder-backend",
+             "fallback"
+           ]
+  end
+
+  test "generate a2a command returns direct agent card JSON" do
+    path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["generate", "a2a", path])
+
+    decoded = Jason.decode!(output)
+
+    assert decoded["name"] == "InfraOperator"
+    assert Enum.any?(decoded["skills"], &(&1["capability"] == "&memory.graph"))
+    assert Enum.any?(decoded["skills"], &(&1["capability"] == "&time.anomaly"))
+  end
+
+  test "compose command summarizes normalized capabilities" do
+    path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["compose", path])
+
+    assert output =~ "&memory.graph"
+    assert output =~ "&reason.argument"
+    assert output =~ "&space.fleet"
+    assert output =~ "&time.anomaly"
+    assert output =~ "commutative"
+    assert output =~ "associative"
+    assert output =~ "idempotent"
+    assert output =~ "identity"
+  end
+
+  test "unknown generate target returns a helpful error" do
+    path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    assert {:error, output, 1} = AmpersandCore.CLI.run(["generate", "invalid-target", path])
+
+    assert output =~ "unknown_generate_target"
+    assert output =~ "mcp"
+    assert output =~ "a2a"
+  end
+end
