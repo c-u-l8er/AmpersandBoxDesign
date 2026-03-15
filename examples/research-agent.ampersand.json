@@ -1,0 +1,43 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "agent": "ResearchAgent",
+  "version": "0.1.0",
+  "capabilities": {
+    "&memory.vector": {
+      "provider": "pgvector",
+      "config": {
+        "index": "papers",
+        "namespace": "research-corpus"
+      }
+    },
+    "&time.pattern": {
+      "provider": "ticktickclock",
+      "config": {
+        "window_days": 30,
+        "granularity": "daily"
+      }
+    },
+    "&reason.argument": {
+      "provider": "deliberatic",
+      "config": {
+        "governance": "evidence-first",
+        "mode": "comparative-analysis"
+      }
+    }
+  },
+  "governance": {
+    "hard": [
+      "Never present unsupported conclusions as facts",
+      "Always preserve citation traceability"
+    ],
+    "soft": [
+      "Prefer recent peer-reviewed evidence",
+      "Prefer consensus findings when evidence is mixed"
+    ],
+    "escalate_when": {
+      "confidence_below": 0.65,
+      "hard_boundary_approached": true
+    }
+  },
+  "provenance": true
+}

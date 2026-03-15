@@ -1,0 +1,27 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "agent": "FleetManager",
+  "version": "0.1.0",
+  "capabilities": {
+    "&memory.episodic": {
+      "provider": "auto",
+      "need": "route performance history"
+    },
+    "&time.forecast": {
+      "provider": "auto",
+      "need": "demand spike prediction"
+    },
+    "&space.fleet": {
+      "provider": "auto",
+      "need": "US regional fleet tracking"
+    },
+    "&reason.argument": {
+      "provider": "auto",
+      "need": "auditable scaling decisions"
+    }
+  },
+  "governance": {
+    "infer_from_goal": true
+  },
+  "provenance": true
+}
