@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "title": "Ampersand Capability Contract",
+  "description": "JSON Schema draft 2020-12 for [&] protocol capability contract artifacts. A contract declares a capability's operations, typed inputs and outputs, composition adjacency constraints, and optional A2A skill mappings.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "capability",
+    "operations",
+    "accepts_from",
+    "feeds_into"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+      "description": "Canonical schema identifier for capability contract artifacts."
+    },
+    "capability": {
+      "$ref": "#/$defs/capabilityId"
+    },
+    "provider": {
+      "$ref": "#/$defs/providerId"
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operations": {
+      "type": "object",
+      "description": "Operations supported by this capability contract. Keys are operation names and values describe typed input/output signatures.",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/operationName"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/operationContract"
+      }
+    },
+    "accepts_from": {
+      "$ref": "#/$defs/compositionTargetList"
+    },
+    "feeds_into": {
+      "$ref": "#/$defs/compositionTargetList"
+    },
+    "a2a_skills": {
+      "type": "array",
+      "description": "Optional A2A skill identifiers that this capability can advertise or compile into.",
+      "items": {
+        "$ref": "#/$defs/skillId"
+      },
+      "uniqueItems": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional implementation or publishing metadata.",
+      "additionalProperties": {
+        "$ref": "#/$defs/metadataValue"
+      }
+    }
+  },
+  "$defs": {
+    "capabilityId": {
+      "type": "string",
+      "pattern": "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Protocol capability identifier such as &time.anomaly or &memory.graph."
+    },
+    "capabilityPattern": {
+      "type": "string",
+      "pattern": "^&(memory|reason|time|space)(\\.\\*|\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Capability identifier or wildcard primitive pattern such as &memory.*."
+    },
+    "providerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Lowercase provider identifier such as graphonomous or ticktickclock."
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Semantic version string."
+    },
+    "operationName": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_:-]*$",
+      "description": "Operation name such as detect, enrich, learn, or deliberate."
+    },
+    "typeToken": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_:-]*$",
+      "description": "Protocol-level type token such as stream_data, anomaly_set, context, or output."
+    },
+    "operationContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "in",
+        "out"
+      ],
+      "properties": {
+        "in": {
+          "$ref": "#/$defs/typeToken"
+        },
+        "out": {
+          "$ref": "#/$defs/typeToken"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deterministic": {
+          "type": "boolean"
+        },
+        "side_effects": {
+          "type": "boolean"
+        }
+      }
+    },
+    "compositionTarget": {
+      "description": "A legal composition adjacency target: either a capability/capability wildcard or a protocol type token such as raw_data or output.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/capabilityPattern"
+        },
+        {
+          "$ref": "#/$defs/typeToken"
+        }
+      ]
+    },
+    "compositionTargetList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/compositionTarget"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "skillId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$",
+      "description": "Portable skill identifier such as temporal-anomaly-detection."
+    },
+    "metadataValue": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metadataValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/metadataValue"
+          }
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+      "capability": "&time.anomaly",
+      "provider": "ticktickclock",
+      "version": "0.1.0",
+      "description": "Temporal anomaly detection and enrichment contract.",
+      "operations": {
+        "detect": {
+          "in": "stream_data",
+          "out": "anomaly_set"
+        },
+        "enrich": {
+          "in": "context",
+          "out": "enriched_context"
+        },
+        "learn": {
+          "in": "observation",
+          "out": "ack"
+        }
+      },
+      "accepts_from": [
+        "&memory.*",
+        "&space.*",
+        "raw_data"
+      ],
+      "feeds_into": [
+        "&memory.*",
+        "&reason.*",
+        "&space.*",
+        "output"
+      ],
+      "a2a_skills": [
+        "temporal-anomaly-detection"
+      ]
+    }
+  ]
+}

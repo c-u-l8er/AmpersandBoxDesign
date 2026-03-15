@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://protocol.ampersandboxdesign.com/v0.1/registry.schema.json",
+  "title": "Ampersand Capability Registry",
+  "description": "JSON Schema draft 2020-12 for [&] protocol capability registry artifacts. A registry publishes available primitive namespaces, their subtypes, and the providers that satisfy them.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://protocol.ampersandboxdesign.com/v0.1/registry.schema.json",
+      "description": "Canonical schema identifier for capability registry artifacts."
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp indicating when the registry artifact was generated."
+    },
+    "registry": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable registry identifier or hostname."
+    }
+  },
+  "patternProperties": {
+    "^&(memory|reason|time|space)$": {
+      "$ref": "#/$defs/primitiveRegistry"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "&memory"
+      ]
+    },
+    {
+      "required": [
+        "&reason"
+      ]
+    },
+    {
+      "required": [
+        "&time"
+      ]
+    },
+    {
+      "required": [
+        "&space"
+      ]
+    }
+  ],
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Semantic version string."
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+      "description": "Protocol identifier fragment, such as a subtype or operation name."
+    },
+    "providerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Lowercase provider identifier such as graphonomous or neo4j-memory."
+    },
+    "protocolId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+      "description": "Provider transport/protocol identifier such as mcp_v1, a2a_v1, http, or custom."
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "configValue": {
+      "description": "Flexible metadata/configuration value used by registry entries.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/configValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/configValue"
+          }
+        }
+      ]
+    },
+    "subtypeDefinition": {
+      "type": "object",
+      "description": "Definition of a capability subtype within a primitive namespace.",
+      "additionalProperties": false,
+      "required": [
+        "ops"
+      ],
+      "properties": {
+        "ops": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URI or path pointing to the canonical capability contract artifact."
+        },
+        "a2a_skills": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/configValue"
+          }
+        }
+      }
+    },
+    "providerDefinition": {
+      "type": "object",
+      "description": "Concrete provider that satisfies one or more subtypes in a primitive namespace.",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "subtypes",
+        "protocol"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/providerId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Subtype identifiers supported by this provider, relative to the enclosing primitive."
+        },
+        "protocol": {
+          "$ref": "#/$defs/protocolId"
+        },
+        "transport": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "env": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "contract_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "stable",
+            "beta",
+            "experimental",
+            "deprecated"
+          ]
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/configValue"
+          }
+        }
+      }
+    },
+    "primitiveRegistry": {
+      "type": "object",
+      "description": "Registry entry for one primitive namespace such as &memory or &time.",
+      "additionalProperties": false,
+      "required": [
+        "subtypes",
+        "providers"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtypes": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "#/$defs/identifier"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/subtypeDefinition"
+          }
+        },
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/providerDefinition"
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/configValue"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/registry.schema.json",
+      "version": "0.1.0",
+      "registry": "registry.ampersandboxdesign.com",
+      "generated_at": "2026-03-14T14:23:07Z",
+      "&memory": {
+        "subtypes": {
+          "graph": {
+            "ops": [
+              "recall",
+              "learn",
+              "consolidate",
+              "enrich"
+            ],
+            "description": "Graph-structured memory for durable contextual recall."
+          },
+          "vector": {
+            "ops": [
+              "search",
+              "upsert",
+              "enrich"
+            ]
+          },
+          "episodic": {
+            "ops": [
+              "recall",
+              "store",
+              "replay",
+              "enrich"
+            ],
+            "a2a_skills": [
+              "episodic-memory-replay"
+            ]
+          }
+        },
+        "providers": [
+          {
+            "id": "graphonomous",
+            "subtypes": [
+              "graph",
+              "episodic"
+            ],
+            "protocol": "mcp_v1",
+            "status": "stable"
+          },
+          {
+            "id": "neo4j-memory",
+            "subtypes": [
+              "graph"
+            ],
+            "protocol": "mcp_v1"
+          },
+          {
+            "id": "pgvector",
+            "subtypes": [
+              "vector"
+            ],
+            "protocol": "mcp_v1"
+          }
+        ]
+      },
+      "&time": {
+        "subtypes": {
+          "anomaly": {
+            "ops": [
+              "detect",
+              "enrich",
+              "learn"
+            ],
+            "a2a_skills": [
+              "temporal-anomaly-detection"
+            ]
+          },
+          "forecast": {
+            "ops": [
+              "predict",
+              "explain"
+            ]
+          }
+        },
+        "providers": [
+          {
+            "id": "ticktickclock",
+            "subtypes": [
+              "anomaly",
+              "forecast"
+            ],
+            "protocol": "mcp_v1",
+            "status": "beta"
+          }
+        ]
+      }
+    }
+  ]
+}

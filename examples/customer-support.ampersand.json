@@ -1,0 +1,51 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "agent": "CustomerSupport",
+  "version": "0.1.0",
+  "capabilities": {
+    "&memory.episodic": {
+      "provider": "graphonomous",
+      "config": {
+        "instance": "customer-support-history",
+        "retention_days": 90
+      }
+    },
+    "&memory.vector": {
+      "provider": "pgvector",
+      "config": {
+        "index": "support-kb",
+        "namespace": "help-center"
+      }
+    },
+    "&time.pattern": {
+      "provider": "ticktickclock",
+      "config": {
+        "window_days": 14,
+        "granularity": "hourly"
+      }
+    },
+    "&reason.argument": {
+      "provider": "deliberatic",
+      "config": {
+        "governance": "customer-safe",
+        "mode": "policy-grounded-response"
+      }
+    }
+  },
+  "governance": {
+    "hard": [
+      "Never reveal private customer data to another customer",
+      "Never fabricate refunds, account actions, or policy exceptions",
+      "Always preserve an audit trail for escalations and account changes"
+    ],
+    "soft": [
+      "Prefer resolving issues in a single reply when confidence is high",
+      "Prefer concise, empathetic responses grounded in support policy"
+    ],
+    "escalate_when": {
+      "confidence_below": 0.75,
+      "hard_boundary_approached": true
+    }
+  },
+  "provenance": true
+}
