@@ -1,0 +1,63 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&reason.plan",
+  "provider": "deliberatic",
+  "version": "0.1.0",
+  "description": "Planning-oriented reasoning contract for goal decomposition, constrained plan revision, scenario simulation, and auditable plan commitment.",
+  "operations": {
+    "plan": {
+      "in": "goal_context",
+      "out": "plan_set",
+      "description": "Generate candidate plans from goals, constraints, and current context.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "revise": {
+      "in": "plan_feedback",
+      "out": "revised_plan",
+      "description": "Revise an existing plan in response to new constraints, feedback, or changed context.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "simulate": {
+      "in": "plan_set",
+      "out": "simulation_result",
+      "description": "Simulate candidate plan outcomes, tradeoffs, and failure modes before commitment.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "commit": {
+      "in": "approved_plan",
+      "out": "plan_commitment",
+      "description": "Commit a selected plan for downstream execution, tracking, or audit.",
+      "deterministic": false,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&memory.*",
+    "&time.*",
+    "&space.*",
+    "context",
+    "goal_context",
+    "plan_feedback"
+  ],
+  "feeds_into": [
+    "&memory.*",
+    "&space.*",
+    "&time.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "goal-plan-generation",
+    "plan-revision"
+  ],
+  "metadata": {
+    "governance_modes": [
+      "constitutional",
+      "evidence-first",
+      "goal-directed"
+    ],
+    "notes": "Representative contract for planning-oriented reasoning providers in the [&] Protocol."
+  }
+}

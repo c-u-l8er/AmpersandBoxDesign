@@ -1,0 +1,59 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&memory.vector",
+  "provider": "pgvector",
+  "version": "0.1.0",
+  "description": "Vector memory contract for semantic retrieval, document upsert, and knowledge-base enrichment over embedded corpora.",
+  "operations": {
+    "search": {
+      "in": "query_context",
+      "out": "memory_hits",
+      "description": "Retrieve semantically similar documents, passages, or prior knowledge relevant to the current query.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "upsert": {
+      "in": "document_batch",
+      "out": "ack",
+      "description": "Insert or update embedded documents, chunks, or indexed knowledge records in vector memory.",
+      "deterministic": false,
+      "side_effects": true
+    },
+    "enrich": {
+      "in": "context",
+      "out": "enriched_context",
+      "description": "Augment the current context with semantically retrieved supporting material from vector memory.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&reason.*",
+    "&time.*",
+    "&space.*",
+    "raw_data",
+    "query_context",
+    "context",
+    "document_batch"
+  ],
+  "feeds_into": [
+    "&reason.*",
+    "&memory.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "semantic-retrieval",
+    "knowledge-base-enrichment"
+  ],
+  "metadata": {
+    "primitive": "&memory",
+    "subtype": "vector",
+    "supports_semantic_search": true,
+    "supports_embeddings": true,
+    "example_use_cases": [
+      "research corpus retrieval",
+      "support knowledge-base lookup",
+      "semantic context enrichment"
+    ]
+  }
+}

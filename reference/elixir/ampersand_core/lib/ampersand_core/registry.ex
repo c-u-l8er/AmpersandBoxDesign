@@ -477,15 +477,19 @@ defmodule AmpersandCore.Registry do
     end
   end
 
-  defp parse_capability(capability) when is_binary(capability) and capability =~ @capability_regex do
-    trimmed = String.trim_leading(capability, "&")
+  defp parse_capability(capability) when is_binary(capability) do
+    if capability =~ @capability_regex do
+      trimmed = String.trim_leading(capability, "&")
 
-    case String.split(trimmed, ".", parts: 2) do
-      [primitive] ->
-        {:ok, "&" <> primitive, nil}
+      case String.split(trimmed, ".", parts: 2) do
+        [primitive] ->
+          {:ok, "&" <> primitive, nil}
 
-      [primitive, subtype] ->
-        {:ok, "&" <> primitive, subtype}
+        [primitive, subtype] ->
+          {:ok, "&" <> primitive, subtype}
+      end
+    else
+      :error
     end
   end
 

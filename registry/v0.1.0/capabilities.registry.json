@@ -19,6 +19,7 @@
       "vector": {
         "ops": ["search", "upsert", "enrich"],
         "description": "Semantic retrieval memory over embedded documents and knowledge corpora.",
+        "contract_ref": "/contracts/v0.1.0/memory.vector.contract.json",
         "a2a_skills": ["semantic-retrieval", "knowledge-base-enrichment"]
       },
       "episodic": {
@@ -56,7 +57,11 @@
         "status": "stable",
         "metadata": {
           "homepage": "https://graphonomous.com",
-          "notes": "Default ecosystem provider for graph and episodic memory examples."
+          "notes": "Default ecosystem provider for graph and episodic memory examples.",
+          "contract_refs": [
+            "/contracts/v0.1.0/memory.episodic.contract.json",
+            "/contracts/v0.1.0/memory.graph.contract.json"
+          ]
         }
       },
       {
@@ -78,6 +83,7 @@
         "protocol": "mcp_v1",
         "transport": "custom",
         "url": "https://github.com/pgvector/pgvector",
+        "contract_ref": "/contracts/v0.1.0/memory.vector.contract.json",
         "status": "stable"
       },
       {
@@ -88,6 +94,7 @@
         "protocol": "mcp_v1",
         "transport": "custom",
         "url": "https://weaviate.io",
+        "contract_ref": "/contracts/v0.1.0/memory.vector.contract.json",
         "status": "stable"
       }
     ],
@@ -111,11 +118,13 @@
       "vote": {
         "ops": ["propose", "vote", "aggregate", "select"],
         "description": "Consensus-oriented reasoning for committee or multi-agent selection.",
+        "contract_ref": "/contracts/v0.1.0/reason.vote.contract.json",
         "a2a_skills": ["multi-agent-consensus", "candidate-ranking"]
       },
       "plan": {
         "ops": ["plan", "revise", "simulate", "commit"],
         "description": "Goal-directed planning over candidate steps and constrained action sequences.",
+        "contract_ref": "/contracts/v0.1.0/reason.plan.contract.json",
         "a2a_skills": ["goal-plan-generation", "plan-revision"]
       }
     },
@@ -123,8 +132,8 @@
       {
         "id": "deliberatic",
         "name": "Deliberatic",
-        "description": "Representative reasoning provider for argumentative and governance-aware deliberation.",
-        "subtypes": ["argument", "vote"],
+        "description": "Representative reasoning provider for argumentative, consensus, and governance-aware planning workflows.",
+        "subtypes": ["argument", "vote", "plan"],
         "protocol": "mcp_v1",
         "transport": "custom",
         "url": "https://deliberatic.com",
@@ -135,6 +144,11 @@
             "constitutional",
             "evidence-first",
             "customer-safe"
+          ],
+          "contract_refs": [
+            "/contracts/v0.1.0/reason.argument.contract.json",
+            "/contracts/v0.1.0/reason.plan.contract.json",
+            "/contracts/v0.1.0/reason.vote.contract.json"
           ]
         }
       }
@@ -149,6 +163,7 @@
       "anomaly": {
         "ops": ["detect", "enrich", "learn"],
         "description": "Temporal anomaly detection over streaming or historical signals.",
+        "contract_ref": "/contracts/v0.1.0/time.anomaly.contract.json",
         "a2a_skills": ["temporal-anomaly-detection"]
       },
       "forecast": {
@@ -164,6 +179,7 @@
       "pattern": {
         "ops": ["detect", "summarize", "enrich"],
         "description": "Recurring-pattern detection across time windows, seasonality, and trend cycles.",
+        "contract_ref": "/contracts/v0.1.0/time.pattern.contract.json",
         "a2a_skills": ["temporal-pattern-detection", "seasonality-analysis"]
       }
     },
@@ -179,7 +195,12 @@
         "contract_ref": "/contracts/v0.1.0/time.forecast.contract.json",
         "status": "beta",
         "metadata": {
-          "recommended_horizons": ["1h", "24h", "7d"]
+          "recommended_horizons": ["1h", "24h", "7d"],
+          "contract_refs": [
+            "/contracts/v0.1.0/time.anomaly.contract.json",
+            "/contracts/v0.1.0/time.forecast.contract.json",
+            "/contracts/v0.1.0/time.pattern.contract.json"
+          ]
         }
       }
     ],
@@ -207,11 +228,13 @@
       "geofence": {
         "ops": ["contains", "enter_exit", "enrich"],
         "description": "Boundary-aware spatial capability for restricted zones, service areas, and compliance regions.",
+        "contract_ref": "/contracts/v0.1.0/space.geofence.contract.json",
         "a2a_skills": ["geofence-membership-evaluation", "boundary-alerting"]
       },
       "route": {
         "ops": ["route", "optimize", "explain"],
         "description": "Routing and path-evaluation capability over spatial constraints and operating conditions.",
+        "contract_ref": "/contracts/v0.1.0/space.route.contract.json",
         "a2a_skills": ["route-generation", "route-optimization"]
       }
     },
@@ -227,7 +250,12 @@
         "contract_ref": "/contracts/v0.1.0/space.fleet.contract.json",
         "status": "beta",
         "metadata": {
-          "example_regions": ["us-east", "us-central", "eu-west"]
+          "example_regions": ["us-east", "us-central", "eu-west"],
+          "contract_refs": [
+            "/contracts/v0.1.0/space.fleet.contract.json",
+            "/contracts/v0.1.0/space.geofence.contract.json",
+            "/contracts/v0.1.0/space.route.contract.json"
+          ]
         }
       }
     ],

@@ -98,6 +98,8 @@ defmodule AmpersandCore.Artifact do
   """
   @spec validate_document(document(), Path.t(), keyword()) :: result()
   def validate_document(document, schema_path, opts \\ [])
+
+  def validate_document(document, schema_path, opts)
       when is_map(document) and is_binary(schema_path) and is_list(opts) do
     label = Keyword.get(opts, :label, "JSON artifact")
 
@@ -125,6 +127,8 @@ defmodule AmpersandCore.Artifact do
   """
   @spec validate_file(Path.t(), Path.t(), keyword()) :: result()
   def validate_file(path, schema_path, opts \\ [])
+
+  def validate_file(path, schema_path, opts)
       when is_binary(path) and is_binary(schema_path) and is_list(opts) do
     label = Keyword.get(opts, :label, "JSON artifact")
 
@@ -292,10 +296,33 @@ defmodule AmpersandCore.Artifact do
     |> Enum.reject(&String.starts_with?(&1, "npm warn"))
     |> Enum.reject(&String.starts_with?(&1, "npm notice"))
     |> Enum.reject(&String.starts_with?(&1, "unknown format "))
-    |> Enum.map(&"schema validation error: #{&1}")
+    |> Enum.map(&classify_error/1)
     |> case do
       [] -> ["schema validation failed with no diagnostic output from AJV"]
       lines -> lines
+    end
+  end
+
+  defp classify_error(line) do
+    cond do
+      String.contains?(line, "/capabilities") or
+          String.contains?(line, "capabilities") or
+          String.contains?(line, "property name") ->
+        "capability validation error: #{line}"
+
+      String.contains?(line, "/operations") or
+          String.contains?(line, "operations") or
+          String.contains?(line, "accepts_from") or
+          String.contains?(line, "feeds_into") ->
+        "contract validation error: #{line}"
+
+      String.contains?(line, "/providers") or
+          String.contains?(line, "/subtypes") or
+          String.contains?(line, "registry") ->
+        "registry validation error: #{line}"
+
+      true ->
+        "schema validation error: #{line}"
     end
   end
 end

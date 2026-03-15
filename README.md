@@ -134,10 +134,17 @@ This repository is the canonical home for the protocol and its reference artifac
 
 ### Contracts
 - `contracts/v0.1.0/memory.graph.contract.json`
+- `contracts/v0.1.0/memory.vector.contract.json`
 - `contracts/v0.1.0/memory.episodic.contract.json`
 - `contracts/v0.1.0/reason.argument.contract.json`
+- `contracts/v0.1.0/reason.vote.contract.json`
+- `contracts/v0.1.0/reason.plan.contract.json`
+- `contracts/v0.1.0/time.anomaly.contract.json`
 - `contracts/v0.1.0/time.forecast.contract.json`
+- `contracts/v0.1.0/time.pattern.contract.json`
 - `contracts/v0.1.0/space.fleet.contract.json`
+- `contracts/v0.1.0/space.route.contract.json`
+- `contracts/v0.1.0/space.geofence.contract.json`
 
 ### Registry
 - `registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata

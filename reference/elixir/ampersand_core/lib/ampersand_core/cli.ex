@@ -5,9 +5,14 @@ defmodule AmpersandCore.CLI do
   Supported commands:
 
     * `ampersand validate <file>`
+    * `ampersand validate-contract <file>`
+    * `ampersand validate-registry`
+    * `ampersand validate-registry <file>`
     * `ampersand compose <file>`
     * `ampersand generate mcp <file>`
     * `ampersand generate a2a <file>`
+    * `ampersand registry list`
+    * `ampersand registry providers <capability>`
 
   The CLI prints JSON to stdout on success and JSON to stderr on failure.
   """
@@ -34,36 +39,16 @@ defmodule AmpersandCore.CLI do
   def run(argv) when is_list(argv) do
     case argv do
       [] ->
-        ok_result(%{
-          "command" => "help",
-          "status" => "ok",
-          "version" => version_string(),
-          "usage" => usage_lines()
-        })
+        help_result()
 
       ["help"] ->
-        ok_result(%{
-          "command" => "help",
-          "status" => "ok",
-          "version" => version_string(),
-          "usage" => usage_lines()
-        })
+        help_result()
 
       ["--help"] ->
-        ok_result(%{
-          "command" => "help",
-          "status" => "ok",
-          "version" => version_string(),
-          "usage" => usage_lines()
-        })
+        help_result()
 
       ["-h"] ->
-        ok_result(%{
-          "command" => "help",
-          "status" => "ok",
-          "version" => version_string(),
-          "usage" => usage_lines()
-        })
+        help_result()
 
       ["version"] ->
         ok_result(%{
@@ -82,6 +67,15 @@ defmodule AmpersandCore.CLI do
       ["validate", path] ->
         validate_command(path)
 
+      ["validate-contract", path] ->
+        validate_contract_command(path)
+
+      ["validate-registry"] ->
+        validate_registry_command(AmpersandCore.Registry.default_registry_path())
+
+      ["validate-registry", path] ->
+        validate_registry_command(path)
+
       ["compose", path] ->
         compose_command(path)
 
@@ -99,6 +93,20 @@ defmodule AmpersandCore.CLI do
           %{"usage" => usage_lines()}
         )
 
+      ["registry", "list"] ->
+        registry_list_command()
+
+      ["registry", "providers", capability] ->
+        registry_providers_command(capability)
+
+      ["registry", subcommand | _rest] ->
+        error_result(
+          "unknown_registry_command",
+          "unsupported registry command #{inspect(subcommand)}",
+          1,
+          %{"usage" => usage_lines()}
+        )
+
       _ ->
         error_result(
           "invalid_arguments",
@@ -109,12 +117,22 @@ defmodule AmpersandCore.CLI do
     end
   end
 
+  defp help_result do
+    ok_result(%{
+      "command" => "help",
+      "status" => "ok",
+      "version" => version_string(),
+      "usage" => usage_lines()
+    })
+  end
+
   defp validate_command(path) do
     case AmpersandCore.validate_file(path) do
       {:ok, document} ->
         ok_result(%{
           "command" => "validate",
           "status" => "ok",
+          "valid" => true,
           "file" => path,
           "agent" => document["agent"],
           "version" => document["version"],
@@ -125,6 +143,65 @@ defmodule AmpersandCore.CLI do
       {:error, errors} ->
         error_result("validation_failed", errors, 1, %{
           "command" => "validate",
+          "file" => path
+        })
+    end
+  end
+
+  defp validate_contract_command(path) do
+    case AmpersandCore.Contracts.load_contract(path) do
+      {:ok, contract} ->
+        operations =
+          contract
+          |> Map.get("operations", %{})
+          |> Map.keys()
+          |> Enum.sort()
+
+        ok_result(%{
+          "command" => "validate-contract",
+          "status" => "ok",
+          "valid" => true,
+          "file" => path,
+          "capability" => contract["capability"],
+          "provider" => contract["provider"],
+          "version" => contract["version"],
+          "schema" => contract["$schema"],
+          "operation_count" => length(operations),
+          "operations" => operations
+        })
+
+      {:error, errors} ->
+        error_result("contract_validation_failed", errors, 1, %{
+          "command" => "validate-contract",
+          "file" => path
+        })
+    end
+  end
+
+  defp validate_registry_command(path) do
+    case AmpersandCore.Registry.load(path) do
+      {:ok, registry} ->
+        primitives = AmpersandCore.Registry.list_primitives(registry)
+        capabilities = AmpersandCore.Registry.list_capabilities(registry)
+        providers = registry_provider_ids(registry)
+
+        ok_result(%{
+          "command" => "validate-registry",
+          "status" => "ok",
+          "valid" => true,
+          "file" => path,
+          "registry" => registry["registry"],
+          "version" => registry["version"],
+          "generated_at" => registry["generated_at"],
+          "schema" => registry["$schema"],
+          "primitive_count" => length(primitives),
+          "capability_count" => length(capabilities),
+          "provider_count" => length(providers)
+        })
+
+      {:error, errors} ->
+        error_result("registry_validation_failed", errors, 1, %{
+          "command" => "validate-registry",
           "file" => path
         })
     end
@@ -187,6 +264,85 @@ defmodule AmpersandCore.CLI do
           "command" => "generate",
           "target" => "a2a",
           "file" => path
+        })
+    end
+  end
+
+  defp registry_list_command do
+    case AmpersandCore.load_registry() do
+      {:ok, registry} ->
+        primitives = AmpersandCore.Registry.list_primitives(registry)
+        capabilities = AmpersandCore.Registry.list_capabilities(registry)
+        providers = registry_provider_ids(registry)
+
+        contract_backed_capabilities =
+          capabilities
+          |> Enum.filter(&(not is_nil(AmpersandCore.Registry.contract_ref_for(registry, &1))))
+
+        ok_result(%{
+          "command" => "registry",
+          "subcommand" => "list",
+          "status" => "ok",
+          "registry" => %{
+            "id" => registry["registry"],
+            "version" => registry["version"],
+            "generated_at" => registry["generated_at"]
+          },
+          "primitives" => primitives,
+          "capabilities" => capabilities,
+          "providers" => providers,
+          "primitive_count" => length(primitives),
+          "capability_count" => length(capabilities),
+          "provider_count" => length(providers),
+          "contract_backed_capabilities" => contract_backed_capabilities
+        })
+
+      {:error, errors} ->
+        error_result("registry_load_failed", errors, 1, %{
+          "command" => "registry",
+          "subcommand" => "list"
+        })
+    end
+  end
+
+  defp registry_providers_command(capability) do
+    case AmpersandCore.load_registry() do
+      {:ok, registry} ->
+        if AmpersandCore.Registry.capability_defined?(registry, capability) do
+          providers =
+            registry
+            |> AmpersandCore.Registry.providers_for_capability(capability)
+            |> Enum.map(&provider_details/1)
+
+          ok_result(%{
+            "command" => "registry",
+            "subcommand" => "providers",
+            "status" => "ok",
+            "capability" => capability,
+            "contract_ref" => AmpersandCore.Registry.contract_ref_for(registry, capability),
+            "operations" => AmpersandCore.Registry.operations_for(registry, capability),
+            "a2a_skills" => AmpersandCore.Registry.a2a_skills_for(registry, capability),
+            "providers" => providers,
+            "provider_count" => length(providers)
+          })
+        else
+          error_result(
+            "unknown_capability",
+            "capability #{inspect(capability)} is not defined in the registry",
+            1,
+            %{
+              "command" => "registry",
+              "subcommand" => "providers",
+              "capability" => capability
+            }
+          )
+        end
+
+      {:error, errors} ->
+        error_result("registry_load_failed", errors, 1, %{
+          "command" => "registry",
+          "subcommand" => "providers",
+          "capability" => capability
         })
     end
   end
@@ -305,6 +461,35 @@ defmodule AmpersandCore.CLI do
     |> Enum.sort()
   end
 
+  defp registry_provider_ids(registry) do
+    registry
+    |> AmpersandCore.Registry.list_primitives()
+    |> Enum.flat_map(&AmpersandCore.Registry.providers_for_capability(registry, &1))
+    |> Enum.map(&Map.get(&1, "id"))
+    |> Enum.reject(&is_nil/1)
+    |> Enum.uniq()
+    |> Enum.sort()
+  end
+
+  defp provider_details(provider) do
+    %{}
+    |> put_if_present("id", provider["id"])
+    |> put_if_present("name", provider["name"])
+    |> put_if_present("description", provider["description"])
+    |> put_if_present("subtypes", provider["subtypes"])
+    |> put_if_present("protocol", provider["protocol"])
+    |> put_if_present("transport", provider["transport"])
+    |> put_if_present("status", provider["status"])
+    |> put_if_present("url", provider["url"])
+    |> put_if_present("command", provider["command"])
+    |> put_if_present("args", provider["args"])
+    |> put_if_present("contract_ref", provider["contract_ref"])
+  end
+
+  defp put_if_present(map, _key, nil), do: map
+  defp put_if_present(map, _key, []), do: map
+  defp put_if_present(map, key, value), do: Map.put(map, key, value)
+
   defp emit_and_halt({:ok, output}) do
     IO.binwrite(output)
     System.halt(0)
@@ -346,9 +531,14 @@ defmodule AmpersandCore.CLI do
   defp usage_lines do
     [
       "ampersand validate <file>",
+      "ampersand validate-contract <file>",
+      "ampersand validate-registry",
+      "ampersand validate-registry <file>",
       "ampersand compose <file>",
       "ampersand generate mcp <file>",
       "ampersand generate a2a <file>",
+      "ampersand registry list",
+      "ampersand registry providers <capability>",
       "ampersand version",
       "ampersand help"
     ]

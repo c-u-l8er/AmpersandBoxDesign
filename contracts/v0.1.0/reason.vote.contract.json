@@ -1,0 +1,64 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "capability": "&reason.vote",
+  "provider": "deliberatic",
+  "version": "0.1.0",
+  "description": "Consensus-oriented reasoning contract for multi-agent proposal comparison, voting, aggregation, and final selection under governance constraints.",
+  "operations": {
+    "propose": {
+      "in": "context",
+      "out": "proposal_set",
+      "description": "Generate candidate proposals or options from the current decision context.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "vote": {
+      "in": "proposal_set",
+      "out": "ballot_set",
+      "description": "Collect preference, ranking, or support signals over a set of candidate proposals.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "aggregate": {
+      "in": "ballot_set",
+      "out": "consensus_state",
+      "description": "Aggregate ballots into a consensus state that captures support, disagreement, and selection confidence.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "select": {
+      "in": "consensus_state",
+      "out": "decision",
+      "description": "Select the final decision from the aggregated consensus state.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&memory.*",
+    "&time.*",
+    "&space.*",
+    "context",
+    "candidate_set",
+    "proposal_set"
+  ],
+  "feeds_into": [
+    "&memory.*",
+    "output"
+  ],
+  "a2a_skills": [
+    "multi-agent-consensus",
+    "candidate-ranking"
+  ],
+  "metadata": {
+    "primitive": "reason",
+    "subtype": "vote",
+    "decision_model": "consensus",
+    "governance_modes": [
+      "constitutional",
+      "committee-safe",
+      "evidence-first"
+    ],
+    "notes": "Representative contract for consensus-style reasoning providers in the [&] Protocol."
+  }
+}

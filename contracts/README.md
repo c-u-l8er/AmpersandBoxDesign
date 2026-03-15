@@ -103,19 +103,26 @@ A useful mental model is:
 
 ## Current contract artifacts
 
-This directory currently includes representative standalone contracts for:
+This directory currently includes the complete `v0.1.0` contract artifact set for the published capability subtypes:
 
 - `memory.graph.contract.json`
+- `memory.vector.contract.json`
 - `memory.episodic.contract.json`
 - `reason.argument.contract.json`
+- `reason.vote.contract.json`
+- `reason.plan.contract.json`
+- `time.anomaly.contract.json`
 - `time.forecast.contract.json`
+- `time.pattern.contract.json`
 - `space.fleet.contract.json`
+- `space.route.contract.json`
+- `space.geofence.contract.json`
 
-These are intended to be:
+These artifacts are intended to serve as:
 
-- concrete examples
+- canonical protocol fixtures for the full versioned artifact set
 - validation fixtures
-- input for future registry and generation tooling
+- input for registry and generation tooling
 - references for additional provider implementations
 
 ---

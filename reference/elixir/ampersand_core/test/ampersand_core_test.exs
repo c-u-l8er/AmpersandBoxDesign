@@ -157,7 +157,8 @@ defmodule AmpersandCoreArtifactLoadingTest do
     assert Map.keys(contracts) |> Enum.sort() == [
              "&memory.graph",
              "&reason.argument",
-             "&space.fleet"
+             "&space.fleet",
+             "&time.anomaly"
            ]
   end
 end
@@ -616,13 +617,14 @@ defmodule AmpersandCoreCLITest do
            }
 
     assert decoded["contracts"] == %{
-             "contract_count" => 3,
+             "contract_count" => 4,
              "loaded" => [
                "&memory.graph",
                "&reason.argument",
-               "&space.fleet"
+               "&space.fleet",
+               "&time.anomaly"
              ],
-             "missing" => ["&time.anomaly"]
+             "missing" => []
            }
 
     assert decoded["registry"]["known_capabilities"] == [
