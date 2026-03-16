@@ -156,9 +156,10 @@ defmodule AmpersandCore.MCP do
     bindings = normalize_bindings(document)
     resolver_registry = provider_registry(opts)
     capability_registry = load_registry_metadata(opts)
+    {effective_bindings, unresolved_auto} = expand_auto_bindings(bindings, capability_registry)
 
-    {resolved, unresolved} =
-      bindings
+    {resolved, unresolved_from_resolvers} =
+      effective_bindings
       |> Enum.group_by(& &1.provider)
       |> Enum.sort_by(fn {provider, _bindings} -> provider end)
       |> Enum.reduce({%{}, []}, fn {provider, provider_bindings}, {resolved_acc, unresolved_acc} ->
@@ -182,6 +183,8 @@ defmodule AmpersandCore.MCP do
             {resolved_acc, unresolved_acc ++ [unresolved_entry]}
         end
       end)
+
+    unresolved = unresolved_auto ++ unresolved_from_resolvers
 
     if strict? and unresolved != [] do
       {:error,
@@ -285,13 +288,64 @@ defmodule AmpersandCore.MCP do
     |> Enum.sort_by(&{&1.provider || "", &1.capability})
   end
 
+  defp expand_auto_bindings(bindings, capability_registry) do
+    bindings
+    |> Enum.reduce({[], []}, fn binding, {resolved_acc, unresolved_acc} ->
+      if binding.provider == "auto" do
+        case resolve_auto_provider_for_capability(binding.capability, capability_registry) do
+          {:ok, provider_id} ->
+            {
+              [%{binding | provider: provider_id} | resolved_acc],
+              unresolved_acc
+            }
+
+          {:error, reason} ->
+            unresolved_entry = %{
+              "provider" => "auto",
+              "capabilities" => [binding.capability],
+              "reason" => reason,
+              "published_in_registry" => false
+            }
+
+            {resolved_acc, unresolved_acc ++ [unresolved_entry]}
+        end
+      else
+        {[binding | resolved_acc], unresolved_acc}
+      end
+    end)
+    |> then(fn {resolved, unresolved} ->
+      {
+        resolved |> Enum.sort_by(&{&1.provider || "", &1.capability}),
+        unresolved
+      }
+    end)
+  end
+
+  defp resolve_auto_provider_for_capability(capability, %{} = capability_registry)
+       when is_binary(capability) do
+    providers =
+      capability_registry
+      |> Registry.providers_for_capability(capability)
+      |> Enum.sort_by(&Map.get(&1, "id", ""))
+
+    case providers do
+      [%{} = provider | _rest] ->
+        {:ok, provider["id"]}
+
+      _ ->
+        {:error, "no registry provider found for capability #{capability}"}
+    end
+  end
+
+  defp resolve_auto_provider_for_capability(capability, _capability_registry)
+       when is_binary(capability) do
+    {:error, "no capability registry available for auto provider resolution"}
+  end
+
   defp resolve_provider(provider, bindings, registry, capability_registry, opts) do
     case Map.get(registry, provider) do
       resolver when is_function(resolver, 3) ->
         resolver.(provider, bindings, opts)
-
-      _ when provider == "auto" ->
-        {:unresolved, "provider resolution required from capability registry"}
 
       _ ->
         case registry_provider_entry(capability_registry, provider) do
@@ -356,7 +410,8 @@ defmodule AmpersandCore.MCP do
 
   defp default_provider_registry do
     %{
-      "graphonomous" => &resolve_graphonomous/3
+      "graphonomous" => &resolve_graphonomous/3,
+      "ticktickclock" => &resolve_ticktickclock/3
     }
   end
 
@@ -406,6 +461,21 @@ defmodule AmpersandCore.MCP do
             "capabilities" => capability_names
           }
       end
+
+    {:ok, {provider, server}}
+  end
+
+  defp resolve_ticktickclock(provider, bindings, _opts) do
+    capability_names = bindings |> Enum.map(& &1.capability) |> Enum.sort()
+
+    server = %{
+      "command" => "npx",
+      "args" => ["-y", "@ampersand-protocol/ticktickclock-mcp"],
+      "env" => %{},
+      "transport" => "stdio",
+      "provider" => provider,
+      "capabilities" => capability_names
+    }
 
     {:ok, {provider, server}}
   end

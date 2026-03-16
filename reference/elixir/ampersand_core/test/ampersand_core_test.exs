@@ -98,7 +98,8 @@ defmodule AmpersandCoreSchemaTest do
     for file <- [
           "infra-operator.ampersand.json",
           "fleet-manager.ampersand.json",
-          "research-agent.ampersand.json"
+          "research-agent.ampersand.json",
+          "auto-resolved.ampersand.json"
         ] do
       assert {:ok, document} = AmpersandCore.Schema.validate_file(Fixtures.example_path(file))
       assert is_map(document)
@@ -382,7 +383,7 @@ defmodule AmpersandCoreMCPTest do
     assert {:ok, %{"context_servers" => context_servers}} =
              AmpersandCore.MCP.client_config(infra)
 
-    assert %{"graphonomous" => graphonomous} = context_servers
+    assert %{"graphonomous" => graphonomous, "ticktickclock" => ticktickclock} = context_servers
 
     assert graphonomous["command"] == "npx"
 
@@ -401,6 +402,11 @@ defmodule AmpersandCoreMCPTest do
            }
 
     assert graphonomous["transport"] == "stdio"
+
+    assert ticktickclock["command"] == "npx"
+    assert ticktickclock["args"] == ["-y", "@ampersand-protocol/ticktickclock-mcp"]
+    assert ticktickclock["env"] == %{}
+    assert ticktickclock["transport"] == "stdio"
   end
 
   test "manifest preserves unresolved providers as metadata" do
@@ -422,8 +428,7 @@ defmodule AmpersandCoreMCPTest do
 
     assert Enum.map(manifest["unresolved_providers"], & &1["provider"]) == [
              "deliberatic",
-             "geofleetic",
-             "ticktickclock"
+             "geofleetic"
            ]
 
     assert Enum.all?(manifest["unresolved_providers"], fn entry ->
@@ -467,26 +472,25 @@ defmodule AmpersandCoreMCPTest do
     assert graphonomous["transport"] == "stdio"
   end
 
-  test "manifest leaves auto-resolved capabilities pending until registry resolution occurs" do
+  test "manifest resolves auto providers from registry before MCP resolver pass" do
     fleet = Fixtures.load_example!("fleet-manager.ampersand.json")
 
     assert {:ok, manifest} = AmpersandCore.MCP.generate(fleet)
 
-    assert manifest["config"] == %{"context_servers" => %{}}
     assert manifest["registry"]["id"] == "registry.ampersandboxdesign.com"
 
-    assert manifest["unresolved_providers"] == [
-             %{
-               "provider" => "auto",
-               "capabilities" => [
-                 "&memory.episodic",
-                 "&reason.argument",
-                 "&space.fleet",
-                 "&time.forecast"
-               ],
-               "reason" => "provider resolution required from capability registry",
-               "published_in_registry" => false
-             }
+    assert manifest["config"]["context_servers"]["graphonomous"]["command"] == "npx"
+
+    assert manifest["config"]["context_servers"]["ticktickclock"]["command"] == "npx"
+
+    assert manifest["config"]["context_servers"]["ticktickclock"]["args"] == [
+             "-y",
+             "@ampersand-protocol/ticktickclock-mcp"
+           ]
+
+    assert Enum.map(manifest["unresolved_providers"], & &1["provider"]) == [
+             "deliberatic",
+             "geofleetic"
            ]
   end
 end

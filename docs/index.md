@@ -26,6 +26,7 @@ Use this documentation to understand the protocol from multiple angles:
 :maxdepth: 2
 :caption: Documentation
 
+quickstart
 architecture
 runtime-walkthrough
 positioning
@@ -48,12 +49,13 @@ faq
 
 If you're new to the project, a good path is:
 
-1. `architecture` — understand the protocol's responsibilities, runtime lifecycle, and end-to-end declaration flow
-2. `runtime-walkthrough` — follow a concrete declaration through validation, composition, provider resolution, and generation
-3. `positioning` — see where [&] fits relative to MCP, A2A, ACP, and DALIA
-4. `research` — understand the ecosystem and research pressures behind the design
-5. `faq` — get quick answers to common adoption and framing questions
-6. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
+1. `quickstart` — get from clone to a working `ampersand` CLI in minutes, with reproducible command output
+2. `architecture` — understand the protocol's responsibilities, runtime lifecycle, and end-to-end declaration flow
+3. `runtime-walkthrough` — follow a concrete declaration through validation, composition, provider resolution, and generation
+4. `positioning` — see where [&] fits relative to MCP, A2A, ACP, and DALIA
+5. `research` — understand the ecosystem and research pressures behind the design
+6. `faq` — get quick answers to common adoption and framing questions
+7. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
 
 ## Core idea
 

@@ -2,7 +2,7 @@
 
 This page shows what happens when a runtime processes an [`ampersand.json`](architecture.md#declaration-architecture) declaration from start to finish.
 
-The goal is to make the protocol operational, not just conceptual.
+The goal is to make the protocol operational, not just conceptual. The CLI flow shown here is reproducible in the reference implementation; for copy/paste setup steps and captured command output, see [`quickstart.md`](quickstart.md).
 
 It answers practical questions such as:
 
@@ -112,7 +112,7 @@ Before doing any execution, a runtime can already infer:
 
 The first step is structural validation.
 
-A CLI might expose that as:
+A CLI might expose that as (with reproducible command/output examples in [`quickstart.md`](quickstart.md)):
 
 ```text
 $ ampersand validate examples/infra-ops.ampersand.json
@@ -218,6 +218,8 @@ The exact representation is runtime-specific.
 The important point is that composition produces a **deterministic, normalized capability graph**.
 
 ### Example CLI output
+
+The snippets below are illustrative of the same working commands demonstrated end-to-end in [`quickstart.md`](quickstart.md), where actual captured JSON output is included.
 
 ```text
 $ ampersand compose examples/infra-ops.ampersand.json

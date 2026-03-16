@@ -9,12 +9,18 @@ defmodule AmpersandCore.CLI do
     * `ampersand validate-registry`
     * `ampersand validate-registry <file>`
     * `ampersand compose <file>`
+    * `ampersand compose <file1> <file2> [file3...]`
     * `ampersand check <file> <pipeline>`
+    * `ampersand check <file> --pipeline <name>`
     * `ampersand plan <file> <pipeline>`
+    * `ampersand plan <file> --pipeline <name>`
     * `ampersand run <file> <pipeline>`
     * `ampersand run <file> <pipeline> <input>`
-    * `ampersand generate mcp <file>`
-    * `ampersand generate a2a <file>`
+    * `ampersand run <file> --pipeline <name>`
+    * `ampersand run <file> --pipeline <name> <input>`
+    * `ampersand generate mcp <file> [--format zed|generic] [-o|--output <path>]`
+    * `ampersand generate a2a <file> [-o|--output <path>]`
+    * `ampersand diff <file1> <file2>`
     * `ampersand registry list`
     * `ampersand registry providers <capability>`
 
@@ -83,13 +89,36 @@ defmodule AmpersandCore.CLI do
         validate_registry_command(path)
 
       ["compose", path] ->
-        compose_command(path)
+        compose_command([path])
+
+      ["compose", first_path, second_path | rest_paths] ->
+        compose_command([first_path, second_path | rest_paths])
+
+      ["compose" | _invalid_args] ->
+        error_result(
+          "invalid_arguments",
+          "compose requires at least one declaration file",
+          1,
+          %{"usage" => usage_lines()}
+        )
+
+      ["check", path, "--pipeline", pipeline_name] ->
+        check_named_pipeline_command(path, pipeline_name)
 
       ["check", path, pipeline_ref] ->
         check_command(path, pipeline_ref)
 
+      ["plan", path, "--pipeline", pipeline_name] ->
+        plan_named_pipeline_command(path, pipeline_name)
+
       ["plan", path, pipeline_ref] ->
         plan_command(path, pipeline_ref)
+
+      ["run", path, "--pipeline", pipeline_name] ->
+        run_named_pipeline_command(path, pipeline_name, nil)
+
+      ["run", path, "--pipeline", pipeline_name, input_ref] ->
+        run_named_pipeline_command(path, pipeline_name, input_ref)
 
       ["run", path, pipeline_ref] ->
         run_command(path, pipeline_ref, nil)
@@ -97,11 +126,14 @@ defmodule AmpersandCore.CLI do
       ["run", path, pipeline_ref, input_ref] ->
         run_command(path, pipeline_ref, input_ref)
 
-      ["generate", "mcp", path] ->
-        generate_mcp_command(path)
+      ["generate", "mcp", path | option_args] ->
+        generate_mcp_command(path, option_args)
 
-      ["generate", "a2a", path] ->
-        generate_a2a_command(path)
+      ["generate", "a2a", path | option_args] ->
+        generate_a2a_command(path, option_args)
+
+      ["diff", left_path, right_path] ->
+        diff_command(left_path, right_path)
 
       ["generate", target | _rest] ->
         error_result(
@@ -233,43 +265,123 @@ defmodule AmpersandCore.CLI do
     end
   end
 
-  defp compose_command(path) do
-    with {:ok, document} <- AmpersandCore.validate_file(path),
-         {:ok, composed} <- AmpersandCore.compose([document]) do
-      capabilities = AmpersandCore.normalize_capabilities(document)
+  defp compose_command(paths) when is_list(paths) do
+    with {:ok, documents} <- load_and_validate_documents(paths),
+         {:ok, composed} <- AmpersandCore.compose(documents) do
+      composed_document = %{"capabilities" => composed}
 
-      ok_result(%{
-        "command" => "compose",
-        "status" => "ok",
-        "file" => path,
-        "agent" => document["agent"],
-        "version" => document["version"],
-        "capabilities" => capabilities,
-        "capability_count" => length(capabilities),
-        "aci" => aci_report(document),
-        "contracts" => contract_report(document),
-        "registry" => registry_report(document),
-        "composed" => composed
-      })
+      capabilities = AmpersandCore.normalize_capabilities(composed_document)
+
+      payload =
+        case {paths, documents} do
+          {[path], [document]} ->
+            %{
+              "command" => "compose",
+              "status" => "ok",
+              "file" => path,
+              "agent" => document["agent"],
+              "version" => document["version"],
+              "capabilities" => capabilities,
+              "capability_count" => length(capabilities),
+              "aci" => aci_report(document),
+              "contracts" => contract_report(document),
+              "registry" => registry_report(document),
+              "composed" => composed
+            }
+
+          _ ->
+            %{
+              "command" => "compose",
+              "status" => "ok",
+              "files" => paths,
+              "file_count" => length(paths),
+              "agents" => documents |> Enum.map(& &1["agent"]) |> Enum.uniq() |> Enum.sort(),
+              "versions" => documents |> Enum.map(& &1["version"]) |> Enum.uniq() |> Enum.sort(),
+              "capabilities" => capabilities,
+              "capability_count" => length(capabilities),
+              "aci" => aci_report(composed_document),
+              "contracts" => contract_report(composed_document),
+              "registry" => registry_report(composed_document),
+              "composed" => composed
+            }
+        end
+
+      ok_result(payload)
     else
       {:error, errors} when is_list(errors) ->
         error_result("compose_failed", errors, 1, %{
           "command" => "compose",
-          "file" => path
+          "files" => paths
         })
 
       {:error, reason} ->
         error_result("compose_failed", inspect(reason), 1, %{
           "command" => "compose",
-          "file" => path
+          "files" => paths
         })
     end
   end
 
+  defp load_and_validate_documents(paths) when is_list(paths) do
+    paths
+    |> Enum.reduce_while({:ok, []}, fn path, {:ok, documents} ->
+      case AmpersandCore.validate_file(path) do
+        {:ok, document} ->
+          {:cont, {:ok, documents ++ [document]}}
+
+        {:error, errors} when is_list(errors) ->
+          {:halt, {:error, Enum.map(errors, fn error -> "#{path}: #{error}" end)}}
+
+        {:error, reason} ->
+          {:halt, {:error, ["#{path}: #{inspect(reason)}"]}}
+      end
+    end)
+  end
+
   defp check_command(path, pipeline_ref) do
     with {:ok, document} <- AmpersandCore.validate_file(path),
-         {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
-         {:ok, parsed_pipeline} <- AmpersandCore.Runtime.normalize_pipeline(pipeline_input),
+         {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref) do
+      do_check_command(path, document, pipeline_input, pipeline_meta, pipeline_ref)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_check_failed", errors, 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_check_failed", inspect(reason), 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
+  defp check_named_pipeline_command(path, pipeline_name) do
+    with {:ok, document} <- AmpersandCore.validate_file(path),
+         {:ok, pipeline_input, pipeline_meta} <- load_named_pipeline_reference(document, pipeline_name) do
+      do_check_command(path, document, pipeline_input, pipeline_meta, pipeline_name)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_check_failed", errors, 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_check_failed", inspect(reason), 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+    end
+  end
+
+  defp do_check_command(path, document, pipeline_input, pipeline_meta, pipeline_ref) do
+    with {:ok, parsed_pipeline} <- AmpersandCore.Runtime.normalize_pipeline(pipeline_input),
          :ok <-
            AmpersandCore.Contracts.check_pipeline_for_document(
              document,
@@ -312,8 +424,48 @@ defmodule AmpersandCore.CLI do
   end
 
   defp plan_command(path, pipeline_ref) do
-    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
-         {:ok, plan} <- AmpersandCore.plan_pipeline_file(path, pipeline_input, []) do
+    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref) do
+      do_plan_command(path, pipeline_input, pipeline_meta, pipeline_ref)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_plan_failed", errors, 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_plan_failed", inspect(reason), 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
+  defp plan_named_pipeline_command(path, pipeline_name) do
+    with {:ok, document} <- AmpersandCore.validate_file(path),
+         {:ok, pipeline_input, pipeline_meta} <- load_named_pipeline_reference(document, pipeline_name) do
+      do_plan_command(path, pipeline_input, pipeline_meta, pipeline_name)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_plan_failed", errors, 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_plan_failed", inspect(reason), 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+    end
+  end
+
+  defp do_plan_command(path, pipeline_input, pipeline_meta, pipeline_ref) do
+    with {:ok, plan} <- AmpersandCore.plan_pipeline_file(path, pipeline_input, []) do
       ok_result(
         plan
         |> Map.put("command", "plan")
@@ -338,8 +490,48 @@ defmodule AmpersandCore.CLI do
   end
 
   defp run_command(path, pipeline_ref, input_ref) do
-    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
-         {:ok, runtime_input, input_meta} <- load_runtime_input(input_ref),
+    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref) do
+      do_run_command(path, pipeline_input, pipeline_meta, pipeline_ref, input_ref)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_run_failed", errors, 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_run_failed", inspect(reason), 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
+  defp run_named_pipeline_command(path, pipeline_name, input_ref) do
+    with {:ok, document} <- AmpersandCore.validate_file(path),
+         {:ok, pipeline_input, pipeline_meta} <- load_named_pipeline_reference(document, pipeline_name) do
+      do_run_command(path, pipeline_input, pipeline_meta, pipeline_name, input_ref)
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_run_failed", errors, 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_run_failed", inspect(reason), 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline_name" => pipeline_name
+        })
+    end
+  end
+
+  defp do_run_command(path, pipeline_input, pipeline_meta, pipeline_ref, input_ref) do
+    with {:ok, runtime_input, input_meta} <- load_runtime_input(input_ref),
          {:ok, result} <- AmpersandCore.run_pipeline_file(path, pipeline_input, runtime_input, []) do
       ok_result(
         result
@@ -366,13 +558,35 @@ defmodule AmpersandCore.CLI do
     end
   end
 
-  defp generate_mcp_command(path) do
-    case AmpersandCore.MCP.client_config_file(path) do
-      {:ok, config} ->
-        ok_result(config)
+  defp generate_mcp_command(path, option_args) when is_list(option_args) do
+    with {:ok, options} <- parse_generate_options(option_args, :mcp),
+         {:ok, config} <- AmpersandCore.MCP.client_config_file(path, mcp_generate_opts(options)),
+         :ok <- maybe_write_output(options.output, config) do
+      case options.output do
+        nil ->
+          ok_result(config)
 
-      {:error, errors} ->
+        output_path ->
+          ok_result(%{
+            "command" => "generate",
+            "target" => "mcp",
+            "status" => "ok",
+            "file" => path,
+            "format" => options.format,
+            "output" => output_path,
+            "config" => config
+          })
+      end
+    else
+      {:error, errors} when is_list(errors) ->
         error_result("mcp_generation_failed", errors, 1, %{
+          "command" => "generate",
+          "target" => "mcp",
+          "file" => path
+        })
+
+      {:error, reason} ->
+        error_result("mcp_generation_failed", inspect(reason), 1, %{
           "command" => "generate",
           "target" => "mcp",
           "file" => path
@@ -380,16 +594,126 @@ defmodule AmpersandCore.CLI do
     end
   end
 
-  defp generate_a2a_command(path) do
-    case AmpersandCore.generate_a2a_card_file(path) do
-      {:ok, card} ->
-        ok_result(card)
+  defp generate_a2a_command(path, option_args) when is_list(option_args) do
+    with {:ok, options} <- parse_generate_options(option_args, :a2a),
+         {:ok, card} <- AmpersandCore.generate_a2a_card_file(path),
+         :ok <- maybe_write_output(options.output, card) do
+      case options.output do
+        nil ->
+          ok_result(card)
 
-      {:error, errors} ->
+        output_path ->
+          ok_result(%{
+            "command" => "generate",
+            "target" => "a2a",
+            "status" => "ok",
+            "file" => path,
+            "output" => output_path,
+            "card" => card
+          })
+      end
+    else
+      {:error, errors} when is_list(errors) ->
         error_result("a2a_generation_failed", errors, 1, %{
           "command" => "generate",
           "target" => "a2a",
           "file" => path
+        })
+
+      {:error, reason} ->
+        error_result("a2a_generation_failed", inspect(reason), 1, %{
+          "command" => "generate",
+          "target" => "a2a",
+          "file" => path
+        })
+    end
+  end
+
+  defp diff_command(left_path, right_path) do
+    with {:ok, left_document} <- AmpersandCore.validate_file(left_path),
+         {:ok, right_document} <- AmpersandCore.validate_file(right_path) do
+      left_capabilities = Map.get(left_document, "capabilities", %{})
+      right_capabilities = Map.get(right_document, "capabilities", %{})
+
+      left_keys = left_capabilities |> Map.keys() |> Enum.sort()
+      right_keys = right_capabilities |> Map.keys() |> Enum.sort()
+
+      added = right_keys -- left_keys
+      removed = left_keys -- right_keys
+      shared = left_keys -- removed
+
+      binding_changes =
+        shared
+        |> Enum.filter(fn capability ->
+          Map.get(left_capabilities, capability) != Map.get(right_capabilities, capability)
+        end)
+        |> Enum.map(fn capability ->
+          %{
+            "capability" => capability,
+            "left" => Map.get(left_capabilities, capability),
+            "right" => Map.get(right_capabilities, capability)
+          }
+        end)
+
+      provider_changes =
+        binding_changes
+        |> Enum.map(fn change ->
+          %{
+            "capability" => change["capability"],
+            "left_provider" => get_in(change, ["left", "provider"]),
+            "right_provider" => get_in(change, ["right", "provider"])
+          }
+        end)
+        |> Enum.filter(fn change ->
+          change["left_provider"] != change["right_provider"]
+        end)
+
+      governance_changed = Map.get(left_document, "governance") != Map.get(right_document, "governance")
+      provenance_changed = Map.get(left_document, "provenance") != Map.get(right_document, "provenance")
+
+      ok_result(%{
+        "command" => "diff",
+        "status" => "ok",
+        "left_file" => left_path,
+        "right_file" => right_path,
+        "capabilities" => %{
+          "added" => added,
+          "removed" => removed,
+          "binding_changes" => binding_changes,
+          "provider_changes" => provider_changes
+        },
+        "governance" => %{
+          "changed" => governance_changed,
+          "left" => Map.get(left_document, "governance"),
+          "right" => Map.get(right_document, "governance")
+        },
+        "provenance" => %{
+          "changed" => provenance_changed,
+          "left" => Map.get(left_document, "provenance"),
+          "right" => Map.get(right_document, "provenance")
+        },
+        "summary" => %{
+          "added_count" => length(added),
+          "removed_count" => length(removed),
+          "binding_change_count" => length(binding_changes),
+          "provider_change_count" => length(provider_changes),
+          "governance_changed" => governance_changed,
+          "provenance_changed" => provenance_changed
+        }
+      })
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("diff_failed", errors, 1, %{
+          "command" => "diff",
+          "left_file" => left_path,
+          "right_file" => right_path
+        })
+
+      {:error, reason} ->
+        error_result("diff_failed", inspect(reason), 1, %{
+          "command" => "diff",
+          "left_file" => left_path,
+          "right_file" => right_path
         })
     end
   end
@@ -483,6 +807,78 @@ defmodule AmpersandCore.CLI do
       end
     else
       {:ok, decode_jsonish(reference), %{}}
+    end
+  end
+
+  defp load_named_pipeline_reference(document, pipeline_name)
+       when is_map(document) and is_binary(pipeline_name) do
+    pipelines = Map.get(document, "pipelines", %{})
+
+    case Map.get(pipelines, pipeline_name) do
+      %{} = pipeline ->
+        {:ok, pipeline, %{"pipeline_name" => pipeline_name}}
+
+      _ ->
+        {:error, ["pipeline #{inspect(pipeline_name)} is not defined in declaration pipelines"]}
+    end
+  end
+
+  defp parse_generate_options(args, target) when is_list(args) do
+    parse_generate_options(args, %{output: nil, format: :zed}, target)
+  end
+
+  defp parse_generate_options([], options, :mcp), do: {:ok, options}
+
+  defp parse_generate_options([], options, :a2a) do
+    case options.format do
+      :zed -> {:ok, options}
+      _ -> {:error, ["--format is only supported for generate mcp"]}
+    end
+  end
+
+  defp parse_generate_options(["-o", output_path | rest], options, target) do
+    parse_generate_options(rest, %{options | output: output_path}, target)
+  end
+
+  defp parse_generate_options(["--output", output_path | rest], options, target) do
+    parse_generate_options(rest, %{options | output: output_path}, target)
+  end
+
+  defp parse_generate_options(["--format", format | rest], options, :mcp) do
+    case format do
+      "zed" -> parse_generate_options(rest, %{options | format: :zed}, :mcp)
+      "generic" -> parse_generate_options(rest, %{options | format: :generic}, :mcp)
+      _ -> {:error, ["unsupported --format #{inspect(format)}; expected zed or generic"]}
+    end
+  end
+
+  defp parse_generate_options(["--format", _format | _rest], _options, :a2a) do
+    {:error, ["--format is only supported for generate mcp"]}
+  end
+
+  defp parse_generate_options([option], _options, _target)
+       when option in ["-o", "--output", "--format"] do
+    {:error, ["missing value for option #{option}"]}
+  end
+
+  defp parse_generate_options([unknown | _rest], _options, _target) do
+    {:error, ["unknown option #{inspect(unknown)}"]}
+  end
+
+  defp mcp_generate_opts(options) do
+    [format: options.format]
+  end
+
+  defp maybe_write_output(nil, _payload), do: :ok
+
+  defp maybe_write_output(path, payload) when is_binary(path) and is_map(payload) do
+    with :ok <- File.mkdir_p(Path.dirname(path)),
+         {:ok, encoded} <- Jason.encode(payload, pretty: true),
+         :ok <- File.write(path, encoded <> "\n") do
+      :ok
+    else
+      {:error, reason} ->
+        {:error, ["unable to write output file #{path}: #{inspect(reason)}"]}
     end
   end
 
@@ -709,12 +1105,18 @@ defmodule AmpersandCore.CLI do
       "ampersand validate-registry",
       "ampersand validate-registry <file>",
       "ampersand compose <file>",
+      "ampersand compose <file1> <file2> [file3...]",
       "ampersand check <file> <pipeline>",
+      "ampersand check <file> --pipeline <name>",
       "ampersand plan <file> <pipeline>",
+      "ampersand plan <file> --pipeline <name>",
       "ampersand run <file> <pipeline>",
       "ampersand run <file> <pipeline> <input>",
-      "ampersand generate mcp <file>",
-      "ampersand generate a2a <file>",
+      "ampersand run <file> --pipeline <name>",
+      "ampersand run <file> --pipeline <name> <input>",
+      "ampersand generate mcp <file> [--format zed|generic] [-o|--output <path>]",
+      "ampersand generate a2a <file> [-o|--output <path>]",
+      "ampersand diff <file1> <file2>",
       "ampersand registry list",
       "ampersand registry providers <capability>",
       "ampersand version",

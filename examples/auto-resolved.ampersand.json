@@ -1,0 +1,36 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "agent": "AutoResolvedDemo",
+  "version": "0.1.0",
+  "capabilities": {
+    "&memory.graph": {
+      "provider": "auto",
+      "need": "graph recall and incident context enrichment for infrastructure operations"
+    },
+    "&time.anomaly": {
+      "provider": "auto",
+      "need": "real-time anomaly detection over CPU, memory, and latency telemetry streams"
+    },
+    "&reason.argument": {
+      "provider": "auto",
+      "need": "auditable decision evaluation with governance-aware justification"
+    },
+    "&space.route": {
+      "provider": "auto",
+      "need": "route feasibility checks and optimization under regional constraints"
+    }
+  },
+  "governance": {
+    "hard": [
+      "cross_region_impact=true",
+      "cost_exceeds_usd:5000"
+    ],
+    "soft": [
+      "Prefer reversible mitigations before disruptive actions"
+    ],
+    "escalate_when": {
+      "confidence_below": 0.75
+    }
+  },
+  "provenance": true
+}

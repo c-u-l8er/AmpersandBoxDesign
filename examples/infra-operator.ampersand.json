@@ -29,15 +29,31 @@
     }
   },
   "governance": {
-    "hard": [
-      "Never scale beyond 3x in a single action"
-    ],
-    "soft": [
-      "Prefer gradual scaling over spikes"
-    ],
+    "hard": ["Never scale beyond 3x in a single action"],
+    "soft": ["Prefer gradual scaling over spikes"],
     "escalate_when": {
       "confidence_below": 0.7,
       "cost_exceeds_usd": 1000
+    }
+  },
+  "pipelines": {
+    "incident_triage": {
+      "source_type": "stream_data",
+      "source_ref": "raw_data",
+      "steps": [
+        {
+          "capability": "&time.anomaly",
+          "operation": "detect"
+        },
+        {
+          "capability": "&memory.graph",
+          "operation": "enrich"
+        },
+        {
+          "capability": "&reason.argument",
+          "operation": "evaluate"
+        }
+      ]
     }
   },
   "provenance": true

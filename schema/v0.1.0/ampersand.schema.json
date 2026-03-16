@@ -5,12 +5,7 @@
   "description": "JSON Schema draft 2020-12 for canonical ampersand.json agent declarations in the [&] Protocol.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "$schema",
-    "agent",
-    "version",
-    "capabilities"
-  ],
+  "required": ["$schema", "agent", "version", "capabilities"],
   "properties": {
     "$schema": {
       "type": "string",
@@ -39,6 +34,13 @@
     },
     "governance": {
       "$ref": "#/$defs/governance"
+    },
+    "pipelines": {
+      "type": "object",
+      "description": "Optional named pipeline definitions that can be referenced by CLI/runtime instead of passing inline pipeline strings.",
+      "additionalProperties": {
+        "$ref": "#/$defs/pipelineDefinition"
+      }
     },
     "provenance": {
       "type": "boolean",
@@ -113,9 +115,7 @@
       "title": "Capability Binding",
       "description": "A protocol capability bound either to an explicit provider or to registry resolution via provider=auto.",
       "additionalProperties": false,
-      "required": [
-        "provider"
-      ],
+      "required": ["provider"],
       "properties": {
         "provider": {
           "type": "string",
@@ -139,14 +139,10 @@
                 "const": "auto"
               }
             },
-            "required": [
-              "provider"
-            ]
+            "required": ["provider"]
           },
           "then": {
-            "required": [
-              "need"
-            ]
+            "required": ["need"]
           }
         },
         {
@@ -158,19 +154,52 @@
                 }
               }
             },
-            "required": [
-              "provider"
-            ]
+            "required": ["provider"]
           },
           "then": {
             "not": {
-              "required": [
-                "need"
-              ]
+              "required": ["need"]
             }
           }
         }
       ]
+    },
+    "pipelineStepDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability", "operation"],
+      "properties": {
+        "capability": {
+          "$ref": "#/$defs/capabilityKey"
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        }
+      }
+    },
+    "pipelineDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["steps"],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pipelineStepDefinition"
+          }
+        }
+      }
     },
     "nonEmptyStringArray": {
       "type": "array",
@@ -255,18 +284,13 @@
         "&time.anomaly": {
           "provider": "ticktickclock",
           "config": {
-            "streams": [
-              "cpu",
-              "mem"
-            ]
+            "streams": ["cpu", "mem"]
           }
         },
         "&space.fleet": {
           "provider": "geofleetic",
           "config": {
-            "regions": [
-              "us-east"
-            ]
+            "regions": ["us-east"]
           }
         },
         "&reason.argument": {
@@ -277,12 +301,8 @@
         }
       },
       "governance": {
-        "hard": [
-          "Never scale beyond 3x in a single action"
-        ],
-        "soft": [
-          "Prefer gradual scaling over spikes"
-        ],
+        "hard": ["Never scale beyond 3x in a single action"],
+        "soft": ["Prefer gradual scaling over spikes"],
         "escalate_when": {
           "confidence_below": 0.7,
           "cost_exceeds_usd": 1000
@@ -346,9 +366,7 @@
           "Never present unsupported conclusions as facts",
           "Always preserve citation traceability"
         ],
-        "soft": [
-          "Prefer recent peer-reviewed evidence"
-        ],
+        "soft": ["Prefer recent peer-reviewed evidence"],
         "escalate_when": {
           "confidence_below": 0.65
         }
