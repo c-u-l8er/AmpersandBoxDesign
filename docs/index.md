@@ -29,8 +29,6 @@ architecture
 positioning
 comparison-table
 research
-faq
-
 registry/README
 capabilities/memory
 registry/memory.episodic
@@ -41,6 +39,7 @@ capabilities/time
 registry/time.forecast
 capabilities/space
 registry/space.fleet
+faq
 ```
 
 ## Suggested reading order
