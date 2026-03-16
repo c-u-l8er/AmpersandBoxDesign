@@ -1,6 +1,6 @@
-# `time.forecast` — Forecasting as a Capability
+# `&time.forecast` — Forecasting as a Capability
 
-`time.forecast` is a capability page for the [&] Protocol's temporal forecasting subtype.
+`&time.forecast` is a capability page for the [&] Protocol's temporal forecasting subtype.
 
 It describes a composable interface for agents that need to predict future state from historical or streaming temporal data. The goal is not to standardize one forecasting algorithm. The goal is to standardize how an agent declares, validates, and composes forecasting ability as part of its cognitive architecture.
 

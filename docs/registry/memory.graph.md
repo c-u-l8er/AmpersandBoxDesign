@@ -1,6 +1,6 @@
-# `memory.graph` — Graph-Structured Memory Capability
+# `&memory.graph` — Graph-Structured Memory Capability
 
-`memory.graph` is a concrete capability page for the [&] Protocol's `&memory` primitive.
+`&memory.graph` is a concrete capability page for the [&] Protocol's `&memory` primitive.
 
 It describes the capability interface for **graph-structured memory**: a memory system that stores entities, events, concepts, and relationships in a connected form and can use that structure to enrich retrieval, support reasoning, and preserve durable context over time.
 
@@ -10,7 +10,7 @@ This page is part of the capability registry and documentation hub. It is intend
 
 ## 1. Definition
 
-`memory.graph` is the capability for:
+`&memory.graph` is the capability for:
 
 - relationship-aware recall
 - graph-linked context enrichment
@@ -51,13 +51,13 @@ A graph memory capability is useful whenever:
 3. enrichment should include linked context rather than only nearest-neighbor similarity
 4. memory should consolidate into durable connected knowledge over time
 
-This is why `memory.graph` is a distinct capability rather than just a provider detail.
+This is why `&memory.graph` is a distinct capability rather than just a provider detail.
 
 ---
 
 ## 3. Capability family position
 
-`memory.graph` sits inside the `&memory` namespace.
+`&memory.graph` sits inside the `&memory` namespace.
 
 Related memory capabilities include:
 
@@ -137,7 +137,7 @@ Below is a representative contract for `&memory.graph`.
 
 ### Interpretation
 
-This contract says that `memory.graph` can:
+This contract says that `&memory.graph` can:
 
 - recall graph-linked knowledge from a query context
 - learn new observations
@@ -229,7 +229,7 @@ What happens:
 2. graph memory adds linked incident and dependency context
 3. reasoning evaluates the best action
 
-This is one of the strongest `memory.graph` patterns.
+This is one of the strongest `&memory.graph` patterns.
 
 ### Pattern B: research knowledge graph
 
@@ -263,7 +263,7 @@ This supports continual learning without discarding structure.
 
 ## 7. Architecture diagram
 
-A simple mental model for `memory.graph`:
+A simple mental model for `&memory.graph`:
 
 ~~~text
                     ┌─────────────────────┐
@@ -432,7 +432,7 @@ A provider-specific API may vary, but the protocol-level shape can look like thi
 
 ## 10. Compatible providers
 
-`memory.graph` is a capability interface. Compatible providers are implementations that can satisfy the contract.
+`&memory.graph` is a capability interface. Compatible providers are implementations that can satisfy the contract.
 
 Representative providers:
 
@@ -456,7 +456,7 @@ Why it fits:
 
 ## 11. A2A-facing skills
 
-A `memory.graph` capability may advertise skills such as:
+A `&memory.graph` capability may advertise skills such as:
 
 - `graph-memory-recall`
 - `context-enrichment`
@@ -470,7 +470,7 @@ These skills are useful when generating A2A agent cards from a declaration, beca
 
 Graph memory often sits close to high-value historical context, so governance matters.
 
-Examples of governance constraints that commonly pair with `memory.graph`:
+Examples of governance constraints that commonly pair with `&memory.graph`:
 
 ### Hard constraints
 
@@ -492,7 +492,7 @@ Examples of governance constraints that commonly pair with `memory.graph`:
 
 ## 13. Provenance implications
 
-`memory.graph` should participate in the provenance chain.
+`&memory.graph` should participate in the provenance chain.
 
 Representative provenance record:
 
@@ -514,7 +514,7 @@ This matters because graph-backed context often strongly influences downstream r
 
 ## 14. Typical use cases
 
-`memory.graph` is especially strong in the following domains.
+`&memory.graph` is especially strong in the following domains.
 
 ### Infrastructure operations
 
@@ -545,7 +545,7 @@ This matters because graph-backed context often strongly influences downstream r
 
 ## 15. Anti-patterns
 
-Avoid these mistakes when modeling `memory.graph`.
+Avoid these mistakes when modeling `&memory.graph`.
 
 ### Anti-pattern 1: treating graph memory as just another vector store
 
@@ -562,7 +562,7 @@ If graph-linked context influences action, lineage should be preserved.
 
 ### Anti-pattern 4: using graph memory for everything
 
-Not every retrieval problem is best solved by graph structure alone. In many systems, `memory.graph` works best alongside `memory.vector` or `memory.episodic`.
+Not every retrieval problem is best solved by graph structure alone. In many systems, `&memory.graph` works best alongside `&memory.vector` or `&memory.episodic`.
 
 ---
 
@@ -604,7 +604,7 @@ The protocol does not claim to reproduce neuroscience literally. The value of th
 
 ## 18. Summary
 
-`memory.graph` is the [&] Protocol capability for graph-structured memory.
+`&memory.graph` is the [&] Protocol capability for graph-structured memory.
 
 It is the right capability when an agent needs:
 
@@ -616,6 +616,6 @@ It is the right capability when an agent needs:
 
 In one sentence:
 
-> `memory.graph` lets an agent remember not only facts, but how those facts connect.
+> `&memory.graph` lets an agent remember not only facts, but how those facts connect.
 
 ---

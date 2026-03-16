@@ -1,6 +1,6 @@
-# `reason.argument` — Evidence-Weighted Deliberation for the [&] Protocol
+# `&reason.argument` — Evidence-Weighted Deliberation for the [&] Protocol
 
-`reason.argument` is the capability page for the `&reason.argument` subtype in the [&] Protocol.
+`&reason.argument` is the capability page for the `&reason.argument` subtype in the [&] Protocol.
 
 It represents a reasoning surface built for:
 
@@ -176,7 +176,7 @@ It also says:
 
 ## 6. Architecture diagram
 
-A typical `reason.argument` pipeline looks like this:
+A typical `&reason.argument` pipeline looks like this:
 
 ```text
 raw_data
@@ -202,7 +202,7 @@ support_case
 ### Interpretation
 
 - upstream capabilities gather and enrich evidence
-- `reason.argument` evaluates candidate actions or conclusions
+- `&reason.argument` evaluates candidate actions or conclusions
 - the result can be stored, surfaced, or escalated
 - provenance can preserve the chain from evidence to judgment
 
@@ -385,7 +385,7 @@ Good for:
 
 ## 10. Governance role
 
-`reason.argument` is one of the strongest governance-sensitive capabilities in the protocol.
+`&reason.argument` is one of the strongest governance-sensitive capabilities in the protocol.
 
 It is often the capability where:
 
@@ -430,7 +430,7 @@ A reasoning provider with governance as data can:
 
 ## 11. Provenance role
 
-`reason.argument` should be provenance-visible.
+`&reason.argument` should be provenance-visible.
 
 A representative provenance record for an argumentative reasoning step might look like:
 
@@ -447,7 +447,7 @@ A representative provenance record for an argumentative reasoning step might loo
 }
 ```
 
-This is important because `reason.argument` often produces the exact artifact humans care most about:
+This is important because `&reason.argument` often produces the exact artifact humans care most about:
 
 - the decision
 - the ranking
@@ -478,7 +478,7 @@ The capability should not collapse into a single vendor identity.
 
 ## 13. Typical compatible upstream capabilities
 
-`reason.argument` often accepts input from:
+`&reason.argument` often accepts input from:
 
 - `&memory.graph`
 - `&memory.vector`
@@ -498,7 +498,7 @@ Typical upstream type tokens include:
 
 ## 14. Typical downstream uses
 
-Outputs from `reason.argument` often feed into:
+Outputs from `&reason.argument` often feed into:
 
 - final responses
 - action execution layers
@@ -519,7 +519,7 @@ Typical downstream type tokens include:
 
 ## 15. A2A skill mapping
 
-A capability contract for `reason.argument` may advertise skills like:
+A capability contract for `&reason.argument` may advertise skills like:
 
 - `decision-evaluation`
 - `evidence-based-deliberation`
@@ -539,7 +539,7 @@ Example interpretation:
 
 ### Infrastructure operator
 
-Use `reason.argument` when deciding:
+Use `&reason.argument` when deciding:
 
 - whether to scale
 - whether to escalate
@@ -547,7 +547,7 @@ Use `reason.argument` when deciding:
 
 ### Customer support agent
 
-Use `reason.argument` when deciding:
+Use `&reason.argument` when deciding:
 
 - whether a refund or exception is allowed
 - whether policy supports a certain action
@@ -555,7 +555,7 @@ Use `reason.argument` when deciding:
 
 ### Research assistant
 
-Use `reason.argument` when deciding:
+Use `&reason.argument` when deciding:
 
 - which interpretation is best supported
 - whether evidence is sufficient to make a claim
@@ -563,7 +563,7 @@ Use `reason.argument` when deciding:
 
 ### Compliance workflow
 
-Use `reason.argument` when deciding:
+Use `&reason.argument` when deciding:
 
 - whether a policy boundary has been crossed
 - whether action requires review
@@ -582,13 +582,13 @@ This removes:
 - governance visibility
 - contract validation
 
-### Anti-pattern 2: using `reason.argument` for plain planning
+### Anti-pattern 2: using `&reason.argument` for plain planning
 
 If the primary output is a sequence of steps, `reason.plan` is usually the better subtype.
 
 ### Anti-pattern 3: skipping upstream enrichment
 
-`reason.argument` is strongest when it evaluates evidence-rich context, not raw unstructured noise.
+`&reason.argument` is strongest when it evaluates evidence-rich context, not raw unstructured noise.
 
 ### Anti-pattern 4: allowing action without justification in governance-heavy systems
 
@@ -598,7 +598,7 @@ If the workflow is safety- or policy-sensitive, justification should be a first-
 
 ## 18. Research connections
 
-`reason.argument` is aligned with several useful research and systems traditions:
+`&reason.argument` is aligned with several useful research and systems traditions:
 
 - formal argumentation
 - evidence-based deliberation
@@ -621,7 +621,7 @@ Instead, it provides a practical interface for reasoning systems that must be:
 
 ## 19. Summary
 
-`reason.argument` is the protocol capability for **auditable, evidence-weighted decision making**.
+`&reason.argument` is the protocol capability for **auditable, evidence-weighted decision making**.
 
 It exists so that a system can say more than:
 
