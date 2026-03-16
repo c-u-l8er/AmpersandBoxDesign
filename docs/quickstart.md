@@ -17,7 +17,7 @@ All JSON output below was captured from real command execution in this repositor
 ## 1) Clone, build, test
 
 ```bash
-git clone https://github.com/<your-org>/AmpersandBoxDesign.git
+git clone https://github.com/c-u-l8er/AmpersandBoxDesign.git
 cd AmpersandBoxDesign/reference/elixir/ampersand_core
 mix deps.get
 mix test
