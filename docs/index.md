@@ -36,7 +36,7 @@ capabilities/memory
 registry/memory.episodic
 registry/memory.graph
 capabilities/reason
-registry/reason.arguement
+registry/reason.argument
 capabilities/time
 registry/time.forecast
 capabilities/space
