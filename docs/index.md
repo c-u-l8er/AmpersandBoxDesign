@@ -31,19 +31,16 @@ comparison-table
 research
 faq
 
-:caption: Capabilities
-capabilities/memory
-capabilities/reason
-capabilities/time
-capabilities/space
-
-:caption: Registry
 registry/README
+capabilities/memory
 registry/memory.episodic
 registry/memory.graph
+capabilities/reason
 registry/reason.arguement
-registry/space.fleet
+capabilities/time
 registry/time.forecast
+capabilities/space
+registry/space.fleet
 ```
 
 ## Suggested reading order
