@@ -6,7 +6,7 @@ The [&] Protocol is a language-agnostic specification for **capability compositi
 
 Use this documentation to understand the protocol from multiple angles:
 
-- **Architecture** explains the system model and how core artifacts fit together.
+- **Architecture** explains the system model, runtime lifecycle, and end-to-end declaration flow.
 - **Positioning** compares [&] with adjacent standards and research.
 - **Research** provides the motivation for a composition layer in the agent stack.
 - **FAQ** answers common questions quickly.
@@ -15,6 +15,7 @@ Use this documentation to understand the protocol from multiple angles:
 ## What you'll find here
 
 - A practical overview of the protocol's role in the agent stack
+- A runtime walkthrough covering declaration → validation → composition → resolution → generation
 - Explanations of capability declaration, contracts, provenance, and governance
 - Comparisons with MCP, A2A, ACP, and related work
 - Deep dives into `&memory`, `&reason`, `&time`, and `&space`
@@ -26,6 +27,7 @@ Use this documentation to understand the protocol from multiple angles:
 :caption: Documentation
 
 architecture
+runtime-walkthrough
 positioning
 comparison-table
 research
@@ -46,11 +48,12 @@ faq
 
 If you're new to the project, a good path is:
 
-1. `architecture` — understand the protocol's responsibilities and system model
-2. `positioning` — see where [&] fits relative to MCP, A2A, ACP, and DALIA
-3. `research` — understand the ecosystem and research pressures behind the design
-4. `faq` — get quick answers to common adoption and framing questions
-5. Capability deep dives — explore the four core capability families in detail
+1. `architecture` — understand the protocol's responsibilities, runtime lifecycle, and end-to-end declaration flow
+2. `runtime-walkthrough` — follow a concrete declaration through validation, composition, provider resolution, and generation
+3. `positioning` — see where [&] fits relative to MCP, A2A, ACP, and DALIA
+4. `research` — understand the ecosystem and research pressures behind the design
+5. `faq` — get quick answers to common adoption and framing questions
+6. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
 
 ## Core idea
 

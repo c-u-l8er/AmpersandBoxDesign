@@ -2,11 +2,12 @@ defmodule AmpersandCore do
   @moduledoc """
   Focused public API for the minimal [&] protocol reference implementation.
 
-  The implementation is intentionally split into three concerns:
+  The implementation is intentionally split into six concerns:
 
   * `AmpersandCore.Schema` — validate canonical `ampersand.json` documents
   * `AmpersandCore.Compose` — normalize and compose capability sets with ACI semantics
   * `AmpersandCore.Contracts` — validate capability pipelines against typed contracts
+  * `AmpersandCore.Runtime` — parse, plan, and execute protocol pipelines with provenance
   * `AmpersandCore.MCP` — generate MCP server configuration from protocol declarations
   * `AmpersandCore.A2A` — generate A2A agent cards from protocol declarations
 
@@ -16,6 +17,7 @@ defmodule AmpersandCore do
 
   alias AmpersandCore.Compose
   alias AmpersandCore.Contracts
+  alias AmpersandCore.Runtime
   alias AmpersandCore.Schema
 
   @type capability_id :: String.t()
@@ -33,6 +35,8 @@ defmodule AmpersandCore do
   @type compose_result :: {:ok, capability_map()} | {:error, term()}
   @type contract_result :: :ok | {:error, [String.t()]}
   @type artifact_result :: {:ok, map()} | {:error, [String.t()]}
+  @type runtime_plan_result :: {:ok, map()} | {:error, [String.t()]}
+  @type runtime_execution_result :: {:ok, map()} | {:error, [String.t()]}
   @type mcp_result :: {:ok, map()} | {:error, [String.t()]}
   @type a2a_result :: {:ok, map()} | {:error, [String.t()]}
 
@@ -124,6 +128,36 @@ defmodule AmpersandCore do
   """
   @spec check_pipeline(contract_registry(), [pipeline_step()], keyword()) :: contract_result()
   defdelegate check_pipeline(contracts, pipeline, opts), to: Contracts
+
+  @doc """
+  Parses a pipeline expression or normalized pipeline structure into runtime steps.
+  """
+  @spec parse_pipeline(String.t() | [pipeline_step()]) :: {:ok, [map()]} | {:error, [String.t()]}
+  defdelegate parse_pipeline(pipeline), to: Runtime
+
+  @doc """
+  Builds a validated runtime plan for a document and pipeline.
+  """
+  @spec plan_pipeline(document(), String.t() | [pipeline_step()], keyword()) :: runtime_plan_result()
+  defdelegate plan_pipeline(document, pipeline, opts), to: Runtime, as: :plan
+
+  @doc """
+  Reads an `ampersand.json` file, validates it, and builds a runtime plan for the provided pipeline.
+  """
+  @spec plan_pipeline_file(Path.t(), String.t() | [pipeline_step()], keyword()) :: runtime_plan_result()
+  defdelegate plan_pipeline_file(path, pipeline, opts), to: Runtime, as: :plan_file
+
+  @doc """
+  Executes a validated runtime pipeline and returns execution output plus provenance records.
+  """
+  @spec run_pipeline(document(), String.t() | [pipeline_step()], term(), keyword()) :: runtime_execution_result()
+  defdelegate run_pipeline(document, pipeline, input, opts), to: Runtime, as: :run
+
+  @doc """
+  Reads an `ampersand.json` file, validates it, and executes the provided runtime pipeline.
+  """
+  @spec run_pipeline_file(Path.t(), String.t() | [pipeline_step()], term(), keyword()) :: runtime_execution_result()
+  defdelegate run_pipeline_file(path, pipeline, input, opts), to: Runtime, as: :run_file
 
   @doc """
   Loads capability contract artifacts from the canonical contracts directory.

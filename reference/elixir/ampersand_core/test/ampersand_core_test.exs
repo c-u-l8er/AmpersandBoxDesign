@@ -57,6 +57,31 @@ defmodule AmpersandCore.TestFixtures do
       }
     }
   end
+
+  def temp_path(prefix, extension \\ ".json") do
+    Path.join(
+      System.tmp_dir!(),
+      "#{prefix}-#{System.unique_integer([:positive])}#{extension}"
+    )
+  end
+
+  def write_json_fixture!(prefix, value) do
+    path = temp_path(prefix)
+    File.write!(path, Jason.encode!(value, pretty: true))
+    path
+  end
+
+  def pipeline_fixture!(pipeline, source_type \\ "stream_data", source_ref \\ "raw_data") do
+    write_json_fixture!("pipeline", %{
+      "source_type" => source_type,
+      "source_ref" => source_ref,
+      "pipeline" => pipeline
+    })
+  end
+
+  def input_fixture!(input) do
+    write_json_fixture!("input", input)
+  end
 end
 
 defmodule AmpersandCoreSchemaTest do
@@ -650,5 +675,248 @@ defmodule AmpersandCoreCLITest do
     assert output =~ "unknown_generate_target"
     assert output =~ "mcp"
     assert output =~ "a2a"
+  end
+end
+
+defmodule AmpersandCoreRuntimeTest do
+  use ExUnit.Case, async: true
+
+  alias AmpersandCore.TestFixtures, as: Fixtures
+
+  test "runtime plan materializes provider-bound steps from a valid declaration and pipeline" do
+    infra = Fixtures.load_example!("infra-operator.ampersand.json")
+
+    pipeline = [
+      {"&time.anomaly", "detect"},
+      {"&memory.graph", "enrich"},
+      {"&reason.argument", "evaluate"}
+    ]
+
+    assert {:ok, plan} =
+             AmpersandCore.Runtime.plan(
+               infra,
+               pipeline,
+               source_type: "stream_data",
+               source_ref: "raw_data"
+             )
+
+    assert plan["agent"] == "InfraOperator"
+    assert plan["version"] == "1.0.0"
+    assert plan["source"] == %{"type" => "stream_data", "ref" => "raw_data"}
+    assert plan["governance"] == infra["governance"]
+    assert plan["provenance"] == %{"enabled" => true}
+    assert length(plan["steps"]) == 3
+
+    assert Enum.map(plan["steps"], & &1["capability"]) == [
+             "&time.anomaly",
+             "&memory.graph",
+             "&reason.argument"
+           ]
+
+    assert Enum.map(plan["steps"], & &1["provider"]) == [
+             "ticktickclock",
+             "graphonomous",
+             "deliberatic"
+           ]
+
+    assert Enum.map(plan["steps"], & &1["operation"]) == [
+             "detect",
+             "enrich",
+             "evaluate"
+           ]
+
+    assert Enum.map(plan["steps"], & &1["input_type"]) == [
+             "stream_data",
+             "anomaly_set",
+             "enriched_context"
+           ]
+
+    assert Enum.map(plan["steps"], & &1["output_type"]) == [
+             "anomaly_set",
+             "enriched_context",
+             "decision"
+           ]
+  end
+
+  test "runtime run returns typed step outputs and hash-linked provenance when enabled" do
+    infra = Fixtures.load_example!("infra-operator.ampersand.json")
+
+    pipeline = [
+      {"&time.anomaly", "detect"},
+      {"&memory.graph", "enrich"},
+      {"&reason.argument", "evaluate"}
+    ]
+
+    input = %{
+      "stream" => "cpu",
+      "samples" => [0.2, 0.3, 0.95],
+      "region" => "us-east"
+    }
+
+    timestamps = [
+      "2026-03-14T14:23:07Z",
+      "2026-03-14T14:23:08Z",
+      "2026-03-14T14:23:09Z"
+    ]
+
+    {:ok, clock_pid} = Agent.start_link(fn -> timestamps end)
+
+    on_exit(fn ->
+      if Process.alive?(clock_pid) do
+        Agent.stop(clock_pid)
+      end
+    end)
+
+    clock = fn ->
+      Agent.get_and_update(clock_pid, fn
+        [next | rest] -> {next, rest}
+      end)
+    end
+
+    assert {:ok, execution} =
+             AmpersandCore.Runtime.run(
+               infra,
+               pipeline,
+               input,
+               source_type: "stream_data",
+               source_ref: "raw_data",
+               clock: clock
+             )
+
+    assert execution["agent"] == "InfraOperator"
+    assert execution["status"] == "ok"
+    assert execution["source"] == %{"type" => "stream_data", "ref" => "raw_data"}
+    assert execution["governance"] == infra["governance"]
+    assert execution["output"]["type"] == "decision"
+    assert length(execution["steps"]) == 3
+    assert length(execution["provenance"]) == 3
+
+    assert Enum.map(execution["steps"], & &1["provider"]) == [
+             "ticktickclock",
+             "graphonomous",
+             "deliberatic"
+           ]
+
+    assert Enum.map(execution["steps"], & &1["output_type"]) == [
+             "anomaly_set",
+             "enriched_context",
+             "decision"
+           ]
+
+    [first, second, third] = execution["provenance"]
+
+    assert first["source"] == "&time.anomaly"
+    assert first["provider"] == "ticktickclock"
+    assert first["operation"] == "detect"
+    assert first["timestamp"] == "2026-03-14T14:23:07Z"
+    assert first["parent_hash"] == nil
+    assert String.starts_with?(first["input_hash"], "sha256:")
+    assert String.starts_with?(first["output_hash"], "sha256:")
+
+    assert second["source"] == "&memory.graph"
+    assert second["provider"] == "graphonomous"
+    assert second["operation"] == "enrich"
+    assert second["timestamp"] == "2026-03-14T14:23:08Z"
+    assert second["parent_hash"] == first["output_hash"]
+
+    assert third["source"] == "&reason.argument"
+    assert third["provider"] == "deliberatic"
+    assert third["operation"] == "evaluate"
+    assert third["timestamp"] == "2026-03-14T14:23:09Z"
+    assert third["parent_hash"] == second["output_hash"]
+  end
+end
+
+defmodule AmpersandCoreCLIRuntimeCommandsTest do
+  use ExUnit.Case, async: true
+
+  alias AmpersandCore.TestFixtures, as: Fixtures
+
+  test "check command validates a pipeline against declaration-scoped contracts" do
+    declaration_path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    pipeline_path =
+      Fixtures.pipeline_fixture!([
+        %{"capability" => "&time.anomaly", "operation" => "detect"},
+        %{"capability" => "&memory.graph", "operation" => "enrich"},
+        %{"capability" => "&reason.argument", "operation" => "evaluate"}
+      ])
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["check", declaration_path, pipeline_path])
+
+    decoded = Jason.decode!(output)
+
+    assert decoded["command"] == "check"
+    assert decoded["status"] == "ok"
+    assert decoded["valid"] == true
+    assert decoded["file"] == declaration_path
+    assert decoded["pipeline_file"] == pipeline_path
+    assert decoded["step_count"] == 3
+    assert decoded["source"] == %{"type" => "stream_data", "ref" => "raw_data"}
+  end
+
+  test "plan command returns a provider-bound execution plan for a valid pipeline" do
+    declaration_path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    pipeline_path =
+      Fixtures.pipeline_fixture!([
+        %{"capability" => "&time.anomaly", "operation" => "detect"},
+        %{"capability" => "&memory.graph", "operation" => "enrich"},
+        %{"capability" => "&reason.argument", "operation" => "evaluate"}
+      ])
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["plan", declaration_path, pipeline_path])
+
+    decoded = Jason.decode!(output)
+
+    assert decoded["command"] == "plan"
+    assert decoded["status"] == "ok"
+    assert decoded["agent"] == "InfraOperator"
+    assert decoded["pipeline_file"] == pipeline_path
+
+    assert Enum.map(decoded["steps"], & &1["provider"]) == [
+             "ticktickclock",
+             "graphonomous",
+             "deliberatic"
+           ]
+
+    assert Enum.map(decoded["steps"], & &1["output_type"]) == [
+             "anomaly_set",
+             "enriched_context",
+             "decision"
+           ]
+  end
+
+  test "run command executes a valid pipeline and returns provenance-aware output" do
+    declaration_path = Fixtures.example_path("infra-operator.ampersand.json")
+
+    pipeline_path =
+      Fixtures.pipeline_fixture!([
+        %{"capability" => "&time.anomaly", "operation" => "detect"},
+        %{"capability" => "&memory.graph", "operation" => "enrich"},
+        %{"capability" => "&reason.argument", "operation" => "evaluate"}
+      ])
+
+    input_path =
+      Fixtures.input_fixture!(%{
+        "stream" => "cpu",
+        "samples" => [0.1, 0.2, 0.95],
+        "region" => "us-east"
+      })
+
+    assert {:ok, output} = AmpersandCore.CLI.run(["run", declaration_path, pipeline_path, input_path])
+
+    decoded = Jason.decode!(output)
+
+    assert decoded["command"] == "run"
+    assert decoded["status"] == "ok"
+    assert decoded["agent"] == "InfraOperator"
+    assert decoded["file"] == declaration_path
+    assert decoded["pipeline_file"] == pipeline_path
+    assert decoded["input_file"] == input_path
+    assert decoded["output"]["type"] == "decision"
+    assert decoded["step_count"] == 3
+    assert decoded["provenance_count"] == 3
+    assert length(decoded["provenance"]) == 3
   end
 end

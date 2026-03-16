@@ -9,10 +9,27 @@ defmodule AmpersandCore.CLI do
     * `ampersand validate-registry`
     * `ampersand validate-registry <file>`
     * `ampersand compose <file>`
+    * `ampersand check <file> <pipeline>`
+    * `ampersand plan <file> <pipeline>`
+    * `ampersand run <file> <pipeline>`
+    * `ampersand run <file> <pipeline> <input>`
     * `ampersand generate mcp <file>`
     * `ampersand generate a2a <file>`
     * `ampersand registry list`
     * `ampersand registry providers <capability>`
+
+  Pipeline arguments may be provided as:
+
+    * an inline pipeline expression such as
+      `"stream_data |> &time.anomaly.detect() |> &memory.graph.enrich() |> &reason.argument.evaluate()"`
+    * an inline JSON payload with `"steps"` or `"pipeline"`
+    * a path to a JSON or text file containing the pipeline payload
+
+  Input arguments for `run` may be provided as:
+
+    * an inline JSON object
+    * a path to a JSON file
+    * any other inline value, which will be wrapped as `%{"value" => ...}`
 
   The CLI prints JSON to stdout on success and JSON to stderr on failure.
   """
@@ -31,9 +48,6 @@ defmodule AmpersandCore.CLI do
 
   @doc """
   Executes a CLI command and returns a printable result.
-
-  This is exposed separately from `main/1` so the command behavior remains easy
-  to test without halting the BEAM.
   """
   @spec run([String.t()]) :: cli_result()
   def run(argv) when is_list(argv) do
@@ -51,18 +65,10 @@ defmodule AmpersandCore.CLI do
         help_result()
 
       ["version"] ->
-        ok_result(%{
-          "command" => "version",
-          "status" => "ok",
-          "version" => version_string()
-        })
+        version_result()
 
       ["--version"] ->
-        ok_result(%{
-          "command" => "version",
-          "status" => "ok",
-          "version" => version_string()
-        })
+        version_result()
 
       ["validate", path] ->
         validate_command(path)
@@ -78,6 +84,18 @@ defmodule AmpersandCore.CLI do
 
       ["compose", path] ->
         compose_command(path)
+
+      ["check", path, pipeline_ref] ->
+        check_command(path, pipeline_ref)
+
+      ["plan", path, pipeline_ref] ->
+        plan_command(path, pipeline_ref)
+
+      ["run", path, pipeline_ref] ->
+        run_command(path, pipeline_ref, nil)
+
+      ["run", path, pipeline_ref, input_ref] ->
+        run_command(path, pipeline_ref, input_ref)
 
       ["generate", "mcp", path] ->
         generate_mcp_command(path)
@@ -123,6 +141,14 @@ defmodule AmpersandCore.CLI do
       "status" => "ok",
       "version" => version_string(),
       "usage" => usage_lines()
+    })
+  end
+
+  defp version_result do
+    ok_result(%{
+      "command" => "version",
+      "status" => "ok",
+      "version" => version_string()
     })
   end
 
@@ -240,6 +266,106 @@ defmodule AmpersandCore.CLI do
     end
   end
 
+  defp check_command(path, pipeline_ref) do
+    with {:ok, document} <- AmpersandCore.validate_file(path),
+         {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
+         {:ok, parsed_pipeline} <- AmpersandCore.Runtime.normalize_pipeline(pipeline_input),
+         :ok <-
+           AmpersandCore.Contracts.check_pipeline_for_document(
+             document,
+             parsed_pipeline.steps,
+             source_type: parsed_pipeline.source_type,
+             source_ref: parsed_pipeline.source_ref
+           ) do
+      ok_result(
+        %{
+          "command" => "check",
+          "status" => "ok",
+          "valid" => true,
+          "file" => path,
+          "agent" => document["agent"],
+          "version" => document["version"],
+          "source" => %{
+            "type" => parsed_pipeline.source_type,
+            "ref" => parsed_pipeline.source_ref
+          },
+          "step_count" => length(parsed_pipeline.steps),
+          "pipeline" => Enum.map(parsed_pipeline.steps, &stringify_map_keys/1)
+        }
+        |> Map.merge(pipeline_meta)
+      )
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_check_failed", errors, 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_check_failed", inspect(reason), 1, %{
+          "command" => "check",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
+  defp plan_command(path, pipeline_ref) do
+    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
+         {:ok, plan} <- AmpersandCore.plan_pipeline_file(path, pipeline_input, []) do
+      ok_result(
+        plan
+        |> Map.put("command", "plan")
+        |> Map.put("file", path)
+        |> Map.merge(pipeline_meta)
+      )
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_plan_failed", errors, 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_plan_failed", inspect(reason), 1, %{
+          "command" => "plan",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
+  defp run_command(path, pipeline_ref, input_ref) do
+    with {:ok, pipeline_input, pipeline_meta} <- load_pipeline_reference(pipeline_ref),
+         {:ok, runtime_input, input_meta} <- load_runtime_input(input_ref),
+         {:ok, result} <- AmpersandCore.run_pipeline_file(path, pipeline_input, runtime_input, []) do
+      ok_result(
+        result
+        |> Map.put("command", "run")
+        |> Map.put("file", path)
+        |> Map.merge(pipeline_meta)
+        |> Map.merge(input_meta)
+        |> Map.put("provenance_count", length(Map.get(result, "provenance", [])))
+      )
+    else
+      {:error, errors} when is_list(errors) ->
+        error_result("pipeline_run_failed", errors, 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+
+      {:error, reason} ->
+        error_result("pipeline_run_failed", inspect(reason), 1, %{
+          "command" => "run",
+          "file" => path,
+          "pipeline" => pipeline_ref
+        })
+    end
+  end
+
   defp generate_mcp_command(path) do
     case AmpersandCore.MCP.client_config_file(path) do
       {:ok, config} ->
@@ -346,6 +472,46 @@ defmodule AmpersandCore.CLI do
         })
     end
   end
+
+  defp load_pipeline_reference(reference) when is_binary(reference) do
+    if File.regular?(reference) do
+      with {:ok, contents} <- File.read(reference) do
+        {:ok, decode_jsonish(contents), %{"pipeline_file" => reference}}
+      else
+        {:error, reason} ->
+          {:error, ["unable to read pipeline file #{reference}: #{inspect(reason)}"]}
+      end
+    else
+      {:ok, decode_jsonish(reference), %{}}
+    end
+  end
+
+  defp load_runtime_input(nil), do: {:ok, %{}, %{}}
+
+  defp load_runtime_input(reference) when is_binary(reference) do
+    if File.regular?(reference) do
+      with {:ok, contents} <- File.read(reference) do
+        {:ok, normalize_runtime_input(decode_jsonish(contents)), %{"input_file" => reference}}
+      else
+        {:error, reason} ->
+          {:error, ["unable to read input file #{reference}: #{inspect(reason)}"]}
+      end
+    else
+      {:ok, normalize_runtime_input(decode_jsonish(reference)), %{}}
+    end
+  end
+
+  defp decode_jsonish(value) when is_binary(value) do
+    trimmed = String.trim(value)
+
+    case Jason.decode(trimmed) do
+      {:ok, decoded} -> decoded
+      {:error, _reason} -> value
+    end
+  end
+
+  defp normalize_runtime_input(%{} = input), do: input
+  defp normalize_runtime_input(value), do: %{"value" => value}
 
   defp aci_report(document) do
     capability_sets = singleton_capability_sets(document)
@@ -464,7 +630,9 @@ defmodule AmpersandCore.CLI do
   defp registry_provider_ids(registry) do
     registry
     |> AmpersandCore.Registry.list_primitives()
-    |> Enum.flat_map(&AmpersandCore.Registry.providers_for_capability(registry, &1))
+    |> Enum.flat_map(fn primitive ->
+      AmpersandCore.Registry.providers_for_capability(registry, primitive)
+    end)
     |> Enum.map(&Map.get(&1, "id"))
     |> Enum.reject(&is_nil/1)
     |> Enum.uniq()
@@ -484,6 +652,12 @@ defmodule AmpersandCore.CLI do
     |> put_if_present("command", provider["command"])
     |> put_if_present("args", provider["args"])
     |> put_if_present("contract_ref", provider["contract_ref"])
+  end
+
+  defp stringify_map_keys(map) when is_map(map) do
+    map
+    |> Enum.map(fn {key, value} -> {to_string(key), value} end)
+    |> Enum.into(%{})
   end
 
   defp put_if_present(map, _key, nil), do: map
@@ -535,6 +709,10 @@ defmodule AmpersandCore.CLI do
       "ampersand validate-registry",
       "ampersand validate-registry <file>",
       "ampersand compose <file>",
+      "ampersand check <file> <pipeline>",
+      "ampersand plan <file> <pipeline>",
+      "ampersand run <file> <pipeline>",
+      "ampersand run <file> <pipeline> <input>",
       "ampersand generate mcp <file>",
       "ampersand generate a2a <file>",
       "ampersand registry list",

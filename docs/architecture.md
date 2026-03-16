@@ -344,7 +344,9 @@ Pipelines represent data flowing through capability operations.
 
 ## 8.1 The role of `|>`
 
-The pipeline operator conceptually models an ordered flow:
+The pipeline operator is a conceptual notation used in this documentation to show ordered flow between capability operations.
+
+It means:
 
 - one operation produces an output
 - the next operation accepts that output as input
@@ -356,6 +358,15 @@ Example shape:
 - `&memory.graph.enrich`
 - `&reason.argument.evaluate`
 
+Unless a specific CLI, SDK, or runtime explicitly documents `|>` as supported input syntax, readers should treat it as pseudocode rather than canonical protocol grammar.
+
+A runtime may represent the same pipeline in other forms, such as:
+
+- a validated sequence in a declaration
+- a contract-aware internal execution plan
+- a generated MCP or A2A artifact
+- an execution DAG or other runtime-specific graph
+
 ## 8.2 Contract-driven validation
 
 A pipeline is valid only if:
@@ -366,6 +377,11 @@ A pipeline is valid only if:
 4. `feeds_into` allows the transition
 5. `accepts_from` allows the transition
 
+Before execution begins, a conforming runtime should be able to check these conditions and either:
+
+- accept the pipeline and materialize an execution plan
+- reject the pipeline with a precise compatibility error
+
 This architecture prevents pipelines from being treated as informal glue.
 
 ## 8.3 Architectural implication
@@ -373,6 +389,11 @@ This architecture prevents pipelines from being treated as informal glue.
 The protocol moves pipeline safety earlier in the lifecycle.
 
 Instead of waiting for runtime failures, implementations can reject invalid compositions before deployment or generation.
+
+That means the protocol separates two moments clearly:
+
+- **composition-time checks** validate structure, contracts, and allowed transitions
+- **runtime execution** invokes providers, enforces governance, and emits provenance for each realized step
 
 ---
 
@@ -482,14 +503,19 @@ These are protocol concepts.
 
 ## 11.2 Providers are implementations
 
-Examples:
+Examples used throughout this documentation include:
 
 - `graphonomous`
 - `ticktickclock`
 - `deliberatic`
 - `geofleetic`
 
-These are concrete implementations.
+Unless a registry entry, repository artifact, or implementation guide says otherwise, these names should be read as illustrative provider examples rather than guaranteed public implementations.
+
+What matters at the protocol level is the role they play:
+
+- a capability such as `&memory.graph` is the interface
+- a provider such as `graphonomous` is one possible implementation of that interface
 
 ## 11.3 Why this separation matters
 
@@ -656,6 +682,111 @@ This can be summarized as:
 **declaration → validation → composition → resolution → generation**
 
 That is the central execution model of the protocol.
+
+## 16.1 Minimal runtime walkthrough
+
+Consider a small operations agent with these declared capabilities:
+
+- `&time.anomaly` bound to `ticktickclock`
+- `&memory.graph` bound to `graphonomous`
+- `&reason.argument` bound to `deliberatic`
+
+Assume the intended flow is:
+
+- detect an anomaly
+- enrich it with graph memory
+- evaluate candidate actions with argument-based reasoning
+
+A conforming runtime processes that declaration in stages rather than all at once.
+
+## 16.2 What happens during `validate`
+
+The validation step should answer:
+
+- is the declaration structurally valid
+- are required fields present
+- are capability identifiers known
+- are governance and provenance blocks well-formed
+
+A typical CLI interaction might look like:
+
+> $ ampersand validate ampersand.json  
+> ✔ schema valid  
+> ✔ capabilities normalized: 3  
+> ✔ governance block valid  
+> ✔ provenance mode accepted: hash_chain
+
+At this stage, the runtime has not executed providers yet.
+It has only established that the declaration is well-formed enough to continue.
+
+## 16.3 What happens during `compose`
+
+The composition step should answer:
+
+- do the declared capabilities coexist without conflict
+- do requested operations exist on their contracts
+- do adjacent steps agree on input and output types
+- are `accepts_from` and `feeds_into` constraints satisfied
+
+A typical CLI interaction might look like:
+
+> $ ampersand compose ampersand.json  
+> ✔ provider bindings resolved  
+> ✔ contract check passed for `&time.anomaly.detect`  
+> ✔ contract check passed for `&memory.graph.enrich`  
+> ✔ contract check passed for `&reason.argument.evaluate`  
+> ✔ execution plan created: detect → enrich → evaluate
+
+This is the stage where a runtime turns a declaration into an executable plan.
+If a provider is still unresolved because the declaration uses `provider: "auto"`, the runtime should preserve that unresolved state explicitly rather than inventing a binding.
+
+## 16.4 What happens during execution
+
+Once validation and composition succeed, runtime execution can begin.
+
+A typical execution loop is:
+
+1. invoke the first provider operation
+2. capture its typed output
+3. verify the next step can accept that output
+4. attach provenance for the completed step
+5. apply governance checks before, during, or after the step as required
+6. continue until the pipeline or task completes
+
+For the example above, that means:
+
+- `ticktickclock` emits an anomaly event
+- `graphonomous` enriches that event with related incidents or topology context
+- `deliberatic` evaluates candidate responses under the declared governance rules
+
+This is the practical bridge between declaration and behavior.
+
+## 16.5 What happens during `generate`
+
+Generation turns the composed plan into downstream artifacts.
+
+A typical CLI interaction might look like:
+
+> $ ampersand generate --target mcp ampersand.json  
+> ✔ wrote MCP configuration for 3 provider bindings  
+> $ ampersand generate --target a2a ampersand.json  
+> ✔ wrote A2A agent card with 3 exposed skills
+
+The exact artifact shape depends on the target, but the important point is that generation happens after validation and composition, not instead of them.
+
+## 16.6 Failure behavior
+
+If a pipeline step is incompatible, the runtime should fail before generation or execution.
+
+For example, if one step emits `anomaly_event` but the next step requires `forecast_window`, a conforming implementation should surface a targeted error such as:
+
+> $ ampersand compose ampersand.json  
+> ✖ pipeline invalid at step 2  
+> output `anomaly_event` does not satisfy required input `forecast_window`  
+> transition not allowed by declared capability contracts
+
+This is what makes the protocol operational rather than merely descriptive:
+a runtime can explain not only what an agent declares, but why a composition is accepted or rejected.
 
 ---
 
