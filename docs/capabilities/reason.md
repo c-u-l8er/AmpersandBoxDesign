@@ -1,4 +1,4 @@
-# `&reason` — Deliberation, Evaluation, and Decision-Making
+# `&reason`: Deliberation, Evaluation, and Decision-Making
 
 The `&reason` capability family models **how an agent decides**.
 

@@ -1,4 +1,4 @@
-# `&memory` — Capability Deep Dive
+# `&memory`: Capability Deep Dive
 
 The `&memory` namespace describes what an agent can **store, retrieve, enrich, consolidate, and replay** across time.
 

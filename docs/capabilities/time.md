@@ -1,4 +1,4 @@
-# `&time` — Temporal Intelligence in the [&] Protocol
+# `&time`: Temporal Intelligence in the [&] Protocol
 
 `&time` is the temporal capability domain in the [&] Protocol.
 
