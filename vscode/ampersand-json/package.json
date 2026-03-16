@@ -1,0 +1,47 @@
+{
+  "name": "ampersand-json",
+  "displayName": "Ampersand JSON Support",
+  "description": "Schema-only VS Code support for *.ampersand.json declarations in the [&] Protocol.",
+  "version": "0.1.0",
+  "publisher": "ampersand-protocol",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "ampersand",
+    "protocol",
+    "schema",
+    "json",
+    "ai-agents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ampersandboxdesign/AmpersandBoxDesign"
+  },
+  "homepage": "https://protocol.ampersandboxdesign.com",
+  "bugs": {
+    "url": "https://github.com/ampersandboxdesign/AmpersandBoxDesign/issues"
+  },
+  "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "*.ampersand.json",
+          "**/*.ampersand.json"
+        ],
+        "url": "./schemas/ampersand.schema.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/ampersand.code-snippets"
+      }
+    ]
+  }
+}

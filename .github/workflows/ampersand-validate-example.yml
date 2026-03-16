@@ -1,0 +1,38 @@
+name: Ampersand Declaration Validation (Example)
+
+on:
+  pull_request:
+    paths:
+      - "examples/**/*.ampersand.json"
+      - "schema/**/*.json"
+      - ".github/actions/ampersand-validate/**"
+      - ".github/workflows/ampersand-validate-example.yml"
+  workflow_dispatch:
+
+jobs:
+  validate-ampersand:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate InfraOperator declaration
+        id: ampersand
+        uses: ./.github/actions/ampersand-validate
+        with:
+          declaration_path: examples/infra-operator.ampersand.json
+          pipeline_name: incident_triage
+          working_directory: .
+          node_version: "20"
+
+      - name: Print structured outputs
+        run: |
+          echo "Validation result:"
+          echo '${{ steps.ampersand.outputs.validation_result }}'
+          echo
+          echo "Compose result:"
+          echo '${{ steps.ampersand.outputs.compose_result }}'
+          echo
+          echo "Check result:"
+          echo '${{ steps.ampersand.outputs.check_result }}'

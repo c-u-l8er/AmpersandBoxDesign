@@ -166,9 +166,18 @@ This repository is the canonical home for the protocol and its reference artifac
   - `ampersand` CLI
 
 ### Documentation
+- `docs/quickstart.md`
+- `docs/runtime-walkthrough.md`
 - `docs/positioning.md`
 - `docs/faq.md`
 - `docs/comparison-table.md`
+
+### Ecosystem SDKs and tooling
+- `sdk/npm/validate/` — `@ampersand-protocol/validate` npm validator + CLI
+- `sdk/python/ampersand_protocol/` — `ampersand-protocol` Python SDK + CLI
+- `.github/actions/ampersand-validate/` — reusable GitHub Action for declaration validation/composition/check
+- `vscode/ampersand-json/` — VS Code schema/snippet extension for `*.ampersand.json`
+- `playground/` — browser playground for live validation/composition/MCP/A2A previews
 
 ### Website source
 - `site/index.html`
@@ -213,14 +222,14 @@ mix escript.build
 
 The repository currently includes working foundations for:
 
-- canonical protocol schema
+- canonical protocol schema + contract + registry artifacts
 - validating example declarations
-- minimal Elixir reference implementation
-- MCP config generation
-- A2A-style agent card generation
-- CLI commands for validate / compose / generate
+- Elixir reference runtime (validation, composition algebra, contract checks, runtime planning/execution, governance, provenance)
+- MCP config generation and A2A card generation
+- CLI commands for validate / compose / check / plan / run / generate / registry / diff
+- ecosystem scaffolds for npm, Python, CI action, VS Code, and playground workflows
 
-This is an early protocol implementation, but it is already grounded in machine-checkable artifacts rather than only prose.
+This is still an early protocol implementation, but it is grounded in machine-checkable artifacts and now includes cross-ecosystem entry points for adoption.
 
 ---
 
@@ -248,15 +257,28 @@ It compiles into them.
 
 ## Roadmap
 
-Near-term priorities:
+Roadmap (implementation phases):
 
-1. complete schema suite
-2. expand capability contract registry artifacts
-3. deepen reference implementation
-4. improve CLI ergonomics
-5. publish stronger docs and positioning
-6. add documentation hub pages for each primitive
-7. generate high-quality capability registry pages
+### Phase 1 — adoption unblockers
+1. quickstart docs with reproducible CLI output
+2. escript build verification
+3. provider `auto` resolution
+4. second real provider resolver
+5. runtime governance enforcement
+
+### Phase 2 — protocol story hardening
+6. multi-file compose in CLI
+7. pipeline-in-declaration schema + named pipeline CLI support
+8. generate command output writing + MCP format flag
+9. declaration diff command
+10. property-based tests for composition algebra
+
+### Phase 3 — ecosystem growth
+11. npm validator package (`@ampersand-protocol/validate`)
+12. Python SDK (`ampersand-protocol`)
+13. GitHub Action for CI declaration validation
+14. VS Code extension for `*.ampersand.json`
+15. interactive web playground
 
 ---
 

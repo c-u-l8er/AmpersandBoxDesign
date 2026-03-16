@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ampersand-protocol"
+version = "0.1.0"
+description = "Python SDK for validating and composing [&] Protocol ampersand.json declarations."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Ampersand Protocol" }
+]
+keywords = ["ampersand", "protocol", "ai", "agents", "schema", "validation"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Quality Assurance"
+]
+dependencies = [
+  "jsonschema>=4.21.0"
+]
+
+[project.urls]
+Homepage = "https://protocol.ampersandboxdesign.com"
+Repository = "https://github.com/ampersandboxdesign/AmpersandBoxDesign"
+Documentation = "https://protocol.ampersandboxdesign.com/docs"
+
+[project.scripts]
+ampersand = "ampersand_protocol.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ampersand_protocol = ["schema/*.json"]

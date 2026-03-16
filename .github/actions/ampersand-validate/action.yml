@@ -1,0 +1,106 @@
+name: "Ampersand Declaration Validate"
+description: "Validate ampersand.json declarations, compose capabilities, and optionally check a pipeline in CI."
+
+inputs:
+  declaration_path:
+    description: "Path to ampersand declaration file (e.g., examples/infra-operator.ampersand.json)."
+    required: true
+  pipeline:
+    description: "Optional inline pipeline expression for check command."
+    required: false
+    default: ""
+  pipeline_name:
+    description: "Optional named pipeline in declaration.pipelines for check command."
+    required: false
+    default: ""
+  working_directory:
+    description: "Working directory to run commands from."
+    required: false
+    default: "."
+  node_version:
+    description: "Node.js version to use for CLI execution."
+    required: false
+    default: "20"
+
+outputs:
+  validation_result:
+    description: "Structured JSON output from validate command."
+    value: ${{ steps.validate.outputs.result }}
+  compose_result:
+    description: "Structured JSON output from compose command."
+    value: ${{ steps.compose.outputs.result }}
+  check_result:
+    description: "Structured JSON output from optional check command (pipeline or pipeline_name)."
+    value: ${{ steps.check.outputs.result || '' }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+
+    - name: Install @ampersand-protocol/validate from action repository
+      shell: bash
+      run: |
+        set -euo pipefail
+        PACKAGE_DIR="$GITHUB_ACTION_PATH/../../../sdk/npm/validate"
+        if [ ! -f "$PACKAGE_DIR/package.json" ]; then
+          echo "Unable to find npm validator package at: $PACKAGE_DIR" >&2
+          exit 1
+        fi
+
+        npm --prefix "$PACKAGE_DIR" install
+        npm install --global "$PACKAGE_DIR"
+
+    - name: Validate declaration
+      id: validate
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: |
+        set -euo pipefail
+        result="$(ampersand validate "${{ inputs.declaration_path }}")"
+        echo "$result"
+        {
+          echo "result<<EOF"
+          echo "$result"
+          echo "EOF"
+        } >> "$GITHUB_OUTPUT"
+
+    - name: Compose declaration
+      id: compose
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: |
+        set -euo pipefail
+        result="$(ampersand compose "${{ inputs.declaration_path }}")"
+        echo "$result"
+        {
+          echo "result<<EOF"
+          echo "$result"
+          echo "EOF"
+        } >> "$GITHUB_OUTPUT"
+
+    - name: Check pipeline (optional)
+      id: check
+      if: ${{ inputs.pipeline != '' || inputs.pipeline_name != '' }}
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: |
+        set -euo pipefail
+
+        if [ -n "${{ inputs.pipeline_name }}" ]; then
+          result="$(ampersand check "${{ inputs.declaration_path }}" --pipeline "${{ inputs.pipeline_name }}")"
+        elif [ -n "${{ inputs.pipeline }}" ]; then
+          result="$(ampersand check "${{ inputs.declaration_path }}" "${{ inputs.pipeline }}")"
+        else
+          result='{"command":"check","status":"ok","skipped":true,"reason":"no pipeline input provided"}'
+        fi
+
+        echo "$result"
+        {
+          echo "result<<EOF"
+          echo "$result"
+          echo "EOF"
+        } >> "$GITHUB_OUTPUT"

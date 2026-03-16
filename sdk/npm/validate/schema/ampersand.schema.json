@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "title": "Ampersand Agent Declaration",
+  "description": "JSON Schema draft 2020-12 for canonical ampersand.json agent declarations in the [&] Protocol.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "agent", "version", "capabilities"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "description": "Canonical schema identifier for ampersand agent declarations."
+    },
+    "agent": {
+      "$ref": "#/$defs/agentIdentifier"
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "Capability bindings keyed by protocol capability identifier. Using an object preserves set-like semantics for composition (ACI/idempotent declaration collapse).",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/capabilityKey"
+      },
+      "patternProperties": {
+        "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$": {
+          "$ref": "#/$defs/capabilityBinding"
+        }
+      },
+      "additionalProperties": false
+    },
+    "governance": {
+      "$ref": "#/$defs/governance"
+    },
+    "pipelines": {
+      "type": "object",
+      "description": "Optional named pipeline definitions that can be referenced by CLI/runtime instead of passing inline pipeline strings.",
+      "additionalProperties": {
+        "$ref": "#/$defs/pipelineDefinition"
+      }
+    },
+    "provenance": {
+      "type": "boolean",
+      "description": "When true, conforming implementations should attach hash-linked provenance records to capability operations."
+    }
+  },
+  "$defs": {
+    "agentIdentifier": {
+      "type": "string",
+      "title": "Agent Identifier",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+      "description": "Human-readable agent name or identifier."
+    },
+    "semver": {
+      "type": "string",
+      "title": "Semantic Version",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Semantic version string."
+    },
+    "capabilityKey": {
+      "type": "string",
+      "title": "Capability Key",
+      "pattern": "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Protocol capability identifier such as &memory.graph or &reason.argument."
+    },
+    "providerId": {
+      "type": "string",
+      "title": "Provider Identifier",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Lowercase provider identifier, for example graphonomous, ticktickclock, or neo4j-memory."
+    },
+    "configValue": {
+      "description": "Recursive value type for provider configuration payloads.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/configValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/configValue"
+          }
+        }
+      ]
+    },
+    "configObject": {
+      "type": "object",
+      "title": "Capability Configuration",
+      "description": "Provider-specific configuration payload.",
+      "additionalProperties": {
+        "$ref": "#/$defs/configValue"
+      }
+    },
+    "capabilityBinding": {
+      "type": "object",
+      "title": "Capability Binding",
+      "description": "A protocol capability bound either to an explicit provider or to registry resolution via provider=auto.",
+      "additionalProperties": false,
+      "required": ["provider"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^(auto|[a-z][a-z0-9-]*)$",
+          "description": "Explicit provider identifier or the literal value auto for registry resolution."
+        },
+        "config": {
+          "$ref": "#/$defs/configObject"
+        },
+        "need": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Natural-language capability requirement used when provider is auto."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "provider": {
+                "const": "auto"
+              }
+            },
+            "required": ["provider"]
+          },
+          "then": {
+            "required": ["need"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "provider": {
+                "not": {
+                  "const": "auto"
+                }
+              }
+            },
+            "required": ["provider"]
+          },
+          "then": {
+            "not": {
+              "required": ["need"]
+            }
+          }
+        }
+      ]
+    },
+    "pipelineStepDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability", "operation"],
+      "properties": {
+        "capability": {
+          "$ref": "#/$defs/capabilityKey"
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        }
+      }
+    },
+    "pipelineDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["steps"],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pipelineStepDefinition"
+          }
+        }
+      }
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "escalationValue": {
+      "description": "Scalar escalation condition value.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "escalationRules": {
+      "type": "object",
+      "title": "Escalation Rules",
+      "description": "Conditions under which the agent must escalate or defer to a human operator.",
+      "minProperties": 1,
+      "properties": {
+        "confidence_below": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cost_exceeds_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "hard_boundary_approached": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/escalationValue"
+      }
+    },
+    "governance": {
+      "type": "object",
+      "title": "Governance",
+      "description": "Declarative hard constraints, soft preferences, and escalation rules. infer_from_goal may be used to request runtime governance inference from natural-language goals.",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "hard": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "soft": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "escalate_when": {
+          "$ref": "#/$defs/escalationRules"
+        },
+        "infer_from_goal": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "agent": "InfraOperator",
+      "version": "1.0.0",
+      "capabilities": {
+        "&memory.graph": {
+          "provider": "graphonomous",
+          "config": {
+            "instance": "infra-ops"
+          }
+        },
+        "&time.anomaly": {
+          "provider": "ticktickclock",
+          "config": {
+            "streams": ["cpu", "mem"]
+          }
+        },
+        "&space.fleet": {
+          "provider": "geofleetic",
+          "config": {
+            "regions": ["us-east"]
+          }
+        },
+        "&reason.argument": {
+          "provider": "deliberatic",
+          "config": {
+            "governance": "constitutional"
+          }
+        }
+      },
+      "governance": {
+        "hard": ["Never scale beyond 3x in a single action"],
+        "soft": ["Prefer gradual scaling over spikes"],
+        "escalate_when": {
+          "confidence_below": 0.7,
+          "cost_exceeds_usd": 1000
+        }
+      },
+      "provenance": true
+    },
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "agent": "FleetManager",
+      "version": "0.1.0",
+      "capabilities": {
+        "&memory.episodic": {
+          "provider": "auto",
+          "need": "route performance history"
+        },
+        "&time.forecast": {
+          "provider": "auto",
+          "need": "demand spike prediction"
+        },
+        "&space.fleet": {
+          "provider": "auto",
+          "need": "US regional fleet tracking"
+        },
+        "&reason.argument": {
+          "provider": "auto",
+          "need": "auditable scaling decisions"
+        }
+      },
+      "governance": {
+        "infer_from_goal": true
+      },
+      "provenance": true
+    },
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "agent": "ResearchAgent",
+      "version": "0.1.0",
+      "capabilities": {
+        "&memory.vector": {
+          "provider": "pgvector",
+          "config": {
+            "index": "papers"
+          }
+        },
+        "&time.pattern": {
+          "provider": "ticktickclock",
+          "config": {
+            "window_days": 30
+          }
+        },
+        "&reason.argument": {
+          "provider": "deliberatic",
+          "config": {
+            "governance": "evidence-first"
+          }
+        }
+      },
+      "governance": {
+        "hard": [
+          "Never present unsupported conclusions as facts",
+          "Always preserve citation traceability"
+        ],
+        "soft": ["Prefer recent peer-reviewed evidence"],
+        "escalate_when": {
+          "confidence_below": 0.65
+        }
+      },
+      "provenance": true
+    }
+  ]
+}

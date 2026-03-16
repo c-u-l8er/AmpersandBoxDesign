@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>[&] Protocol Playground</title>
+        <meta
+            name="description"
+            content="Interactive playground for ampersand.json validation, composition, pipeline checks, and MCP/A2A previews."
+        />
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <main class="playground">
+            <header class="playground__header">
+                <div>
+                    <h1 class="playground__title">[&] Protocol Playground</h1>
+                    <p class="playground__subtitle">
+                        Edit <code>ampersand.json</code>, validate against
+                        schema, preview composition, check pipelines, and
+                        generate MCP/A2A artifacts.
+                    </p>
+                </div>
+            </header>
+
+            <section class="layout">
+                <article class="editor-panel">
+                    <div class="panel__header">
+                        <h2 class="panel__title">Declaration Editor</h2>
+                        <span class="panel__meta"
+                            >Live validation + shareable URL</span
+                        >
+                    </div>
+
+                    <div class="editor-wrap">
+                        <textarea
+                            id="declaration-input"
+                            spellcheck="false"
+                            aria-label="Ampersand declaration JSON editor"
+                        ></textarea>
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">Pipeline Expression</h2>
+                        <span class="panel__meta">Used for check preview</span>
+                    </div>
+
+                    <div
+                        style="
+                            padding: 10px;
+                            border-top: 1px solid var(--border);
+                            background: var(--panel);
+                        "
+                    >
+                        <input
+                            id="pipeline-input"
+                            type="text"
+                            placeholder="stream_data |> &time.anomaly.detect() |> &memory.graph.enrich() |> &reason.argument.evaluate()"
+                            style="
+                                width: 100%;
+                                border: 1px solid var(--border);
+                                border-radius: 8px;
+                                background: var(--panel-soft);
+                                color: var(--text);
+                                padding: 8px 10px;
+                                font-family: var(--mono);
+                                font-size: 0.82rem;
+                            "
+                        />
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">Share URL</h2>
+                        <div class="playground__actions">
+                            <button
+                                id="copy-share-url"
+                                class="btn btn--primary"
+                                type="button"
+                            >
+                                Copy URL
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="output-body">
+                        <pre id="share-url-output" class="output-pre"></pre>
+                    </div>
+
+                    <div
+                        id="status-output"
+                        class="status-row"
+                        style="
+                            padding: 10px 12px;
+                            border-top: 1px solid var(--border);
+                        "
+                    >
+                        Initializing...
+                    </div>
+                </article>
+
+                <section class="output-panel">
+                    <div class="panel__header">
+                        <h2 class="panel__title">Validation Result</h2>
+                    </div>
+                    <div class="output-body">
+                        <pre id="validation-output" class="output-pre"></pre>
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">Composition Preview</h2>
+                    </div>
+                    <div class="output-body">
+                        <pre id="compose-output" class="output-pre"></pre>
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">Pipeline Check</h2>
+                    </div>
+                    <div class="output-body">
+                        <pre id="check-output" class="output-pre"></pre>
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">MCP Output</h2>
+                    </div>
+                    <div class="output-body">
+                        <pre id="mcp-output" class="output-pre"></pre>
+                    </div>
+
+                    <div class="panel__header">
+                        <h2 class="panel__title">A2A Output</h2>
+                    </div>
+                    <div class="output-body">
+                        <pre id="a2a-output" class="output-pre"></pre>
+                    </div>
+                </section>
+            </section>
+
+            <p class="footer-note">
+                Schema is loaded from
+                <code>../schema/v0.1.0/ampersand.schema.json</code>. If
+                validation fails to initialize, check your static server root.
+            </p>
+        </main>
+
+        <!-- AJV + formats globals used by playground/app.js -->
+        <script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv2020.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ajv-formats@2/dist/ajv-formats.min.js"></script>
+
+        <!-- Playground logic -->
+        <script src="./app.js" defer></script>
+    </body>
+</html>

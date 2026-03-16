@@ -1,0 +1,128 @@
+{
+  "Ampersand Declaration (Full)": {
+    "scope": "json",
+    "prefix": "ampersand:declaration",
+    "description": "Create a full ampersand.json declaration",
+    "body": [
+      "{",
+      "  \"$schema\": \"https://protocol.ampersandboxdesign.com/v0.1/schema.json\",",
+      "  \"agent\": \"${1:InfraOperator}\",",
+      "  \"version\": \"${2:1.0.0}\",",
+      "  \"capabilities\": {",
+      "    \"&memory.graph\": {",
+      "      \"provider\": \"${3:graphonomous}\",",
+      "      \"config\": {",
+      "        \"instance\": \"${4:infra-ops}\"",
+      "      }",
+      "    },",
+      "    \"&time.anomaly\": {",
+      "      \"provider\": \"${5:ticktickclock}\",",
+      "      \"config\": {",
+      "        \"streams\": [\"cpu\", \"mem\"]",
+      "      }",
+      "    },",
+      "    \"&reason.argument\": {",
+      "      \"provider\": \"${6:deliberatic}\",",
+      "      \"config\": {",
+      "        \"governance\": \"${7:constitutional}\"",
+      "      }",
+      "    }",
+      "  },",
+      "  \"governance\": {",
+      "    \"hard\": [",
+      "      \"${8:Never scale beyond 3x in a single action}\"",
+      "    ],",
+      "    \"soft\": [",
+      "      \"${9:Prefer gradual scaling over spikes}\"",
+      "    ],",
+      "    \"escalate_when\": {",
+      "      \"confidence_below\": ${10:0.7},",
+      "      \"cost_exceeds_usd\": ${11:1000}",
+      "    }",
+      "  },",
+      "  \"pipelines\": {",
+      "    \"${12:incident_triage}\": {",
+      "      \"source_type\": \"stream_data\",",
+      "      \"source_ref\": \"raw_data\",",
+      "      \"steps\": [",
+      "        { \"capability\": \"&time.anomaly\", \"operation\": \"detect\" },",
+      "        { \"capability\": \"&memory.graph\", \"operation\": \"enrich\" },",
+      "        { \"capability\": \"&reason.argument\", \"operation\": \"evaluate\" }",
+      "      ]",
+      "    }",
+      "  },",
+      "  \"provenance\": true",
+      "}"
+    ]
+  },
+  "Ampersand Capability Binding": {
+    "scope": "json",
+    "prefix": "ampersand:capability",
+    "description": "Insert a capability binding",
+    "body": [
+      "\"${1:&memory.graph}\": {",
+      "  \"provider\": \"${2:graphonomous}\",",
+      "  \"config\": {",
+      "    \"${3:key}\": \"${4:value}\"",
+      "  }",
+      "}"
+    ]
+  },
+  "Ampersand Auto Provider Binding": {
+    "scope": "json",
+    "prefix": "ampersand:auto",
+    "description": "Insert an auto-resolved capability binding with need",
+    "body": [
+      "\"${1:&memory.episodic}\": {",
+      "  \"provider\": \"auto\",",
+      "  \"need\": \"${2:Describe what this capability is needed for}\"",
+      "}"
+    ]
+  },
+  "Ampersand Governance Block": {
+    "scope": "json",
+    "prefix": "ampersand:governance",
+    "description": "Insert a governance block",
+    "body": [
+      "\"governance\": {",
+      "  \"hard\": [",
+      "    \"${1:Hard constraint}\"",
+      "  ],",
+      "  \"soft\": [",
+      "    \"${2:Soft preference}\"",
+      "  ],",
+      "  \"escalate_when\": {",
+      "    \"confidence_below\": ${3:0.75},",
+      "    \"cost_exceeds_usd\": ${4:1000}",
+      "  }",
+      "}"
+    ]
+  },
+  "Ampersand Named Pipeline": {
+    "scope": "json",
+    "prefix": "ampersand:pipeline",
+    "description": "Insert a named pipeline definition",
+    "body": [
+      "\"${1:incident_triage}\": {",
+      "  \"source_type\": \"${2:stream_data}\",",
+      "  \"source_ref\": \"${3:raw_data}\",",
+      "  \"steps\": [",
+      "    { \"capability\": \"${4:&time.anomaly}\", \"operation\": \"${5:detect}\" },",
+      "    { \"capability\": \"${6:&memory.graph}\", \"operation\": \"${7:enrich}\" },",
+      "    { \"capability\": \"${8:&reason.argument}\", \"operation\": \"${9:evaluate}\" }",
+      "  ]",
+      "}"
+    ]
+  },
+  "Ampersand Pipeline Step": {
+    "scope": "json",
+    "prefix": "ampersand:step",
+    "description": "Insert a single pipeline step object",
+    "body": [
+      "{",
+      "  \"capability\": \"${1:&time.anomaly}\",",
+      "  \"operation\": \"${2:detect}\"",
+      "}"
+    ]
+  }
+}
