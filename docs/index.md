@@ -30,10 +30,20 @@ positioning
 comparison-table
 research
 faq
+
+:caption: Capabilities
 capabilities/memory
 capabilities/reason
 capabilities/time
 capabilities/space
+
+:caption: Registry
+registry/README
+registry/memory.episodic
+registry/memory.graph
+registry/reason.arguement
+registry/space.fleet
+registry/time.forecast
 ```
 
 ## Suggested reading order
