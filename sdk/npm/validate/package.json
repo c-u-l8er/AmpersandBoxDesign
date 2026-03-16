@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Schema validation and composition utilities for ampersand.json declarations.",
   "bin": {
-    "ampersand": "./src/cli.js"
+    "ampersand": "src/cli.js"
   },
   "exports": {
     ".": "./src/index.js"
