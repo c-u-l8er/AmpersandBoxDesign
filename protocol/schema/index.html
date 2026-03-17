@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Ampersand Schema v0.1.0</title>
+        <style>
+            :root {
+                color-scheme: light dark;
+                --bg: #0b1020;
+                --card: #131a2b;
+                --text: #e9eefc;
+                --muted: #a9b4d0;
+                --accent: #7aa2ff;
+                --border: #2a3557;
+            }
+
+            @media (prefers-color-scheme: light) {
+                :root {
+                    --bg: #f5f7ff;
+                    --card: #ffffff;
+                    --text: #1b2338;
+                    --muted: #56607a;
+                    --accent: #295cff;
+                    --border: #d9e0ff;
+                }
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font:
+                    16px/1.5 system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Ubuntu,
+                    Cantarell,
+                    Noto Sans,
+                    Arial,
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji";
+                background:
+                    radial-gradient(
+                        1200px 600px at 10% -10%,
+                        rgba(122, 162, 255, 0.16),
+                        transparent 50%
+                    ),
+                    var(--bg);
+                color: var(--text);
+                min-height: 100vh;
+                display: grid;
+                place-items: center;
+                padding: 2rem 1rem;
+            }
+
+            main {
+                width: min(900px, 100%);
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+            }
+
+            h1 {
+                margin: 0 0 0.25rem 0;
+                font-size: clamp(1.35rem, 2vw + 1rem, 2rem);
+            }
+
+            .subtitle {
+                margin: 0 0 1rem 0;
+                color: var(--muted);
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin: 0 0 1.25rem 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .nav-links a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                text-decoration: none;
+                color: var(--text);
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                padding: 0.35rem 0.7rem;
+                font-size: 0.86rem;
+                background: color-mix(
+                    in oklab,
+                    var(--card) 88%,
+                    var(--accent) 12%
+                );
+                transition:
+                    transform 0.12s ease,
+                    border-color 0.12s ease,
+                    box-shadow 0.12s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a:focus-visible {
+                transform: translateY(-1px);
+                border-color: var(--accent);
+                box-shadow: 0 6px 16px rgba(41, 92, 255, 0.16);
+                outline: none;
+            }
+
+            .nav-links a[aria-current="page"] {
+                border-color: var(--accent);
+                box-shadow: inset 0 0 0 1px
+                    color-mix(in oklab, var(--accent) 40%, transparent);
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 0.75rem;
+            }
+
+            li a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.75rem;
+                text-decoration: none;
+                color: inherit;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 0.85rem 1rem;
+                background: color-mix(
+                    in oklab,
+                    var(--card) 88%,
+                    var(--accent) 12%
+                );
+                transition:
+                    transform 0.12s ease,
+                    border-color 0.12s ease,
+                    box-shadow 0.12s ease;
+                word-break: break-word;
+            }
+
+            li a:hover,
+            li a:focus-visible {
+                transform: translateY(-1px);
+                border-color: var(--accent);
+                box-shadow: 0 8px 20px rgba(41, 92, 255, 0.16);
+                outline: none;
+            }
+
+            .name {
+                font-weight: 600;
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", "Courier New", monospace;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+                color: var(--accent);
+                border: 1px solid
+                    color-mix(in oklab, var(--accent) 45%, transparent);
+                border-radius: 999px;
+                padding: 0.2rem 0.55rem;
+                white-space: nowrap;
+                background: color-mix(in oklab, var(--accent) 10%, transparent);
+            }
+
+            footer {
+                margin-top: 1rem;
+                color: var(--muted);
+                font-size: 0.9rem;
+            }
+
+            code {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", "Courier New", monospace;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>[&] Protocol Schema</h1>
+            <p class="subtitle">
+                Version <code>v0.1.0</code> JSON schema files:
+            </p>
+
+            <ul class="nav-links" aria-label="Protocol section navigation">
+                <li>
+                    <a href="./index.html" aria-current="page">Schema</a>
+                </li>
+                <li>
+                    <a href="../../registry/index.html">Registry</a>
+                </li>
+                <li>
+                    <a href="../../playground/index.html">Playground</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="./v0.1.0/ampersand.schema.json">
+                        <span class="name">ampersand.schema.json</span>
+                        <span class="badge">JSON Schema</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./v0.1.0/capability-contract.schema.json">
+                        <span class="name"
+                            >capability-contract.schema.json</span
+                        >
+                        <span class="badge">JSON Schema</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./v0.1.0/registry.schema.json">
+                        <span class="name">registry.schema.json</span>
+                        <span class="badge">JSON Schema</span>
+                    </a>
+                </li>
+            </ul>
+
+            <footer>Path: <code>/protocol/schema/v0.1.0</code></footer>
+        </main>
+    </body>
+</html>

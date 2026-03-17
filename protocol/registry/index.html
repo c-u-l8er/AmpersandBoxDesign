@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ampersand Schema v0.1.0</title>
+        <title>Ampersand Protocol Registry</title>
         <style>
             :root {
                 color-scheme: light dark;
@@ -76,6 +76,50 @@
                 color: var(--muted);
             }
 
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin: 0 0 1.25rem 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .nav-links a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                text-decoration: none;
+                color: var(--text);
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                padding: 0.35rem 0.7rem;
+                font-size: 0.86rem;
+                background: color-mix(
+                    in oklab,
+                    var(--card) 88%,
+                    var(--accent) 12%
+                );
+                transition:
+                    transform 0.12s ease,
+                    border-color 0.12s ease,
+                    box-shadow 0.12s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a:focus-visible {
+                transform: translateY(-1px);
+                border-color: var(--accent);
+                box-shadow: 0 6px 16px rgba(41, 92, 255, 0.16);
+                outline: none;
+            }
+
+            .nav-links a[aria-current="page"] {
+                border-color: var(--accent);
+                box-shadow: inset 0 0 0 1px
+                    color-mix(in oklab, var(--accent) 40%, transparent);
+            }
+
             ul {
                 list-style: none;
                 padding: 0;
@@ -108,6 +152,36 @@
 
             li a:hover,
             li a:focus-visible {
+                transform: translateY(-1px);
+                border-color: var(--accent);
+                box-shadow: 0 8px 20px rgba(41, 92, 255, 0.16);
+                outline: none;
+            }
+
+            .registry-list li a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.75rem;
+                text-decoration: none;
+                color: inherit;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 0.85rem 1rem;
+                background: color-mix(
+                    in oklab,
+                    var(--card) 88%,
+                    var(--accent) 12%
+                );
+                transition:
+                    transform 0.12s ease,
+                    border-color 0.12s ease,
+                    box-shadow 0.12s ease;
+                word-break: break-word;
+            }
+
+            .registry-list li a:hover,
+            .registry-list li a:focus-visible {
                 transform: translateY(-1px);
                 border-color: var(--accent);
                 box-shadow: 0 8px 20px rgba(41, 92, 255, 0.16);
@@ -147,35 +221,37 @@
     </head>
     <body>
         <main>
-            <h1>[&] Protocol Schema</h1>
+            <h1>[&] Protocol Registry</h1>
             <p class="subtitle">
-                Version <code>v0.1.0</code> JSON schema files:
+                Versioned registry artifacts for capability/provider discovery:
             </p>
 
-            <ul>
+            <ul class="nav-links" aria-label="Protocol section navigation">
                 <li>
-                    <a href="./ampersand.schema.json">
-                        <span class="name">ampersand.schema.json</span>
-                        <span class="badge">JSON Schema</span>
-                    </a>
+                    <a href="../../schema/index.html">Schema</a>
                 </li>
                 <li>
-                    <a href="./capability-contract.schema.json">
+                    <a href="../../registry/index.html" aria-current="page"
+                        >Registry</a
+                    >
+                </li>
+                <li>
+                    <a href="../../playground/index.html">Playground</a>
+                </li>
+            </ul>
+
+            <ul class="registry-list">
+                <li>
+                    <a href="./v0.1.0/capabilities.registry.json">
                         <span class="name"
-                            >capability-contract.schema.json</span
+                            >v0.1.0/capabilities.registry.json</span
                         >
-                        <span class="badge">JSON Schema</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./registry.schema.json">
-                        <span class="name">registry.schema.json</span>
-                        <span class="badge">JSON Schema</span>
+                        <span class="badge">Registry Artifact</span>
                     </a>
                 </li>
             </ul>
 
-            <footer>Path: <code>/protocol/schema/v0.1.0</code></footer>
+            <footer>Path: <code>/protocol/registry</code></footer>
         </main>
     </body>
 </html>
