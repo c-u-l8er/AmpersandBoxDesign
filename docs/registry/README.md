@@ -60,9 +60,9 @@ These pages complement several other protocol artifacts.
 These define the formal model, grammar, and architecture of the protocol.
 
 ### Schemas
-- `schema/v0.1.0/ampersand.schema.json`
-- `schema/v0.1.0/capability-contract.schema.json`
-- `schema/v0.1.0/registry.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/capability-contract.schema.json`
+- `protocol/schema/v0.1.0/registry.schema.json`
 
 These make the protocol machine-readable.
 
@@ -72,7 +72,7 @@ These make the protocol machine-readable.
 These define typed capability behavior such as operations, `accepts_from`, `feeds_into`, and `a2a_skills`.
 
 ### Registry artifact
-- `registry/v0.1.0/capabilities.registry.json`
+- `protocol/registry/v0.1.0/capabilities.registry.json`
 
 This publishes discoverable provider and subtype metadata.
 
@@ -225,7 +225,7 @@ When writing a new capability page:
 - use realistic examples
 - align terminology with `SPEC.md`
 - align contracts with `contracts/v0.1.0/`
-- align registry metadata with `registry/v0.1.0/capabilities.registry.json`
+- align registry metadata with `protocol/registry/v0.1.0/capabilities.registry.json`
 - mention governance and provenance when they materially matter
 - prefer clarity over hype
 

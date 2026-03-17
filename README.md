@@ -121,9 +121,9 @@ This repository is the canonical home for the protocol and its reference artifac
 - `prompts/PROTOCOL_PROMPT.md` — implementation-oriented protocol prompt
 
 ### Schemas
-- `schema/v0.1.0/ampersand.schema.json` — canonical schema for `ampersand.json`
-- `schema/v0.1.0/capability-contract.schema.json` — schema for capability contracts
-- `schema/v0.1.0/registry.schema.json` — schema for capability registry documents
+- `protocol/schema/v0.1.0/ampersand.schema.json` — canonical schema for `ampersand.json`
+- `protocol/schema/v0.1.0/capability-contract.schema.json` — schema for capability contracts
+- `protocol/schema/v0.1.0/registry.schema.json` — schema for capability registry documents
 
 ### Examples
 - `examples/infra-operator.ampersand.json`
@@ -147,7 +147,7 @@ This repository is the canonical home for the protocol and its reference artifac
 - `contracts/v0.1.0/space.geofence.contract.json`
 
 ### Registry
-- `registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata
+- `protocol/registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata
 
 ### Capability pages
 - `capabilities/memory.graph.md`

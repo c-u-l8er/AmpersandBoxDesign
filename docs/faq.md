@@ -680,7 +680,7 @@ A good reading path is:
 
 1. `README.md`
 2. `SPEC.md`
-3. `schema/v0.1.0/ampersand.schema.json`
+3. `protocol/schema/v0.1.0/ampersand.schema.json`
 4. `examples/`
 5. `reference/elixir/ampersand_core/`
 6. `docs/positioning.md`

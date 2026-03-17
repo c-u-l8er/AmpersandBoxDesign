@@ -72,7 +72,7 @@ The repository has three closely related artifact layers:
 
 Located in:
 
-- `schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
 - `examples/*.ampersand.json`
 
 These describe a whole agent.
@@ -89,7 +89,7 @@ These describe one capability at a time.
 
 Located in:
 
-- `registry/v0.1.0/*.json`
+- `protocol/registry/v0.1.0/*.json`
 
 These publish primitives, subtypes, and providers and may link back to contracts in this directory.
 
@@ -131,7 +131,7 @@ These artifacts are intended to serve as:
 
 Each contract artifact is validated by:
 
-- `schema/v0.1.0/capability-contract.schema.json`
+- `protocol/schema/v0.1.0/capability-contract.schema.json`
 
 A typical file includes fields like:
 

@@ -29,7 +29,7 @@ defmodule AmpersandCore.Contracts do
 
   @default_contracts_dir Path.expand("../../../../../contracts/v0.1.0", __DIR__)
   @default_contract_schema_path Path.expand(
-                                  "../../../../../schema/v0.1.0/capability-contract.schema.json",
+                                  "../../../../../protocol/schema/v0.1.0/capability-contract.schema.json",
                                   __DIR__
                                 )
 

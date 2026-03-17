@@ -93,7 +93,7 @@ You should see:
 
 The protocol schema is maintained at:
 
-- `schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
 
 The extension bundles a copy at:
 
@@ -132,5 +132,5 @@ vsce publish
 ## Related project components
 
 - Protocol docs: `docs/`
-- Schema artifacts: `schema/v0.1.0/`
+- Schema artifacts: `protocol/schema/v0.1.0/`
 - Reference runtime: `reference/elixir/ampersand_core/`

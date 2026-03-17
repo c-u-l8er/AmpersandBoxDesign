@@ -51,7 +51,7 @@ That file is the canonical generated registry snapshot for protocol version `0.1
 
 Registry artifacts should validate against:
 
-- `../schema/v0.1.0/registry.schema.json`
+- `../protocol/schema/v0.1.0/registry.schema.json`
 
 The schema defines the allowed structure for:
 
@@ -185,8 +185,8 @@ As the registry layer matures, this directory may grow to include:
 
 Useful related files in this repository:
 
-- `../schema/v0.1.0/registry.schema.json`
-- `../schema/v0.1.0/capability-contract.schema.json`
+- `../protocol/schema/v0.1.0/registry.schema.json`
+- `../protocol/schema/v0.1.0/capability-contract.schema.json`
 - `../contracts/v0.1.0/`
 - `../examples/`
 - `../reference/elixir/ampersand_core/`

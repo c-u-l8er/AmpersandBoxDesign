@@ -243,7 +243,7 @@ The easiest way to understand the protocol is to interact with the actual artifa
 
 Start with the schema:
 
-- `schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
 
 Then inspect example declarations:
 

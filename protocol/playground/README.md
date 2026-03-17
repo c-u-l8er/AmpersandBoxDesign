@@ -58,8 +58,8 @@ This README assumes the playground assets are in:
 
 And that schema/artifacts are available at repository-relative paths such as:
 
-- `schema/v0.1.0/ampersand.schema.json`
-- `registry/v0.1.0/capabilities.registry.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
+- `protocol/registry/v0.1.0/capabilities.registry.json`
 
 ---
 
@@ -81,7 +81,7 @@ And that schema/artifacts are available at repository-relative paths such as:
 - Check browser DevTools console for missing script/style files.
 
 ### Validation not loading
-- Verify `schema/v0.1.0/ampersand.schema.json` is reachable from the served root.
+- Verify `protocol/schema/v0.1.0/ampersand.schema.json` is reachable from the served root.
 - Confirm your local server root is the repository root.
 
 ### CORS/fetch issues

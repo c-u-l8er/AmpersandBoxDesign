@@ -2,7 +2,7 @@ defmodule AmpersandCore.Schema do
   @moduledoc """
   Canonical JSON Schema validation for `ampersand.json` agent declarations.
 
-  This module treats `AmpersandBoxDesign/schema/v0.1.0/ampersand.schema.json`
+  This module treats `AmpersandBoxDesign/protocol/schema/v0.1.0/ampersand.schema.json`
   as the source of truth and delegates low-level JSON loading and AJV-backed
   validation to `AmpersandCore.Artifact`.
   """
@@ -13,7 +13,7 @@ defmodule AmpersandCore.Schema do
   @type validation_result :: {:ok, document()} | {:error, [String.t()]}
 
   @project_root Path.expand("../../../../../", __DIR__)
-  @default_schema_path Path.join(@project_root, "schema/v0.1.0/ampersand.schema.json")
+  @default_schema_path Path.join(@project_root, "protocol/schema/v0.1.0/ampersand.schema.json")
 
   @doc """
   Returns the absolute path to the protocol repository root.

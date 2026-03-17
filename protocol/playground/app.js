@@ -185,9 +185,9 @@
   // -----------------------------
   async function loadSchema() {
     const candidates = [
-      "../schema/v0.1.0/ampersand.schema.json",
-      "/schema/v0.1.0/ampersand.schema.json",
-      "./schema/v0.1.0/ampersand.schema.json",
+      "../protocol/schema/v0.1.0/ampersand.schema.json",
+      "/protocol/schema/v0.1.0/ampersand.schema.json",
+      "./protocol/schema/v0.1.0/ampersand.schema.json",
     ];
 
     for (const url of candidates) {

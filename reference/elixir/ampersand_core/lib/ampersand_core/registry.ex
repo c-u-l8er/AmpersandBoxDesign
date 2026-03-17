@@ -2,7 +2,7 @@ defmodule AmpersandCore.Registry do
   @moduledoc """
   Loader and query helpers for versioned capability registry artifacts.
 
-  This module treats the JSON registry snapshot in `registry/v0.1.0` as a
+  This module treats the JSON registry snapshot in `protocol/registry/v0.1.0` as a
   first-class protocol artifact. It can:
 
     * load the default registry artifact
@@ -34,12 +34,12 @@ defmodule AmpersandCore.Registry do
   @capability_regex ~r/^&(memory|reason|time|space)(\.[A-Za-z][A-Za-z0-9_-]*)?$/
 
   @default_registry_path Path.expand(
-                           "../../../../../registry/v0.1.0/capabilities.registry.json",
+                           "../../../../../protocol/registry/v0.1.0/capabilities.registry.json",
                            __DIR__
                          )
 
   @default_schema_path Path.expand(
-                         "../../../../../schema/v0.1.0/registry.schema.json",
+                         "../../../../../protocol/schema/v0.1.0/registry.schema.json",
                          __DIR__
                        )
 

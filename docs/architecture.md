@@ -863,9 +863,9 @@ If you are trying to understand the architecture for the first time, read the re
 
 1. `README.md`
 2. `SPEC.md`
-3. `schema/v0.1.0/ampersand.schema.json`
-4. `schema/v0.1.0/capability-contract.schema.json`
-5. `schema/v0.1.0/registry.schema.json`
+3. `protocol/schema/v0.1.0/ampersand.schema.json`
+4. `protocol/schema/v0.1.0/capability-contract.schema.json`
+5. `protocol/schema/v0.1.0/registry.schema.json`
 6. `examples/`
 7. `reference/elixir/ampersand_core/`
 8. `docs/positioning.md`

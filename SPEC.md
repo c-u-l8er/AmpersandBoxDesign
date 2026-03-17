@@ -292,7 +292,7 @@ The protocol currently defines three core schema artifacts.
 
 File:
 
-`schema/v0.1.0/ampersand.schema.json`
+`protocol/schema/v0.1.0/ampersand.schema.json`
 
 Purpose:
 
@@ -302,7 +302,7 @@ Purpose:
 
 File:
 
-`schema/v0.1.0/capability-contract.schema.json`
+`protocol/schema/v0.1.0/capability-contract.schema.json`
 
 Purpose:
 
@@ -312,7 +312,7 @@ Purpose:
 
 File:
 
-`schema/v0.1.0/registry.schema.json`
+`protocol/schema/v0.1.0/registry.schema.json`
 
 Purpose:
 
@@ -714,9 +714,9 @@ Important repository paths:
 - `README.md` — overview
 - `SPEC.md` — this document
 - `protocol.html` — HTML spec
-- `schema/v0.1.0/ampersand.schema.json`
-- `schema/v0.1.0/capability-contract.schema.json`
-- `schema/v0.1.0/registry.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/capability-contract.schema.json`
+- `protocol/schema/v0.1.0/registry.schema.json`
 - `examples/`
 - `reference/elixir/ampersand_core/`
 - `docs/positioning.md`

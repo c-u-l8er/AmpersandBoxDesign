@@ -1,6 +1,6 @@
 # `@ampersand-protocol/validate`
 
-Minimal TypeScript/Node validator and CLI for [`ampersand.json`](../../../schema/v0.1.0/ampersand.schema.json) declarations.
+Minimal TypeScript/Node validator and CLI for [`ampersand.json`](../../../protocol/schema/v0.1.0/ampersand.schema.json) declarations.
 
 This package is designed for fast CI checks and local validation without needing the Elixir reference runtime.
 
@@ -114,7 +114,7 @@ This makes the package easy to consume in CI pipelines and scripts.
 
 The bundled schema is synchronized from:
 
-- `schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
 
 If you update protocol schema fields, re-sync this package before publishing.
 

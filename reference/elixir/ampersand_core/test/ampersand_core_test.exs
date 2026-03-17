@@ -6,11 +6,11 @@ defmodule AmpersandCore.TestFixtures do
   end
 
   def schema_path do
-    Path.join(project_root(), "schema/v0.1.0/ampersand.schema.json")
+    Path.join(project_root(), "protocol/schema/v0.1.0/ampersand.schema.json")
   end
 
   def registry_path do
-    Path.join(project_root(), "registry/v0.1.0/capabilities.registry.json")
+    Path.join(project_root(), "protocol/registry/v0.1.0/capabilities.registry.json")
   end
 
   def contracts_dir do

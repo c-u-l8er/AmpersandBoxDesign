@@ -914,5 +914,5 @@ In short:
 - `docs/capabilities/time.md`
 - `docs/capabilities/space.md`
 - `docs/architecture.md`
-- `schema/v0.1.0/ampersand.schema.json`
-- `schema/v0.1.0/capability-contract.schema.json`
+- `protocol/schema/v0.1.0/ampersand.schema.json`
+- `protocol/schema/v0.1.0/capability-contract.schema.json`

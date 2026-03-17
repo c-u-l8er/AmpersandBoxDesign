@@ -12,7 +12,7 @@ const DEFAULT_SCHEMA_PATH = path.resolve(
 );
 const DEFAULT_REGISTRY_PATH = path.resolve(
   __dirname,
-  "../../../../registry/v0.1.0/capabilities.registry.json",
+  "../../../../protocol/registry/v0.1.0/capabilities.registry.json",
 );
 
 function readJsonFile(filePath, label = "JSON file") {

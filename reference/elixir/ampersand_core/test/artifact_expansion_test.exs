@@ -10,7 +10,7 @@ defmodule AmpersandCore.ArtifactExpansionFixtures do
   end
 
   def registry_path do
-    Path.join(project_root(), "registry/v0.1.0/capabilities.registry.json")
+    Path.join(project_root(), "protocol/registry/v0.1.0/capabilities.registry.json")
   end
 
   def example_path(filename) do

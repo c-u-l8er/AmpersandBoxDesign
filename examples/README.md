@@ -199,7 +199,7 @@ Recommended checklist:
 - enable `provenance`
 - make governance explicit when relevant
 - choose either explicit providers or `auto` intentionally
-- make sure the file validates against `schema/v0.1.0/ampersand.schema.json`
+- make sure the file validates against `protocol/schema/v0.1.0/ampersand.schema.json`
 
 ## Suggested future examples
 

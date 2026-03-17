@@ -1,6 +1,6 @@
 # Ampersand Validate GitHub Action
 
-This action validates [`ampersand.json`](../../../schema/v0.1.0/ampersand.schema.json) declarations in CI, composes capability maps, and can optionally run a lightweight pipeline check.
+This action validates [`ampersand.json`](../../../protocol/schema/v0.1.0/ampersand.schema.json) declarations in CI, composes capability maps, and can optionally run a lightweight pipeline check.
 
 It is intended for pull-request and main-branch gating where declaration correctness must be enforced.
 
