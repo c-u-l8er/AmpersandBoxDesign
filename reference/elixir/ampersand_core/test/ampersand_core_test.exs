@@ -103,13 +103,13 @@ defmodule AmpersandCoreSchemaTest do
         ] do
       assert {:ok, document} = AmpersandCore.Schema.validate_file(Fixtures.example_path(file))
       assert is_map(document)
-      assert document["$schema"] == "https://protocol.ampersandboxdesign.com/v0.1/schema.json"
+      assert document["$schema"] == "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json"
     end
   end
 
   test "auto provider declarations require a natural language need" do
     invalid_document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "AutoButUnderspecified",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -125,7 +125,7 @@ defmodule AmpersandCoreSchemaTest do
 
   test "invalid capability identifiers are rejected" do
     invalid_document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "BadCapability",
       "version" => "0.1.0",
       "capabilities" => %{

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&space.route",
   "provider": "geofleetic",
   "version": "0.1.0",
@@ -35,16 +35,8 @@
     "route_request",
     "raw_data"
   ],
-  "feeds_into": [
-    "&reason.*",
-    "&memory.*",
-    "&space.*",
-    "output"
-  ],
-  "a2a_skills": [
-    "route-generation",
-    "route-optimization"
-  ],
+  "feeds_into": ["&reason.*", "&memory.*", "&space.*", "output"],
+  "a2a_skills": ["route-generation", "route-optimization"],
   "metadata": {
     "primitive": "space",
     "subtype": "route",

@@ -49,7 +49,7 @@ A declaration may look like this:
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/ampersand.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "infra-ops",
   "version": "0.1.0",
   "capabilities": {

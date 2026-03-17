@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&space.geofence",
   "provider": "geofleetic",
   "version": "0.1.0",
@@ -28,15 +28,8 @@
     "location_set",
     "trajectory_set"
   ],
-  "feeds_into": [
-    "&reason.*",
-    "&memory.*",
-    "output"
-  ],
-  "a2a_skills": [
-    "geofence-membership-evaluation",
-    "boundary-alerting"
-  ],
+  "feeds_into": ["&reason.*", "&memory.*", "output"],
+  "a2a_skills": ["geofence-membership-evaluation", "boundary-alerting"],
   "metadata": {
     "primitive": "space",
     "subtype": "geofence",

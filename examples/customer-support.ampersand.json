@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "CustomerSupport",
   "version": "0.1.0",
   "capabilities": {

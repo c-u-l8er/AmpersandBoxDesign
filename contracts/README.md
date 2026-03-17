@@ -150,7 +150,7 @@ Example shape:
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&reason.argument",
   "provider": "deliberatic",
   "version": "0.1.0",

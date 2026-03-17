@@ -352,7 +352,7 @@ Example:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "ResearchAgent",
   "version": "0.1.0",
   "capabilities": {
@@ -422,7 +422,7 @@ Example contract for `&memory.graph`:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&memory.graph",
   "provider": "graphonomous",
   "version": "0.1.0",
@@ -467,7 +467,7 @@ Example contract for `&memory.vector`:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&memory.vector",
   "provider": "pgvector",
   "version": "0.1.0",
@@ -622,7 +622,7 @@ This is critical for:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "InfraOperator",
   "version": "1.0.0",
   "capabilities": {
@@ -661,7 +661,7 @@ Why memory matters here:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "ResearchAgent",
   "version": "0.1.0",
   "capabilities": {
@@ -700,7 +700,7 @@ Why memory matters here:
 
 ~~~json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "CustomerSupport",
   "version": "0.1.0",
   "capabilities": {

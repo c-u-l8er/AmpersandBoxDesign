@@ -111,7 +111,7 @@ defmodule AmpersandCoreCLIDiffPhaseTwoTest do
     left_path = Fixtures.example_path("infra-operator.ampersand.json")
 
     right_document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "InfraOperatorV2",
       "version" => "1.1.0",
       "capabilities" => %{

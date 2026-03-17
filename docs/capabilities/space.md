@@ -211,7 +211,7 @@ A warehouse graph, datacenter topology model, maritime route service, or airspac
 A simple spatial capability declaration in `ampersand.json` might look like this:
 
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent": "FleetManager",
       "version": "0.1.0",
       "capabilities": {
@@ -229,7 +229,7 @@ A simple spatial capability declaration in `ampersand.json` might look like this
 A goal-driven variant might use auto-resolution:
 
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent": "RouteCoordinator",
       "version": "0.1.0",
       "capabilities": {

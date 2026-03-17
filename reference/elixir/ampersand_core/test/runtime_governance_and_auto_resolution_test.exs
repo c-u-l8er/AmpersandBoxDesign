@@ -5,7 +5,7 @@ defmodule AmpersandCoreRuntimeAutoResolutionTest do
 
   test "runtime plan resolves provider:auto from the capability registry" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "AutoRuntime",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -43,7 +43,7 @@ defmodule AmpersandCoreRuntimeAutoResolutionTest do
 
   test "runtime plan returns a clear error when auto provider cannot be resolved" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "AutoRuntimeNoMatch",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -77,7 +77,7 @@ defmodule AmpersandCoreMCPAutoResolutionTest do
 
   test "mcp generation resolves auto providers from registry-backed capabilities" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "AutoMCP",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -102,7 +102,7 @@ defmodule AmpersandCoreMCPAutoResolutionTest do
 
   test "mcp generation preserves unresolved auto providers when registry has no matches" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "AutoMCPNoMatch",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -148,7 +148,7 @@ defmodule AmpersandCoreRuntimeGovernanceEnforcementTest do
 
   test "normal execution proceeds with no escalation when escalate_when is absent" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "GovernancePass",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -216,7 +216,7 @@ defmodule AmpersandCoreRuntimeGovernanceEnforcementTest do
 
   test "hard governance constraints block execution" do
     document = %{
-      "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent" => "GovernanceBlock",
       "version" => "0.1.0",
       "capabilities" => %{
@@ -251,7 +251,7 @@ defmodule AmpersandCoreRuntimeGovernanceEnforcementTest do
   test "cli run output includes escalation fields when governance escalation condition matches output" do
     declaration_path =
       Fixtures.write_json_fixture!("governance-escalation", %{
-        "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+        "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
         "agent" => "GovernanceEscalationCLI",
         "version" => "0.1.0",
         "capabilities" => %{
@@ -305,7 +305,7 @@ defmodule AmpersandCoreCLIMultiFileComposeTest do
 
     additive_path =
       Fixtures.write_json_fixture!("compose-compatible", %{
-        "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+        "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
         "agent" => "ComposeCompatibleAddon",
         "version" => "0.1.0",
         "capabilities" => %{
@@ -337,7 +337,7 @@ defmodule AmpersandCoreCLIMultiFileComposeTest do
 
     conflicting_path =
       Fixtures.write_json_fixture!("compose-conflict", %{
-        "$schema" => "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+        "$schema" => "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
         "agent" => "ComposeConflictAddon",
         "version" => "0.1.0",
         "capabilities" => %{

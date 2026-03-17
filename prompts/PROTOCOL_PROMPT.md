@@ -81,7 +81,7 @@ Constraint      := HardConstraint | SoftConstraint | EscalationRule
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "InfraOperator",
   "version": "1.0.0",
   "capabilities": {
@@ -278,7 +278,7 @@ The schema must validate:
 - Provenance flag
 - Capability contracts (operations, accepts_from, feeds_into, a2a_skills)
 
-Host at: `protocol.ampersandboxdesign.com/v0.1/schema.json`
+Host at: `protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json`
 
 ### Priority 2: CLI Tool (`ampersand`)
 

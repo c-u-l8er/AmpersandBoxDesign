@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&reason.vote",
   "provider": "deliberatic",
   "version": "0.1.0",
@@ -42,23 +42,13 @@
     "candidate_set",
     "proposal_set"
   ],
-  "feeds_into": [
-    "&memory.*",
-    "output"
-  ],
-  "a2a_skills": [
-    "multi-agent-consensus",
-    "candidate-ranking"
-  ],
+  "feeds_into": ["&memory.*", "output"],
+  "a2a_skills": ["multi-agent-consensus", "candidate-ranking"],
   "metadata": {
     "primitive": "reason",
     "subtype": "vote",
     "decision_model": "consensus",
-    "governance_modes": [
-      "constitutional",
-      "committee-safe",
-      "evidence-first"
-    ],
+    "governance_modes": ["constitutional", "committee-safe", "evidence-first"],
     "notes": "Representative contract for consensus-style reasoning providers in the [&] Protocol."
   }
 }

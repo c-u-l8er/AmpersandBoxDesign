@@ -5,7 +5,7 @@
     "description": "Create a full ampersand.json declaration",
     "body": [
       "{",
-      "  \"$schema\": \"https://protocol.ampersandboxdesign.com/v0.1/schema.json\",",
+      "  \"$schema\": \"https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json\",",
       "  \"agent\": \"${1:InfraOperator}\",",
       "  \"version\": \"${2:1.0.0}\",",
       "  \"capabilities\": {",

@@ -5,7 +5,8 @@
   // Constants / defaults
   // -----------------------------
   const DEFAULT_DECLARATION = {
-    $schema: "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+    $schema:
+      "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
     agent: "InfraOperator",
     version: "1.0.0",
     capabilities: {

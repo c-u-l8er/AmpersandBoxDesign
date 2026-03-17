@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$id": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "title": "Ampersand Agent Declaration",
   "description": "JSON Schema draft 2020-12 for canonical ampersand.json agent declarations in the [&] Protocol.",
   "type": "object",
@@ -9,7 +9,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "const": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "const": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "description": "Canonical schema identifier for ampersand agent declarations."
     },
     "agent": {
@@ -271,7 +271,7 @@
   },
   "examples": [
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent": "InfraOperator",
       "version": "1.0.0",
       "capabilities": {
@@ -311,7 +311,7 @@
       "provenance": true
     },
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent": "FleetManager",
       "version": "0.1.0",
       "capabilities": {
@@ -338,7 +338,7 @@
       "provenance": true
     },
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
       "agent": "ResearchAgent",
       "version": "0.1.0",
       "capabilities": {

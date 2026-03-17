@@ -149,7 +149,7 @@ A representative contract for `&space.fleet`:
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&space.fleet",
   "provider": "geofleetic",
   "version": "0.1.0",
@@ -391,7 +391,7 @@ A fuller declaration:
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "FleetManager",
   "version": "0.1.0",
   "capabilities": {

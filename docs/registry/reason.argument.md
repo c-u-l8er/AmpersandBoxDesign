@@ -112,7 +112,7 @@ A representative contract for `&reason.argument` looks like this:
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&reason.argument",
   "provider": "deliberatic",
   "version": "0.1.0",
@@ -214,7 +214,7 @@ support_case
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "InfraOperator",
   "version": "1.0.0",
   "capabilities": {
@@ -234,7 +234,7 @@ support_case
 
 ```json
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "PolicyAnalyst",
   "version": "0.1.0",
   "capabilities": {

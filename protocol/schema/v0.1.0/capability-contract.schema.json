@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$id": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "title": "Ampersand Capability Contract",
   "description": "JSON Schema draft 2020-12 for [&] protocol capability contract artifacts. A contract declares a capability's operations, typed inputs and outputs, composition adjacency constraints, and optional A2A skill mappings.",
   "type": "object",
@@ -14,7 +14,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "const": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+      "const": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
       "description": "Canonical schema identifier for capability contract artifacts."
     },
     "capability": {
@@ -175,7 +175,7 @@
   },
   "examples": [
     {
-      "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
       "capability": "&time.anomaly",
       "provider": "ticktickclock",
       "version": "0.1.0",

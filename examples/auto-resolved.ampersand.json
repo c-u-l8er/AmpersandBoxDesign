@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "agent": "AutoResolvedDemo",
   "version": "0.1.0",
   "capabilities": {
@@ -21,13 +21,8 @@
     }
   },
   "governance": {
-    "hard": [
-      "cross_region_impact=true",
-      "cost_exceeds_usd:5000"
-    ],
-    "soft": [
-      "Prefer reversible mitigations before disruptive actions"
-    ],
+    "hard": ["cross_region_impact=true", "cost_exceeds_usd:5000"],
+    "soft": ["Prefer reversible mitigations before disruptive actions"],
     "escalate_when": {
       "confidence_below": 0.75
     }

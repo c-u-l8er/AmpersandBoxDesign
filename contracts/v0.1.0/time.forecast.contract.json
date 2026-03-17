@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&time.forecast",
   "provider": "ticktickclock",
   "version": "0.1.0",
@@ -42,12 +42,7 @@
     "context",
     "observation"
   ],
-  "feeds_into": [
-    "&reason.*",
-    "&space.*",
-    "&memory.*",
-    "output"
-  ],
+  "feeds_into": ["&reason.*", "&space.*", "&memory.*", "output"],
   "a2a_skills": [
     "temporal-forecasting",
     "demand-prediction",
@@ -56,11 +51,7 @@
   "metadata": {
     "primitive": "time",
     "subtype": "forecast",
-    "recommended_horizons": [
-      "1h",
-      "24h",
-      "7d"
-    ],
+    "recommended_horizons": ["1h", "24h", "7d"],
     "example_use_cases": [
       "demand spike prediction",
       "capacity planning",

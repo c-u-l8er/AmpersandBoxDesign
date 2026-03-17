@@ -73,7 +73,7 @@ Generated escript ampersand with MIX_ENV=dev
   "capability_count": 4,
   "command": "validate",
   "file": "../../../examples/infra-operator.ampersand.json",
-  "schema": "https://protocol.ampersandboxdesign.com/v0.1/schema.json",
+  "schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
   "status": "ok",
   "valid": true,
   "version": "1.0.0"

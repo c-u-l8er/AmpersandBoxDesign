@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&time.pattern",
   "provider": "ticktickclock",
   "version": "0.1.0",
@@ -34,24 +34,12 @@
     "time_series",
     "context"
   ],
-  "feeds_into": [
-    "&reason.*",
-    "&memory.*",
-    "&space.*",
-    "output"
-  ],
-  "a2a_skills": [
-    "temporal-pattern-detection",
-    "seasonality-analysis"
-  ],
+  "feeds_into": ["&reason.*", "&memory.*", "&space.*", "output"],
+  "a2a_skills": ["temporal-pattern-detection", "seasonality-analysis"],
   "metadata": {
     "primitive": "time",
     "subtype": "pattern",
-    "recommended_windows": [
-      "24h",
-      "7d",
-      "30d"
-    ],
+    "recommended_windows": ["24h", "7d", "30d"],
     "example_use_cases": [
       "support ticket seasonality analysis",
       "research trend cycle detection",

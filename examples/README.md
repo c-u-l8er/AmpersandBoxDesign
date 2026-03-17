@@ -10,7 +10,7 @@ These examples are intended to do three jobs:
 
 All examples target the canonical schema at:
 
-- `https://protocol.ampersandboxdesign.com/v0.1/schema.json`
+- `https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json`
 
 ## Files
 

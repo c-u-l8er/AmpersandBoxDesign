@@ -226,7 +226,7 @@ Must reference the canonical agent declaration schema.
 
 Current value:
 
-`https://protocol.ampersandboxdesign.com/v0.1/schema.json`
+`https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json`
 
 #### `agent`
 

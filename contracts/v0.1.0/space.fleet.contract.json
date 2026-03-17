@@ -1,5 +1,5 @@
 {
-  "$schema": "https://protocol.ampersandboxdesign.com/v0.1/capability-contract.schema.json",
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "capability": "&space.fleet",
   "provider": "geofleetic",
   "version": "0.1.0",
@@ -26,17 +26,8 @@
       "description": "Produce a fleet-aware route recommendation under current spatial constraints."
     }
   },
-  "accepts_from": [
-    "&memory.*",
-    "&time.*",
-    "raw_data",
-    "context"
-  ],
-  "feeds_into": [
-    "&reason.*",
-    "&memory.*",
-    "output"
-  ],
+  "accepts_from": ["&memory.*", "&time.*", "raw_data", "context"],
+  "feeds_into": ["&reason.*", "&memory.*", "output"],
   "a2a_skills": [
     "fleet-state-enrichment",
     "regional-capacity-lookup",
