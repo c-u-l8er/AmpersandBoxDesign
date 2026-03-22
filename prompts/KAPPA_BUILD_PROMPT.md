@@ -474,29 +474,28 @@ Register a new MCP tool that exposes topology analysis directly:
 ```json
 {
   "routing": "deliberate",
-  "max_kappa": 2,
+  "max_kappa": 1,
   "scc_count": 1,
   "sccs": [
     {
       "id": "scc-0",
-      "nodes": ["market-share", "revenue", "r-and-d", "product-quality"],
-      "kappa": 2,
+      "nodes": ["market-share", "revenue", "r-and-d", "product-quality", "customer-retention"],
+      "kappa": 1,
       "approximate": false,
       "fault_line_edges": [
-        {"source": "market-share", "target": "r-and-d"},
-        {"source": "product-quality", "target": "revenue"}
+        {"source": "product-quality", "target": "market-share"}
       ],
       "routing": "deliberate",
       "deliberation_budget": {
-        "max_iterations": 3,
-        "agent_count": 2,
-        "timeout_multiplier": 2.0,
-        "confidence_threshold": 0.80
+        "max_iterations": 2,
+        "agent_count": 1,
+        "timeout_multiplier": 1.5,
+        "confidence_threshold": 0.75
       }
     }
   ],
   "dag_nodes": ["founding-date", "ceo-name"],
-  "recommendation": "This knowledge region contains 1 strongly connected component with κ=2. The concepts [market-share, revenue, r-and-d, product-quality] are mutually dependent. Deliberate on the fault lines before answering: market-share→r-and-d, product-quality→revenue."
+  "recommendation": "This knowledge region contains 1 strongly connected component with κ=1. The concepts [market-share, revenue, r-and-d, product-quality, customer-retention] are mutually dependent. Deliberate on the fault line before answering: product-quality→market-share."
 }
 ```
 
@@ -542,7 +541,7 @@ Write tests for:
 3. **Simple cycle (A→B→C→A) → κ = 1, routing = :deliberate**
 4. **Two independent cycles → two SCCs, each with κ > 0**
 5. **Mixed DAG + cycle → DAG nodes listed separately, SCC identified**
-6. **Business example from the spec:** market-share → revenue → r-and-d → product-quality → market-share, plus customer-retention loop → κ = 2
+6. **Business example from the spec:** market-share → revenue → r-and-d → product-quality → market-share, plus customer-retention loop → κ = 1 (verified against kappa_reference.py: the 5-node SCC has a bipartition with only 1 edge crossing in the smaller direction)
 7. **Single node → κ = 0**
 8. **Self-loop only → κ = 0 (self-loops excluded from adjacency)**
 9. **Bipartite complete graph K₂,₂ with both directions → κ = 2**
@@ -615,16 +614,23 @@ end
 
 **Goal:** Users build graphs on the canvas and see κ in real time — SCC clusters glow, κ badges appear, HUD shows routing mode.
 
-**All changes go in `bendscript.com/index.html`** (the existing prototype). Do not create a new file or refactor to SvelteKit — that's Path 3.
+**Prerequisites:** BendScript has been migrated to SvelteKit per `bendscript.com/prompts/MIGRATION_PROMPT.md`. The engine is modular. Directed edge creation ("Connect to…") and arrowheads already work.
+
+**Primary file:** `bendscript/src/lib/engine/topology.js` (NEW — the κ engine module)
+
+**Other files modified:** `renderer.js`, `graph.js`, `input.js`, plus Svelte components `HUD.svelte`, `ContextMenu.svelte`.
+
+**If SvelteKit migration has NOT been done yet:** Fall back to adding all κ code directly to `bendscript.com/index.html` instead. The logic is identical — only file paths change.
 
 #### Task 2.1: Port Tarjan + κ to JavaScript
 
-Add these functions to the `<script>` section of `index.html`, grouped together with a comment banner:
+Create `src/lib/engine/topology.js` with a comment banner:
 
 ```javascript
 // ═══════════════════════════════════════════════════════════════
 // κ TOPOLOGY ENGINE
 // Canonical schema: see kappa_integration_spec.md §2.4
+// DOM-free — no window/document/canvas references
 // ═══════════════════════════════════════════════════════════════
 ```
 
@@ -673,7 +679,17 @@ const DIRECTED_KINDS = ['causal', 'temporal'];
 
 #### Task 2.2: SCC Visualization on Canvas
 
-In the existing render loop (`tick()` function, around line 3903), add SCC cluster rendering **before** node/edge drawing (so clusters appear as background regions):
+In `src/lib/engine/renderer.js`, add a new `drawTopology(ctx, plane, W, H, t)` function. Call it from `GraphCanvas.svelte`'s tick loop **after** `drawBackground` and **before** `drawEdges`:
+
+```javascript
+// In GraphCanvas.svelte tick():
+drawBackground(ctx, W, H, t);
+drawTopology(ctx, plane, W, H, t);  // NEW — SCC halos + κ badges
+drawEdges(ctx, plane, W, H, t);
+drawNodes(ctx, plane, W, H, t);
+```
+
+`drawTopology` reads from `plane._topologyCache` (computed by `analyzeTopology` in topology.js). Implementation:
 
 1. **Cluster halos:** For each SCC with κ > 0, compute the convex bounding box of its member nodes (with 30px padding). Draw a rounded-rect background fill:
    - κ = 1: `rgba(0, 255, 200, 0.06)` (subtle cyan-green)
@@ -689,7 +705,7 @@ In the existing render loop (`tick()` function, around line 3903), add SCC clust
 
 #### Task 2.3: HUD Extension
 
-The existing HUD shows: `nodes: N | edges: N | depth: N | zoom: N`
+In `src/components/canvas/HUD.svelte`, extend the existing stat pills. The HUD currently shows: `nodes: N | edges: N | depth: N | zoom: N`
 
 Extend it to show:
 ```
@@ -706,11 +722,11 @@ nodes: N | edges: N | depth: N | zoom: N | κ: 2 | SCCs: 1 | mode: DELIBERATION
 - `mode` = `RETRIEVAL` when all κ = 0, `DELIBERATION` when any κ > 0
 - Color the mode label: green (#00ff88) for RETRIEVAL, cyan (#00ccff) for DELIBERATION
 
-#### Task 2.4: Edge Creation via Context Menu (Topology Preview)
+#### Task 2.4: Edge Creation Topology Preview
 
-**Important: BendScript has NO drag-to-connect. Use the context menu instead.**
+**Note:** After the SvelteKit migration, BendScript has a "Connect to…" context menu item that creates directed edges. This task adds **topology impact annotations** to that existing flow.
 
-Add a **"Connect to…"** item to the existing right-click context menu on nodes. When clicked:
+In `src/components/canvas/ContextMenu.svelte`, update the "Connect to…" submenu. When the submenu opens:
 
 1. Show a submenu listing nearby nodes (within 500px world distance) as connection targets
 2. For each candidate, compute `previewEdgeImpact(plane, thisNodeId, candidateId)` with `kind: 'causal'`
@@ -725,7 +741,7 @@ Add a **"Connect to…"** item to the existing right-click context menu on nodes
 
 #### Task 2.5: Context Menu — Bend / Unbend
 
-Add to the existing right-click context menu (which already has fork/merge/pin/stargate/delete):
+In `src/components/canvas/ContextMenu.svelte`, add to the existing right-click context menu (which has fork/merge/connect/pin/stargate/delete):
 
 **On DAG nodes (nodes NOT in any SCC):**
 - **"Bend — Create Feedback Loop"** — When clicked, finds the nearest node that would create a cycle if connected (via `previewEdgeImpact` on nearby candidates), and adds that edge. If no cycle-creating candidate exists within 500px, show "No feedback loop possible nearby" (grayed out).
@@ -739,7 +755,7 @@ Add to the existing right-click context menu (which already has fork/merge/pin/s
 
 Path 3 is documented here for context but should NOT be built until Paths 1 and 2 are working.
 
-- BendScript SvelteKit migration (see `bendscript.com/prompts/BUILD.md`)
+- BendScript backend (Supabase + auth + AI) — see `bendscript.com/prompts/BUILD.md` Phases 2–5
 - BendScript backend connects to Graphonomous via MCP
 - κ computed server-side by Graphonomous, visualized client-side by BendScript
 - Real-time κ updates when graph mutations arrive via Supabase broadcast
@@ -880,7 +896,8 @@ function route(topology_result):
 [ ] tarjan_scc on disconnected graph → separate SCCs
 [ ] compute_kappa on trivial SCC → 0
 [ ] compute_kappa on simple 3-cycle → 1
-[ ] compute_kappa on business example (4-node cycle + cross-edge) → 2
+[ ] compute_kappa on business example (5-node SCC: market-share/revenue/r-and-d/product-quality/customer-retention) → 1
+[ ] compute_kappa on K₂,₂ (complete bipartite with both directions, 4 nodes) → 2
 [ ] analyze on mixed DAG+SCC graph → correct routing, dag_nodes, sccs
 [ ] analyze output uses canonical field names (§A.1)
 [ ] approximate: false for SCC ≤ 20
@@ -938,7 +955,12 @@ function route(topology_result):
 | `graphonomous/lib/graphonomous/store.ex` | Add `list_edges_between/1` |
 | `graphonomous/lib/graphonomous/mcp/server.ex` | Register `TopologyAnalyze` component |
 | `graphonomous/lib/graphonomous/mcp/retrieve_context.ex` | Include topology in response |
-| `bendscript.com/index.html` | Add κ engine, SCC visualization, HUD, context menu |
+| `bendscript/src/lib/engine/topology.js` | κ topology engine (NEW) |
+| `bendscript/src/lib/engine/renderer.js` | Add `drawTopology()`, fault-line edge dashing |
+| `bendscript/src/lib/engine/graph.js` | Add `_topologyDirty` flag on edge add/remove |
+| `bendscript/src/components/canvas/HUD.svelte` | Add κ, SCC count, routing mode pills |
+| `bendscript/src/components/canvas/ContextMenu.svelte` | Add topology preview to "Connect to…", add Bend/Unbend |
+| `bendscript/src/components/canvas/GraphCanvas.svelte` | Call `drawTopology()` in render loop |
 
 ### Reference files (read-only, do not modify):
 
