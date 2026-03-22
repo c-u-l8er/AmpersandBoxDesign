@@ -79,8 +79,9 @@ The Graphonomous codebase has specific API patterns. New code MUST follow these:
 │  ┌─────────────────────────────────────────────────────────────┐    │
 │  │ 1. SURVEY — What is the state of the world?                 │    │
 │  │                                                              │    │
-│  │    a. List active goals (GoalGraph.list_active/0)            │    │
-│  │    b. For each goal, run coverage_query                      │    │
+│  │    a. List active goals                                      │    │
+│  │       (GoalGraph.list_goals(%{status: :active}))            │    │
+│  │    b. For each goal, run Coverage.recommend/2                │    │
 │  │    c. For each goal's knowledge region, get κ topology       │    │
 │  │    d. Check goal deadlines / urgency                         │    │
 │  │    e. Check recent outcomes (successes, failures, surprises) │    │
@@ -109,19 +110,19 @@ The Graphonomous codebase has specific API patterns. New code MUST follow these:
 │  │                                                              │    │
 │  │    For the top-N items (N = available compute budget):       │    │
 │  │                                                              │    │
-│  │    coverage_query says :learn + low coverage                 │    │
+│  │    coverage.decision == :learn + low coverage                │    │
 │  │      → EXPLORE mode: bootstrap domain knowledge             │    │
 │  │        (fetch docs, research, seed graph)                    │    │
 │  │                                                              │    │
-│  │    coverage_query says :act + κ > 0                          │    │
+│  │    coverage.decision == :act + κ > 0                         │    │
 │  │      → FOCUS mode: trigger Deliberator on the SCC region    │    │
 │  │        (fault-line reasoning, crystallization)               │    │
 │  │                                                              │    │
-│  │    coverage_query says :act + κ = 0                          │    │
+│  │    coverage.decision == :act + κ = 0                         │    │
 │  │      → ACT mode: execute next action toward goal            │    │
 │  │        (dispatch via OpenSentience)                          │    │
 │  │                                                              │    │
-│  │    coverage_query says :escalate                             │    │
+│  │    coverage.decision == :escalate                            │    │
 │  │      → ESCALATE mode: flag for human or Deliberatic         │    │
 │  │        (formal multi-agent deliberation)                     │    │
 │  │                                                              │    │
@@ -204,7 +205,7 @@ The core data structure — a ranked snapshot of "what needs attention":
   urgency: 0.78,      # deadline proximity × priority
   gap: 0.46,          # 1.0 - coverage_score
   surprise: 0.0,      # recent contradiction bonus
-  friction: 2,        # κ value (compute cost factor)
+  friction: 1,        # κ value (compute cost factor)
   attention_score: 0.62,
   dispatch_mode: :focus  # :explore | :focus | :act | :escalate | :propose | :idle
 }

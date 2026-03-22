@@ -41,7 +41,7 @@ When writing developer-facing content (README, CLI help, API docs), prefer the e
 Each primitive has subtypes:
 
 - `&memory` → `.graph`, `.vector`, `.episodic`, `.semantic`
-- `&reason` → `.argument`, `.vote`, `.plan`, `.chain`
+- `&reason` → `.argument`, `.vote`, `.plan`, `.chain`, `.deliberate`, `.attend`
 - `&time` → `.anomaly`, `.forecast`, `.pattern`, `.baseline`
 - `&space` → `.fleet`, `.geofence`, `.route`, `.region`
 
@@ -88,12 +88,23 @@ Constraint      := HardConstraint | SoftConstraint | EscalationRule
     "&memory.graph":      { "provider": "graphonomous", "config": { "instance": "infra-ops" } },
     "&time.anomaly":      { "provider": "ticktickclock", "config": { "streams": ["cpu", "mem"] } },
     "&space.fleet":       { "provider": "geofleetic", "config": { "regions": ["us-east"] } },
-    "&reason.argument":   { "provider": "deliberatic", "config": { "governance": "constitutional" } }
+    "&reason.argument":   { "provider": "deliberatic", "config": { "governance": "constitutional" } },
+    "&reason.deliberate": { "provider": "graphonomous", "config": { "budget": "kappa" } },
+    "&reason.attend":     { "provider": "graphonomous", "config": {} }
   },
   "governance": {
     "hard": ["Never scale beyond 3x in a single action"],
     "soft": ["Prefer gradual scaling over spikes"],
-    "escalate_when": { "confidence_below": 0.7, "cost_exceeds_usd": 1000 }
+    "escalate_when": { "confidence_below": 0.7, "cost_exceeds_usd": 1000 },
+    "autonomy": {
+      "level": "advise",
+      "model_tier": "local_small",
+      "heartbeat_seconds": 300,
+      "budget": {
+        "max_actions_per_hour": 5,
+        "require_approval_for": ["act", "propose"]
+      }
+    }
   },
   "provenance": true
 }
@@ -143,12 +154,82 @@ Each provider declares typed contracts with `accepts_from` and `feeds_into` — 
 }
 ```
 
+**`&reason.deliberate` contract** (κ-driven focused reasoning through feedback loops):
+
+```json
+{
+  "capability": "&reason.deliberate",
+  "operations": {
+    "deliberate": { "in": "topology_result", "out": "deliberation_result" },
+    "decompose":  { "in": "topology_result", "out": "partitions" },
+    "reconcile":  { "in": "intermediate_conclusions", "out": "deliberation_result" }
+  },
+  "accepts_from": ["&memory.graph", "&memory.*"],
+  "feeds_into":   ["&memory.graph", "&reason.*", "output"],
+  "a2a_skills":   ["topology-aware-deliberation"]
+}
+```
+
+**`&reason.attend` contract** (proactive attention / meta-reasoning):
+
+```json
+{
+  "capability": "&reason.attend",
+  "operations": {
+    "survey":   { "in": "context",        "out": "attention_map" },
+    "triage":   { "in": "attention_map",   "out": "attention_map" },
+    "dispatch": { "in": "attention_map",   "out": "attention_cycle" }
+  },
+  "accepts_from": ["&memory.graph", "&reason.*", "context"],
+  "feeds_into":   ["&reason.deliberate", "&memory.graph", "output"],
+  "a2a_skills":   ["proactive-attention", "autonomous-planning"]
+}
+```
+
+**Pipeline type tokens** added by κ and attention:
+
+| Type Token | Description | Produced By | Consumed By |
+|------------|-------------|-------------|-------------|
+| `topology_result` | κ analysis with SCCs, routing, fault lines | `&memory.graph.topology()` | `&reason.deliberate()`, `&reason.attend()` |
+| `deliberation_result` | Conclusions from focused reasoning | `&reason.deliberate()` | `&memory.graph.store()`, `output` |
+| `attention_map` | Ranked items needing attention | `&reason.attend.survey()` | `&reason.attend.dispatch()`, `output` |
+| `attention_cycle` | Full cycle result with outcomes | `&reason.attend.dispatch()` | `&memory.graph.store()`, `output` |
+| `coverage_assessment` | Epistemic coverage score + recommendation | `&memory.graph.coverage()` | `&reason.attend()`, `&reason.deliberate()` |
+
+**Reactive pipeline** (query-triggered, extended with κ):
+
+```
+query
+  |> &memory.graph.recall()
+  |> &memory.graph.topology()
+  |> &reason.deliberate(budget: :κ)
+  |> &memory.graph.store()
+```
+
+**Proactive pipeline** (heartbeat-triggered, attention engine):
+
+```
+heartbeat
+  |> &reason.attend.survey()
+  |> &reason.attend.triage()
+  |> &reason.attend.dispatch()
+  |> &memory.graph.store()
+```
+
+Note: The `|>` operator is linear — it doesn't express cycles. The heartbeat loop is a runtime scheduling concern declared in the `governance.autonomy` block, not a pipeline construct.
+
 ### Governance
 
 Declarative constraints in the schema — not language-specific syntax:
 - **Hard constraints**: Inviolable. Implementations MUST prevent violation.
 - **Soft constraints**: Preferences passed to reasoning capabilities, MAY be overridden with evidence.
 - **Escalation rules**: Define when the agent MUST defer to a human.
+- **Autonomy levels**: Declared in `governance.autonomy` — controls proactive behavior:
+  - `:observe` — Survey and log, take no action. Safe default for new deployments.
+  - `:advise` — Propose actions, wait for approval. Typical production mode.
+  - `:act` — Execute within budget constraints. Full autonomy for high-trust agents.
+
+  Autonomy is governed by Delegatic policy. An org-level cap of `:advise` will downgrade any agent declaring `:act` at composition time. The `model_tier` field (`:local_small`, `:local_large`, `:cloud_frontier`) determines default budgets for deliberation depth, attention cadence, and inference strategy.
 
 ### Protocol Stack Position
 
@@ -174,14 +255,14 @@ Declarative constraints in the schema — not language-specific syntax:
 
 | Company | Domain | Capability | URL |
 |---------|--------|------------|-----|
-| Graphonomous | Graph memory for agents | `&memory.graph`, `&memory.episodic` | graphonomous.com |
-| Deliberatic | Multi-agent deliberation protocols | `&reason.argument`, `&reason.vote` | deliberatic.com |
-| OpenSentience | Open consciousness/sentience research | Research layer | opensentience.org |
+| Graphonomous | Graph memory + κ topology + deliberation | `&memory.graph`, `&memory.episodic`, `&reason.deliberate`, `&reason.attend` | graphonomous.com |
+| Deliberatic | Multi-agent argumentation (escalation path) | `&reason.argument`, `&reason.vote` | deliberatic.com |
+| AgenTroMatic | Task decomposition + orchestration | Agent automation | agentromatic.com |
+| Delegatic | Governance + authorization + policy | Agent delegation + autonomy governance | delegatic.com |
+| OpenSentience | Execution + outcome feedback | Runtime + research | opensentience.org |
+| SpecPrompt | Specification standard | Spec tooling | specprompt.com |
+| Agentelic | Agent engineering pipeline | Agent infra | agentelic.com |
 | FleetPrompt | Fleet-scale prompt orchestration | `&space.fleet` | fleetprompt.com |
-| Delegatic | Delegation protocols | Agent delegation | delegatic.com |
-| SpecPrompt | Specification-driven prompting | Spec tooling | specprompt.com |
-| Agentelic | Agent lifecycle management | Agent infra | agentelic.com |
-| AgenTroMatic | Agent automation | Automation | agentromatic.com |
 | WebHost Systems | Hosting infrastructure | Runtime | webhost.systems |
 
 ---
