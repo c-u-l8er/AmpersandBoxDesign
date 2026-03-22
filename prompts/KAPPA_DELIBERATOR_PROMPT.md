@@ -317,7 +317,18 @@ end
   budget :: map()
 ) :: {:converged, conclusion()} | {:divergent, [intermediate_conclusion()]}
 def reconcile(intermediates, scc, query, budget) do
-  # Build a reconciliation prompt:
+  # FAST PATH: If intermediate conclusions agree (embedding similarity
+  # above threshold), skip the reconciliation LLM call entirely.
+  # Take the higher-confidence conclusion directly. This saves ~33%
+  # of LLM calls and provides a convergence signal that doesn't
+  # depend on the model's metacognitive abilities.
+  #
+  # agreement_threshold = 0.85 (cosine similarity between conclusion embeddings)
+  # If all pairs of intermediates exceed this threshold:
+  #   → pick highest-confidence intermediate
+  #   → return {:converged, best_intermediate}
+  #
+  # FULL PATH: If intermediates disagree, build a reconciliation prompt:
   #
   # INTERMEDIATE CONCLUSIONS:
   #   [List each partition's conclusion + confidence + assumption]

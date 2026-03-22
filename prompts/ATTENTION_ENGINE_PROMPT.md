@@ -629,6 +629,22 @@ defp execute_propose(item) do
 
   gaps = item.coverage.gaps
 
+  # GOAL COHERENCE CHECK: Before proposing, verify the coverage gap
+  # is semantically related to at least one existing user-created or
+  # system-created goal. This prevents the attention engine from
+  # wandering into regions the user never cared about.
+  # Without this check, the explore→propose→explore loop could drift
+  # into self-generated work with no connection to actual objectives.
+  {:ok, existing_goals} = Graphonomous.GoalGraph.list_goals(%{})
+  user_or_system_goals = Enum.filter(existing_goals, fn g ->
+    g.source_type in [:user, :system]
+  end)
+
+  unless coherent_with_existing?(gaps, user_or_system_goals) do
+    # Not related to anything the user cares about — skip
+    return %{item: item, mode: :propose, result: :deferred, duration_ms: 0.0}
+  end
+
   # GoalGraph.create_goal/1 accepts a map with these validated fields:
   #   title, description, status (from @valid_statuses),
   #   source_type (from @valid_sources: :user/:system/:inferred/:policy),

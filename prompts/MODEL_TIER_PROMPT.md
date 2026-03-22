@@ -492,6 +492,15 @@ defmodule Graphonomous.CostTracker do
     avg_cost_usd: float() | nil
   }
   def avg_deliberation_cost()
+
+  @doc "Check if daily cost cap has been exceeded. Returns true if
+  the Attention Engine heartbeat should be paused."
+  @spec budget_exceeded?() :: boolean()
+  def budget_exceeded?()
+
+  @doc "Reset daily cost counter (called at midnight or manually)"
+  @spec reset_daily() :: :ok
+  def reset_daily()
 end
 ```
 
@@ -526,6 +535,17 @@ cloud_frontier (~1.5s/call):
   Attention heartbeat (5 min): 12 cycles/hr × 3 calls = ~$0.50/hr
   Daily cost (active 8hr): ~$4
   Monetary: ~$4-10/day depending on query volume
+
+WORST-CASE (cloud_frontier, all goals active, all κ>0):
+  Heartbeat: 12 cycles/hr × 3 goals × (survey + deliberate + act)
+           = 12 × 3 × ~5 calls = ~180 calls/hr
+           ≈ ~$2/hr at frontier pricing
+  Daily (8hr active): ~$16
+  Daily (24hr unattended): ~$48
+
+  → Implement a daily cost cap in CostTracker (default: $10/day)
+    that pauses the heartbeat when exceeded. Resume on next day
+    or on manual override. Log the pause as telemetry event.
 ```
 
 ---

@@ -47,6 +47,10 @@ Each primitive has subtypes:
 
 Custom subtypes are permitted if they satisfy the primitive's capability contract.
 
+**Derived operations** (computed from primitives, not new primitives):
+
+- `&topology` — Shorthand for graph-structural analysis computed from `&memory.graph`. Used in pipelines as `&topology.analyze()` and `&topology.route()`. This is NOT a 5th primitive — topology is a structural property of the knowledge graph. The `&topology` namespace is a convenience alias; the canonical home is `&memory.graph.topology()`. Implementations register `&topology.analyze` as a capability provided by the `&memory.graph` provider (e.g., Graphonomous).
+
 ### Two Operators
 
 - `&` — Composition: combines capabilities into a validated set
