@@ -273,7 +273,7 @@ Subtype         := Identifier
                 <span class="cm"># e.g. &memory.graph, &memory.vector, &memory.episodic</span>
                 <span class="cm">#      &time.forecast, &time.anomaly, &time.pattern</span>
                 <span class="cm">#      &space.fleet, &space.geofence, &space.route</span>
-                <span class="cm">#      &reason.argument, &reason.vote, &reason.plan</span>
+                <span class="cm">#      &reason.argument, &reason.vote, &reason.plan, &reason.deliberate, &reason.attend</span>
 
 ProviderExpr    := <span class="str">":"</span> Identifier              <span class="cm"># explicit provider</span>
                  | <span class="str">":"</span> <span class="at">"auto"</span>                  <span class="cm"># registry-resolved</span>
@@ -401,12 +401,24 @@ EscalationRule  := <span class="str">"escalate_when"</span> Condition</pre>
     <span class="str">"&memory.graph"</span>:       { <span class="str">"provider"</span>: <span class="str">"graphonomous"</span>, <span class="str">"config"</span>: { <span class="str">"instance"</span>: <span class="str">"infra-ops"</span> } },
     <span class="str">"&time.anomaly"</span>:      { <span class="str">"provider"</span>: <span class="str">"ticktickclock"</span>, <span class="str">"config"</span>: { <span class="str">"streams"</span>: [<span class="str">"cpu"</span>, <span class="str">"mem"</span>] } },
     <span class="str">"&space.fleet"</span>:       { <span class="str">"provider"</span>: <span class="str">"geofleetic"</span>, <span class="str">"config"</span>: { <span class="str">"regions"</span>: [<span class="str">"us-east"</span>] } },
-    <span class="str">"&reason.argument"</span>:  { <span class="str">"provider"</span>: <span class="str">"deliberatic"</span>, <span class="str">"config"</span>: { <span class="str">"governance"</span>: <span class="str">"constitutional"</span> } }
+    <span class="str">"&reason.argument"</span>:  { <span class="str">"provider"</span>: <span class="str">"deliberatic"</span>, <span class="str">"config"</span>: { <span class="str">"governance"</span>: <span class="str">"constitutional"</span> } },
+    <span class="str">"&reason.deliberate"</span>: { <span class="str">"provider"</span>: <span class="str">"graphonomous"</span>, <span class="str">"config"</span>: { <span class="str">"budget"</span>: <span class="str">"kappa"</span> } },
+    <span class="str">"&reason.attend"</span>: { <span class="str">"provider"</span>: <span class="str">"graphonomous"</span>, <span class="str">"config"</span>: {} }
   },
   <span class="str">"governance"</span>: {
     <span class="str">"hard"</span>: [<span class="str">"Never scale beyond 3x in a single action"</span>],
     <span class="str">"soft"</span>: [<span class="str">"Prefer gradual scaling over spikes"</span>],
-    <span class="str">"escalate_when"</span>: { <span class="str">"confidence_below"</span>: 0.7, <span class="str">"cost_exceeds_usd"</span>: 1000 }
+    <span class="str">"escalate_when"</span>: { <span class="str">"confidence_below"</span>: 0.7, <span class="str">"cost_exceeds_usd"</span>: 1000 },
+    <span class="str">"autonomy"</span>: {
+      <span class="str">"level"</span>: <span class="str">"advise"</span>,
+      <span class="str">"model_tier"</span>: <span class="str">"local_small"</span>,
+      <span class="str">"heartbeat_seconds"</span>: 300,
+      <span class="str">"budget"</span>: {
+        <span class="str">"max_actions_per_hour"</span>: 5,
+        <span class="str">"max_deliberation_calls_per_query"</span>: 1,
+        <span class="str">"require_approval_for"</span>: [<span class="str">"act"</span>, <span class="str">"propose"</span>]
+      }
+    }
   },
   <span class="str">"provenance"</span>: <span class="kw">true</span>
 }</pre>

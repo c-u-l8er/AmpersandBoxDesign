@@ -183,6 +183,8 @@ defmodule AmpersandCoreArtifactLoadingTest do
     assert Map.keys(contracts) |> Enum.sort() == [
              "&memory.graph",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&space.fleet",
              "&time.anomaly"
            ]
@@ -200,6 +202,8 @@ defmodule AmpersandCoreComposeTest do
     assert AmpersandCore.Compose.normalize(infra["capabilities"]) == [
              "&memory.graph",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&space.fleet",
              "&time.anomaly"
            ]
@@ -416,7 +420,11 @@ defmodule AmpersandCoreMCPTest do
 
     assert manifest["agent"] == "InfraOperator"
     assert manifest["format"] == "context_servers"
-    assert manifest["providers"]["graphonomous"]["capabilities"] == ["&memory.graph"]
+    assert manifest["providers"]["graphonomous"]["capabilities"] == [
+             "&memory.graph",
+             "&reason.attend",
+             "&reason.deliberate"
+           ]
     assert manifest["providers"]["graphonomous"]["published_in_registry"] == true
     assert manifest["providers"]["graphonomous"]["protocol"] == "mcp_v1"
 
@@ -516,6 +524,8 @@ defmodule AmpersandCoreA2ATest do
     assert skill_ids == [
              "&memory.graph",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&space.fleet",
              "&time.anomaly"
            ]
@@ -634,6 +644,8 @@ defmodule AmpersandCoreCLITest do
     assert decoded["capabilities"] == [
              "&memory.graph",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&space.fleet",
              "&time.anomaly"
            ]
@@ -646,10 +658,12 @@ defmodule AmpersandCoreCLITest do
            }
 
     assert decoded["contracts"] == %{
-             "contract_count" => 4,
+             "contract_count" => 6,
              "loaded" => [
                "&memory.graph",
                "&reason.argument",
+               "&reason.attend",
+               "&reason.deliberate",
                "&space.fleet",
                "&time.anomaly"
              ],
@@ -659,6 +673,8 @@ defmodule AmpersandCoreCLITest do
     assert decoded["registry"]["known_capabilities"] == [
              "&memory.graph",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&space.fleet",
              "&time.anomaly"
            ]

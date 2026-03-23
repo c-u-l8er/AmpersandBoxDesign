@@ -60,10 +60,17 @@ Each primitive can be refined with namespaced subtypes:
 - `&memory.episodic`
 - `&reason.argument`
 - `&reason.vote`
+- `&reason.plan`
+- `&reason.chain`
+- `&reason.deliberate`
+- `&reason.attend`
 - `&time.anomaly`
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+
+The protocol still has exactly four primitive roots (`&memory`, `&reason`, `&time`, `&space`).  
+Topology analysis and κ-routing are derived operations from `&memory.graph`, not a fifth primitive.
 
 Composition is defined with two operators:
 
@@ -95,6 +102,14 @@ Composition is defined with two operators:
     "&reason.argument": {
       "provider": "deliberatic",
       "config": { "governance": "constitutional" }
+    },
+    "&reason.deliberate": {
+      "provider": "graphonomous",
+      "config": { "budget": "kappa" }
+    },
+    "&reason.attend": {
+      "provider": "graphonomous",
+      "config": {}
     }
   },
   "governance": {
@@ -103,6 +118,16 @@ Composition is defined with two operators:
     "escalate_when": {
       "confidence_below": 0.7,
       "cost_exceeds_usd": 1000
+    },
+    "autonomy": {
+      "level": "advise",
+      "model_tier": "local_small",
+      "heartbeat_seconds": 300,
+      "budget": {
+        "max_actions_per_hour": 5,
+        "max_deliberation_calls_per_query": 1,
+        "require_approval_for": ["act", "propose"]
+      }
     }
   },
   "provenance": true
@@ -116,7 +141,7 @@ Composition is defined with two operators:
 This repository is the canonical home for the protocol and its reference artifacts.
 
 ### Specification
-- `protocol.html` — current HTML specification
+- `site/protocol.html` — current HTML specification
 - `SPEC.md` — markdown protocol specification
 - `prompts/PROTOCOL_PROMPT.md` — implementation-oriented protocol prompt
 
@@ -139,12 +164,17 @@ This repository is the canonical home for the protocol and its reference artifac
 - `contracts/v0.1.0/reason.argument.contract.json`
 - `contracts/v0.1.0/reason.vote.contract.json`
 - `contracts/v0.1.0/reason.plan.contract.json`
+- `contracts/v0.1.0/reason.deliberate.contract.json`
+- `contracts/v0.1.0/reason.attend.contract.json`
 - `contracts/v0.1.0/time.anomaly.contract.json`
 - `contracts/v0.1.0/time.forecast.contract.json`
 - `contracts/v0.1.0/time.pattern.contract.json`
 - `contracts/v0.1.0/space.fleet.contract.json`
 - `contracts/v0.1.0/space.route.contract.json`
 - `contracts/v0.1.0/space.geofence.contract.json`
+
+Schema-aligned contract examples for `&reason.deliberate` and `&reason.attend` are included in:
+- `protocol/schema/v0.1.0/capability-contract.schema.json` (`examples` section)
 
 ### Registry
 - `protocol/registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata
@@ -155,6 +185,11 @@ This repository is the canonical home for the protocol and its reference artifac
 - `capabilities/reason.argument.md`
 - `capabilities/time.forecast.md`
 - `capabilities/space.fleet.md`
+
+Reasoning extensions (`&reason.deliberate`, `&reason.attend`) are currently specified in:
+- `SPEC.md`
+- `prompts/PROTOCOL_PROMPT.md`
+- `protocol/schema/v0.1.0/capability-contract.schema.json` examples
 
 ### Reference implementation
 - `reference/elixir/ampersand_core/` — minimal Elixir implementation with:

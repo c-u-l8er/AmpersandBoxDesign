@@ -247,10 +247,67 @@
         "$ref": "#/$defs/escalationValue"
       }
     },
+    "autonomyLevel": {
+      "type": "string",
+      "enum": ["observe", "advise", "act"],
+      "description": "Autonomy posture for proactive runtime behavior."
+    },
+    "modelTier": {
+      "type": "string",
+      "enum": ["local_small", "local_large", "cloud_frontier"],
+      "description": "Model capability tier used for deliberation/attention defaults."
+    },
+    "autonomyBudget": {
+      "type": "object",
+      "description": "Optional bounded autonomy controls.",
+      "additionalProperties": true,
+      "properties": {
+        "max_actions_per_hour": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_deliberation_calls_per_query": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "require_approval_for": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        }
+      }
+    },
+    "autonomy": {
+      "type": "object",
+      "description": "Optional autonomy declaration for proactive behavior and tier-aware defaults.",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "level": {
+          "$ref": "#/$defs/autonomyLevel"
+        },
+        "model_tier": {
+          "$ref": "#/$defs/modelTier"
+        },
+        "heartbeat_seconds": {
+          "description": "Heartbeat cadence in seconds, or null for demand-triggered mode.",
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "budget": {
+          "$ref": "#/$defs/autonomyBudget"
+        }
+      }
+    },
     "governance": {
       "type": "object",
       "title": "Governance",
-      "description": "Declarative hard constraints, soft preferences, and escalation rules. infer_from_goal may be used to request runtime governance inference from natural-language goals.",
+      "description": "Declarative hard constraints, soft preferences, escalation rules, and optional autonomy declaration. infer_from_goal may be used to request runtime governance inference from natural-language goals.",
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
@@ -265,6 +322,9 @@
         },
         "infer_from_goal": {
           "type": "boolean"
+        },
+        "autonomy": {
+          "$ref": "#/$defs/autonomy"
         }
       }
     }
@@ -298,6 +358,16 @@
           "config": {
             "governance": "constitutional"
           }
+        },
+        "&reason.deliberate": {
+          "provider": "graphonomous",
+          "config": {
+            "budget": "kappa"
+          }
+        },
+        "&reason.attend": {
+          "provider": "graphonomous",
+          "config": {}
         }
       },
       "governance": {
@@ -306,6 +376,16 @@
         "escalate_when": {
           "confidence_below": 0.7,
           "cost_exceeds_usd": 1000
+        },
+        "autonomy": {
+          "level": "advise",
+          "model_tier": "local_small",
+          "heartbeat_seconds": 300,
+          "budget": {
+            "max_actions_per_hour": 5,
+            "max_deliberation_calls_per_query": 1,
+            "require_approval_for": ["act", "propose"]
+          }
         }
       },
       "provenance": true

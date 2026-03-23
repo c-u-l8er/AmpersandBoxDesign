@@ -1,0 +1,61 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&reason.attend",
+  "provider": "graphonomous",
+  "version": "0.1.0",
+  "description": "Proactive attention contract for surveying active goals, triaging epistemic gaps, and dispatching bounded autonomy actions.",
+  "operations": {
+    "survey": {
+      "in": "context",
+      "out": "attention_map",
+      "description": "Build a ranked attention map from active goals, coverage assessments, and topology signals.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "triage": {
+      "in": "attention_map",
+      "out": "attention_map",
+      "description": "Assign urgency, gap scores, and dispatch modes to attention items under governance and budget constraints.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "dispatch": {
+      "in": "attention_map",
+      "out": "attention_cycle",
+      "description": "Execute or defer bounded explore/focus/act/escalate/propose dispatches according to autonomy level.",
+      "deterministic": false,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&memory.graph",
+    "&memory.*",
+    "&reason.*",
+    "context",
+    "coverage_assessment",
+    "topology_result"
+  ],
+  "feeds_into": [
+    "&reason.deliberate",
+    "&memory.graph",
+    "attention_cycle",
+    "output"
+  ],
+  "a2a_skills": [
+    "proactive-attention",
+    "autonomous-planning"
+  ],
+  "metadata": {
+    "governance_modes": [
+      "observe",
+      "advise",
+      "act"
+    ],
+    "model_tiers": [
+      "local_small",
+      "local_large",
+      "cloud_frontier"
+    ],
+    "notes": "Representative contract for attention engines that perform survey/triage/dispatch loops with bounded autonomy."
+  }
+}

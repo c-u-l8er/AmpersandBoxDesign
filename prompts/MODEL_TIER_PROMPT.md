@@ -764,28 +764,28 @@ Inference cost tracking as specified in §5. ETS-backed for fast writes.
 ### File: `test/graphonomous/model_tier_test.exs`
 
 ```
-[ ] profile/1 returns correct defaults for each tier
-[ ] deliberation_config/1 returns tier-appropriate strategy
-[ ] attention_config/1 returns tier-appropriate trigger_mode
-[ ] local_small has single_pass strategy and demand trigger
-[ ] local_large has multi_pass strategy and heartbeat trigger
-[ ] cloud_frontier has multi_pass strategy and heartbeat trigger
-[ ] local_small has kappa_deliberation_floor of 2
-[ ] local_large has kappa_deliberation_floor of 1
+[x] profile/1 returns correct defaults for each tier
+[x] deliberation_config/1 returns tier-appropriate strategy
+[x] attention_config/1 returns tier-appropriate trigger_mode
+[x] local_small has single_pass strategy and demand trigger
+[x] local_large has multi_pass strategy and heartbeat trigger
+[x] cloud_frontier has multi_pass strategy and heartbeat trigger
+[x] local_small has kappa_deliberation_floor of 2
+[x] local_large has kappa_deliberation_floor of 1
 ```
 
 ### File: `test/graphonomous/model_tier_integration_test.exs`
 
 ```
-[ ] Deliberator with local_small config → single_pass on κ=2 SCC
-[ ] Deliberator with local_small config → skips κ=1 SCC (below floor)
-[ ] Deliberator with cloud_frontier config → multi_pass on κ=1 SCC
-[ ] Retriever with local_small config → enriches κ=1 with topology_notes
-[ ] Attention with demand trigger → does NOT fire on timer
-[ ] Attention with demand trigger → fires on on_demand_check call
-[ ] Attention with heartbeat trigger → fires on timer
-[ ] CostTracker records inference events and computes session summary
-[ ] Explicit opts override tier defaults
+[x] Deliberator with local_small config → single_pass on κ=2 SCC
+[x] Deliberator with local_small config → skips κ=1 SCC (below floor)
+[x] Deliberator with cloud_frontier config → multi_pass on κ=1 SCC
+[x] Retriever with local_small config → enriches κ=1 with topology_notes
+[x] Attention with demand trigger → does NOT fire on timer
+[x] Attention with demand trigger → fires on on_demand_check call
+[x] Attention with heartbeat trigger → fires on timer
+[x] CostTracker records inference events and computes session summary
+[x] Explicit opts override tier defaults
 ```
 
 ---

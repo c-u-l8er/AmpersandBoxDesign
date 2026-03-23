@@ -126,9 +126,54 @@
         "description": "Goal-directed planning over candidate steps and constrained action sequences.",
         "contract_ref": "/contracts/v0.1.0/reason.plan.contract.json",
         "a2a_skills": ["goal-plan-generation", "plan-revision"]
+      },
+      "deliberate": {
+        "ops": ["deliberate", "decompose", "reconcile"],
+        "description": "Topology-aware focused reasoning over cyclic graph regions using κ-guided routing.",
+        "contract_ref": "/contracts/v0.1.0/reason.deliberate.contract.json",
+        "a2a_skills": [
+          "topology-aware-deliberation",
+          "fault-line-reconciliation"
+        ]
+      },
+      "attend": {
+        "ops": ["survey", "triage", "dispatch"],
+        "description": "Proactive attention loop for ranking, budgeting, and dispatching bounded autonomous work.",
+        "contract_ref": "/contracts/v0.1.0/reason.attend.contract.json",
+        "a2a_skills": ["proactive-attention", "autonomous-planning"]
       }
     },
     "providers": [
+      {
+        "id": "graphonomous",
+        "name": "Graphonomous",
+        "description": "κ-aware graph reasoning provider for deliberation and proactive attention workflows.",
+        "subtypes": ["deliberate", "attend"],
+        "protocol": "mcp_v1",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "graphonomous",
+          "--db",
+          "~/.graphonomous/knowledge.db",
+          "--embedder-backend",
+          "fallback"
+        ],
+        "env": {
+          "GRAPHONOMOUS_EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "contract_ref": "/contracts/v0.1.0/reason.deliberate.contract.json",
+        "status": "beta",
+        "metadata": {
+          "autonomy_levels": ["observe", "advise", "act"],
+          "model_tiers": ["local_small", "local_large", "cloud_frontier"],
+          "contract_refs": [
+            "/contracts/v0.1.0/reason.attend.contract.json",
+            "/contracts/v0.1.0/reason.deliberate.contract.json"
+          ]
+        }
+      },
       {
         "id": "deliberatic",
         "name": "Deliberatic",
@@ -154,7 +199,13 @@
       }
     ],
     "metadata": {
-      "research_focus": ["argumentation", "planning", "deliberation"]
+      "research_focus": [
+        "argumentation",
+        "planning",
+        "deliberation",
+        "topology-aware reasoning",
+        "attention orchestration"
+      ]
     }
   },
   "&time": {

@@ -38,6 +38,8 @@ registry/memory.episodic
 registry/memory.graph
 capabilities/reason
 registry/reason.argument
+registry/reason.deliberate
+registry/reason.attend
 capabilities/time
 registry/time.forecast
 capabilities/space

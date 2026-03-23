@@ -226,6 +226,8 @@ The protocol therefore models reasoning as a namespace, for example:
 - `&reason.argument`
 - `&reason.vote`
 - `&reason.plan`
+- `&reason.deliberate`
+- `&reason.attend`
 
 ### Why this matters
 

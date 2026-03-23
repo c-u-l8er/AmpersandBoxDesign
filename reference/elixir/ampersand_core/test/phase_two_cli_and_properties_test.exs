@@ -140,7 +140,11 @@ defmodule AmpersandCoreCLIDiffPhaseTwoTest do
     assert decoded["right_file"] == right_path
 
     assert decoded["capabilities"]["added"] == ["&memory.vector"]
-    assert decoded["capabilities"]["removed"] == ["&space.fleet"]
+    assert decoded["capabilities"]["removed"] == [
+             "&reason.attend",
+             "&reason.deliberate",
+             "&space.fleet"
+           ]
 
     assert Enum.any?(decoded["capabilities"]["provider_changes"], fn change ->
              change["capability"] == "&memory.graph" and
@@ -163,6 +167,8 @@ defmodule AmpersandCoreComposePropertiesPhaseTwoTest do
     "&memory.episodic",
     "&memory.vector",
     "&reason.argument",
+    "&reason.attend",
+    "&reason.deliberate",
     "&reason.plan",
     "&reason.vote",
     "&time.anomaly",

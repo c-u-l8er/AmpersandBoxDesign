@@ -1,0 +1,55 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&reason.deliberate",
+  "provider": "graphonomous",
+  "version": "0.1.0",
+  "description": "κ-driven deliberation contract for topology-aware focused reasoning over cyclic knowledge regions, including decomposition, reconciliation, and optional crystallization.",
+  "operations": {
+    "deliberate": {
+      "in": "topology_result",
+      "out": "deliberation_result",
+      "description": "Run focused deliberation over SCC regions selected by κ-routing and return reconciled conclusions.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "decompose": {
+      "in": "topology_result",
+      "out": "partitions",
+      "description": "Decompose cyclic regions into fault-line partitions for scoped reasoning.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "reconcile": {
+      "in": "intermediate_conclusions",
+      "out": "deliberation_result",
+      "description": "Reconcile partition-level intermediates into a single conclusion set with confidence.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&memory.graph",
+    "&memory.*",
+    "topology_result",
+    "context"
+  ],
+  "feeds_into": [
+    "&memory.graph",
+    "&reason.*",
+    "deliberation_result",
+    "output"
+  ],
+  "a2a_skills": [
+    "topology-aware-deliberation",
+    "fault-line-reconciliation"
+  ],
+  "metadata": {
+    "routing_hint": "kappa",
+    "supports_model_tiers": [
+      "local_small",
+      "local_large",
+      "cloud_frontier"
+    ],
+    "notes": "Representative contract for κ-aware reasoning in the [&] Protocol."
+  }
+}

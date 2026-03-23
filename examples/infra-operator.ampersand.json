@@ -26,6 +26,16 @@
       "config": {
         "governance": "constitutional"
       }
+    },
+    "&reason.deliberate": {
+      "provider": "graphonomous",
+      "config": {
+        "budget": "kappa"
+      }
+    },
+    "&reason.attend": {
+      "provider": "graphonomous",
+      "config": {}
     }
   },
   "governance": {
@@ -34,6 +44,16 @@
     "escalate_when": {
       "confidence_below": 0.7,
       "cost_exceeds_usd": 1000
+    },
+    "autonomy": {
+      "level": "advise",
+      "model_tier": "local_small",
+      "heartbeat_seconds": 300,
+      "budget": {
+        "max_actions_per_hour": 5,
+        "max_deliberation_calls_per_query": 1,
+        "require_approval_for": ["act", "propose"]
+      }
     }
   },
   "pipelines": {

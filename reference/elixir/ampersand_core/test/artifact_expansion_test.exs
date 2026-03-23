@@ -31,6 +31,8 @@ defmodule AmpersandCoreExpandedArtifactsTest do
              "&memory.graph",
              "&memory.vector",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&reason.plan",
              "&reason.vote",
              "&space.fleet",
@@ -58,6 +60,8 @@ defmodule AmpersandCoreExpandedArtifactsTest do
 
     expected_contract_refs = %{
       "&memory.vector" => "/contracts/v0.1.0/memory.vector.contract.json",
+      "&reason.attend" => "/contracts/v0.1.0/reason.attend.contract.json",
+      "&reason.deliberate" => "/contracts/v0.1.0/reason.deliberate.contract.json",
       "&reason.plan" => "/contracts/v0.1.0/reason.plan.contract.json",
       "&reason.vote" => "/contracts/v0.1.0/reason.vote.contract.json",
       "&space.geofence" => "/contracts/v0.1.0/space.geofence.contract.json",
@@ -76,11 +80,14 @@ defmodule AmpersandCoreExpandedArtifactsTest do
 
     assert actual_contract_refs == expected_contract_refs
 
-    assert AmpersandCore.Registry.provider(registry, "deliberatic")["subtypes"] == [
+    assert AmpersandCore.Registry.provider(registry, "deliberatic")["subtypes"] |> Enum.sort() == [
              "argument",
-             "vote",
-             "plan"
+             "plan",
+             "vote"
            ]
+
+    assert AmpersandCore.Registry.providers_for_capability(registry, "&reason.deliberate")
+           |> Enum.map(& &1["id"]) == ["graphonomous"]
 
     assert AmpersandCore.Registry.provider(registry, "ticktickclock")["subtypes"] == [
              "anomaly",
@@ -162,7 +169,7 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
     assert default_decoded["file"] == AmpersandCore.Registry.default_registry_path()
     assert default_decoded["registry"] == "registry.ampersandboxdesign.com"
     assert default_decoded["primitive_count"] == 4
-    assert default_decoded["capability_count"] == 12
+    assert default_decoded["capability_count"] == 14
     assert default_decoded["provider_count"] == 7
 
     explicit_path = Fixtures.registry_path()
@@ -177,7 +184,7 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
     assert explicit_decoded["file"] == explicit_path
     assert explicit_decoded["registry"] == "registry.ampersandboxdesign.com"
     assert explicit_decoded["primitive_count"] == 4
-    assert explicit_decoded["capability_count"] == 12
+    assert explicit_decoded["capability_count"] == 14
     assert explicit_decoded["provider_count"] == 7
   end
 
@@ -198,7 +205,7 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
 
     assert decoded["primitives"] == ["&memory", "&reason", "&space", "&time"]
     assert decoded["primitive_count"] == 4
-    assert decoded["capability_count"] == 12
+    assert decoded["capability_count"] == 14
     assert decoded["provider_count"] == 7
 
     assert decoded["providers"] == [
@@ -216,6 +223,8 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
              "&memory.graph",
              "&memory.vector",
              "&reason.argument",
+             "&reason.attend",
+             "&reason.deliberate",
              "&reason.plan",
              "&reason.vote",
              "&space.fleet",

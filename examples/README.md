@@ -24,6 +24,7 @@ The canonical infrastructure operations example from the protocol spec.
 - all four capability domains
 - provider-specific `config`
 - declarative governance
+- autonomy declaration (`level`, `model_tier`, heartbeat, and budget)
 - provenance enabled
 
 **Capabilities**
@@ -32,6 +33,8 @@ The canonical infrastructure operations example from the protocol spec.
 - `&time.anomaly` → `ticktickclock`
 - `&space.fleet` → `geofleetic`
 - `&reason.argument` → `deliberatic`
+- `&reason.deliberate` → `graphonomous`
+- `&reason.attend` → `graphonomous`
 
 **Why it matters**
 
@@ -182,6 +185,16 @@ Use governance to express constraints and escalation conditions as data:
     ],
     "escalate_when": {
       "confidence_below": 0.7
+    },
+    "autonomy": {
+      "level": "advise",
+      "model_tier": "local_small",
+      "heartbeat_seconds": 300,
+      "budget": {
+        "max_actions_per_hour": 5,
+        "max_deliberation_calls_per_query": 1,
+        "require_approval_for": ["act", "propose"]
+      }
     }
   }
 }

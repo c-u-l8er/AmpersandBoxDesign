@@ -115,6 +115,44 @@ Typical operations:
 - `simulate`
 - `commit`
 
+### `&reason.deliberate`
+
+Use when the agent must reason through **feedback loops** or cyclic knowledge regions, not just rank independent options.
+
+Good fit for:
+
+- graph-topology-aware reasoning
+- circular dependency analysis
+- fault-line decomposition and reconciliation
+- high-ambiguity domains where single-pass reasoning is brittle
+
+Typical operations:
+
+- `deliberate`
+- `decompose`
+- `reconcile`
+
+This subtype is commonly paired with `&memory.graph` topology outputs (for example SCC and κ analysis) before writing crystallized conclusions back to memory.
+
+### `&reason.attend`
+
+Use when the agent should proactively decide **what to think about next** under budget and governance constraints.
+
+Good fit for:
+
+- attention map generation from active goals
+- coverage-gap triage
+- bounded autonomous dispatch loops
+- observe/advise/act autonomy workflows
+
+Typical operations:
+
+- `survey`
+- `triage`
+- `dispatch`
+
+This subtype is a meta-reasoning surface: it orchestrates focus, escalation, and proposal behavior rather than only producing one local decision.
+
 ### Other plausible future subtypes
 
 The namespace should stay disciplined, but the model allows future additions such as:
@@ -382,12 +420,28 @@ These are examples of provider categories and ecosystem fits, not an exhaustive 
 
 ### `deliberatic`
 
-Default ecosystem example for deliberation-oriented reasoning.
+Default ecosystem example for argumentation, consensus, and planning-oriented reasoning.
 
 Likely fit for:
 
 - `&reason.argument`
 - `&reason.vote`
+- `&reason.plan`
+
+### `graphonomous`
+
+Default ecosystem example for topology-aware deliberation and proactive attention orchestration.
+
+Likely fit for:
+
+- `&reason.deliberate`
+- `&reason.attend`
+
+Typical strengths include:
+
+- κ-aware routing from graph topology into focused reasoning
+- decomposition/reconciliation flows for cyclic regions
+- bounded survey/triage/dispatch attention loops with autonomy controls
 
 ### Custom policy engine
 
@@ -395,8 +449,9 @@ A custom enterprise reasoner may satisfy:
 
 - `&reason.argument`
 - `&reason.plan`
+- `&reason.attend`
 
-especially where governance and auditability are more important than model creativity.
+especially where governance and auditability are more important than model creativity, and where organizations need explicit control over escalation and approval gates.
 
 ### Framework-native planner
 
@@ -413,6 +468,14 @@ A committee or voting service may satisfy:
 - `&reason.vote`
 
 when the system combines multiple candidate outputs before selection.
+
+### Specialized deliberation runtime
+
+A dedicated deliberation runtime may satisfy:
+
+- `&reason.deliberate`
+
+when it can consume topology-rich inputs (for example SCC/κ/fault-line context) and produce confidence-bearing conclusions with provenance linkage.
 
 The key protocol point is not which provider is "best." It is that a provider should satisfy the declared interface and contract.
 

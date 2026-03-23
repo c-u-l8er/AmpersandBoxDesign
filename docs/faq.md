@@ -96,6 +96,8 @@ Each primitive can be refined into subtypes, such as:
 - `&memory.episodic`
 - `&reason.argument`
 - `&reason.vote`
+- `&reason.deliberate`
+- `&reason.attend`
 - `&time.anomaly`
 - `&time.forecast`
 - `&space.fleet`

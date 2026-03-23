@@ -12,6 +12,8 @@ Each page describes one concrete protocol capability such as:
 - `memory.graph`
 - `memory.episodic`
 - `reason.argument`
+- `reason.deliberate`
+- `reason.attend`
 - `time.forecast`
 - `space.fleet`
 
@@ -20,6 +22,8 @@ The canonical protocol identifiers for these are:
 - `&memory.graph`
 - `&memory.episodic`
 - `&reason.argument`
+- `&reason.deliberate`
+- `&reason.attend`
 - `&time.forecast`
 - `&space.fleet`
 
@@ -96,6 +100,8 @@ Examples:
 - `memory.graph.md`
 - `memory.episodic.md`
 - `reason.argument.md`
+- `reason.deliberate.md`
+- `reason.attend.md`
 - `time.forecast.md`
 - `space.fleet.md`
 
@@ -104,6 +110,8 @@ This mirrors the public route shape envisioned in the protocol roadmap:
 - `/capabilities/memory.graph`
 - `/capabilities/memory.episodic`
 - `/capabilities/reason.argument`
+- `/capabilities/reason.deliberate`
+- `/capabilities/reason.attend`
 - `/capabilities/time.forecast`
 - `/capabilities/space.fleet`
 
@@ -193,6 +201,8 @@ At the moment, this directory includes:
 - `memory.graph.md`
 - `memory.episodic.md`
 - `reason.argument.md`
+- `reason.deliberate.md`
+- `reason.attend.md`
 - `time.forecast.md`
 - `space.fleet.md`
 

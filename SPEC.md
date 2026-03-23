@@ -90,6 +90,9 @@ Common subtypes include:
 - `&reason.argument`
 - `&reason.vote`
 - `&reason.plan`
+- `&reason.chain`
+- `&reason.deliberate`
+- `&reason.attend`
 
 ### 4.3 `&time`
 
@@ -138,6 +141,8 @@ Examples:
 
 - `&memory.graph`
 - `&reason.argument`
+- `&reason.deliberate`
+- `&reason.attend`
 - `&time.anomaly`
 - `&space.fleet`
 
@@ -145,6 +150,9 @@ Wildcard matching is used in contracts and compatibility rules. For example:
 
 - `&memory.*` matches any `&memory` subtype
 - `&reason.*` matches any `&reason` subtype
+
+The protocol still defines exactly four primitive roots (`memory`, `reason`, `time`, `space`).
+Graph topology analysis is treated as a derived operation from `&memory.graph` rather than a fifth primitive.
 
 ---
 
@@ -282,6 +290,19 @@ Example idea:
 
 When `provider` is `auto`, `need` should be present to preserve intent.
 
+### 8.3 Autonomy declaration (optional)
+
+A declaration may include `governance.autonomy` to express proactive runtime posture and budget defaults.
+
+Recommended fields:
+
+- `level` — one of `observe`, `advise`, `act`
+- `model_tier` — one of `local_small`, `local_large`, `cloud_frontier`
+- `heartbeat_seconds` — integer cadence for proactive cycles, or `null` for demand-triggered operation
+- `budget` — bounded autonomy controls (for example `max_actions_per_hour`, `max_deliberation_calls_per_query`, `require_approval_for`)
+
+This block is declarative and runtime-agnostic. Implementations may downgrade autonomy based on policy.
+
 ---
 
 ## 9. Schema Suite
@@ -375,6 +396,7 @@ The top-level `governance` object may include:
 - `soft`
 - `escalate_when`
 - `infer_from_goal`
+- `autonomy`
 
 ### 11.1 Hard constraints
 
@@ -413,6 +435,22 @@ Common keys include:
 ### 11.4 Goal inference
 
 `infer_from_goal: true` signals that governance may be partially derived from a natural-language goal and runtime context.
+
+### 11.5 Autonomy policy block
+
+`autonomy` declares proactive behavior bounds and operating posture.
+
+Typical fields:
+
+- `level`: `observe`, `advise`, or `act`
+- `model_tier`: `local_small`, `local_large`, or `cloud_frontier`
+- `heartbeat_seconds`: cadence for autonomous cycles (or `null` for demand-triggered mode)
+- `budget`: bounded controls such as:
+  - `max_actions_per_hour`
+  - `max_deliberation_calls_per_query`
+  - `require_approval_for`
+
+This enables tier-aware routing and budget enforcement while keeping governance declarative.
 
 ---
 
@@ -471,6 +509,12 @@ Example operation ideas:
 - `detect: in -> out`
 - `enrich: in -> out`
 - `learn: in -> out`
+- `deliberate: in -> out`
+- `decompose: in -> out`
+- `reconcile: in -> out`
+- `survey: in -> out`
+- `triage: in -> out`
+- `dispatch: in -> out`
 
 The types are protocol-level tokens such as:
 
@@ -481,6 +525,11 @@ The types are protocol-level tokens such as:
 - `decision`
 - `ack`
 - `output`
+- `topology_result`
+- `deliberation_result`
+- `attention_map`
+- `attention_cycle`
+- `coverage_assessment`
 
 ### 13.2 `accepts_from`
 
@@ -509,6 +558,15 @@ Maps a capability to portable A2A-facing skill identifiers.
 Example:
 
 - `temporal-anomaly-detection`
+
+### 13.5 Deliberation and attention contracts
+
+Two important `&reason` contracts for autonomous systems are:
+
+- `&reason.deliberate` — topology-aware focused reasoning over cyclic regions
+- `&reason.attend` — proactive survey/triage/dispatch of attention targets
+
+These contracts allow runtime routing from retrieval/topology analysis into bounded deliberation and autonomous attention cycles.
 
 ---
 

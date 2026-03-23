@@ -1155,11 +1155,11 @@ The system doesn't need to be told what to do for each step. It needs to be told
 ### File: `test/graphonomous/attention_test.exs`
 
 ```
-[ ] survey/0 returns attention items for all active goals
-[ ] survey/0 includes coverage and topology for each item
+[x] survey/0 returns attention items for all active goals
+[x] survey/0 includes coverage and topology for each item
 [ ] triage/1 ranks items by attention_score (urgency × gap + surprise)
 [ ] triage/1 assigns correct dispatch_mode based on coverage + topology
-[ ] dispatch with autonomy :observe → logs but takes no action
+[x] dispatch with autonomy :observe → logs but takes no action
 [ ] dispatch with autonomy :advise → proposes but doesn't execute
 [ ] dispatch with autonomy :act → executes within budget
 [ ] budget.max_items_per_cycle respected
@@ -1170,13 +1170,13 @@ The system doesn't need to be told what to do for each step. It needs to be told
 [ ] focus mode triggers Deliberator
 [ ] act mode dispatches via agent_fn / OpenSentience interface
 [ ] propose mode creates goal with source_type: :inferred, status: :proposed
-[ ] heartbeat timer fires at configured cadence
+[x] heartbeat timer fires at configured cadence
 [ ] deadline trigger fires when goal deadline approaches
-[ ] deactivate/0 stops heartbeat but keeps GenServer alive
+[x] deactivate/0 stops heartbeat but keeps GenServer alive
 [ ] telemetry events emitted at each phase
-[ ] run_cycle/1 works as manual trigger
-[ ] attention_survey MCP tool returns valid response
-[ ] attention_run_cycle MCP tool triggers one cycle
+[x] run_cycle/1 works as manual trigger
+[x] attention_survey MCP tool returns valid response
+[x] attention_run_cycle MCP tool triggers one cycle
 ```
 
 ### File: `test/graphonomous/attention_integration_test.exs`

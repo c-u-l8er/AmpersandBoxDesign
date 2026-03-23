@@ -699,7 +699,7 @@ This is not sentience. It is **mechanical epistemology** — the graph knows its
 ### File: `test/graphonomous/deliberator_test.exs`
 
 ```
-[ ] decompose/1 on κ=1 SCC with one fault line → two partitions
+[x] decompose/1 on κ=1 SCC with one fault line → two partitions
 [ ] decompose/1 on κ=2 SCC with two fault lines → up to four partitions, capped by budget
 [ ] build_focused_prompt/4 includes ONLY partition nodes, not full graph
 [ ] build_focused_prompt/4 includes fault-line assumption statement
@@ -707,27 +707,27 @@ This is not sentience. It is **mechanical epistemology** — the graph knows its
 [ ] reconcile/4 with contradicting intermediates → :divergent
 [ ] reconcile/4 checks confidence against budget.confidence_threshold
 [ ] deliberate/4 on κ=0 topology → returns immediately (no-op)
-[ ] deliberate/4 on κ=1 SCC → runs focus + reconcile → converged conclusion
-[ ] deliberate/4 on κ=2 SCC → runs multiple partitions → converged or escalated
+[x] deliberate/4 on κ=1 SCC → runs focus + reconcile → converged conclusion
+[x] deliberate/4 on κ=2 SCC → runs multiple partitions → converged or escalated
 [ ] deliberate/4 budget.max_iterations respected (does not run forever)
-[ ] deliberate/4 with write_back: true → creates new node in graph
-[ ] deliberate/4 with write_back: false → no graph mutation
-[ ] crystallize/3 creates :semantic node with correct metadata
+[x] deliberate/4 with write_back: true → creates new node in graph
+[x] deliberate/4 with write_back: false → no graph mutation
+[x] crystallize/3 creates :semantic node with correct metadata
 [ ] crystallize/3 creates :derived_from edges to source SCC nodes
 [ ] escalation fires when budget exhausted without convergence
 [ ] telemetry events emitted at each phase
-[ ] agent_fn injection works (mock LLM for deterministic tests)
+[x] agent_fn injection works (mock LLM for deterministic tests)
 ```
 
 ### File: `test/graphonomous/deliberator_integration_test.exs`
 
 ```
 [ ] End-to-end: store cyclic graph → retrieve → auto_deliberate → conclusion node exists
-[ ] Conclusion node has correct metadata (derived_by, source_scc, source_kappa)
+[x] Conclusion node has correct metadata (derived_by, source_scc, source_kappa)
 [ ] Second retrieval of same region finds conclusion node
 [ ] Effective κ of retrieved subgraph may be lower after crystallization
-[ ] MCP tool `deliberate` returns valid response matching schema
-[ ] MCP tool registered and callable
+[x] MCP tool `deliberate` returns valid response matching schema
+[x] MCP tool registered and callable
 ```
 
 ---

@@ -2,15 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
   "title": "Ampersand Capability Contract",
-  "description": "JSON Schema draft 2020-12 for [&] protocol capability contract artifacts. A contract declares a capability's operations, typed inputs and outputs, composition adjacency constraints, and optional A2A skill mappings.",
+  "description": "JSON Schema draft 2020-12 for [&] protocol capability contract artifacts. A contract declares a capability's operations, typed inputs and outputs, composition adjacency constraints, and optional A2A skill mappings. Type tokens support κ/topology and attention flows (for example topology_result, deliberation_result, attention_map, attention_cycle, coverage_assessment).",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "capability",
-    "operations",
-    "accepts_from",
-    "feeds_into"
-  ],
+  "required": ["capability", "operations", "accepts_from", "feeds_into"],
   "properties": {
     "$schema": {
       "type": "string",
@@ -87,20 +82,17 @@
     "operationName": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9_:-]*$",
-      "description": "Operation name such as detect, enrich, learn, or deliberate."
+      "description": "Operation name such as detect, enrich, learn, deliberate, decompose, reconcile, survey, triage, or dispatch."
     },
     "typeToken": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9_:-]*$",
-      "description": "Protocol-level type token such as stream_data, anomaly_set, context, or output."
+      "description": "Protocol-level type token such as stream_data, anomaly_set, context, output, topology_result, deliberation_result, attention_map, attention_cycle, or coverage_assessment."
     },
     "operationContract": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "in",
-        "out"
-      ],
+      "required": ["in", "out"],
       "properties": {
         "in": {
           "$ref": "#/$defs/typeToken"
@@ -121,7 +113,7 @@
       }
     },
     "compositionTarget": {
-      "description": "A legal composition adjacency target: either a capability/capability wildcard or a protocol type token such as raw_data or output.",
+      "description": "A legal composition adjacency target: either a capability/capability wildcard or a protocol type token such as raw_data, output, topology_result, deliberation_result, attention_map, attention_cycle, or coverage_assessment.",
       "anyOf": [
         {
           "$ref": "#/$defs/capabilityPattern"
@@ -194,20 +186,57 @@
           "out": "ack"
         }
       },
-      "accepts_from": [
-        "&memory.*",
-        "&space.*",
-        "raw_data"
-      ],
-      "feeds_into": [
-        "&memory.*",
-        "&reason.*",
-        "&space.*",
-        "output"
-      ],
-      "a2a_skills": [
-        "temporal-anomaly-detection"
-      ]
+      "accepts_from": ["&memory.*", "&space.*", "raw_data"],
+      "feeds_into": ["&memory.*", "&reason.*", "&space.*", "output"],
+      "a2a_skills": ["temporal-anomaly-detection"]
+    },
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+      "capability": "&reason.deliberate",
+      "provider": "graphonomous",
+      "version": "0.1.0",
+      "description": "κ-driven focused reasoning over graph feedback loops.",
+      "operations": {
+        "deliberate": {
+          "in": "topology_result",
+          "out": "deliberation_result"
+        },
+        "decompose": {
+          "in": "topology_result",
+          "out": "partitions"
+        },
+        "reconcile": {
+          "in": "intermediate_conclusions",
+          "out": "deliberation_result"
+        }
+      },
+      "accepts_from": ["&memory.graph", "&memory.*"],
+      "feeds_into": ["&memory.graph", "&reason.*", "output"],
+      "a2a_skills": ["topology-aware-deliberation"]
+    },
+    {
+      "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+      "capability": "&reason.attend",
+      "provider": "graphonomous",
+      "version": "0.1.0",
+      "description": "Proactive attention loop for survey, triage, and dispatch.",
+      "operations": {
+        "survey": {
+          "in": "context",
+          "out": "attention_map"
+        },
+        "triage": {
+          "in": "attention_map",
+          "out": "attention_map"
+        },
+        "dispatch": {
+          "in": "attention_map",
+          "out": "attention_cycle"
+        }
+      },
+      "accepts_from": ["&memory.graph", "&reason.*", "context"],
+      "feeds_into": ["&reason.deliberate", "&memory.graph", "output"],
+      "a2a_skills": ["proactive-attention", "autonomous-planning"]
     }
   ]
 }
