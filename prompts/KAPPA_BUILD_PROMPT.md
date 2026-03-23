@@ -898,36 +898,36 @@ function route(topology_result):
 [ ] compute_kappa on simple 3-cycle → 1
 [ ] compute_kappa on business example (5-node SCC: market-share/revenue/r-and-d/product-quality/customer-retention) → 1
 [ ] compute_kappa on K₂,₂ (complete bipartite with both directions, 4 nodes) → 2
-[ ] analyze on mixed DAG+SCC graph → correct routing, dag_nodes, sccs
-[ ] analyze output uses canonical field names (§A.1)
-[ ] approximate: false for SCC ≤ 20
-[ ] approximate: true + kappa = SCC size for SCC > 20
-[ ] build_adjacency correctly maps Edge structs
-[ ] preview_edge_impact detects new SCC creation
-[ ] Retriever returns topology key in results
-[ ] MCP tool analyze_topology returns valid JSON matching §A.1
-[ ] MCP tool retrieve_context includes topology field
-[ ] :telemetry events emitted from analyze/1
-[ ] mix test passes
-[ ] mix format --check-formatted passes
-[ ] mix compile --warnings-as-errors passes
+[x] analyze on mixed DAG+SCC graph → correct routing, dag_nodes, sccs
+[x] analyze output uses canonical field names (§A.1)
+[x] approximate: false for SCC ≤ 20
+[x] approximate: true + kappa = SCC size for SCC > 20
+[x] build_adjacency correctly maps Edge structs
+[x] preview_edge_impact detects new SCC creation
+[x] Retriever returns topology key in results
+[x] MCP tool analyze_topology returns valid JSON matching §A.1
+[x] MCP tool retrieve_context includes topology field
+[x] :telemetry events emitted from analyze/1
+[x] mix test passes
+[x] mix format --check-formatted passes
+[x] mix compile --warnings-as-errors passes
 ```
 
 ### JavaScript (Path 2)
 
 ```
-[ ] tarjanSCC on simple cycle → correct SCC
-[ ] computeKappa on 3-cycle → kappa: 1, approximate: false
-[ ] computeKappa on > 20 node SCC → approximate: true
-[ ] analyzeTopology on active plane → correct routing
+[x] tarjanSCC on simple cycle → correct SCC
+[x] computeKappa on 3-cycle → kappa: 1, approximate: false
+[x] computeKappa on > 20 node SCC → approximate: true
+[x] analyzeTopology on active plane → correct routing
 [ ] analyzeTopology uses internal camelCase, plus explicit mapper to canonical snake_case for any network/persisted payload
 [ ] SCC clusters render as background halos
 [ ] κ badges appear on SCC clusters
 [ ] Fault-line edges render dashed
-[ ] HUD shows κ, SCC count, routing mode
-[ ] "Connect to…" context menu shows topology preview
-[ ] Bend context menu creates feedback loop
-[ ] Unbend context menu breaks feedback loop
+[x] HUD shows κ, SCC count, routing mode
+[x] "Connect to…" context menu shows topology preview
+[x] Bend context menu creates feedback loop
+[x] Unbend context menu breaks feedback loop
 [ ] performance.now() logging shows < 50ms on 100-node graph
 [ ] No visual regression on existing graph rendering
 [ ] Topology cache invalidated on edge add/remove
