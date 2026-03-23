@@ -179,17 +179,17 @@ Schema-aligned contract examples for `&reason.deliberate` and `&reason.attend` a
 ### Registry
 - `protocol/registry/v0.1.0/capabilities.registry.json` — capability registry artifact with subtype, provider, and contract metadata
 
-### Capability pages
-- `capabilities/memory.graph.md`
-- `capabilities/memory.episodic.md`
-- `capabilities/reason.argument.md`
-- `capabilities/time.forecast.md`
-- `capabilities/space.fleet.md`
+### Capability pages (status)
 
-Reasoning extensions (`&reason.deliberate`, `&reason.attend`) are currently specified in:
-- `SPEC.md`
-- `prompts/PROTOCOL_PROMPT.md`
-- `protocol/schema/v0.1.0/capability-contract.schema.json` examples
+Capability-specific markdown pages are not currently published in this repository.
+
+Authoritative locations for capability details are:
+
+- `SPEC.md` — normative protocol specification
+- `prompts/PROTOCOL_PROMPT.md` — implementation-oriented prompt
+- `contracts/v0.1.0/` — capability contract artifacts (including `reason.deliberate` and `reason.attend`)
+- `protocol/schema/v0.1.0/capability-contract.schema.json` — contract schema and examples
+- `protocol/registry/v0.1.0/capabilities.registry.json` — subtype/provider registry mappings
 
 ### Reference implementation
 - `reference/elixir/ampersand_core/` — minimal Elixir implementation with:

@@ -111,6 +111,8 @@ This directory currently includes the complete `v0.1.0` contract artifact set fo
 - `reason.argument.contract.json`
 - `reason.vote.contract.json`
 - `reason.plan.contract.json`
+- `reason.deliberate.contract.json`
+- `reason.attend.contract.json`
 - `time.anomaly.contract.json`
 - `time.forecast.contract.json`
 - `time.pattern.contract.json`
@@ -448,17 +450,15 @@ This directory is useful for:
 
 ## Suggested next steps
 
-Useful future additions for this directory include:
+The core `v0.1.0` contract set is now complete. Useful next improvements for this directory include:
 
-- `memory.vector.contract.json`
-- `time.anomaly.contract.json`
-- `time.pattern.contract.json`
-- `reason.vote.contract.json`
-- `reason.plan.contract.json`
-- `space.route.contract.json`
-- `space.geofence.contract.json`
+- a per-version contract changelog (for example, `v0.1.0 -> v0.2.0` deltas)
+- negative/invalid contract fixtures for validator regression testing
+- a compact compatibility matrix generated from `accepts_from` / `feeds_into`
+- guidance for provider-specific metadata extensions while preserving schema conformance
+- release process notes for synchronizing contract updates with registry and schema artifacts
 
-Those would round out the current primitive namespaces and make registry artifacts even more useful.
+These additions would improve maintainability, test coverage, and artifact publishing discipline without expanding the `v0.1.0` surface area.
 
 ---
 
