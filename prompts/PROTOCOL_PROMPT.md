@@ -235,6 +235,24 @@ Declarative constraints in the schema — not language-specific syntax:
 
   Autonomy is governed by Delegatic policy. An org-level cap of `:advise` will downgrade any agent declaring `:act` at composition time. The `model_tier` field (`:local_small`, `:local_large`, `:cloud_frontier`) determines default budgets for deliberation depth, attention cadence, and inference strategy.
 
+### Governance Foundations
+
+The governance model is grounded in four structural principles. When writing developer-facing docs, use the engineering framing. The underlying insight is that governance emerges from feedback topology — analogous to how biological homeostasis emerges from somatic feedback loops.
+
+1. **Feedback topology determines deliberation rights.** κ = 0 (DAG) means fast-path, no deliberation. κ > 0 (SCC) means iterative deliberation. This is a governance principle, not just a routing optimization — deliberation rights derive from mutual influence, not role assignment.
+
+2. **Coherence requires timescale separation.** The consolidation tiers (fast/medium/slow/glacial) manage the autonomy-coherence gradient. Fast tiers preserve local autonomy; slow tiers enforce system coherence. This maps to the `governance.autonomy` block.
+
+3. **Legitimacy comes from bidirectional influence.** SCC membership means mutual influence. DAG nodes don't deliberate because they lack the topology for mutual influence. Autonomy without feedback is isolation.
+
+4. **The bootstrapping lifecycle.** The portfolio implements a closed feedback loop: spec (SpecPrompt) → declaration ([&]) → generation (Agentelic) → deployment (WebHost.Systems) → autonomous operation (OpenSentience + Graphonomous) → governance (Delegatic) → outcome feedback → spec revision. Each domain is a node in this governance topology.
+
+When generating code or documentation, these principles should inform:
+- How `governance.autonomy` blocks are explained
+- Why `&reason.deliberate` requires `topology_result` input
+- Why `budget: :κ` in deliberation pipelines is a governance decision
+- How the portfolio companies relate to each other as a system
+
 ### Protocol Stack Position
 
 ```

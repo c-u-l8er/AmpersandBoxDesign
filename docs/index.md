@@ -8,6 +8,8 @@ Use this documentation to understand the protocol from multiple angles:
 
 - **Architecture** explains the system model, runtime lifecycle, and end-to-end declaration flow.
 - **Positioning** compares [&] with adjacent standards and research.
+- **Competitive Landscape** maps the machine cognition market and explains the structural constraints facing each competitor category.
+- **Topology Is the Authority** explains why governance must emerge from feedback topology, not be bolted onto architecture.
 - **Research** provides the motivation for a composition layer in the agent stack.
 - **FAQ** answers common questions quickly.
 - **Capability pages** explain the four core primitives in more detail.
@@ -30,6 +32,8 @@ quickstart
 architecture
 runtime-walkthrough
 positioning
+competitive-landscape
+topology-is-the-authority
 comparison-table
 research
 registry/README
@@ -55,9 +59,11 @@ If you're new to the project, a good path is:
 2. `architecture` — understand the protocol's responsibilities, runtime lifecycle, and end-to-end declaration flow
 3. `runtime-walkthrough` — follow a concrete declaration through validation, composition, provider resolution, and generation
 4. `positioning` — see where [&] fits relative to MCP, A2A, ACP, and DALIA
-5. `research` — understand the ecosystem and research pressures behind the design
-6. `faq` — get quick answers to common adoption and framing questions
-7. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
+5. `competitive-landscape` — understand the structural constraints facing every competitor category in machine cognition
+6. `topology-is-the-authority` — why governance must emerge from feedback topology, not be configured on top
+7. `research` — understand the ecosystem and research pressures behind the design
+8. `faq` — get quick answers to common adoption and framing questions
+9. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
 
 ## Core idea
 

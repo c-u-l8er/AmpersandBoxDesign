@@ -452,6 +452,48 @@ Typical fields:
 
 This enables tier-aware routing and budget enforcement while keeping governance declarative.
 
+### 11.6 Governance Foundations
+
+The protocol's governance model rests on four structural principles derived from graph topology.
+
+#### 11.6.1 Feedback topology determines deliberation rights
+
+The κ invariant (computed via Tarjan SCC analysis on `&memory.graph`) partitions a capability graph into two routing classes:
+
+- **κ = 0 (DAG regions)**: No feedback loops. Context flows in one direction. Route: fast-path retrieval. No deliberation warranted.
+- **κ > 0 (SCC regions)**: Irreducible feedback loops present. Mutual influence exists between nodes. Route: iterative deliberation via `&reason.deliberate`, bounded by κ-derived budgets.
+
+This is not a performance optimization. It is a governance claim: **deliberation rights are earned by feedback topology, not assigned by role**. Nodes that cannot influence each other have no structural basis for joint deliberation.
+
+#### 11.6.2 Coherence through timescale separation
+
+Autonomous agents face a tension between local autonomy and system-wide coherence. The protocol manages this through consolidation tiers that operate at separated timescales:
+
+- **Fast** (seconds): inference-time learning, immediate context
+- **Medium** (hours–days): pattern reinforcement, confidence updates
+- **Slow** (days–weeks): structural reorganization, edge pruning
+- **Glacial** (months): schema evolution, capability retirement
+
+Each tier has independent budgets and governance bounds. Fast tiers preserve autonomy; slow tiers enforce coherence. The `governance.autonomy.heartbeat_seconds` field controls the proactive cycle cadence within this gradient.
+
+#### 11.6.3 Bidirectional influence as legitimacy
+
+SCC membership means mutual influence: node A affects node B, and node B affects node A. This bidirectionality is what makes deliberation meaningful. Unidirectional flow (DAG structure) does not warrant deliberation because the downstream node cannot influence the upstream node's state. Governance participation requires the topology for it.
+
+#### 11.6.4 The bootstrapping lifecycle
+
+A conforming ecosystem implements a feedback loop across the full agent lifecycle:
+
+1. Specification (SpecPrompt)
+2. Capability declaration ([&] Protocol)
+3. Agent generation (Agentelic)
+4. Deployment (WebHost.Systems)
+5. Autonomous operation (OpenSentience + Graphonomous)
+6. Governance enforcement (Delegatic)
+7. Outcome feedback into specification revision
+
+Each stage produces artifacts consumed by the next. The cycle closes when outcome data revises the originating specification, creating the same SCC structure at the organizational level that κ detects at the graph level.
+
 ---
 
 ## 12. Provenance

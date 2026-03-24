@@ -162,6 +162,18 @@ The protocol expresses governance in data:
 
 This makes governance portable. It can travel with the declaration rather than disappearing when the implementation language changes.
 
+### Governance from topology
+
+The protocol makes a stronger claim about governance than "constraints as data."
+
+In any composed system, some regions have feedback loops and some do not. The κ invariant — computed from Tarjan's strongly connected component (SCC) analysis on the capability graph — distinguishes these regions mechanically. When κ = 0, the subgraph is acyclic: data flows in one direction, and single-pass retrieval is sufficient. When κ > 0, irreducible feedback loops exist: nodes influence each other mutually, and deliberation is both warranted and bounded by the loop's complexity.
+
+This is a governance principle, not a routing heuristic. Deliberation rights derive from the topology of mutual influence. A node that cannot be influenced by a decision has no structural basis for participating in that decision. Conversely, nodes within a feedback loop have both the right and the obligation to deliberate, because their states are interdependent.
+
+The practical consequence: governance is not layered on top of architecture. It emerges from the architecture's own feedback structure. The κ invariant is computable, verifiable, and deterministic — it does not depend on role hierarchies, trust scores, or human judgment about who should participate.
+
+Coherence across the system is maintained through timescale separation. Fast memory operations (seconds) preserve local autonomy; slow consolidation cycles (days to months) enforce system-wide coherence. This gradient — from autonomous local action to coherent global structure — is the core tension that governance manages, and the protocol makes it explicit through the `governance.autonomy` block and consolidation tier declarations.
+
 ## 4. The [&] Protocol
 
 The [&] Protocol is a language-agnostic composition layer for agent cognition.
