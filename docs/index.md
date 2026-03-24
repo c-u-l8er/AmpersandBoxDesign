@@ -10,6 +10,7 @@ Use this documentation to understand the protocol from multiple angles:
 - **Positioning** compares [&] with adjacent standards and research.
 - **Competitive Landscape** maps the machine cognition market and explains the structural constraints facing each competitor category.
 - **Topology Is the Authority** explains why governance must emerge from feedback topology, not be bolted onto architecture.
+- **Autonomous Systems** explains why autonomous vehicles and drone swarms are the canonical [&] use case, including the Palantir integration surface and κ-driven swarm governance.
 - **Research** provides the motivation for a composition layer in the agent stack.
 - **FAQ** answers common questions quickly.
 - **Capability pages** explain the four core primitives in more detail.
@@ -34,6 +35,7 @@ runtime-walkthrough
 positioning
 competitive-landscape
 topology-is-the-authority
+use-cases-autonomous-systems
 comparison-table
 research
 registry/README
