@@ -27,9 +27,30 @@ Use this documentation to understand the protocol from multiple angles:
 
 ## Documentation map
 
+
+```{toctree}
+:maxdepth: 1
+:caption: Main
+
+[&] Sandbox Design <https://ampersandboxdesign.com>
+Graphonomous <https://graphonomous.com>
+BendScript <https://bendscript.com>
+WebHost.Systems <https://webhost.systems>
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Index
+
+[&] Protocol Docs <https://docs.ampersandboxdesign.com>
+Graphonomous Docs <https://docs.graphonomous.com>
+BendScript Docs <https://docs.bendscript.com>
+WebHost.System Docs <https://docs.webhost.systems>
+```
+
 ```{toctree}
 :maxdepth: 2
-:caption: Documentation
+:caption: [&] Protocol Docs
 
 quickstart
 architecture
@@ -45,7 +66,7 @@ faq
 
 ```{toctree}
 :maxdepth: 1
-:caption: Capabilities
+:caption: Capabilities & Registry
 
 registry/README
 capabilities/memory
