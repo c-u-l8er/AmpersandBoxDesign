@@ -6,6 +6,15 @@ Open, language-agnostic specification for capability composition in AI agents. D
 
 - `prompts/PROTOCOL_PROMPT.md` — the full implementation prompt used to generate [&] Protocol reference code. Read this before modifying the Elixir reference implementation — it contains the project identity, architecture summary, formal grammar, coding standards, and generation rules.
 - `prompts/GRAPHONOMOUS_PROMPT.md` — autonomous codebase traversal prompt for Graphonomous MCP integration.
+- `prompts/KAPPA_BUILD_PROMPT.md` — κ cyclicity detection implementation guide (v2). Canonical schema, field name rules, directed edge rules. Proved on 1,926,351 finite systems.
+- `prompts/KAPPA_DELIBERATOR_PROMPT.md` — deliberation loop architecture triggered by κ > 0 routing. Decompose → focus → reconcile pipeline.
+- `prompts/ATTENTION_ENGINE_PROMPT.md` — proactive attention engine: survey → triage → dispatch → execute → reflect. The "ignition" for autonomous behavior.
+- `prompts/MODEL_TIER_PROMPT.md` — hardware-adaptive tier budgets (local_small/8B, local_large/70B+, cloud_frontier). Same topology, different depth.
+
+Prompt dependency order:
+```
+PROTOCOL_PROMPT → KAPPA_BUILD → KAPPA_DELIBERATOR → ATTENTION_ENGINE → MODEL_TIER
+```
 
 These prompts serve the same role as `project_spec/` in other portfolio projects. When the protocol or reference impl needs changes, align with the prompt first.
 
