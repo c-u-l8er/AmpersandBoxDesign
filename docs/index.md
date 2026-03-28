@@ -30,9 +30,9 @@ Use this documentation to understand the protocol from multiple angles:
 
 ```{toctree}
 :maxdepth: 1
-:caption: Main
+:caption: Homepages
 
-[&] Sandbox Design <https://ampersandboxdesign.com>
+[&] Ampersand Box <https://ampersandboxdesign.com>
 Graphonomous <https://graphonomous.com>
 BendScript <https://bendscript.com>
 WebHost.Systems <https://webhost.systems>
@@ -40,7 +40,7 @@ WebHost.Systems <https://webhost.systems>
 
 ```{toctree}
 :maxdepth: 1
-:caption: Index
+:caption: Root Docs
 
 [&] Protocol Docs <https://docs.ampersandboxdesign.com>
 Graphonomous Docs <https://docs.graphonomous.com>
