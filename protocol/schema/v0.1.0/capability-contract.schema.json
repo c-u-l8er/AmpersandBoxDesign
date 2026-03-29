@@ -61,13 +61,13 @@
   "$defs": {
     "capabilityId": {
       "type": "string",
-      "pattern": "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
-      "description": "Protocol capability identifier such as &time.anomaly or &memory.graph."
+      "pattern": "^&(memory|reason|time|space|govern)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Protocol capability identifier such as &time.anomaly, &memory.graph, or &govern.telemetry."
     },
     "capabilityPattern": {
       "type": "string",
-      "pattern": "^&(memory|reason|time|space)(\\.\\*|\\.[A-Za-z][A-Za-z0-9_-]*)?$",
-      "description": "Capability identifier or wildcard primitive pattern such as &memory.*."
+      "pattern": "^&(memory|reason|time|space|govern)(\\.\\*|\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Capability identifier or wildcard primitive pattern such as &memory.* or &govern.*."
     },
     "providerId": {
       "type": "string",

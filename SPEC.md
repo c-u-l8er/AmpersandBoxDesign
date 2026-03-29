@@ -69,7 +69,7 @@ The core claim of the protocol is simple: an agent should declare **what kinds o
 
 ## 4. Cognitive Primitives
 
-The protocol starts from four primitive capability domains.
+The protocol defines five primitive capability domains.
 
 ### 4.1 `&memory`
 
@@ -114,12 +114,23 @@ Common subtypes include:
 - `&space.route`
 - `&space.geofence`
 
+### 4.5 `&govern`
+
+Describes cross-cutting governance concerns: telemetry, escalation, and identity.
+
+Common subtypes include:
+
+- `&govern.telemetry`
+- `&govern.escalation`
+- `&govern.identity`
+
 These primitives are intended to map to a practical cognitive taxonomy:
 
 - **what** → memory
 - **how** → reason
 - **when** → time
 - **where** → space
+- **who/under what rules** → govern
 
 ---
 
@@ -136,6 +147,7 @@ Valid primitive roots are:
 - `reason`
 - `time`
 - `space`
+- `govern`
 
 Examples:
 
@@ -145,14 +157,17 @@ Examples:
 - `&reason.attend`
 - `&time.anomaly`
 - `&space.fleet`
+- `&govern.telemetry`
+- `&govern.escalation`
+- `&govern.identity`
 
 Wildcard matching is used in contracts and compatibility rules. For example:
 
 - `&memory.*` matches any `&memory` subtype
 - `&reason.*` matches any `&reason` subtype
+- `&govern.*` matches any `&govern` subtype
 
-The protocol still defines exactly four primitive roots (`memory`, `reason`, `time`, `space`).
-Graph topology analysis is treated as a derived operation from `&memory.graph` rather than a fifth primitive.
+The protocol defines five primitive roots (`memory`, `reason`, `time`, `space`, `govern`). The first four map to cognitive domains; `govern` is the cross-cutting primitive for telemetry, escalation, and identity that all capability providers may consume or emit.
 
 ---
 
@@ -448,6 +463,11 @@ Typical fields:
 - `budget`: bounded controls such as:
   - `max_actions_per_hour`
   - `max_deliberation_calls_per_query`
+  - `max_tokens_per_task`
+  - `max_cost_usd_per_task`
+  - `max_tokens_per_period`
+  - `max_cost_usd_per_period`
+  - `max_compute_ms_per_task`
   - `require_approval_for`
 
 This enables tier-aware routing and budget enforcement while keeping governance declarative.
@@ -638,6 +658,7 @@ A registry artifact groups entries by primitive root such as:
 - `&reason`
 - `&time`
 - `&space`
+- `&govern`
 
 Each primitive entry may define:
 

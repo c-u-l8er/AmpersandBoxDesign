@@ -1,0 +1,77 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&govern.identity",
+  "provider": "opensentience",
+  "version": "0.1.0",
+  "description": "Cross-runtime agent identity contract. Provides portable, verifiable agent identity that persists across runtime providers, sessions, and deployments. Enables agent authentication in A2A communication, provenance attribution, and governance audit trails.",
+  "operations": {
+    "resolve": {
+      "in": "identity_query",
+      "out": "agent_identity",
+      "description": "Resolve an agent's identity by ID, returning its manifest, capabilities, governance policy, and trust metadata.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "verify": {
+      "in": "identity_claim",
+      "out": "verification_result",
+      "description": "Verify that an agent's claimed identity matches its registered manifest and governance policy. Used in A2A handshakes and cross-runtime invocations.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "register": {
+      "in": "agent_manifest",
+      "out": "identity_receipt",
+      "description": "Register or update an agent's identity in the registry. Links the agent to its ampersand.json declaration, SpecPrompt spec, and Delegatic org.",
+      "deterministic": true,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&govern.*",
+    "identity_query",
+    "identity_claim",
+    "agent_manifest"
+  ],
+  "feeds_into": [
+    "&govern.escalation",
+    "&govern.telemetry",
+    "output"
+  ],
+  "a2a_skills": [
+    "agent-identity-resolution",
+    "agent-verification",
+    "agent-registration"
+  ],
+  "metadata": {
+    "primitive": "&govern",
+    "subtype": "identity",
+    "supports_provenance": true,
+    "identity_schema": {
+      "agent_id": "string (globally unique, UUIDv7)",
+      "agent_name": "string (human-readable, from ampersand.json)",
+      "version": "string (semver, from ampersand.json)",
+      "manifest_hash": "string (SHA-256 of ampersand.json at registration time)",
+      "spec_hash": "string | null (SHA-256 of linked SpecPrompt SPEC.md)",
+      "org_id": "string | null (Delegatic org reference)",
+      "publisher_id": "string | null (FleetPrompt publisher reference)",
+      "capabilities": ["string (declared &-prefixed capability keys)"],
+      "governance_summary": {
+        "autonomy_level": "observe | advise | act",
+        "model_tier": "local_small | local_large | cloud_frontier",
+        "hard_constraints_count": "integer",
+        "escalation_configured": "boolean"
+      },
+      "runtime_bindings": [
+        {
+          "runtime": "string (cloudflare | agentcore | opensentience | custom)",
+          "deployment_ref": "string | null",
+          "status": "active | inactive | deploying"
+        }
+      ],
+      "trust_score": "number | null (FleetPrompt computed score, 0.0-1.0)",
+      "registered_at": "ISO8601",
+      "updated_at": "ISO8601"
+    }
+  }
+}

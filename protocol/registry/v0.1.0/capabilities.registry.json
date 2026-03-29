@@ -313,5 +313,71 @@
     "metadata": {
       "research_focus": ["spatial reasoning", "fleet operations", "routing"]
     }
+  },
+  "&govern": {
+    "description": "Governance capabilities for telemetry, escalation, identity, and security across the [&] Protocol ecosystem. Cross-cutting concerns that all capability providers may consume or emit.",
+    "subtypes": {
+      "telemetry": {
+        "ops": ["emit", "query", "budget_check"],
+        "description": "Unified telemetry ingestion, querying, and budget enforcement. OpenTelemetry-compatible.",
+        "contract_ref": "/contracts/v0.1.0/govern.telemetry.contract.json",
+        "a2a_skills": ["telemetry-ingestion", "usage-query", "budget-enforcement"]
+      },
+      "escalation": {
+        "ops": ["escalate", "respond", "query"],
+        "description": "Human-in-the-loop escalation for low-confidence, high-cost, or policy-gated actions.",
+        "contract_ref": "/contracts/v0.1.0/govern.escalation.contract.json",
+        "a2a_skills": ["human-escalation", "approval-request", "escalation-status"]
+      },
+      "identity": {
+        "ops": ["resolve", "verify", "register"],
+        "description": "Cross-runtime agent identity resolution, verification, and registration.",
+        "contract_ref": "/contracts/v0.1.0/govern.identity.contract.json",
+        "a2a_skills": ["agent-identity-resolution", "agent-verification", "agent-registration"]
+      }
+    },
+    "providers": [
+      {
+        "id": "opensentience",
+        "name": "OpenSentience",
+        "description": "Governance shim providing telemetry, escalation, and identity services as part of OS-006 and OS-007 protocol implementations.",
+        "subtypes": ["telemetry", "escalation", "identity"],
+        "protocol": "mcp_v1",
+        "transport": "stdio",
+        "contract_ref": "/contracts/v0.1.0/govern.telemetry.contract.json",
+        "status": "beta",
+        "metadata": {
+          "homepage": "https://opensentience.org",
+          "protocols": ["OS-006", "OS-007"],
+          "contract_refs": [
+            "/contracts/v0.1.0/govern.telemetry.contract.json",
+            "/contracts/v0.1.0/govern.escalation.contract.json",
+            "/contracts/v0.1.0/govern.identity.contract.json"
+          ]
+        }
+      },
+      {
+        "id": "delegatic",
+        "name": "Delegatic",
+        "description": "Governance policy source — provides budget limits, model tier restrictions, and organizational policy that telemetry and escalation enforce.",
+        "subtypes": ["telemetry"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://delegatic.com",
+        "contract_ref": "/contracts/v0.1.0/govern.telemetry.contract.json",
+        "status": "beta",
+        "metadata": {
+          "notes": "Delegatic defines policy; OpenSentience enforces it. Delegatic exposes budget limits via the telemetry contract's budget_check operation."
+        }
+      }
+    ],
+    "metadata": {
+      "research_focus": [
+        "agent governance",
+        "adversarial robustness",
+        "human-in-the-loop escalation",
+        "cross-runtime identity"
+      ]
+    }
   }
 }

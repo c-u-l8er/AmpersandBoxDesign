@@ -26,7 +26,7 @@
     }
   },
   "patternProperties": {
-    "^&(memory|reason|time|space)$": {
+    "^&(memory|reason|time|space|govern)$": {
       "$ref": "#/$defs/primitiveRegistry"
     }
   },
@@ -42,6 +42,9 @@
     },
     {
       "required": ["&space"]
+    },
+    {
+      "required": ["&govern"]
     }
   ],
   "$defs": {

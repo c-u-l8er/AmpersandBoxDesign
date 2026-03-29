@@ -26,7 +26,7 @@
         "$ref": "#/$defs/capabilityKey"
       },
       "patternProperties": {
-        "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$": {
+        "^&(memory|reason|time|space|govern)(\\.[A-Za-z][A-Za-z0-9_-]*)?$": {
           "$ref": "#/$defs/capabilityBinding"
         }
       },
@@ -64,8 +64,8 @@
     "capabilityKey": {
       "type": "string",
       "title": "Capability Key",
-      "pattern": "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
-      "description": "Protocol capability identifier such as &memory.graph or &reason.argument."
+      "pattern": "^&(memory|reason|time|space|govern)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "description": "Protocol capability identifier such as &memory.graph, &reason.argument, or &govern.telemetry."
     },
     "providerId": {
       "type": "string",
@@ -269,6 +269,31 @@
         "max_deliberation_calls_per_query": {
           "type": "integer",
           "minimum": 0
+        },
+        "max_tokens_per_task": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum tokens a single task may consume before requiring escalation or termination."
+        },
+        "max_cost_usd_per_task": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum USD spend per single task. Enforced by &govern.telemetry budget_check."
+        },
+        "max_tokens_per_period": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum tokens per billing period. Aligned with Delegatic policy limits."
+        },
+        "max_cost_usd_per_period": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum USD spend per billing period. Aligned with Delegatic policy limits."
+        },
+        "max_compute_ms_per_task": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum compute milliseconds per task. Aligned with Delegatic policy and &govern.telemetry compute_ms tracking."
         },
         "require_approval_for": {
           "$ref": "#/$defs/nonEmptyStringArray"

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&govern.telemetry",
+  "provider": "opensentience",
+  "version": "0.1.0",
+  "description": "Unified telemetry contract for the [&] Protocol ecosystem. All capability providers SHOULD emit telemetry events conforming to this contract. Compatible with OpenTelemetry spans and metrics.",
+  "operations": {
+    "emit": {
+      "in": "telemetry_event",
+      "out": "ack",
+      "description": "Emit a structured telemetry event (span, metric, or log) to the telemetry collector.",
+      "deterministic": true,
+      "side_effects": true
+    },
+    "query": {
+      "in": "telemetry_query",
+      "out": "telemetry_result",
+      "description": "Query telemetry events by agent, capability, time range, or trace ID.",
+      "deterministic": false,
+      "side_effects": false
+    },
+    "budget_check": {
+      "in": "budget_query",
+      "out": "budget_status",
+      "description": "Check current token/cost/compute usage against Delegatic policy limits for a given org or agent.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&memory.*",
+    "&reason.*",
+    "&time.*",
+    "&space.*",
+    "&govern.*",
+    "telemetry_event"
+  ],
+  "feeds_into": [
+    "&govern.escalation",
+    "output"
+  ],
+  "a2a_skills": [
+    "telemetry-ingestion",
+    "usage-query",
+    "budget-enforcement"
+  ],
+  "metadata": {
+    "primitive": "&govern",
+    "subtype": "telemetry",
+    "supports_provenance": true,
+    "otel_compatible": true,
+    "event_schema": {
+      "trace_id": "string (UUIDv7 or W3C trace ID)",
+      "span_id": "string",
+      "agent_id": "string",
+      "capability": "string (&-prefixed capability key)",
+      "operation": "string",
+      "provider": "string",
+      "timestamp_ms": "integer (epoch ms)",
+      "duration_ms": "integer",
+      "tokens_consumed": "integer | null",
+      "cost_usd_estimated": "number | null",
+      "compute_ms": "integer | null",
+      "status": "ok | error",
+      "error_class": "string | null",
+      "org_id": "string | null (Delegatic org reference)",
+      "goal_id": "string | null (Graphonomous goal reference)",
+      "metadata": "object (provider-specific)"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/ampersand.schema.json",
+  "agent": "FieldServiceDispatcher",
+  "version": "1.0.0",
+  "capabilities": {
+    "&memory.graph": {
+      "provider": "graphonomous",
+      "config": {
+        "instance": "repair-history"
+      }
+    },
+    "&time.anomaly": {
+      "provider": "ticktickclock",
+      "config": {
+        "streams": ["hvac_vibration", "hvac_temp", "hvac_pressure"]
+      }
+    },
+    "&time.forecast": {
+      "provider": "ticktickclock",
+      "config": {
+        "horizon_hours": 48
+      }
+    },
+    "&space.fleet": {
+      "provider": "geofleetic",
+      "config": {
+        "regions": ["northeast", "mid-atlantic"],
+        "mode": "sla-aware-dispatch"
+      }
+    },
+    "&space.route": {
+      "provider": "geofleetic",
+      "config": {
+        "mode": "traffic-aware"
+      }
+    },
+    "&reason.plan": {
+      "provider": "auto",
+      "need": "dispatch optimization with technician qualification matching"
+    },
+    "&reason.argument": {
+      "provider": "deliberatic",
+      "config": {
+        "governance": "evidence-first"
+      }
+    },
+    "&govern.telemetry": {
+      "provider": "opensentience",
+      "config": {
+        "org_id": "org_fieldco"
+      }
+    },
+    "&govern.escalation": {
+      "provider": "opensentience",
+      "config": {
+        "timeout_seconds": 600,
+        "default_autonomy": "advise"
+      }
+    },
+    "&govern.identity": {
+      "provider": "opensentience",
+      "config": {}
+    }
+  },
+  "governance": {
+    "hard": [
+      "Never dispatch unqualified technician to regulated equipment",
+      "Always meet SLA response window",
+      "Never expose customer location data outside authorized workflows"
+    ],
+    "soft": [
+      "Prefer local technicians over cross-region dispatch",
+      "Prefer preventive visits over reactive dispatch when forecast confidence > 0.8"
+    ],
+    "escalate_when": {
+      "confidence_below": 0.7,
+      "cost_exceeds_usd": 500,
+      "hard_boundary_approached": true
+    },
+    "autonomy": {
+      "level": "advise",
+      "model_tier": "local_small",
+      "heartbeat_seconds": 120,
+      "budget": {
+        "max_actions_per_hour": 20,
+        "max_tokens_per_task": 50000,
+        "max_cost_usd_per_task": 5,
+        "max_cost_usd_per_period": 500,
+        "max_compute_ms_per_task": 10000,
+        "require_approval_for": ["dispatch", "cancel_sla"]
+      }
+    }
+  },
+  "pipelines": {
+    "predictive_dispatch": {
+      "source_type": "stream_data",
+      "source_ref": "equipment_telemetry",
+      "steps": [
+        {
+          "capability": "&time.anomaly",
+          "operation": "detect"
+        },
+        {
+          "capability": "&time.forecast",
+          "operation": "predict"
+        },
+        {
+          "capability": "&govern.telemetry",
+          "operation": "emit"
+        },
+        {
+          "capability": "&memory.graph",
+          "operation": "enrich"
+        },
+        {
+          "capability": "&space.fleet",
+          "operation": "locate"
+        },
+        {
+          "capability": "&space.route",
+          "operation": "optimize"
+        },
+        {
+          "capability": "&govern.telemetry",
+          "operation": "budget_check"
+        },
+        {
+          "capability": "&reason.plan",
+          "operation": "evaluate"
+        }
+      ]
+    }
+  },
+  "provenance": true
+}

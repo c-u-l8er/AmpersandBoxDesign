@@ -27,6 +27,9 @@ defmodule AmpersandCoreExpandedArtifactsTest do
     assert {:ok, contracts} = AmpersandCore.load_contracts()
 
     assert Map.keys(contracts) |> Enum.sort() == [
+             "&govern.escalation",
+             "&govern.identity",
+             "&govern.telemetry",
              "&memory.episodic",
              "&memory.graph",
              "&memory.vector",

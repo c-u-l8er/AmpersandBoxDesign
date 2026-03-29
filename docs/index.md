@@ -13,7 +13,9 @@ Use this documentation to understand the protocol from multiple angles:
 - **Autonomous Systems** explains why autonomous vehicles and drone swarms are the canonical [&] use case, including the Palantir integration surface and κ-driven swarm governance.
 - **Research** provides the motivation for a composition layer in the agent stack.
 - **FAQ** answers common questions quickly.
-- **Capability pages** explain the four core primitives in more detail.
+- **Ecosystem Overview** explains how all twelve products compose through the five primitives.
+- **Industry Verticals** maps seven commercial industries where all five primitives deliver value.
+- **Capability pages** explain the five core primitives in more detail.
 - **Skills** are hands-on, step-by-step guides covering the full declare → validate → compose → generate workflow, plus provider implementation, governance, and integration patterns.
 
 ## What you'll find here
@@ -22,7 +24,7 @@ Use this documentation to understand the protocol from multiple angles:
 - A runtime walkthrough covering declaration → validation → composition → resolution → generation
 - Explanations of capability declaration, contracts, provenance, and governance
 - Comparisons with MCP, A2A, ACP, and related work
-- Deep dives into `&memory`, `&reason`, `&time`, and `&space`
+- Deep dives into `&memory`, `&reason`, `&time`, `&space`, and `&govern`
 - **Skills guides** for hands-on implementation — from writing your first `ampersand.json` to building providers and governance policies
 
 ## Documentation map
@@ -55,10 +57,12 @@ WebHost.System Docs <https://docs.webhost.systems>
 quickstart
 architecture
 runtime-walkthrough
+ecosystem-overview
 positioning
 competitive-landscape
 topology-is-the-authority
 use-cases-autonomous-systems
+use-cases-industry-verticals
 comparison-table
 research
 faq
@@ -80,6 +84,10 @@ capabilities/time
 registry/time.forecast
 capabilities/space
 registry/space.fleet
+capabilities/govern
+registry/govern.telemetry
+registry/govern.escalation
+registry/govern.identity
 ```
 
 ```{toctree}
@@ -111,7 +119,7 @@ If you're new to the project, a good path is:
 6. `topology-is-the-authority` — why governance must emerge from feedback topology, not be configured on top
 7. `research` — understand the ecosystem and research pressures behind the design
 8. `faq` — get quick answers to common adoption and framing questions
-9. Capability deep dives — explore the four core capability families in detail once the runtime model is clear
+9. Capability deep dives — explore the five core capability families in detail once the runtime model is clear
 10. `skills/SKILLS` — hands-on implementation skills registry; start here when you're ready to build
     - `01_DECLARATION` → `02_VALIDATION` → `03_COMPOSITION` → `04_CONTRACTS` → `05_GENERATION` (core workflow)
     - `06_CLI_REFERENCE` (command reference)

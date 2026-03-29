@@ -1,0 +1,84 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&govern.escalation",
+  "provider": "opensentience",
+  "version": "0.1.0",
+  "description": "Human-in-the-loop escalation contract. Defines how agents surface decisions to human operators when confidence is low, cost is high, hard boundaries are approached, or autonomy level requires approval. Implements the escalation bridge between OpenSentience autonomy levels and human review UX.",
+  "operations": {
+    "escalate": {
+      "in": "escalation_request",
+      "out": "escalation_receipt",
+      "description": "Submit an action or decision for human review. The agent pauses execution on the escalated item until a response is received or timeout expires.",
+      "deterministic": true,
+      "side_effects": true
+    },
+    "respond": {
+      "in": "escalation_response",
+      "out": "escalation_resolution",
+      "description": "Human operator approves, rejects, or modifies the escalated action. Resolution is forwarded back to the requesting agent.",
+      "deterministic": true,
+      "side_effects": true
+    },
+    "query": {
+      "in": "escalation_query",
+      "out": "escalation_status",
+      "description": "Query pending, resolved, or expired escalations by agent, org, goal, or time range.",
+      "deterministic": false,
+      "side_effects": false
+    }
+  },
+  "accepts_from": [
+    "&reason.*",
+    "&govern.telemetry",
+    "escalation_request",
+    "escalation_response"
+  ],
+  "feeds_into": [
+    "&reason.*",
+    "&govern.telemetry",
+    "output"
+  ],
+  "a2a_skills": [
+    "human-escalation",
+    "approval-request",
+    "escalation-status"
+  ],
+  "metadata": {
+    "primitive": "&govern",
+    "subtype": "escalation",
+    "supports_provenance": true,
+    "request_schema": {
+      "escalation_id": "string (UUIDv7)",
+      "agent_id": "string",
+      "autonomy_level": "observe | advise | act",
+      "trigger": "confidence_below | cost_exceeds | hard_boundary | policy_requires_approval",
+      "trigger_detail": {
+        "confidence": "number | null",
+        "cost_usd": "number | null",
+        "boundary_rule": "string | null"
+      },
+      "proposed_action": {
+        "capability": "string (&-prefixed)",
+        "operation": "string",
+        "input_summary": "string (human-readable, no secrets)",
+        "rationale": "string (agent's reasoning)"
+      },
+      "context": {
+        "goal_id": "string | null (Graphonomous goal reference)",
+        "org_id": "string | null (Delegatic org reference)",
+        "trace_id": "string"
+      },
+      "timeout_seconds": "integer (default 3600)",
+      "priority": "low | medium | high | critical"
+    },
+    "response_schema": {
+      "escalation_id": "string",
+      "decision": "approve | reject | modify",
+      "modified_input": "object | null (if decision is modify)",
+      "reason": "string",
+      "responder": "string (human operator ID)",
+      "responded_at": "ISO8601"
+    },
+    "timeout_behavior": "When timeout expires without response, behavior depends on autonomy level: observe=log_and_skip, advise=log_and_skip, act=execute_if_confidence>fallback_threshold"
+  }
+}
