@@ -16,7 +16,7 @@ Prompt dependency order:
 PROTOCOL_PROMPT → KAPPA_BUILD → KAPPA_DELIBERATOR → ATTENTION_ENGINE → MODEL_TIER
 ```
 
-These prompts serve the same role as `project_spec/` in other portfolio projects. When the protocol or reference impl needs changes, align with the prompt first.
+These prompts serve the same role as `docs/spec/` in other portfolio projects. When the protocol or reference impl needs changes, align with the prompt first.
 
 ## Build and verify (Elixir reference implementation)
 

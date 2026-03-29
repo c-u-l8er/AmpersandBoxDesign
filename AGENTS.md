@@ -7,7 +7,7 @@ Open specification for capability composition in AI agents. Defines memory, reas
 - `prompts/PROTOCOL_PROMPT.md` — implementation prompt for generating [&] Protocol code (project identity, architecture, formal grammar, coding standards)
 - `prompts/GRAPHONOMOUS_PROMPT.md` — autonomous traversal prompt for Graphonomous MCP
 
-These serve the same role as `project_spec/` in other portfolio projects. Read before modifying the reference implementation.
+These serve the same role as `docs/spec/` in other portfolio projects. Read before modifying the reference implementation.
 
 ## Build and test
 
