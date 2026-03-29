@@ -56,7 +56,7 @@ Registry artifacts should validate against:
 The schema defines the allowed structure for:
 
 - registry metadata
-- primitive roots such as `&memory`, `&reason`, `&time`, and `&space`
+- primitive roots such as `&memory`, `&reason`, `&time`, `&space`, and `&govern`
 - subtype definitions
 - provider definitions
 - optional transport and metadata fields

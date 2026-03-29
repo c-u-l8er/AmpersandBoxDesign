@@ -20,7 +20,7 @@ The right framing is not replacement, but composition:
 
 | System | Primary Scope | Layer in the Stack | Main Unit of Abstraction | What It Standardizes Well | What It Does **Not** Standardize | Relationship to [&] |
 |---|---|---|---|---|---|---|
-| **[&] Protocol** | Capability composition for agents | Composition | Capability declarations, contracts, provenance, governance | How memory, reasoning, time, and space capabilities are declared, validated, composed, and compiled into downstream configs | Low-level transport protocols, direct tool RPC semantics, agent network communication | Source-of-truth layer |
+| **[&] Protocol** | Capability composition for agents | Composition | Capability declarations, contracts, provenance, governance | How memory, reasoning, time, space, and governance capabilities are declared, validated, composed, and compiled into downstream configs | Low-level transport protocols, direct tool RPC semantics, agent network communication | Source-of-truth layer |
 | **MCP** | Agent-to-tool connectivity | Context / Tooling | Tools, resources, prompts, client-server interaction | Tool discovery, tool invocation, structured context access, resource exposure | How an agent's cognitive capabilities are selected, composed, governed, or provenance-linked | [&] can generate MCP configuration |
 | **A2A** | Agent-to-agent coordination | Coordination | Agent cards, skills, tasks, delegation flows | Agent discovery, advertised skills, delegation and inter-agent interaction | How internal cognitive capabilities are composed or validated before publication | [&] can generate A2A agent cards |
 | **ACP** | Lightweight agent communication | Communication | HTTP/REST-style agent endpoints and message exchange | Inter-agent messaging and integration patterns over standard web infrastructure | Capability algebra, provenance semantics, governance-as-data, typed capability composition | Adjacent network protocol; [&] sits at a different concern boundary |
@@ -34,7 +34,7 @@ The right framing is not replacement, but composition:
 An open, language-agnostic protocol for composing agent cognitive capabilities. It defines:
 
 - canonical `ampersand.json`
-- capability primitives like `&memory`, `&reason`, `&time`, and `&space`
+- capability primitives like `&memory`, `&reason`, `&time`, `&space`, and `&govern`
 - namespaced subtypes like `&memory.graph` and `&time.anomaly`
 - capability contracts with typed operations
 - composition algebra properties
@@ -146,7 +146,7 @@ It supports ideas like:
 - intelligence as composition rather than monolith
 - modular cognitive systems
 - layered capabilities
-- architectural clarity between memory, reasoning, planning, and execution
+- architectural clarity between memory, reasoning, planning, governance, and execution
 
 That is useful because [&] is not just inventing a product category. It is operationalizing a real architectural need into:
 
@@ -224,6 +224,7 @@ A developer may start with this declaration:
 - `&time.anomaly`
 - `&space.fleet`
 - `&reason.argument`
+- `&govern.escalation`
 
 From that, [&] can produce:
 

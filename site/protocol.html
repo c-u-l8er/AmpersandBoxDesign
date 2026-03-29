@@ -266,7 +266,7 @@ CapabilityList  := Capability (<span class="str">","</span> Capability)*
 
 Capability      := <span class="op">"&"</span> PrimitiveType ( <span class="str">"."</span> Subtype )? <span class="str">"("</span> ProviderExpr? (<span class="str">","</span> Config)? <span class="str">")"</span>
 
-PrimitiveType   := <span class="at">"memory"</span> | <span class="at">"reason"</span> | <span class="at">"time"</span> | <span class="at">"space"</span>
+PrimitiveType   := <span class="at">"memory"</span> | <span class="at">"reason"</span> | <span class="at">"time"</span> | <span class="at">"space"</span> | <span class="at">"govern"</span>
 
 <span class="cm"># IMPROVEMENT 4: Capability namespaces</span>
 Subtype         := Identifier
@@ -708,7 +708,7 @@ EscalationRule  := <span class="str">"escalate_when"</span> Condition</pre>
   <span class="kw">def</span> <span class="fn">validate_compatibility</span>(caps) <span class="kw">do</span>
     types = Enum.map(caps, <span class="op">&</span> <span class="op">&</span>1.type)
     <span class="kw">if</span> length(types) == length(Enum.uniq(types)) <span class="kw">or</span>
-       Enum.all?(types, <span class="op">&</span>(<span class="op">&</span>1 <span class="kw">in</span> [<span class="at">:memory</span>, <span class="at">:reason</span>, <span class="at">:time</span>, <span class="at">:space</span>])),
+       Enum.all?(types, <span class="op">&</span>(<span class="op">&</span>1 <span class="kw">in</span> [<span class="at">:memory</span>, <span class="at">:reason</span>, <span class="at">:time</span>, <span class="at">:space</span>, <span class="at">:govern</span>])),
       <span class="kw">do</span>: {<span class="at">:ok</span>, caps},
       <span class="kw">else</span>: {<span class="at">:error</span>, <span class="str">"unknown primitive type"</span>}
   <span class="kw">end</span>

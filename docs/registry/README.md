@@ -130,7 +130,7 @@ Recommended sections:
    The architectural reason the capability is a first-class subtype.
 
 3. **Position in the primitive family**  
-   How it fits under `&memory`, `&reason`, `&time`, or `&space`.
+   How it fits under `&memory`, `&reason`, `&time`, `&space`, or `&govern`.
 
 4. **Capability contract summary**  
    A representative contract or contract excerpt.

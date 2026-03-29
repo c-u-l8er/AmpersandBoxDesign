@@ -47,12 +47,13 @@ In short:
 
 ## Core model
 
-The protocol starts from four capability primitives:
+The protocol starts from five capability primitives:
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&govern` — who is acting, under what rules, at what cost
 
 Each primitive can be refined with namespaced subtypes:
 
@@ -68,9 +69,12 @@ Each primitive can be refined with namespaced subtypes:
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+- `&govern.telemetry`
+- `&govern.escalation`
+- `&govern.identity`
 
-The protocol still has exactly four primitive roots (`&memory`, `&reason`, `&time`, `&space`).  
-Topology analysis and κ-routing are derived operations from `&memory.graph`, not a fifth primitive.
+The protocol has exactly five primitive roots (`&memory`, `&reason`, `&time`, `&space`, `&govern`).
+Topology analysis and κ-routing are derived operations from `&memory.graph`, not a separate primitive.
 
 Composition is defined with two operators:
 

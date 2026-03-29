@@ -1,6 +1,6 @@
 # [&] Protocol — AmpersandBoxDesign
 
-Open specification for capability composition in AI agents. Defines memory, reasoning, time, and space primitives that compile into MCP and A2A configurations.
+Open specification for capability composition in AI agents. Defines memory, reasoning, time, space, and governance primitives that compile into MCP and A2A configurations.
 
 ## Implementation prompts
 

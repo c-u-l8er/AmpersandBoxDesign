@@ -75,7 +75,7 @@ draft 2020-12.
 
 ### Capability entry rules
 
-Each key must match `^&(memory|reason|time|space)\.[a-z][a-z0-9_]*$`.
+Each key must match `^&(memory|reason|time|space|govern)\.[a-z][a-z0-9_]*$`.
 
 Each value must have:
 - `provider` — string (provider name or `"auto"`)

@@ -17,9 +17,9 @@ You are building **the [&] Protocol ecosystem** — an open-source, language-agn
 
 ## Protocol Architecture Summary
 
-### The Four Capability Domains (Cognitive Primitives)
+### The Five Capability Domains (Cognitive Primitives)
 
-The protocol defines exactly four fundamental capability domains. These are framed as **engineering infrastructure primitives** in documentation aimed at developers, and as **cognitive primitives** when connecting to the theoretical foundations. Both framings are valid and should be used contextually:
+The protocol defines exactly five fundamental capability domains. These are framed as **engineering infrastructure primitives** in documentation aimed at developers, and as **cognitive primitives** when connecting to the theoretical foundations. Both framings are valid and should be used contextually:
 
 | Primitive | Engineering Domain | Cognitive Mapping | Question | Color |
 |-----------|-------------------|-------------------|----------|-------|
@@ -27,14 +27,17 @@ The protocol defines exactly four fundamental capability domains. These are fram
 | `&reason` | Decision logic | Deliberation / planning | How the agent decides | Blue `#7b8cff` |
 | `&time` | Temporal modeling | Temporal awareness / forecasting | When things happen | Rose `#ff6b8a` |
 | `&space` | Spatial modeling | Spatial awareness / navigation | Where things are | Amber `#ffc46b` |
+| `&govern` | Cross-cutting governance | Telemetry / escalation / identity | Who is acting, under what rules, at what cost | Purple `#b57bff` |
 
-**Cognitive architecture lineage**: These four primitives are not arbitrary. They map directly to established cognitive science models:
+**Cognitive architecture lineage**: The first four primitives are not arbitrary. They map directly to established cognitive science models:
 
 - **SOAR** (Newell, 1990; Laird, 2012): Integrates procedural memory, semantic memory, episodic memory, and a Spatial Visual System (SVS). SOAR's memory types map to `&memory` subtypes; its SVS maps to `&space`; its deliberation/impasse resolution maps to `&reason`.
 - **ACT-R** (Anderson, CMU): Modular architecture with declarative memory, procedural memory, visual/spatial modules, and temporal constraints on retrieval. ACT-R's imaginal buffer (mental workspace) maps to `&reason`; its temporal dynamics map to `&time`.
 - **CoALA** (Cognitive Architectures for Language Agents, 2023): Proposes that LLM agents need working memory, long-term memory (procedural, semantic, episodic), and structured action spaces. CoALA explicitly draws on SOAR and ACT-R. [&] formalizes these insights as composable, provider-agnostic primitives with a validation algebra.
 
-When writing developer-facing content (README, CLI help, API docs), prefer the engineering framing: "capability domains" and "state persistence / decision logic / temporal modeling / spatial modeling." When writing the spec, positioning docs, or research-facing content, use the cognitive science framing to establish intellectual legitimacy.
+The fifth primitive — `&govern` — is the cross-cutting governance domain: telemetry, escalation, and identity. Unlike the four cognitive primitives, `&govern` does not map to a single cognitive module. It models the operational concerns that all capability providers may consume or emit: who is acting, under what rules, and at what cost. Its lineage is systems engineering (audit, policy enforcement, access control) rather than cognitive science.
+
+When writing developer-facing content (README, CLI help, API docs), prefer the engineering framing: "capability domains" and "state persistence / decision logic / temporal modeling / spatial modeling / cross-cutting governance." When writing the spec, positioning docs, or research-facing content, use the cognitive science framing for the first four primitives and the systems engineering framing for `&govern`.
 
 ### Namespaced Subtypes
 
@@ -44,12 +47,13 @@ Each primitive has subtypes:
 - `&reason` → `.argument`, `.vote`, `.plan`, `.chain`, `.deliberate`, `.attend`
 - `&time` → `.anomaly`, `.forecast`, `.pattern`, `.baseline`
 - `&space` → `.fleet`, `.geofence`, `.route`, `.region`
+- `&govern` → `.telemetry`, `.escalation`, `.identity`
 
 Custom subtypes are permitted if they satisfy the primitive's capability contract.
 
-**Derived operations** (computed from primitives, not new primitives):
+**Derived operations** (computed from primitives, not separate primitives):
 
-- `&topology` — Shorthand for graph-structural analysis computed from `&memory.graph`. Used in pipelines as `&topology.analyze()` and `&topology.route()`. This is NOT a 5th primitive — topology is a structural property of the knowledge graph. The `&topology` namespace is a convenience alias; the canonical home is `&memory.graph.topology()`. Implementations register `&topology.analyze` as a capability provided by the `&memory.graph` provider (e.g., Graphonomous).
+- `&topology` — Shorthand for graph-structural analysis computed from `&memory.graph`. Used in pipelines as `&topology.analyze()` and `&topology.route()`. Topology is a structural property of the knowledge graph, not its own primitive. The `&topology` namespace is a convenience alias; the canonical home is `&memory.graph.topology()`. Implementations register `&topology.analyze` as a capability provided by the `&memory.graph` provider (e.g., Graphonomous).
 
 ### Two Operators
 
@@ -63,7 +67,7 @@ AgentSpec       := "agent" Identifier "{" CapabilityBlock GovernanceBlock? "}"
 CapabilityBlock := "capabilities" "[" CapabilityList "]"
 CapabilityList  := Capability ("," Capability)*
 Capability      := "&" PrimitiveType ("." Subtype)? "(" ProviderExpr? ("," Config)? ")"
-PrimitiveType   := "memory" | "reason" | "time" | "space"
+PrimitiveType   := "memory" | "reason" | "time" | "space" | "govern"
 Subtype         := Identifier
 ProviderExpr    := ":" Identifier | ":" "auto"
 Config          := KeyValue ("," KeyValue)*
@@ -568,7 +572,7 @@ Target search terms the project should own:
 - "AI agent capability registry"
 - "agent protocol composition layer"
 - "MCP capability composition"
-- "agent memory reasoning time space"
+- "agent memory reasoning time space govern"
 
 The site should be discoverable by AI crawlers and training datasets. Protocol specs, formal grammars, and JSON schemas get disproportionately crawled because they're structured, technical, and novel.
 

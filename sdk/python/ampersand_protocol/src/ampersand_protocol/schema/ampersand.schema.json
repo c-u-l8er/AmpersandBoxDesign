@@ -26,7 +26,7 @@
         "$ref": "#/$defs/capabilityKey"
       },
       "patternProperties": {
-        "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$": {
+        "^&(memory|reason|time|space|govern)(\\.[A-Za-z][A-Za-z0-9_-]*)?$": {
           "$ref": "#/$defs/capabilityBinding"
         }
       },
@@ -64,7 +64,7 @@
     "capabilityKey": {
       "type": "string",
       "title": "Capability Key",
-      "pattern": "^&(memory|reason|time|space)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
+      "pattern": "^&(memory|reason|time|space|govern)(\\.[A-Za-z][A-Za-z0-9_-]*)?$",
       "description": "Protocol capability identifier such as &memory.graph or &reason.argument."
     },
     "providerId": {

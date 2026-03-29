@@ -8,7 +8,7 @@
 
 The [&] Protocol was designed as a general composition layer for agent cognition. But not all applications exercise the protocol equally. Some agents need only memory and reasoning. Some need only tool connectivity. The protocol is useful in those cases, but it is not irreplaceable.
 
-Autonomous military systems — robotic combat vehicles, drone swarms, manned-unmanned teams — are different. They exercise all four primitives simultaneously, under conditions where governance is not optional and disconnected operations are the baseline assumption. This document explains why, where the protocol fits in the stack, and where it does not.
+Autonomous military systems — robotic combat vehicles, drone swarms, manned-unmanned teams — are different. They exercise all five primitives simultaneously, under conditions where governance is not optional and disconnected operations are the baseline assumption. This document explains why, where the protocol fits in the stack, and where it does not.
 
 ---
 
@@ -50,11 +50,11 @@ That middle layer — structured cognition with governance — is what autonomou
 
 ---
 
-## 2. Why all four primitives are load-bearing
+## 2. Why all five primitives are load-bearing
 
 Most agent applications use one or two [&] primitives meaningfully. An infrastructure monitor needs `&time.anomaly` and `&memory.graph`. A research agent needs `&memory` and `&reason`. The other primitives are present but not survival-critical.
 
-Autonomous vehicles are the rare case where all four primitives are simultaneously essential and where failure in any one is catastrophic.
+Autonomous vehicles are the rare case where all five primitives are simultaneously essential and where failure in any one is catastrophic.
 
 ### `&memory.graph` — operational picture as agent memory
 
@@ -81,6 +81,14 @@ No other agent application has spatial reasoning as a survival requirement. For 
 - **Sensor coverage**: understanding what the vehicle can and cannot observe
 
 `&space.fleet` becomes `&space.formation` or `&space.tactical` in this domain — the same interface contract (regions, positions, routes, topology) applied to a context where spatial errors have kinetic consequences.
+
+### `&govern` — telemetry, identity, and escalation as infrastructure
+
+Governance in autonomous systems is not a policy overlay — it is survival infrastructure. A vehicle that cannot authenticate friendly forces, track its own operational telemetry, or enforce escalation policies is as compromised as one that cannot see.
+
+`&govern.identity` ensures the vehicle can authenticate itself to friendly systems and verify the identity of entities it communicates with — critical in contested electromagnetic environments where spoofing is a standard tactic. `&govern.telemetry` provides the operational metrics pipeline: ammunition status, fuel state, sensor health, communication link quality. `&govern.escalation` codifies the conditions under which autonomous action defers to a human operator, and — crucially — what happens when that deferral is impossible because comms are down.
+
+Unlike the governance *block* in `ampersand.json` (which expresses constraints as data), the `&govern` *primitive* makes governance a composable, provider-backed capability that participates in pipelines, satisfies contracts, and generates provenance records like any other capability.
 
 ### `&reason.deliberate` — engagement decisions under governance
 
@@ -248,6 +256,18 @@ With [&], the heterogeneous fleet is declared as a composed system:
         "budget": "kappa",
         "engagement_doctrine": "3000.09_compliant"
       }
+    },
+    "&govern.identity": {
+      "provider": "delegatic",
+      "config": { "auth": "blue_force_tracker" }
+    },
+    "&govern.telemetry": {
+      "provider": "delegatic",
+      "config": { "streams": ["ammo", "fuel", "sensor_health", "comms_quality"] }
+    },
+    "&govern.escalation": {
+      "provider": "delegatic",
+      "config": { "comms_lost_fallback": "autonomous_within_hard_constraints" }
     }
   },
   "governance": {
@@ -285,7 +305,9 @@ With [&], the heterogeneous fleet is declared as a composed system:
         { "capability": "&time.anomaly", "operation": "detect" },
         { "capability": "&memory.graph", "operation": "enrich" },
         { "capability": "&space.formation", "operation": "evaluate_exposure" },
-        { "capability": "&reason.deliberate", "operation": "recommend_action" }
+        { "capability": "&reason.deliberate", "operation": "recommend_action" },
+        { "capability": "&govern.escalation", "operation": "evaluate" },
+        { "capability": "&govern.telemetry", "operation": "emit" }
       ]
     }
   },
@@ -293,7 +315,7 @@ With [&], the heterogeneous fleet is declared as a composed system:
 }
 ```
 
-The pipeline tells the story: a sensor contact is detected (`&time.anomaly`), enriched with known intelligence (`&memory.graph`), evaluated for formation exposure (`&space.formation`), and fed into deliberation that produces an action recommendation under governance constraints (`&reason.deliberate`). The crew sees the recommendation, the provenance chain, and the constraint evaluation — then approves or overrides.
+The pipeline tells the story: a sensor contact is detected (`&time.anomaly`), enriched with known intelligence (`&memory.graph`), evaluated for formation exposure (`&space.formation`), and fed into deliberation that produces an action recommendation (`&reason.deliberate`). The escalation policy is evaluated (`&govern.escalation`) — does this require crew approval? — and operational telemetry is emitted (`&govern.telemetry`). The crew sees the recommendation, the provenance chain, and the constraint evaluation — then approves or overrides.
 
 ### Supervisory ratio
 
@@ -383,7 +405,7 @@ Not every military autonomous system benefits equally from [&]. The protocol is 
 
 | System | Autonomy Level | [&] Relevance | Why |
 |---|---|---|---|
-| **RCV-Medium** | Level 3 (supervised autonomous) | **High** | All four primitives active; governance is engagement-critical; designed for MUM-T |
+| **RCV-Medium** | Level 3 (supervised autonomous) | **High** | All five primitives active; governance is engagement-critical; designed for MUM-T |
 | **RCV-Light** | Level 2-3 | **High** | Armed scout role requires spatial reasoning + engagement governance |
 | **Drone swarms** | Level 3-4 | **High** | κ-driven swarm governance; multi-vehicle deliberation; disconnected ops |
 | **M1E3 (as MUM-T hub)** | N/A (manned) | **Medium** | Orchestration declaration for supervised unmanned assets |
@@ -444,7 +466,7 @@ Each record is hash-linked to its predecessor. The chain is tamper-evident. It c
 
 Autonomous military systems are the canonical [&] use case because they uniquely require:
 
-1. **All four cognitive primitives simultaneously** — memory, reasoning, time, and space are each survival-critical
+1. **All five cognitive primitives simultaneously** — memory, reasoning, time, space, and governance are each survival-critical
 2. **Governance as a structural requirement** — not optional, not aspirational, legally mandated
 3. **Disconnected operations** — the governance model must work without network connectivity
 4. **Multi-vehicle coordination** — κ-driven topology governance for swarms and MUM-T

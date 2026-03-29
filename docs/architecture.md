@@ -66,12 +66,13 @@ These concepts are designed to remain valid across programming languages and run
 
 ### 3.1 Capability primitives
 
-The protocol starts with four primitive capability domains:
+The protocol starts with five primitive capability domains:
 
 - `&memory`
 - `&reason`
 - `&time`
 - `&space`
+- `&govern`
 
 These are the top-level cognitive building blocks.
 
@@ -88,6 +89,9 @@ Examples of subtypes:
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+- `&govern.telemetry`
+- `&govern.escalation`
+- `&govern.identity`
 
 This gives the protocol a compact vocabulary for describing an agent's architecture.
 
