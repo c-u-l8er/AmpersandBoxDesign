@@ -222,7 +222,7 @@ Delegatic
 ```
 
 #### OpenSentience
-**Role:** The runtime enforcement layer — 7 cognitive protocols that govern agent behavior at runtime.
+**Role:** The runtime enforcement layer — 8 cognitive protocols that govern agent behavior at runtime.
 
 OpenSentience provides:
 - OS-001: Continual Learning (implemented by Graphonomous)
@@ -232,13 +232,14 @@ OpenSentience provides:
 - OS-005: Model Tier Adaptation (hardware-adaptive budgets)
 - OS-006: Agent Governance Shim (permission engine, lifecycle, autonomy)
 - OS-007: Adversarial Robustness (5 threat categories, defenses)
+- OS-008: Agent Harness (pipeline enforcement, quality gates, sprint contracts)
 
 ```
 OpenSentience
 ├── provides: &govern.escalation, &govern.identity, &govern.telemetry (runtime)
 ├── enforces: Delegatic policies at runtime
 ├── governs: all agents deployed via Agentelic/FleetPrompt
-├── implements: OS-006 directly (the only protocol it runs itself)
+├── implements: OS-006 (governance shim) and OS-008 (harness) directly
 └── defines: research protocols that other products implement
 ```
 
@@ -328,6 +329,7 @@ Steps 6-9 form a continuous cycle. The agent learns from outcomes, governance en
 ```
 Delegatic org policy tree
   → OpenSentience runtime enforcement (OS-006)
+    → OS-008 harness pipeline enforcement (retrieve-before-act, quality gates)
     → &govern.telemetry.budget_check() per operation
     → &govern.escalation.escalate() when thresholds crossed
     → &govern.identity.verify() on agent collaboration

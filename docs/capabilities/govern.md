@@ -254,6 +254,7 @@ The primary runtime enforcement provider. Implements:
 
 - OS-006: Agent Governance Shim (permission engine, lifecycle, autonomy levels)
 - OS-007: Adversarial Robustness (identity verification, budget enforcement, circuit breakers)
+- OS-008: Agent Harness (pipeline enforcement, quality gates, sprint contracts, context management)
 
 ### `delegatic`
 
