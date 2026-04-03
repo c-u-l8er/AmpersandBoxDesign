@@ -1,925 +1,2503 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[&] Portfolio Review — Investor & Contributor Report</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0b0d;--bg2:#111318;--bg3:#181b22;--card:#13161d;
-  --accent:#6C5CE7;--accent2:#a29bfe;--accent3:#2d2666;
-  --teal:#00cec9;--teal2:#0a3d3c;
-  --coral:#e17055;--coral2:#3d211a;
-  --amber:#fdcb6e;--amber2:#3d3118;
-  --green:#00b894;--green2:#0a3d2e;
-  --red:#d63031;--red2:#3d1010;
-  --text:#e8e6e3;--text2:#9a9590;--text3:#5c5752;
-  --border:#222630;
-  --font:'Instrument Sans',system-ui,sans-serif;
-  --serif:'DM Serif Display',Georgia,serif;
-}
-body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
-a{color:var(--accent2);text-decoration:none}
-a:hover{text-decoration:underline}
-
-.hero{padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at center,rgba(108,92,231,.08) 0%,transparent 60%);pointer-events:none}
-.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:400;letter-spacing:-.02em;margin-bottom:.5rem;position:relative}
-.hero h1 span{color:var(--accent2)}
-.hero .sub{color:var(--text2);font-size:1.05rem;max-width:600px;margin:0 auto 2rem}
-.hero .date{color:var(--text3);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem}
-
-.container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
-
-.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:3rem}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;position:relative;overflow:hidden}
-.kpi::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px}
-.kpi.purple::after{background:var(--accent)}
-.kpi.teal::after{background:var(--teal)}
-.kpi.coral::after{background:var(--coral)}
-.kpi.amber::after{background:var(--amber)}
-.kpi.green::after{background:var(--green)}
-.kpi .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:.25rem}
-.kpi .value{font-size:1.8rem;font-weight:700;letter-spacing:-.02em}
-.kpi .delta{font-size:.8rem;margin-top:.25rem}
-.kpi .delta.up{color:var(--green)}.kpi .delta.down{color:var(--red)}
-
-section{margin-bottom:3.5rem}
-section h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;margin-bottom:.35rem}
-section .section-sub{color:var(--text2);font-size:.9rem;margin-bottom:1.5rem}
-
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
-.card h3{font-size:1.05rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-.badge.shipped{background:var(--green2);color:var(--green)}
-.badge.beta{background:var(--teal2);color:var(--teal)}
-.badge.spec{background:var(--amber2);color:var(--amber)}
-.badge.concept{background:var(--accent3);color:var(--accent2)}
-.badge.a-plus{background:var(--green2);color:var(--green)}
-.badge.a{background:var(--teal2);color:var(--teal)}
-.badge.b-plus{background:var(--amber2);color:var(--amber)}
-.badge.b{background:var(--coral2);color:var(--coral)}
-.badge.ref{background:rgba(108,92,231,.15);color:var(--accent2)}
-
-table{width:100%;border-collapse:collapse;font-size:.88rem}
-table th{text-align:left;color:var(--text3);font-weight:500;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:.75rem .5rem;border-bottom:1px solid var(--border)}
-table td{padding:.65rem .5rem;border-bottom:1px solid rgba(255,255,255,.04)}
-table tr:hover td{background:rgba(108,92,231,.04)}
-.right{text-align:right}
-
-.meter{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-top:.35rem}
-.meter .fill{height:100%;border-radius:3px;transition:width .8s ease}
-.meter .fill.purple{background:var(--accent)}
-.meter .fill.teal{background:var(--teal)}
-.meter .fill.green{background:var(--green)}
-.meter .fill.amber{background:var(--amber)}
-.meter .fill.coral{background:var(--coral)}
-
-.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-
-.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;background:rgba(108,92,231,.12);color:var(--accent2);margin-right:.35rem;margin-bottom:.25rem}
-
-.stage-track{display:flex;gap:2px;margin:1rem 0}
-.stage-track .step{flex:1;height:8px;border-radius:4px;background:var(--bg)}
-.stage-track .step.done{background:var(--green)}
-.stage-track .step.active{background:var(--amber);animation:pulse 2s infinite}
-.stage-track .step.future{background:var(--border)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
-.stage-labels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
-
-.rating-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;flex-shrink:0}
-.rating-circle.high{background:var(--green2);color:var(--green);border:2px solid var(--green)}
-.rating-circle.mid{background:var(--amber2);color:var(--amber);border:2px solid var(--amber)}
-.rating-circle.low{background:var(--red2);color:var(--red);border:2px solid var(--red)}
-
-.flex-row{display:flex;gap:1rem;align-items:center}
-.flex-col{display:flex;flex-direction:column;gap:.25rem;flex:1}
-
-.footer{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:.8rem;border-top:1px solid var(--border)}
-
-.highlight-box{border-left:3px solid var(--accent);padding:.75rem 1rem;background:rgba(108,92,231,.06);border-radius:0 8px 8px 0;margin:1rem 0;font-size:.88rem;color:var(--text2)}
-.highlight-box.warn{border-left-color:var(--amber);background:rgba(253,203,110,.06)}
-.highlight-box.success{border-left-color:var(--green);background:rgba(0,184,148,.06)}
-
-.caveat{font-size:.72rem;color:var(--text3);font-style:italic;margin-top:.35rem}
-
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-
-@media(max-width:640px){
-  .kpi-row{grid-template-columns:1fr 1fr}
-  .comp-grid{grid-template-columns:1fr}
-  .two-col{grid-template-columns:1fr}
-  .hero h1{font-size:1.8rem}
-}
-</style>
-</head>
-<body>
-
-<div class="hero">
-  <div class="date">Q1 2026 — Investor & Contributor Report</div>
-  <h1>[<span>&</span>] Portfolio Review</h1>
-  <p class="sub">Ampersand Box Design — a composable protocol ecosystem for agentic AI infrastructure. 14 projects, 4 active codebases, 1 shared data layer.</p>
-</div>
-
-<div class="container">
-
-<!-- ================================================================== -->
-<!-- KPI ROW -->
-<!-- ================================================================== -->
-<div class="kpi-row">
-  <div class="kpi purple">
-    <div class="label">Active codebases</div>
-    <div class="value">4</div>
-    <div class="delta">Graphonomous + BendScript + WebHost + AmpersandBox</div>
-  </div>
-  <div class="kpi teal">
-    <div class="label">Total source files</div>
-    <div class="value">228+</div>
-    <div class="delta up">Across Elixir, TypeScript, SvelteKit</div>
-  </div>
-  <div class="kpi coral">
-    <div class="label">Products shipped</div>
-    <div class="value">1 Alpha / 2 Beta</div>
-    <div class="delta">Graphonomous v0.2.0 live on npm</div>
-  </div>
-  <div class="kpi amber">
-    <div class="label">TAM (AI agents)</div>
-    <div class="value">$47B+</div>
-    <div class="delta up">by 2030 &middot; ~44% CAGR</div>
-  </div>
-  <div class="kpi green">
-    <div class="label">MCP tools built</div>
-    <div class="value">28</div>
-    <div class="delta up">22 Graphonomous + 6 BendScript</div>
-  </div>
-  <div class="kpi purple">
-    <div class="label">LongMemEval SHR</div>
-    <div class="value">90.4%</div>
-    <div class="delta up">within 1pp of Hindsight SOTA &middot; <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval" style="color:var(--accent2)">OS-E001 &sect;4.5</a></div>
-  </div>
-</div>
-
-<!-- ================================================================== -->
-<!-- GRAPHONOMOUS DEEP DIVE -->
-<!-- ================================================================== -->
-<section>
-  <h2>Graphonomous — flagship product deep dive</h2>
-  <p class="section-sub">Continual learning knowledge graph engine &middot; MCP-native &middot; npm published &middot; v0.2.0 &middot; Elixir/OTP</p>
-
-  <div class="card">
-    <div class="flex-row" style="margin-bottom:1rem">
-      <div class="rating-circle high">A</div>
-      <div class="flex-col">
-        <h3>graphonomous <span class="badge shipped">Shipped</span> <span class="badge" style="background:rgba(0,206,201,.15);color:var(--teal)">npm</span></h3>
-        <div style="color:var(--text2);font-size:.85rem">Continual learning memory engine for AI agents. The knowledge substrate of the [&] protocol ecosystem.</div>
-      </div>
-    </div>
-
-    <div class="stage-labels">
-      <span>Phase 1: Core Engine</span>
-      <span>Phase 2: MCP + Goals</span>
-      <span>Phase 3: Scale</span>
-      <span>Phase 4: Federation</span>
-    </div>
-    <div class="stage-track">
-      <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step active"></div><div class="step active"></div>
-      <div class="step future"></div><div class="step future"></div><div class="step future"></div>
-    </div>
-
-    <table style="margin-top:1rem">
-      <tr><th>Dimension</th><th>Status</th><th class="right">Score</th></tr>
-      <tr><td>npm package published</td><td><span class="badge shipped">Live</span> <code style="font-size:.75rem;color:var(--text2)">npx -y graphonomous</code></td><td class="right">10/10</td></tr>
-      <tr><td>MCP server integration</td><td>22 tools, 5 resources &middot; stdio protocol &middot; works with Claude Code, Zed, Cursor</td><td class="right">10/10</td></tr>
-      <tr><td>Novel formal theory (&kappa; invariant)</td><td>Verified on 1,926,351 finite systems (1,052,740 directed graphs + 873,611 dynamical systems) &mdash; zero counterexamples</td><td class="right">10/10</td></tr>
-      <tr><td>Codebase quality</td><td>22 test files &middot; zero TODO/FIXME &middot; clean compile &middot; <code>mix format</code> compliant</td><td class="right">9/10</td></tr>
-      <tr><td>Architecture</td><td>Elixir/OTP supervision trees, embedded SQLite + sqlite-vec, GoalGraph orchestration</td><td class="right">9/10</td></tr>
-      <tr><td>Live demo (graphonomous.com)</td><td>Real MCP call output from working server</td><td class="right">9/10</td></tr>
-      <tr><td><a href="graphonomous.com/demo/">Interactive demo suite (11 A/B demos)</a></td><td>Full 22/22 MCP tool coverage: codebase skills, &kappa;-routing, novelty detection, attention engine, consolidation, coverage gate, learning pipeline, graph inspection, typed retrieval, graph mutation, attention dispatch &mdash; all with real MCP payloads</td><td class="right">10/10</td></tr>
-      <tr><td><a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html">Empirical benchmark (OS-E001)</a></td><td>12,880 edges &middot; 22 SCCs &middot; &kappa;=27 &middot; graph beats flat (+0.103 recall) &middot; 100% pass rate &middot; 22/22 MCP tools &middot; <strong style="color:var(--green)">90.4% LongMemEval SHR</strong></td><td class="right">10/10</td></tr>
-      <tr><td>Dependencies</td><td>8 explicit (exqlite, bumblebee, nx, telemetry, jason, sqlite_vec, anubis_mcp vendored, ex_doc)</td><td class="right">8/10</td></tr>
-      <tr><td>User adoption</td><td>Pre-registry &middot; not yet on Smithery/MCP.so</td><td class="right">3/10</td></tr>
-      <tr><td>Revenue / MRR</td><td>$0 &mdash; pre-monetization</td><td class="right">0/10</td></tr>
-    </table>
-    <div style="text-align:right;margin-top:.75rem;font-size:.85rem;color:var(--text2)">Overall product maturity: <strong style="color:var(--green);font-size:1.1rem">8.1 / 10</strong></div>
-  </div>
-
-  <div class="highlight-box success">
-    <strong>Why this matters:</strong> Graphonomous is a working MCP server with novel graph theory, published on npm, and testable today. In a market where competitors like Letta received VC funding at the <em>research paper</em> stage and Higher Order Co was valued at $60M without a shipped Bend2, a working product with verified formal theory and zero funding represents a significant arbitrage opportunity.
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- ALL ACTIVE CODEBASES -->
-<!-- ================================================================== -->
-<section>
-  <h2>Active codebases — verified metrics</h2>
-  <p class="section-sub">All numbers validated directly from the source tree on 2026-04-02</p>
-
-  <div class="card" style="overflow-x:auto">
-    <table>
-      <tr>
-        <th>Codebase</th>
-        <th>Stage</th>
-        <th>Tech Stack</th>
-        <th class="right">Source Files</th>
-        <th class="right">LOC</th>
-        <th class="right">Test Files</th>
-        <th class="right">MCP Tools</th>
-        <th>Quality</th>
-      </tr>
-      <tr style="background:rgba(0,184,148,.06)">
-        <td><strong>Graphonomous</strong></td>
-        <td><span class="badge shipped">Alpha</span></td>
-        <td>Elixir/OTP + SQLite</td>
-        <td class="right">115</td>
-        <td class="right">5,000+</td>
-        <td class="right">22</td>
-        <td class="right">22</td>
-        <td><span class="badge a-plus">A</span></td>
-      </tr>
-      <tr style="background:rgba(0,206,201,.06)">
-        <td><strong>BendScript</strong></td>
-        <td><span class="badge beta">Beta</span></td>
-        <td>SvelteKit + Supabase</td>
-        <td class="right">57</td>
-        <td class="right">~15,091</td>
-        <td class="right">26+</td>
-        <td class="right">6</td>
-        <td><span class="badge a">A-</span></td>
-      </tr>
-      <tr>
-        <td><strong>WebHost.Systems</strong></td>
-        <td><span class="badge beta">Beta</span></td>
-        <td>Node.js + Vite/React + Supabase</td>
-        <td class="right">39</td>
-        <td class="right">~7,714</td>
-        <td class="right">12</td>
-        <td class="right">0</td>
-        <td><span class="badge b-plus">B</span></td>
-      </tr>
-      <tr>
-        <td><strong>AmpersandBoxDesign</strong></td>
-        <td><span class="badge ref">Ref Impl</span></td>
-        <td>Elixir CLI</td>
-        <td class="right">17</td>
-        <td class="right">~2,000</td>
-        <td class="right">6</td>
-        <td class="right">0</td>
-        <td><span class="badge b-plus">B+</span></td>
-      </tr>
-    </table>
-    <p class="caveat">Source file counts include only primary language files (.ex/.exs, .ts/.js, .svelte). Graphonomous count includes vendored anubis_mcp.</p>
-  </div>
-
-  <div class="two-col">
-    <div class="card">
-      <h3>BendScript <span class="badge beta">Beta</span></h3>
-      <p style="font-size:.85rem;color:var(--text2);margin-bottom:.5rem">Interactive knowledge graph editor with KAG (Knowledge Augmented Generation) server. Canvas engine, AI synthesis, MCP server, collaboration via Supabase Realtime.</p>
-      <table>
-        <tr><td>Canvas engine</td><td style="color:var(--green)">Working</td></tr>
-        <tr><td>AI synthesis (Claude)</td><td style="color:var(--green)">Working (Haiku free / Sonnet paid)</td></tr>
-        <tr><td>MCP server (6 tools)</td><td style="color:var(--green)">Working</td></tr>
-        <tr><td>Type checking</td><td style="color:var(--green)">Clean</td></tr>
-        <tr><td>Unique position</td><td>Only non-Elixir product (intentional)</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>WebHost.Systems <span class="badge beta">Beta</span></h3>
-      <p style="font-size:.85rem;color:var(--text2);margin-bottom:.5rem">AI-driven hosting platform. Multi-runtime abstraction (Cloudflare Workers + AWS AgentCore). OpenRouter LLM integration working.</p>
-      <table>
-        <tr><td>React frontend</td><td style="color:var(--green)">Working</td></tr>
-        <tr><td>OpenRouter integration</td><td style="color:var(--green)">Working</td></tr>
-        <tr><td>Supabase Auth</td><td style="color:var(--green)">Working</td></tr>
-        <tr><td>Test coverage</td><td style="color:var(--amber)">12 files (needs growth)</td></tr>
-        <tr><td>[&] Protocol integration</td><td style="color:var(--coral)">Not started</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- COMPETITIVE LANDSCAPE -->
-<!-- ================================================================== -->
-<section>
-  <h2>Competitive landscape — agent memory market 2026</h2>
-  <p class="section-sub">How Graphonomous positions against leading AI agent memory frameworks</p>
-
-  <div class="card" style="overflow-x:auto">
-    <table>
-      <tr>
-        <th>Framework</th>
-        <th>Architecture</th>
-        <th>Funding</th>
-        <th>Published benchmarks</th>
-        <th>MCP native</th>
-        <th>&kappa; invariant</th>
-        <th>Self-hosted</th>
-      </tr>
-      <tr>
-        <td><strong>Hindsight (Vectorize)</strong></td>
-        <td>MCP-native 4-strategy retrieval</td>
-        <td>$3.6M seed (True Ventures)</td>
-        <td><strong style="color:var(--coral)">91.4% LongMemEval (SOTA)</strong></td>
-        <td><strong>Yes &mdash; MCP-native</strong></td>
-        <td>No</td>
-        <td>Yes (MIT, Docker)</td>
-      </tr>
-      <tr>
-        <td><strong>Mem0</strong></td>
-        <td>Vector + optional graph</td>
-        <td>$24M Series A (Basis Set)</td>
-        <td>Internal evals (blog); entity F1 0.85&ndash;0.92 (own tasks)</td>
-        <td>Yes</td>
-        <td>No</td>
-        <td>Yes (Apache 2.0; graph requires $249/mo)</td>
-      </tr>
-      <tr>
-        <td><strong>Zep / Graphiti</strong></td>
-        <td>Temporal knowledge graph</td>
-        <td>Venture-backed</td>
-        <td>DMR 0.82&ndash;0.88; LongMemEval ~63&ndash;67%; <a href="https://arxiv.org/abs/2501.13956">arXiv paper</a></td>
-        <td>Cloud only</td>
-        <td>No</td>
-        <td>Graphiti open-source (needs Neo4j)</td>
-      </tr>
-      <tr>
-        <td><strong>Letta (ex-MemGPT)</strong></td>
-        <td>OS-inspired 3-tier agent runtime</td>
-        <td>$10M seed (Felicis, $70M val)</td>
-        <td>LOCOMO single-hop ~70&ndash;80%, multi-hop ~50&ndash;65%</td>
-        <td>Partial</td>
-        <td>No</td>
-        <td>Yes (Apache 2.0)</td>
-      </tr>
-      <tr>
-        <td><strong>Cognee</strong></td>
-        <td>Knowledge graph-first RAG + 38 connectors</td>
-        <td>$7.5M seed (Pebblebed)</td>
-        <td>Claims ~20&ndash;30% over naive RAG; no public F1</td>
-        <td>Partial</td>
-        <td>No</td>
-        <td>Yes</td>
-      </tr>
-      <tr>
-        <td><strong>LangMem (LangChain)</strong></td>
-        <td>Python library for LangGraph agents</td>
-        <td>Part of LangChain ($135M+)</td>
-        <td>Framework; no memory-specific benchmarks</td>
-        <td>No (LangGraph-only)</td>
-        <td>No</td>
-        <td>Yes (MIT, library only)</td>
-      </tr>
-      <tr style="background:rgba(108,92,231,.08)">
-        <td><strong style="color:var(--accent2)">Graphonomous</strong></td>
-        <td>Continual learning + SCC graph</td>
-        <td>$0 (bootstrapped)</td>
-        <td><strong style="color:var(--green)">90.4% LongMemEval SHR + F1/P/R + raw JSON + <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html" style="color:var(--green)">reproduction script</a></strong></td>
-        <td><strong style="color:var(--green)">Yes &mdash; MCP-native</strong></td>
-        <td><strong style="color:var(--green)">Yes &mdash; unique</strong></td>
-        <td>Yes (npm)</td>
-      </tr>
-    </table>
-    <p class="caveat">GitHub star counts and exact funding figures fluctuate; figures shown are best-available estimates. Verify current numbers before citing externally.</p>
-  </div>
-
-  <div class="comp-grid" style="margin-top:1rem">
-    <div class="card">
-      <h3 style="color:var(--green)">Differentiation strengths</h3>
-      <p style="font-size:.88rem;color:var(--text2)">
-        <strong>&kappa; (kappa) invariant</strong> &mdash; no competitor implements this. Detects circular dependencies in knowledge graphs using Tarjan's SCC algorithm. Routes agent inference: &kappa;=0 fast single-pass; &kappa;&gt;0 triggers deliberation with fault-line decomposition. Verified on 1.9M+ finite systems.<br><br>
-        <strong>22 MCP tools</strong> &mdash; richest MCP API surface in the category. Hindsight has ~6 tool categories, Mem0 has a simpler REST/SDK, Zep is cloud-first. Graphonomous exposes graph mutation, typed retrieval, goal management, coverage queries, consolidation, topology analysis, and attention dispatch &mdash; all as MCP tools.<br><br>
-        <strong>Goal management + attention engine</strong> &mdash; only Graphonomous treats goals as first-class graph citizens with epistemic coverage scoring (act/learn/escalate routing) and proactive attention dispatch (survey/triage/dispatch cycles). Zero competitors offer this.<br><br>
-        <strong>11 interactive A/B demos</strong> &mdash; only 4.8% of SaaS companies offer interactive demos (Navattic 2025). Interactive demos drive 25% higher conversion, 70% more trial signups, and 7.2&times; more engagement than video demos. No direct competitor has an interactive demo suite &mdash; Mem0, Zep, Letta rely on docs/API playgrounds. Cognee has a playground in development.<br><br>
-        <strong>Elixir/OTP backbone</strong> &mdash; built for concurrency and fault-tolerance where competitors use Python/TypeScript. OTP supervision trees provide self-healing runtime.<br><br>
-        <strong>Edge-native</strong> &mdash; SQLite + sqlite-vec runs on a Raspberry Pi. Hindsight requires Docker, Zep requires Neo4j, Mem0 paywalls graph memory behind $249/mo.<br><br>
-        <strong>Outcome learning with causal attribution</strong> &mdash; explicit causal_parent_ids linking outcomes back to beliefs. Confidence updates propagate through the causal chain. No competitor has this granularity.
-      </p>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--coral)">Gaps to close</h3>
-      <p style="font-size:.88rem;color:var(--text2)">
-        <strong>Community size</strong> &mdash; Mem0 (41K stars), Cognee (12K stars), Letta (~12&ndash;15K stars), Hindsight (3.8K stars) all have larger communities. Graphonomous is pre-traction. Registry listings (Smithery, MCP.so, PulseMCP, Glama, mcp-get) would change this quickly.<br><br>
-        <strong style="color:var(--green)">LongMemEval benchmark &mdash; CLOSED</strong> &mdash; Graphonomous achieves <strong>90.4% Session Hit Rate</strong> on LongMemEval (neural, 100 questions), within 1pp of Hindsight&rsquo;s 91.4% SOTA. Beats Zep (~63&ndash;67%), Letta (~50&ndash;80%), and GPT-4 128K (~62&ndash;65%). Full results in <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval">OS-E001 &sect;4.5</a>.<br><br>
-        <strong>Revenue signal</strong> &mdash; every funded competitor has either a paid tier or clear monetization path. Mem0 from $19/mo (graph at $249/mo), Zep from $25/mo. A managed cloud or pro tier is the next investor milestone.<br><br>
-        <strong>LLM provider breadth</strong> &mdash; Hindsight supports OpenAI, Anthropic, Gemini, Groq, Ollama out of box. Graphonomous uses local embeddings (all-MiniLM-L6-v2) which is an advantage for edge but limits cloud flexibility.<br><br>
-        <strong>Phase 3 deferred</strong> &mdash; Postgres adapter, Phoenix dashboard, and federation are designed but not implemented.
-      </p>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:1rem">
-    <h3>Funding comparables in agent memory (2024&ndash;2026)</h3>
-    <table>
-      <tr><th>Company</th><th>Raised</th><th>Valuation</th><th>Stage when funded</th><th>Key insight</th></tr>
-      <tr><td>Mem0</td><td>$24M (Series A)</td><td>$100M+ est.</td><td>41K stars + AWS partnership + cloud API</td><td>Vector-first, graph paywalled at $249/mo</td></tr>
-      <tr><td>Letta (MemGPT)</td><td>$10M (Felicis)</td><td>$70M</td><td>Research paper + prototype</td><td>Funded at paper stage; Jeff Dean angel</td></tr>
-      <tr><td>Cognee</td><td>$7.5M (Pebblebed)</td><td>Not disclosed</td><td>Open-source + 70+ deployments</td><td>38+ connectors, multi-modal; OpenAI/FAIR founders as angels</td></tr>
-      <tr><td>Hindsight (Vectorize)</td><td>$3.6M (True Ventures)</td><td>Not disclosed</td><td>MCP-native + 91.4% LongMemEval SOTA</td><td>Closest MCP competitor; 3.8K stars</td></tr>
-      <tr><td>Higher Order Co (Bend)</td><td>~$4.5M (reported)</td><td>~$60M</td><td>Research + Bend1 prototype</td><td>Bend2 not shipped</td></tr>
-      <tr><td>CrewAI</td><td>$18M (Series A)</td><td>Not disclosed</td><td>Multi-agent orchestration OSS</td><td>Role-based agent collaboration</td></tr>
-      <tr style="background:rgba(108,92,231,.08)"><td><strong style="color:var(--accent2)">Graphonomous / [&]</strong></td><td>$0</td><td>&mdash;</td><td><strong>Working MCP server + verified theory + npm + 11 demos</strong></td><td>More shipped than several funded peers; $45M+ in direct competitor funding validates market</td></tr>
-    </table>
-    <div class="highlight-box" style="margin-top:1rem">
-      <strong>Investor insight:</strong> Multiple competitors received significant funding at the research-paper or prototype stage. Graphonomous has a <em>working product</em> with <em>novel verified theory</em> and <em>zero external funding</em>. The asymmetry between what's built and what's raised is the opportunity.
-    </div>
-    <p class="caveat">Funding figures sourced from TechCrunch, Crunchbase, and public announcements. Some amounts are reported/estimated and may not reflect exact figures. "Reported" indicates the figure comes from press coverage rather than confirmed SEC filings.</p>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- FULL PORTFOLIO -->
-<!-- ================================================================== -->
-<section>
-  <h2>Complete ecosystem portfolio</h2>
-  <p class="section-sub">14 projects across the full AI agent operationalization stack</p>
-
-  <div class="card" style="overflow-x:auto">
-    <table>
-      <tr>
-        <th>#</th>
-        <th>Project</th>
-        <th>Category</th>
-        <th>Stage</th>
-        <th>Tech</th>
-        <th>Grade</th>
-        <th>Progress</th>
-      </tr>
-      <tr style="background:rgba(0,184,148,.06)">
-        <td>1</td>
-        <td><strong>graphonomous</strong></td>
-        <td><span class="tag">Agent memory</span><span class="tag">MCP</span></td>
-        <td><span class="badge shipped">Alpha</span></td>
-        <td>Elixir/OTP + SQLite</td>
-        <td><span class="badge a-plus">A</span></td>
-        <td><div class="meter"><div class="fill green" style="width:70%"></div></div></td>
-      </tr>
-      <tr style="background:rgba(0,206,201,.06)">
-        <td>2</td>
-        <td><strong>bendscript.com</strong></td>
-        <td><span class="tag">Knowledge graph</span><span class="tag">IDE</span></td>
-        <td><span class="badge beta">Beta</span></td>
-        <td>SvelteKit + Supabase</td>
-        <td><span class="badge a">A-</span></td>
-        <td><div class="meter"><div class="fill teal" style="width:60%"></div></div></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td><strong>WebHost.Systems</strong></td>
-        <td><span class="tag">Agent hosting</span><span class="tag">Multi-runtime</span></td>
-        <td><span class="badge beta">Beta</span></td>
-        <td>Node.js + React + Supabase</td>
-        <td><span class="badge b-plus">B</span></td>
-        <td><div class="meter"><div class="fill amber" style="width:40%"></div></div></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td><strong>AmpersandBoxDesign</strong></td>
-        <td><span class="tag">[&] Protocol</span><span class="tag">CLI</span></td>
-        <td><span class="badge ref">Ref Impl</span></td>
-        <td>Elixir CLI</td>
-        <td><span class="badge b-plus">B+</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:50%"></div></div></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td><strong>fleetprompt.com</strong></td>
-        <td><span class="tag">Agent marketplace</span><span class="tag">Discovery</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir/OTP + Phoenix (planned)</td>
-        <td><span class="badge a">A-</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:20%"></div></div></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td><strong>delegatic.com</strong></td>
-        <td><span class="tag">Governance</span><span class="tag">Policy engine</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir/OTP + Phoenix (planned)</td>
-        <td><span class="badge a">A-</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:18%"></div></div></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td><strong>specprompt.com</strong></td>
-        <td><span class="tag">Spec standard</span><span class="tag">Toolchain</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir + TypeScript (planned)</td>
-        <td><span class="badge b-plus">B+</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:18%"></div></div></td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td><strong>agentelic.com</strong></td>
-        <td><span class="tag">Agent builder</span><span class="tag">CI/CD</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir/OTP (planned)</td>
-        <td><span class="badge b-plus">B+</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:15%"></div></div></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td><strong>deliberatic.com</strong></td>
-        <td><span class="tag">Multi-agent debate</span><span class="tag">Consensus</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Protocol (transport-agnostic)</td>
-        <td><span class="badge b-plus">B+</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:15%"></div></div></td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td><strong>agentromatic.com</strong></td>
-        <td><span class="tag">Orchestration</span><span class="tag">Reputation</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir/OTP (planned)</td>
-        <td><span class="badge b">B</span></td>
-        <td><div class="meter"><div class="fill coral" style="width:12%"></div></div></td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td><strong>opensentience.org</strong></td>
-        <td><span class="tag">Runtime</span><span class="tag">Research protocols</span><span class="tag">Governance</span></td>
-        <td><span class="badge spec">Spec</span></td>
-        <td>Elixir/OTP (planned)</td>
-        <td><span class="badge b-plus">B+</span></td>
-        <td><div class="meter"><div class="fill purple" style="width:15%"></div></div></td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td><strong>ticktickclock.com</strong></td>
-        <td><span class="tag">Temporal intelligence</span><span class="tag">Anomaly detection</span></td>
-        <td><span class="badge concept">Concept</span></td>
-        <td>Elixir/OTP + TimescaleDB (planned)</td>
-        <td><span class="badge b">B</span></td>
-        <td><div class="meter"><div class="fill coral" style="width:10%"></div></div></td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td><strong>geofleetic.com</strong></td>
-        <td><span class="tag">Spatial intelligence</span><span class="tag">Fleet</span></td>
-        <td><span class="badge concept">Concept</span></td>
-        <td>Elixir/OTP + PostGIS (planned)</td>
-        <td><span class="badge b">B</span></td>
-        <td><div class="meter"><div class="fill coral" style="width:8%"></div></div></td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td><strong>graphonomous.com</strong></td>
-        <td><span class="tag">Marketing site</span></td>
-        <td><span class="badge shipped">Live</span></td>
-        <td>Static HTML + demo</td>
-        <td><span class="badge a">A-</span></td>
-        <td><div class="meter"><div class="fill green" style="width:80%"></div></div></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="highlight-box">
-    <strong>Shared infrastructure:</strong> All Supabase-backed products share a single instance via <code>ampersand-supabase/</code>. 9 PostgreSQL schemas (amp.*, kag.*, webhost.*, fleet.*, geo.*, temporal.*, orchestrate.*, govern.*, agentelic.*) with shared auth and workspace-based multi-tenancy. One <code>supabase start</code> runs the entire data layer.
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- PROTOCOL SERIES ARCHITECTURE -->
-<!-- ================================================================== -->
-<section>
-  <h2>Protocol series architecture</h2>
-  <p class="section-sub">Composable, independently adoptable layers &mdash; unlike monolithic competitors</p>
-
-  <div class="card">
-    <table>
-      <tr><th>Layer</th><th>Project</th><th>Function</th><th>Status</th><th>Comparable companies</th></tr>
-      <tr><td style="font-weight:600">Specification</td><td>specprompt.com</td><td>Open YAML+MD format for agent behavior specs</td><td><span class="badge spec">Spec</span></td><td>GitHub Spec Kit, AWS Kiro</td></tr>
-      <tr><td style="font-weight:600">Build &amp; Test</td><td>agentelic.com</td><td>Spec-driven build pipeline: parse &rarr; generate &rarr; test &rarr; deploy</td><td><span class="badge spec">Spec</span></td><td>LangChain, CrewAI</td></tr>
-      <tr><td style="font-weight:600">UI / IDE</td><td>bendscript.com</td><td>Interactive knowledge graph editor + KAG server</td><td><span class="badge beta">Beta</span></td><td>Cursor, Replit</td></tr>
-      <tr><td style="font-weight:600">Discovery</td><td>fleetprompt.com</td><td>Agent marketplace with trust scoring &amp; version control</td><td><span class="badge spec">Spec</span></td><td>Smithery, MCP.so, Lindy</td></tr>
-      <tr style="background:rgba(0,206,201,.06)"><td style="font-weight:600;color:var(--teal)">Knowledge</td><td>graphonomous</td><td>Continual learning graph + &kappa; invariant + outcome loops</td><td><span class="badge shipped">Alpha</span></td><td>Mem0, Zep, Letta, Cognee</td></tr>
-      <tr><td style="font-weight:600">Deliberation</td><td>deliberatic.com</td><td>Structured multi-agent debate with Byzantine consensus</td><td><span class="badge spec">Spec</span></td><td>Academic only</td></tr>
-      <tr><td style="font-weight:600">Coordination</td><td>delegatic.com</td><td>Org hierarchy, monotonic policy inheritance, audit trails</td><td><span class="badge spec">Spec</span></td><td>No direct competitor</td></tr>
-      <tr><td style="font-weight:600">Orchestration</td><td>agentromatic.com</td><td>Autonomous task orchestration + reputation engine</td><td><span class="badge spec">Spec</span></td><td>CrewAI, AutoGen</td></tr>
-      <tr><td style="font-weight:600">Hosting</td><td>WebHost.Systems</td><td>Multi-runtime agent deployment (Cloudflare + AWS AgentCore)</td><td><span class="badge beta">Beta</span></td><td>E2B, Modal</td></tr>
-      <tr><td style="font-weight:600">Runtime</td><td>opensentience.org</td><td>8 cognitive protocols (memory, routing, deliberation, attention, tiers, shim, adversarial robustness, agent harness)</td><td><span class="badge spec">Spec</span></td><td>Letta runtime</td></tr>
-      <tr><td style="font-weight:600">Spatial</td><td>geofleetic.com</td><td>Fleet intelligence, route optimization, geofencing</td><td><span class="badge concept">Concept</span></td><td>Greenfield</td></tr>
-      <tr><td style="font-weight:600">Temporal</td><td>ticktickclock.com</td><td>Multi-timescale anomaly detection &amp; forecasting</td><td><span class="badge concept">Concept</span></td><td>Greenfield</td></tr>
-    </table>
-  </div>
-
-  <div class="highlight-box success">
-    <strong>Composability advantage:</strong> Each layer can be adopted independently. Third parties can integrate at any point without buying the entire stack. This is architecturally impossible with monolithic competitors. The [&] Protocol (AmpersandBoxDesign) is the shared capability composition language that connects all layers.
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- MARKET CONTEXT -->
-<!-- ================================================================== -->
-<section>
-  <h2>Market context &mdash; why now</h2>
-  <p class="section-sub">Converging macro trends at a critical inflection point for agent infrastructure</p>
-
-  <div class="comp-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-    <div class="card">
-      <h3 style="color:var(--accent2)">MCP protocol adoption</h3>
-      <p style="font-size:.85rem;color:var(--text2)">Model Context Protocol has been adopted by every major AI provider: Anthropic, OpenAI, Google, Microsoft. Now under broader governance. Claude Code, Cursor, Zed, and VS Code all ship MCP-compatible tooling by default. Graphonomous is MCP-native.</p>
-      <div style="margin-top:.75rem;font-size:.8rem">
-        <span style="color:var(--green);font-weight:600">Rapid growth</span> <span style="color:var(--text3)">across all AI developer tools</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--teal)">Agent memory gold rush</h3>
-      <p style="font-size:.85rem;color:var(--text2)">Mem0 raised ~$24M. Zep, Letta, Cognee all VC-backed. Gartner projects 33&ndash;40% of enterprise apps will include AI agents. The agent orchestration market is accelerating faster than initial projections.</p>
-      <div style="margin-top:.75rem;font-size:.8rem">
-        <span style="color:var(--green);font-weight:600">$47B+ AI agent market by 2030</span> <span style="color:var(--text3)">(~44% CAGR, MarketsandMarkets)</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--amber)">Operationalization gap</h3>
-      <p style="font-size:.85rem;color:var(--text2)">Enterprise AI is failing at ops, not capability. LangChain surveys show only ~52% run offline evals; 32% cite quality as the #1 barrier. Gartner warns 40% of agentic projects will be scrapped. The missing layer is engineering process: spec, test, deploy, govern, learn.</p>
-      <div style="margin-top:.75rem;font-size:.8rem">
-        <span style="color:var(--amber);font-weight:600">This is what [&] builds</span>
-      </div>
-    </div>
-  </div>
-
-  <p class="caveat" style="margin-top:.5rem">Market size estimates from MarketsandMarkets, Gartner, and industry reports. CAGR figures are forward-looking projections and subject to revision. Enterprise adoption percentages are Gartner predictions from 2024&ndash;2025 press releases.</p>
-</section>
-
-<!-- ================================================================== -->
-<!-- DEVELOPMENT STAGES -->
-<!-- ================================================================== -->
-<section>
-  <h2>Development stages &mdash; what each phase unlocks</h2>
-  <p class="section-sub">Clear milestones for investors and contributors at each commitment level</p>
-
-  <div class="card">
-    <h3><span class="badge shipped">Current</span> Phase 0 &mdash; proof of concept (bootstrapped, $0 external)</h3>
-    <p style="font-size:.88rem;color:var(--text2);margin-bottom:1rem">
-      Graphonomous shipped on npm with 22 MCP tools and novel &kappa; invariant. BendScript beta with 15K+ LOC, working canvas, AI synthesis, and 6 MCP tools. WebHost.Systems beta with React frontend and OpenRouter integration. AmpersandBoxDesign reference CLI for [&] Protocol validation. Shared Supabase data layer with 9 product schemas. 14-project ecosystem with comprehensive specs.
-    </p>
-    <div class="stage-track">
-      <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step future"></div><div class="step future"></div>
-      <div class="step future"></div><div class="step future"></div><div class="step future"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3><span class="badge a">Next</span> Phase 1 &mdash; registry + adoption ($0&ndash;$50K)</h3>
-    <p style="font-size:.88rem;color:var(--text2);margin-bottom:1rem">
-      List Graphonomous on Smithery, MCP.so, PulseMCP. <span style="color:var(--green)">&#10003; LongMemEval benchmark published (90.4% SHR).</span> Get 10+ external users. Document integration guides for Claude Code, Cursor, Zed. Harden BendScript for production use. Add test coverage to WebHost.Systems.
-    </p>
-    <div class="stage-track">
-      <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step active"></div><div class="step active"></div>
-      <div class="step future"></div><div class="step future"></div><div class="step future"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3><span class="badge b-plus">Target</span> Phase 2 &mdash; second product + revenue ($50K&ndash;$500K)</h3>
-    <p style="font-size:.88rem;color:var(--text2);margin-bottom:1rem">
-      Ship FleetPrompt as agent/tool discovery marketplace. Launch Graphonomous Cloud with managed tier ($19/mo starter, $99/mo pro). Build Delegatic coordination layer. First dollar of MRR. Target 500+ weekly active users across products.
-    </p>
-    <div class="stage-track">
-      <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step active"></div><div class="step active"></div>
-      <div class="step future"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3><span class="badge concept">Vision</span> Phase 3 &mdash; full stack + scale ($500K&ndash;$2M)</h3>
-    <p style="font-size:.88rem;color:var(--text2);margin-bottom:1rem">
-      Graphonomous Postgres adapter + Phoenix dashboard + federation. BendScript cloud IDE with collaboration. Agentelic build pipeline (spec &rarr; generate &rarr; test &rarr; deploy). Complete OpenSentience runtime. Enterprise contracts. Target 5,000+ WAU, $50K+ MRR.
-    </p>
-    <div class="stage-track">
-      <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step done"></div><div class="step done"></div>
-      <div class="step active"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- SCORECARD -->
-<!-- ================================================================== -->
-<section>
-  <h2>Portfolio scorecard</h2>
-  <p class="section-sub">Honest assessment across 8 dimensions</p>
-
-  <div class="card" style="overflow-x:auto">
-    <table>
-      <tr><th>Dimension</th><th>Grade</th><th>Rationale</th></tr>
-      <tr>
-        <td><strong>Technical Vision</strong></td>
-        <td><span class="badge a-plus" style="font-size:.8rem">A</span></td>
-        <td>Full-stack coherence from spec to governance to learning. Formal foundations (&kappa; invariant). Protocol-level thinking rare in the market.</td>
-      </tr>
-      <tr>
-        <td><strong>Execution (Built)</strong></td>
-        <td><span class="badge a" style="font-size:.8rem">A-</span></td>
-        <td>3 working codebases + reference impl. Graphonomous: 22 MCP tools, zero tech debt, <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html">published benchmarks</a> (OS-E001 + LongMemEval: 90.4% SHR, within 1pp of Hindsight SOTA). BendScript feature-rich beta.</td>
-      </tr>
-      <tr>
-        <td><strong>Execution (Remaining)</strong></td>
-        <td><span class="badge b" style="font-size:.8rem">C+</span></td>
-        <td>10 spec-only projects. Enormous implementation surface. Ambitious but realistic with Elixir/OTP and spec-first methodology.</td>
-      </tr>
-      <tr>
-        <td><strong>Market Timing</strong></td>
-        <td><span class="badge a-plus" style="font-size:.8rem">A-</span></td>
-        <td>Agent operationalization is the 2026 constraint. MCP adoption accelerating. Enterprise demand for governance/quality validated by Gartner.</td>
-      </tr>
-      <tr>
-        <td><strong>Competitive Position</strong></td>
-        <td><span class="badge a" style="font-size:.8rem">B+</span></td>
-        <td>Governance + continual learning + &kappa; routing are defensible differentiators. But LangChain/MCP have massive adoption head starts.</td>
-      </tr>
-      <tr>
-        <td><strong>Revenue Potential</strong></td>
-        <td><span class="badge b-plus" style="font-size:.8rem">B</span></td>
-        <td>$47B+ TAM. Clear monetization paths (managed cloud, marketplace commission, enterprise tiers). But $0 revenue today.</td>
-      </tr>
-      <tr>
-        <td><strong>Risk Profile</strong></td>
-        <td><span class="badge b" style="font-size:.8rem">B-</span></td>
-        <td>Scope risk (14 projects), solo founder bandwidth, adoption risk, Elixir hiring pool. Mitigated by spec-first approach and AI-assisted development.</td>
-      </tr>
-      <tr>
-        <td><strong>Investability</strong></td>
-        <td><span class="badge a" style="font-size:.8rem">B+</span></td>
-        <td>Seed-ready on core products. Working product with novel theory at $0 funding = significant arbitrage vs. funded peers.</td>
-      </tr>
-    </table>
-    <div style="text-align:right;margin-top:1rem;font-size:1rem;color:var(--text2)">
-      Composite: <strong style="color:var(--accent2);font-size:1.3rem">7.5 / 10</strong>
-      <span style="font-size:.8rem;display:block;margin-top:.25rem">Strong technical foundation with empirical evidence, pre-revenue, high-potential coherent stack</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- INVESTMENT THESIS -->
-<!-- ================================================================== -->
-<section>
-  <h2>Investment thesis &mdash; the opportunity</h2>
-  <p class="section-sub">Why [&] represents asymmetric upside for early investors and contributors</p>
-
-  <div class="comp-grid">
-    <div class="card">
-      <h3 style="color:var(--green)">Bull case</h3>
-      <table>
-        <tr><td>Comparable: Letta (funded at paper stage)</td><td class="right" style="color:var(--green)">$5M+ val</td></tr>
-        <tr><td>Comparable: HOC/Bend (~$60M val reported, no shipped Bend2)</td><td class="right" style="color:var(--green)">$10M+ val</td></tr>
-        <tr><td>Comparable: Mem0 (~$24M raised, $100M+ val est.)</td><td class="right" style="color:var(--green)">$20M+ val</td></tr>
-        <tr><td>With 3 products shipping + 500 users</td><td class="right" style="color:var(--green)">$5&ndash;15M val</td></tr>
-        <tr><td>With full stack at enterprise scale</td><td class="right" style="color:var(--green)">$50&ndash;150M val</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--coral)">Risk factors</h3>
-      <table>
-        <tr><td>Solo founder &mdash; execution bandwidth limited</td><td class="right" style="color:var(--amber)">Medium</td></tr>
-        <tr><td>$0 revenue &mdash; pre product-market fit</td><td class="right" style="color:var(--coral)">High</td></tr>
-        <tr><td>Crowded agent memory market</td><td class="right" style="color:var(--amber)">Medium</td></tr>
-        <tr><td>Elixir/OTP niche (smaller hiring pool)</td><td class="right" style="color:var(--amber)">Medium</td></tr>
-        <tr><td>14 projects is ambitious scope</td><td class="right" style="color:var(--amber)">Medium</td></tr>
-        <tr><td>MCP standard could fragment</td><td class="right" style="color:var(--text3)">Low</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:1rem">
-    <h3>Seed round structure</h3>
-    <table>
-      <tr><th>Use</th><th class="right">Amount</th><th>Delivers</th></tr>
-      <tr><td>Engineering (3 Elixir + 1 React/Svelte FTE, 6 months)</td><td class="right">$500K</td><td>Graphonomous 1.0, WebHost production, Agentelic alpha</td></tr>
-      <tr><td>Product + Design (1 FTE)</td><td class="right">$100K</td><td>User research, UX, onboarding flows</td></tr>
-      <tr><td>GTM + DevRel</td><td class="right">$150K</td><td>First 3 enterprise pilots, developer content, registry listings</td></tr>
-      <tr><td>Infrastructure + Ops</td><td class="right">$100K</td><td>Supabase cloud, monitoring, security audit</td></tr>
-      <tr style="background:rgba(108,92,231,.06)"><td><strong>Total (Seed)</strong></td><td class="right"><strong>$850K</strong></td><td><strong>Product-market fit on 3 core products</strong></td></tr>
-    </table>
-  </div>
-
-  <div class="card" style="margin-top:1rem">
-    <h3>12-month success metrics</h3>
-    <table>
-      <tr><th>Metric</th><th class="right">Current</th><th class="right">Target</th></tr>
-      <tr><td>Graphonomous active installs</td><td class="right">Pre-registry</td><td class="right">500+</td></tr>
-      <tr><td>WebHost agents deployed</td><td class="right">Beta testing</td><td class="right">100+</td></tr>
-      <tr><td>BendScript DAU</td><td class="right">MVP testing</td><td class="right">100+</td></tr>
-      <tr><td>Enterprise pilots signed</td><td class="right">0</td><td class="right">3+</td></tr>
-      <tr><td>Ecosystem ARR</td><td class="right">$0</td><td class="right">$250K+</td></tr>
-      <tr><td>MCP registry listings</td><td class="right">0</td><td class="right">3+ registries</td></tr>
-      <tr><td>Published benchmarks</td><td class="right" style="color:var(--green)">2 (OS-E001 + LongMemEval)</td><td class="right" style="color:var(--green)">&#10003; Done &mdash; 90.4% SHR</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- CONTRIBUTOR OPPORTUNITIES -->
-<!-- ================================================================== -->
-<section>
-  <h2>Contributor opportunities</h2>
-  <p class="section-sub">Highest-leverage ways to accelerate the ecosystem</p>
-
-  <div class="card">
-    <table>
-      <tr><th>Contribution</th><th>Impact</th><th>Effort</th><th>Best for</th></tr>
-      <tr><td><strong>List Graphonomous on MCP registries</strong> (Smithery, MCP.so, PulseMCP)</td><td style="color:var(--green)">Critical</td><td>1&ndash;2 days</td><td>Anyone</td></tr>
-      <tr style="opacity:0.6;text-decoration:line-through"><td><strong>Run LongMemEval</strong> for direct competitive comparison</td><td style="color:var(--green)">Done</td><td><span style="color:var(--green)">&#10003;</span></td><td>90.4% SHR &mdash; <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval">results</a></td></tr>
-      <tr><td><strong>Integration guides</strong> for Claude Code, Cursor, Zed</td><td style="color:var(--amber)">High</td><td>3&ndash;5 days each</td><td>Technical writers</td></tr>
-      <tr><td><strong>WebHost.Systems test coverage</strong> (currently 12 files)</td><td style="color:var(--amber)">High</td><td>1&ndash;2 weeks</td><td>React/TS developers</td></tr>
-      <tr><td><strong>Design Graphonomous Cloud</strong> (managed hosting architecture)</td><td style="color:var(--amber)">High</td><td>2&ndash;3 weeks</td><td>Infrastructure engineers</td></tr>
-      <tr><td><strong>Ship FleetPrompt MVP</strong> (agent discovery directory)</td><td style="color:var(--amber)">High</td><td>4&ndash;6 weeks</td><td>Elixir/Phoenix developers</td></tr>
-      <tr><td><strong>&kappa; invariant whitepaper</strong> for academic credibility</td><td style="color:var(--accent2)">Medium</td><td>2&ndash;4 weeks</td><td>Math/CS researchers</td></tr>
-      <tr><td><strong>Build Delegatic coordination layer</strong></td><td style="color:var(--accent2)">Medium</td><td>8&ndash;12 weeks</td><td>Elixir/OTP engineers</td></tr>
-      <tr><td><strong>BendScript production hardening</strong></td><td style="color:var(--accent2)">Medium</td><td>2&ndash;4 weeks</td><td>SvelteKit developers</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ================================================================== -->
-<!-- RESEARCH SOURCES -->
-<!-- ================================================================== -->
-<section>
-  <h2>Research sources &amp; methodology</h2>
-  <p class="section-sub">Data integrity notes for due diligence</p>
-
-  <div class="card" style="font-size:.82rem;color:var(--text2);line-height:1.8">
-    <strong>Codebase metrics (verified 2026-03-30):</strong><br>
-    &bull; All file counts, LOC, test counts, and MCP tool counts validated directly from the source tree<br>
-    &bull; Graphonomous: 115 .ex files, 22 test files, 22 MCP tools, 8 dependencies, v0.1.12<br>
-    &bull; BendScript: 57 source files, ~15,091 LOC, 26+ test suites, 6 MCP tools<br>
-    &bull; WebHost.Systems: 39 source files, ~7,714 LOC, 12 test files<br>
-    &bull; AmpersandBoxDesign: 17 Elixir files, working CLI tool<br>
-    &bull; &kappa; invariant claim (1,926,351 systems) sourced from AmpersandBoxDesign/prompts/KAPPA_BUILD_PROMPT.md and opensentience.org/kappa_proof.js<br>
-    &bull; OS-E001 benchmark (2026-04-02): 12,880 edges, 22 SCCs, max &kappa;=27, graph beats flat by +0.103 recall, 100% pass rate, 22/22 MCP tools, 27K nodes<br>
-    &bull; LongMemEval benchmark (2026-04-02): <strong>90.4% Session Hit Rate</strong> (neural, 100 questions on oracle split, 265 sessions, 3,094 turns). QA Proxy 73.0%. Temporal Reasoning SHR 94.4%, Multi-Session SHR 85.0%. Trigram ablation: 2.8% SHR (32&times; worse). Reference: arXiv:2410.10813 (ICLR 2025)<br>
-    &bull; Graphonomous is the only agent memory system publishing raw retrieval F1/P/R <em>and</em> LongMemEval results with full reproduction scripts; competitors use QA accuracy (LLM-as-judge)<br><br>
-
-    <strong>Competitive benchmark data (approximate, from published papers &amp; blogs):</strong><br>
-    &bull; Hindsight (Vectorize): <strong>91.4% LongMemEval (SOTA, March 2026)</strong>; 4-strategy retrieval + cross-encoder reranking; 3.8K GitHub stars<br>
-    &bull; Mem0: entity extraction F1 0.85&ndash;0.92 (internal); 41K GitHub stars; 186M API calls/quarter; AWS Agent SDK partner<br>
-    &bull; Zep/Graphiti: DMR 0.82&ndash;0.88; LongMemEval ~63&ndash;67% QA accuracy; arXiv:2501.13956; ~5&ndash;8K stars<br>
-    &bull; Letta (MemGPT): LOCOMO single-hop ~70&ndash;80%, multi-hop ~50&ndash;65%; ~12&ndash;15K stars; #1 model-agnostic on Terminal-Bench<br>
-    &bull; Cognee: claims ~20&ndash;30% improvement over naive RAG (no public F1); 12K stars; 70+ production deployments<br>
-    &bull; LangMem: free MIT library for LangGraph; no standalone benchmarks<br>
-    &bull; LongMemEval baseline (GPT-4 128k full context): ~62&ndash;65% overall<br><br>
-
-    <strong>Market data (sourced from public reports):</strong><br>
-    &bull; AI-driven knowledge management systems: $7.66B (2025) &rarr; $51.36B by 2030 (46.7% CAGR) &mdash; Market.us / TBRC<br>
-    &bull; AI agent market $47.1B by 2030 (~44% CAGR) &mdash; MarketsandMarkets<br>
-    &bull; 33&ndash;40% enterprise apps with AI agents &mdash; Gartner (2024&ndash;2025 predictions)<br>
-    &bull; SF alone deployed $12.3B into developer tools across 520+ deals in 2025<br>
-    &bull; Total direct competitor funding in agent memory: ~$45M (Mem0 $24M + Letta $10M + Cognee $7.5M + Vectorize $3.6M)<br>
-    &bull; Only 4.8% of SaaS companies offer interactive product demos (Navattic 2025); those who do see 25% higher conversion, 70% more trial signups<br><br>
-
-    <strong style="color:var(--amber)">Methodology notes &amp; caveats:</strong><br>
-    &bull; Competitor funding figures marked "reported" come from press coverage, not SEC filings<br>
-    &bull; GitHub star counts fluctuate; verify current numbers before citing externally<br>
-    &bull; TAM projections are analyst estimates with wide confidence intervals<br>
-    &bull; Valuation comparables are illustrative, not appraisals<br>
-    &bull; Portfolio value estimates should be validated by professional appraisers for formal use<br>
-    &bull; All forward-looking projections are subject to market conditions
-  </div>
-</section>
-
-<div class="footer">
-  <p><strong>[&] Ampersand Box Design</strong> &middot; ampersandboxdesign.com</p>
-  <p style="margin-top:.25rem">This document is for informational purposes. All valuations are estimates based on comparable market data and are not financial advice.</p>
-  <p style="margin-top:.5rem;font-size:.7rem">Generated March 30, 2026 &middot; Updated April 2, 2026 (LongMemEval 90.4% SHR + OS-E001 benchmark results + competitive benchmark data) &middot; Codebase metrics verified from source &middot; Market data from public reports</p>
-  <p style="margin-top:.5rem;font-size:.7rem"><a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html">OS-E001: Full Empirical Evaluation</a> &middot; <a href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.md">Source (Markdown)</a> &middot; <a href="graphonomous.com/demo/">Live Demo Suite</a> &middot; <a href="https://github.com/c-u-l8er/AmpersandBoxDesign">GitHub</a></p>
-</div>
-
-</div>
-
-<script>
-// Animate cards on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.card, .kpi').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(16px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
-</script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>[&] Portfolio Review — Investor & Contributor Report</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            :root {
+                --bg: #0a0b0d;
+                --bg2: #111318;
+                --bg3: #181b22;
+                --card: #13161d;
+                --accent: #6c5ce7;
+                --accent2: #a29bfe;
+                --accent3: #2d2666;
+                --teal: #00cec9;
+                --teal2: #0a3d3c;
+                --coral: #e17055;
+                --coral2: #3d211a;
+                --amber: #fdcb6e;
+                --amber2: #3d3118;
+                --green: #00b894;
+                --green2: #0a3d2e;
+                --red: #d63031;
+                --red2: #3d1010;
+                --text: #e8e6e3;
+                --text2: #9a9590;
+                --text3: #5c5752;
+                --border: #222630;
+                --font: "Instrument Sans", system-ui, sans-serif;
+                --serif: "DM Serif Display", Georgia, serif;
+            }
+            body {
+                background: var(--bg);
+                color: var(--text);
+                font-family: var(--font);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+            a {
+                color: var(--accent2);
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .hero {
+                padding: 4rem 2rem 3rem;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(108, 92, 231, 0.08) 0%,
+                    transparent 60%
+                );
+                pointer-events: none;
+            }
+            .hero h1 {
+                font-family: var(--serif);
+                font-size: clamp(2.2rem, 5vw, 3.6rem);
+                font-weight: 400;
+                letter-spacing: -0.02em;
+                margin-bottom: 0.5rem;
+                position: relative;
+            }
+            .hero h1 span {
+                color: var(--accent2);
+            }
+            .hero .sub {
+                color: var(--text2);
+                font-size: 1.05rem;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+            .hero .date {
+                color: var(--text3);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                margin-bottom: 1rem;
+            }
+
+            .container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 1.5rem;
+            }
+
+            .kpi-row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-bottom: 3rem;
+            }
+            .kpi {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 1.25rem 1.5rem;
+                position: relative;
+                overflow: hidden;
+            }
+            .kpi::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+            }
+            .kpi.purple::after {
+                background: var(--accent);
+            }
+            .kpi.teal::after {
+                background: var(--teal);
+            }
+            .kpi.coral::after {
+                background: var(--coral);
+            }
+            .kpi.amber::after {
+                background: var(--amber);
+            }
+            .kpi.green::after {
+                background: var(--green);
+            }
+            .kpi .label {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--text3);
+                margin-bottom: 0.25rem;
+            }
+            .kpi .value {
+                font-size: 1.8rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+            .kpi .delta {
+                font-size: 0.8rem;
+                margin-top: 0.25rem;
+            }
+            .kpi .delta.up {
+                color: var(--green);
+            }
+            .kpi .delta.down {
+                color: var(--red);
+            }
+
+            section {
+                margin-bottom: 3.5rem;
+            }
+            section h2 {
+                font-family: var(--serif);
+                font-size: 1.6rem;
+                font-weight: 400;
+                margin-bottom: 0.35rem;
+            }
+            section .section-sub {
+                color: var(--text2);
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .card h3 {
+                font-size: 1.05rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .badge {
+                display: inline-block;
+                padding: 2px 10px;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
+            .badge.shipped {
+                background: var(--green2);
+                color: var(--green);
+            }
+            .badge.beta {
+                background: var(--teal2);
+                color: var(--teal);
+            }
+            .badge.spec {
+                background: var(--amber2);
+                color: var(--amber);
+            }
+            .badge.concept {
+                background: var(--accent3);
+                color: var(--accent2);
+            }
+            .badge.a-plus {
+                background: var(--green2);
+                color: var(--green);
+            }
+            .badge.a {
+                background: var(--teal2);
+                color: var(--teal);
+            }
+            .badge.b-plus {
+                background: var(--amber2);
+                color: var(--amber);
+            }
+            .badge.b {
+                background: var(--coral2);
+                color: var(--coral);
+            }
+            .badge.ref {
+                background: rgba(108, 92, 231, 0.15);
+                color: var(--accent2);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.88rem;
+            }
+            table th {
+                text-align: left;
+                color: var(--text3);
+                font-weight: 500;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                padding: 0.75rem 0.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+            table td {
+                padding: 0.65rem 0.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+            table tr:hover td {
+                background: rgba(108, 92, 231, 0.04);
+            }
+            .right {
+                text-align: right;
+            }
+
+            .meter {
+                height: 6px;
+                background: var(--bg);
+                border-radius: 3px;
+                overflow: hidden;
+                margin-top: 0.35rem;
+            }
+            .meter .fill {
+                height: 100%;
+                border-radius: 3px;
+                transition: width 0.8s ease;
+            }
+            .meter .fill.purple {
+                background: var(--accent);
+            }
+            .meter .fill.teal {
+                background: var(--teal);
+            }
+            .meter .fill.green {
+                background: var(--green);
+            }
+            .meter .fill.amber {
+                background: var(--amber);
+            }
+            .meter .fill.coral {
+                background: var(--coral);
+            }
+
+            .comp-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+
+            .tag {
+                display: inline-block;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 0.72rem;
+                background: rgba(108, 92, 231, 0.12);
+                color: var(--accent2);
+                margin-right: 0.35rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .stage-track {
+                display: flex;
+                gap: 2px;
+                margin: 1rem 0;
+            }
+            .stage-track .step {
+                flex: 1;
+                height: 8px;
+                border-radius: 4px;
+                background: var(--bg);
+            }
+            .stage-track .step.done {
+                background: var(--green);
+            }
+            .stage-track .step.active {
+                background: var(--amber);
+                animation: pulse 2s infinite;
+            }
+            .stage-track .step.future {
+                background: var(--border);
+            }
+            @keyframes pulse {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
+
+            .stage-labels {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.65rem;
+                color: var(--text3);
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                margin-bottom: 0.5rem;
+            }
+
+            .rating-circle {
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1rem;
+                font-weight: 700;
+                flex-shrink: 0;
+            }
+            .rating-circle.high {
+                background: var(--green2);
+                color: var(--green);
+                border: 2px solid var(--green);
+            }
+            .rating-circle.mid {
+                background: var(--amber2);
+                color: var(--amber);
+                border: 2px solid var(--amber);
+            }
+            .rating-circle.low {
+                background: var(--red2);
+                color: var(--red);
+                border: 2px solid var(--red);
+            }
+
+            .flex-row {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+            }
+            .flex-col {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+                flex: 1;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 3rem 1rem;
+                color: var(--text3);
+                font-size: 0.8rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .highlight-box {
+                border-left: 3px solid var(--accent);
+                padding: 0.75rem 1rem;
+                background: rgba(108, 92, 231, 0.06);
+                border-radius: 0 8px 8px 0;
+                margin: 1rem 0;
+                font-size: 0.88rem;
+                color: var(--text2);
+            }
+            .highlight-box.warn {
+                border-left-color: var(--amber);
+                background: rgba(253, 203, 110, 0.06);
+            }
+            .highlight-box.success {
+                border-left-color: var(--green);
+                background: rgba(0, 184, 148, 0.06);
+            }
+
+            .caveat {
+                font-size: 0.72rem;
+                color: var(--text3);
+                font-style: italic;
+                margin-top: 0.35rem;
+            }
+
+            .two-col {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            @media (max-width: 640px) {
+                .kpi-row {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .comp-grid {
+                    grid-template-columns: 1fr;
+                }
+                .two-col {
+                    grid-template-columns: 1fr;
+                }
+                .hero h1 {
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hero">
+            <div class="date">Q1 2026 — Investor & Contributor Report</div>
+            <h1>[<span>&</span>] Portfolio Review</h1>
+            <p class="sub">
+                Ampersand Box Design — a composable protocol ecosystem for
+                agentic AI infrastructure. 14 projects, 4 active codebases, 1
+                shared data layer.
+            </p>
+        </div>
+
+        <div class="container">
+            <!-- ================================================================== -->
+            <!-- KPI ROW -->
+            <!-- ================================================================== -->
+            <div class="kpi-row">
+                <div class="kpi purple">
+                    <div class="label">Active codebases</div>
+                    <div class="value">4</div>
+                    <div class="delta">
+                        Graphonomous + BendScript + WebHost + AmpersandBox
+                    </div>
+                </div>
+                <div class="kpi teal">
+                    <div class="label">Total source files</div>
+                    <div class="value">228+</div>
+                    <div class="delta up">
+                        Across Elixir, TypeScript, SvelteKit
+                    </div>
+                </div>
+                <div class="kpi coral">
+                    <div class="label">Products shipped</div>
+                    <div class="value">1 Alpha / 2 Beta</div>
+                    <div class="delta">Graphonomous v0.2.0 live on npm</div>
+                </div>
+                <div class="kpi amber">
+                    <div class="label">TAM (AI agents)</div>
+                    <div class="value">$47B+</div>
+                    <div class="delta up">by 2030 &middot; ~44% CAGR</div>
+                </div>
+                <div class="kpi green">
+                    <div class="label">MCP tools built</div>
+                    <div class="value">28</div>
+                    <div class="delta up">22 Graphonomous + 6 BendScript</div>
+                </div>
+                <div class="kpi purple">
+                    <div class="label">LongMemEval SHR</div>
+                    <div class="value">90.4%</div>
+                    <div class="delta up">
+                        within 1pp of Hindsight SOTA &middot;
+                        <a
+                            href="https://opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval"
+                            style="color: var(--accent2)"
+                            >OS-E001 &sect;4.5</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================== -->
+            <!-- GRAPHONOMOUS DEEP DIVE -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Graphonomous — flagship product deep dive</h2>
+                <p class="section-sub">
+                    Continual learning knowledge graph engine &middot;
+                    MCP-native &middot; npm published &middot; v0.2.0 &middot;
+                    Elixir/OTP
+                </p>
+
+                <div class="card">
+                    <div class="flex-row" style="margin-bottom: 1rem">
+                        <div class="rating-circle high">A</div>
+                        <div class="flex-col">
+                            <h3>
+                                graphonomous
+                                <span class="badge shipped">Shipped</span>
+                                <span
+                                    class="badge"
+                                    style="
+                                        background: rgba(0, 206, 201, 0.15);
+                                        color: var(--teal);
+                                    "
+                                    >npm</span
+                                >
+                            </h3>
+                            <div
+                                style="color: var(--text2); font-size: 0.85rem"
+                            >
+                                Continual learning memory engine for AI agents.
+                                The knowledge substrate of the [&] protocol
+                                ecosystem.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stage-labels">
+                        <span>Phase 1: Core Engine</span>
+                        <span>Phase 2: MCP + Goals</span>
+                        <span>Phase 3: Scale</span>
+                        <span>Phase 4: Federation</span>
+                    </div>
+                    <div class="stage-track">
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step active"></div>
+                        <div class="step active"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                    </div>
+
+                    <table style="margin-top: 1rem">
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Status</th>
+                            <th class="right">Score</th>
+                        </tr>
+                        <tr>
+                            <td>npm package published</td>
+                            <td>
+                                <span class="badge shipped">Live</span>
+                                <code
+                                    style="
+                                        font-size: 0.75rem;
+                                        color: var(--text2);
+                                    "
+                                    >npx -y graphonomous</code
+                                >
+                            </td>
+                            <td class="right">10/10</td>
+                        </tr>
+                        <tr>
+                            <td>MCP server integration</td>
+                            <td>
+                                22 tools, 5 resources &middot; stdio protocol
+                                &middot; works with Claude Code, Zed, Cursor
+                            </td>
+                            <td class="right">10/10</td>
+                        </tr>
+                        <tr>
+                            <td>Novel formal theory (&kappa; invariant)</td>
+                            <td>
+                                Verified on 1,926,351 finite systems (1,052,740
+                                directed graphs + 873,611 dynamical systems)
+                                &mdash; zero counterexamples
+                            </td>
+                            <td class="right">10/10</td>
+                        </tr>
+                        <tr>
+                            <td>Codebase quality</td>
+                            <td>
+                                22 test files &middot; zero TODO/FIXME &middot;
+                                clean compile &middot;
+                                <code>mix format</code> compliant
+                            </td>
+                            <td class="right">9/10</td>
+                        </tr>
+                        <tr>
+                            <td>Architecture</td>
+                            <td>
+                                Elixir/OTP supervision trees, embedded SQLite +
+                                sqlite-vec, GoalGraph orchestration
+                            </td>
+                            <td class="right">9/10</td>
+                        </tr>
+                        <tr>
+                            <td>Live demo (graphonomous.com)</td>
+                            <td>Real MCP call output from working server</td>
+                            <td class="right">9/10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="graphonomous.com/demo/"
+                                    >Interactive demo suite (11 A/B demos)</a
+                                >
+                            </td>
+                            <td>
+                                Full 22/22 MCP tool coverage: codebase skills,
+                                &kappa;-routing, novelty detection, attention
+                                engine, consolidation, coverage gate, learning
+                                pipeline, graph inspection, typed retrieval,
+                                graph mutation, attention dispatch &mdash; all
+                                with real MCP payloads
+                            </td>
+                            <td class="right">10/10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a
+                                    href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
+                                    >Empirical benchmark (OS-E001)</a
+                                >
+                            </td>
+                            <td>
+                                12,880 edges &middot; 22 SCCs &middot;
+                                &kappa;=27 &middot; graph beats flat (+0.103
+                                recall) &middot; 100% pass rate &middot; 22/22
+                                MCP tools &middot;
+                                <strong style="color: var(--green)"
+                                    >90.4% LongMemEval SHR</strong
+                                >
+                            </td>
+                            <td class="right">10/10</td>
+                        </tr>
+                        <tr>
+                            <td>Dependencies</td>
+                            <td>
+                                8 explicit (exqlite, bumblebee, nx, telemetry,
+                                jason, sqlite_vec, anubis_mcp vendored, ex_doc)
+                            </td>
+                            <td class="right">8/10</td>
+                        </tr>
+                        <tr>
+                            <td>User adoption</td>
+                            <td>
+                                Pre-registry &middot; not yet on Smithery/MCP.so
+                            </td>
+                            <td class="right">3/10</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue / MRR</td>
+                            <td>$0 &mdash; pre-monetization</td>
+                            <td class="right">0/10</td>
+                        </tr>
+                    </table>
+                    <div
+                        style="
+                            text-align: right;
+                            margin-top: 0.75rem;
+                            font-size: 0.85rem;
+                            color: var(--text2);
+                        "
+                    >
+                        Overall product maturity:
+                        <strong style="color: var(--green); font-size: 1.1rem"
+                            >8.1 / 10</strong
+                        >
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>Why this matters:</strong> Graphonomous is a working
+                    MCP server with novel graph theory, published on npm, and
+                    testable today. In a market where competitors like Letta
+                    received VC funding at the <em>research paper</em> stage and
+                    Higher Order Co was valued at $60M without a shipped Bend2,
+                    a working product with verified formal theory and zero
+                    funding represents a significant arbitrage opportunity.
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- ALL ACTIVE CODEBASES -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Active codebases — verified metrics</h2>
+                <p class="section-sub">
+                    All numbers validated directly from the source tree on
+                    2026-04-02
+                </p>
+
+                <div class="card" style="overflow-x: auto">
+                    <table>
+                        <tr>
+                            <th>Codebase</th>
+                            <th>Stage</th>
+                            <th>Tech Stack</th>
+                            <th class="right">Source Files</th>
+                            <th class="right">LOC</th>
+                            <th class="right">Test Files</th>
+                            <th class="right">MCP Tools</th>
+                            <th>Quality</th>
+                        </tr>
+                        <tr style="background: rgba(0, 184, 148, 0.06)">
+                            <td><strong>Graphonomous</strong></td>
+                            <td><span class="badge shipped">Alpha</span></td>
+                            <td>Elixir/OTP + SQLite</td>
+                            <td class="right">115</td>
+                            <td class="right">5,000+</td>
+                            <td class="right">22</td>
+                            <td class="right">22</td>
+                            <td><span class="badge a-plus">A</span></td>
+                        </tr>
+                        <tr style="background: rgba(0, 206, 201, 0.06)">
+                            <td><strong>BendScript</strong></td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>SvelteKit + Supabase</td>
+                            <td class="right">57</td>
+                            <td class="right">~15,091</td>
+                            <td class="right">26+</td>
+                            <td class="right">6</td>
+                            <td><span class="badge a">A-</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>WebHost.Systems</strong></td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>Node.js + Vite/React + Supabase</td>
+                            <td class="right">39</td>
+                            <td class="right">~7,714</td>
+                            <td class="right">12</td>
+                            <td class="right">0</td>
+                            <td><span class="badge b-plus">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AmpersandBoxDesign</strong></td>
+                            <td><span class="badge ref">Ref Impl</span></td>
+                            <td>Elixir CLI</td>
+                            <td class="right">17</td>
+                            <td class="right">~2,000</td>
+                            <td class="right">6</td>
+                            <td class="right">0</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                        </tr>
+                    </table>
+                    <p class="caveat">
+                        Source file counts include only primary language files
+                        (.ex/.exs, .ts/.js, .svelte). Graphonomous count
+                        includes vendored anubis_mcp.
+                    </p>
+                </div>
+
+                <div class="two-col">
+                    <div class="card">
+                        <h3>BendScript <span class="badge beta">Beta</span></h3>
+                        <p
+                            style="
+                                font-size: 0.85rem;
+                                color: var(--text2);
+                                margin-bottom: 0.5rem;
+                            "
+                        >
+                            Interactive knowledge graph editor with KAG
+                            (Knowledge Augmented Generation) server. Canvas
+                            engine, AI synthesis, MCP server, collaboration via
+                            Supabase Realtime.
+                        </p>
+                        <table>
+                            <tr>
+                                <td>Canvas engine</td>
+                                <td style="color: var(--green)">Working</td>
+                            </tr>
+                            <tr>
+                                <td>AI synthesis (Claude)</td>
+                                <td style="color: var(--green)">
+                                    Working (Haiku free / Sonnet paid)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MCP server (6 tools)</td>
+                                <td style="color: var(--green)">Working</td>
+                            </tr>
+                            <tr>
+                                <td>Type checking</td>
+                                <td style="color: var(--green)">Clean</td>
+                            </tr>
+                            <tr>
+                                <td>Unique position</td>
+                                <td>Only non-Elixir product (intentional)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h3>
+                            WebHost.Systems <span class="badge beta">Beta</span>
+                        </h3>
+                        <p
+                            style="
+                                font-size: 0.85rem;
+                                color: var(--text2);
+                                margin-bottom: 0.5rem;
+                            "
+                        >
+                            AI-driven hosting platform. Multi-runtime
+                            abstraction (Cloudflare Workers + AWS AgentCore).
+                            OpenRouter LLM integration working.
+                        </p>
+                        <table>
+                            <tr>
+                                <td>React frontend</td>
+                                <td style="color: var(--green)">Working</td>
+                            </tr>
+                            <tr>
+                                <td>OpenRouter integration</td>
+                                <td style="color: var(--green)">Working</td>
+                            </tr>
+                            <tr>
+                                <td>Supabase Auth</td>
+                                <td style="color: var(--green)">Working</td>
+                            </tr>
+                            <tr>
+                                <td>Test coverage</td>
+                                <td style="color: var(--amber)">
+                                    12 files (needs growth)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>[&] Protocol integration</td>
+                                <td style="color: var(--coral)">Not started</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- COMPETITIVE LANDSCAPE -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Competitive landscape — agent memory market 2026</h2>
+                <p class="section-sub">
+                    How Graphonomous positions against leading AI agent memory
+                    frameworks
+                </p>
+
+                <div class="card" style="overflow-x: auto">
+                    <table>
+                        <tr>
+                            <th>Framework</th>
+                            <th>Architecture</th>
+                            <th>Funding</th>
+                            <th>Published benchmarks</th>
+                            <th>MCP native</th>
+                            <th>&kappa; invariant</th>
+                            <th>Self-hosted</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Hindsight (Vectorize)</strong></td>
+                            <td>MCP-native 4-strategy retrieval</td>
+                            <td>$3.6M seed (True Ventures)</td>
+                            <td>
+                                <strong style="color: var(--coral)"
+                                    >91.4% LongMemEval (SOTA)</strong
+                                >
+                            </td>
+                            <td><strong>Yes &mdash; MCP-native</strong></td>
+                            <td>No</td>
+                            <td>Yes (MIT, Docker)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mem0</strong></td>
+                            <td>Vector + optional graph</td>
+                            <td>$24M Series A (Basis Set)</td>
+                            <td>
+                                Internal evals (blog); entity F1 0.85&ndash;0.92
+                                (own tasks)
+                            </td>
+                            <td>Yes</td>
+                            <td>No</td>
+                            <td>Yes (Apache 2.0; graph requires $249/mo)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zep / Graphiti</strong></td>
+                            <td>Temporal knowledge graph</td>
+                            <td>Venture-backed</td>
+                            <td>
+                                DMR 0.82&ndash;0.88; LongMemEval ~63&ndash;67%;
+                                <a href="https://arxiv.org/abs/2501.13956"
+                                    >arXiv paper</a
+                                >
+                            </td>
+                            <td>Cloud only</td>
+                            <td>No</td>
+                            <td>Graphiti open-source (needs Neo4j)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Letta (ex-MemGPT)</strong></td>
+                            <td>OS-inspired 3-tier agent runtime</td>
+                            <td>$10M seed (Felicis, $70M val)</td>
+                            <td>
+                                LOCOMO single-hop ~70&ndash;80%, multi-hop
+                                ~50&ndash;65%
+                            </td>
+                            <td>Partial</td>
+                            <td>No</td>
+                            <td>Yes (Apache 2.0)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cognee</strong></td>
+                            <td>Knowledge graph-first RAG + 38 connectors</td>
+                            <td>$7.5M seed (Pebblebed)</td>
+                            <td>
+                                Claims ~20&ndash;30% over naive RAG; no public
+                                F1
+                            </td>
+                            <td>Partial</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LangMem (LangChain)</strong></td>
+                            <td>Python library for LangGraph agents</td>
+                            <td>Part of LangChain ($135M+)</td>
+                            <td>Framework; no memory-specific benchmarks</td>
+                            <td>No (LangGraph-only)</td>
+                            <td>No</td>
+                            <td>Yes (MIT, library only)</td>
+                        </tr>
+                        <tr style="background: rgba(108, 92, 231, 0.08)">
+                            <td>
+                                <strong style="color: var(--accent2)"
+                                    >Graphonomous</strong
+                                >
+                            </td>
+                            <td>Continual learning + SCC graph</td>
+                            <td>$0 (bootstrapped)</td>
+                            <td>
+                                <strong style="color: var(--green)"
+                                    >90.4% LongMemEval SHR + F1/P/R + raw JSON +
+                                    <a
+                                        href="https://opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
+                                        style="color: var(--green)"
+                                        >reproduction script</a
+                                    ></strong
+                                >
+                            </td>
+                            <td>
+                                <strong style="color: var(--green)"
+                                    >Yes &mdash; MCP-native</strong
+                                >
+                            </td>
+                            <td>
+                                <strong style="color: var(--green)"
+                                    >Yes &mdash; unique</strong
+                                >
+                            </td>
+                            <td>Yes (npm)</td>
+                        </tr>
+                    </table>
+                    <p class="caveat">
+                        GitHub star counts and exact funding figures fluctuate;
+                        figures shown are best-available estimates. Verify
+                        current numbers before citing externally.
+                    </p>
+                </div>
+
+                <div class="comp-grid" style="margin-top: 1rem">
+                    <div class="card">
+                        <h3 style="color: var(--green)">
+                            Differentiation strengths
+                        </h3>
+                        <p style="font-size: 0.88rem; color: var(--text2)">
+                            <strong>&kappa; (kappa) invariant</strong> &mdash;
+                            no competitor implements this. Detects circular
+                            dependencies in knowledge graphs using Tarjan's SCC
+                            algorithm. Routes agent inference: &kappa;=0 fast
+                            single-pass; &kappa;&gt;0 triggers deliberation with
+                            fault-line decomposition. Verified on 1.9M+ finite
+                            systems.<br /><br />
+                            <strong>22 MCP tools</strong> &mdash; richest MCP
+                            API surface in the category. Hindsight has ~6 tool
+                            categories, Mem0 has a simpler REST/SDK, Zep is
+                            cloud-first. Graphonomous exposes graph mutation,
+                            typed retrieval, goal management, coverage queries,
+                            consolidation, topology analysis, and attention
+                            dispatch &mdash; all as MCP tools.<br /><br />
+                            <strong>Goal management + attention engine</strong>
+                            &mdash; only Graphonomous treats goals as
+                            first-class graph citizens with epistemic coverage
+                            scoring (act/learn/escalate routing) and proactive
+                            attention dispatch (survey/triage/dispatch cycles).
+                            Zero competitors offer this.<br /><br />
+                            <strong>11 interactive A/B demos</strong> &mdash;
+                            only 4.8% of SaaS companies offer interactive demos
+                            (Navattic 2025). Interactive demos drive 25% higher
+                            conversion, 70% more trial signups, and 7.2&times;
+                            more engagement than video demos. No direct
+                            competitor has an interactive demo suite &mdash;
+                            Mem0, Zep, Letta rely on docs/API playgrounds.
+                            Cognee has a playground in development.<br /><br />
+                            <strong>Elixir/OTP backbone</strong> &mdash; built
+                            for concurrency and fault-tolerance where
+                            competitors use Python/TypeScript. OTP supervision
+                            trees provide self-healing runtime.<br /><br />
+                            <strong>Edge-native</strong> &mdash; SQLite +
+                            sqlite-vec runs on a Raspberry Pi. Hindsight
+                            requires Docker, Zep requires Neo4j, Mem0 paywalls
+                            graph memory behind $249/mo.<br /><br />
+                            <strong
+                                >Outcome learning with causal
+                                attribution</strong
+                            >
+                            &mdash; explicit causal_parent_ids linking outcomes
+                            back to beliefs. Confidence updates propagate
+                            through the causal chain. No competitor has this
+                            granularity.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--coral)">Gaps to close</h3>
+                        <p style="font-size: 0.88rem; color: var(--text2)">
+                            <strong>Community size</strong> &mdash; Mem0 (41K
+                            stars), Cognee (12K stars), Letta (~12&ndash;15K
+                            stars), Hindsight (3.8K stars) all have larger
+                            communities. Graphonomous is pre-traction. Registry
+                            listings (Smithery, MCP.so, PulseMCP, Glama,
+                            mcp-get) would change this quickly.<br /><br />
+                            <strong style="color: var(--green)"
+                                >LongMemEval benchmark &mdash; CLOSED</strong
+                            >
+                            &mdash; Graphonomous achieves
+                            <strong>90.4% Session Hit Rate</strong> on
+                            LongMemEval (neural, 100 questions), within 1pp of
+                            Hindsight&rsquo;s 91.4% SOTA. Beats Zep
+                            (~63&ndash;67%), Letta (~50&ndash;80%), and GPT-4
+                            128K (~62&ndash;65%). Full results in
+                            <a
+                                href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval"
+                                >OS-E001 &sect;4.5</a
+                            >.<br /><br />
+                            <strong>Revenue signal</strong> &mdash; every funded
+                            competitor has either a paid tier or clear
+                            monetization path. Mem0 from $19/mo (graph at
+                            $249/mo), Zep from $25/mo. A managed cloud or pro
+                            tier is the next investor milestone.<br /><br />
+                            <strong>LLM provider breadth</strong> &mdash;
+                            Hindsight supports OpenAI, Anthropic, Gemini, Groq,
+                            Ollama out of box. Graphonomous uses local
+                            embeddings (all-MiniLM-L6-v2) which is an advantage
+                            for edge but limits cloud flexibility.<br /><br />
+                            <strong>Phase 3 deferred</strong> &mdash; Postgres
+                            adapter, Phoenix dashboard, and federation are
+                            designed but not implemented.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1rem">
+                    <h3>
+                        Funding comparables in agent memory (2024&ndash;2026)
+                    </h3>
+                    <table>
+                        <tr>
+                            <th>Company</th>
+                            <th>Raised</th>
+                            <th>Valuation</th>
+                            <th>Stage when funded</th>
+                            <th>Key insight</th>
+                        </tr>
+                        <tr>
+                            <td>Mem0</td>
+                            <td>$24M (Series A)</td>
+                            <td>$100M+ est.</td>
+                            <td>41K stars + AWS partnership + cloud API</td>
+                            <td>Vector-first, graph paywalled at $249/mo</td>
+                        </tr>
+                        <tr>
+                            <td>Letta (MemGPT)</td>
+                            <td>$10M (Felicis)</td>
+                            <td>$70M</td>
+                            <td>Research paper + prototype</td>
+                            <td>Funded at paper stage; Jeff Dean angel</td>
+                        </tr>
+                        <tr>
+                            <td>Cognee</td>
+                            <td>$7.5M (Pebblebed)</td>
+                            <td>Not disclosed</td>
+                            <td>Open-source + 70+ deployments</td>
+                            <td>
+                                38+ connectors, multi-modal; OpenAI/FAIR
+                                founders as angels
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hindsight (Vectorize)</td>
+                            <td>$3.6M (True Ventures)</td>
+                            <td>Not disclosed</td>
+                            <td>MCP-native + 91.4% LongMemEval SOTA</td>
+                            <td>Closest MCP competitor; 3.8K stars</td>
+                        </tr>
+                        <tr>
+                            <td>Higher Order Co (Bend)</td>
+                            <td>~$4.5M (reported)</td>
+                            <td>~$60M</td>
+                            <td>Research + Bend1 prototype</td>
+                            <td>Bend2 not shipped</td>
+                        </tr>
+                        <tr>
+                            <td>CrewAI</td>
+                            <td>$18M (Series A)</td>
+                            <td>Not disclosed</td>
+                            <td>Multi-agent orchestration OSS</td>
+                            <td>Role-based agent collaboration</td>
+                        </tr>
+                        <tr style="background: rgba(108, 92, 231, 0.08)">
+                            <td>
+                                <strong style="color: var(--accent2)"
+                                    >Graphonomous / [&]</strong
+                                >
+                            </td>
+                            <td>$0</td>
+                            <td>&mdash;</td>
+                            <td>
+                                <strong
+                                    >Working MCP server + verified theory + npm
+                                    + 11 demos</strong
+                                >
+                            </td>
+                            <td>
+                                More shipped than several funded peers; $45M+ in
+                                direct competitor funding validates market
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="highlight-box" style="margin-top: 1rem">
+                        <strong>Investor insight:</strong> Multiple competitors
+                        received significant funding at the research-paper or
+                        prototype stage. Graphonomous has a
+                        <em>working product</em> with
+                        <em>novel verified theory</em> and
+                        <em>zero external funding</em>. The asymmetry between
+                        what's built and what's raised is the opportunity.
+                    </div>
+                    <p class="caveat">
+                        Funding figures sourced from TechCrunch, Crunchbase, and
+                        public announcements. Some amounts are
+                        reported/estimated and may not reflect exact figures.
+                        "Reported" indicates the figure comes from press
+                        coverage rather than confirmed SEC filings.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- FULL PORTFOLIO -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Complete ecosystem portfolio</h2>
+                <p class="section-sub">
+                    14 projects across the full AI agent operationalization
+                    stack
+                </p>
+
+                <div class="card" style="overflow-x: auto">
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Category</th>
+                            <th>Stage</th>
+                            <th>Tech</th>
+                            <th>Grade</th>
+                            <th>Progress</th>
+                        </tr>
+                        <tr style="background: rgba(0, 184, 148, 0.06)">
+                            <td>1</td>
+                            <td><strong>graphonomous</strong></td>
+                            <td>
+                                <span class="tag">Agent memory</span
+                                ><span class="tag">MCP</span>
+                            </td>
+                            <td><span class="badge shipped">Alpha</span></td>
+                            <td>Elixir/OTP + SQLite</td>
+                            <td><span class="badge a-plus">A</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill green"
+                                        style="width: 70%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="background: rgba(0, 206, 201, 0.06)">
+                            <td>2</td>
+                            <td><strong>bendscript.com</strong></td>
+                            <td>
+                                <span class="tag">Knowledge graph</span
+                                ><span class="tag">IDE</span>
+                            </td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>SvelteKit + Supabase</td>
+                            <td><span class="badge a">A-</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill teal"
+                                        style="width: 60%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>WebHost.Systems</strong></td>
+                            <td>
+                                <span class="tag">Agent hosting</span
+                                ><span class="tag">Multi-runtime</span>
+                            </td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>Node.js + React + Supabase</td>
+                            <td><span class="badge b-plus">B</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill amber"
+                                        style="width: 40%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>AmpersandBoxDesign</strong></td>
+                            <td>
+                                <span class="tag">[&] Protocol</span
+                                ><span class="tag">CLI</span>
+                            </td>
+                            <td><span class="badge ref">Ref Impl</span></td>
+                            <td>Elixir CLI</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 50%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>fleetprompt.com</strong></td>
+                            <td>
+                                <span class="tag">Agent marketplace</span
+                                ><span class="tag">Discovery</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir/OTP + Phoenix (planned)</td>
+                            <td><span class="badge a">A-</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 20%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>delegatic.com</strong></td>
+                            <td>
+                                <span class="tag">Governance</span
+                                ><span class="tag">Policy engine</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir/OTP + Phoenix (planned)</td>
+                            <td><span class="badge a">A-</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 18%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>specprompt.com</strong></td>
+                            <td>
+                                <span class="tag">Spec standard</span
+                                ><span class="tag">Toolchain</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir + TypeScript (planned)</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 18%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>agentelic.com</strong></td>
+                            <td>
+                                <span class="tag">Agent builder</span
+                                ><span class="tag">CI/CD</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir/OTP (planned)</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 15%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>deliberatic.com</strong></td>
+                            <td>
+                                <span class="tag">Multi-agent debate</span
+                                ><span class="tag">Consensus</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Protocol (transport-agnostic)</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 15%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><strong>agentromatic.com</strong></td>
+                            <td>
+                                <span class="tag">Orchestration</span
+                                ><span class="tag">Reputation</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir/OTP (planned)</td>
+                            <td><span class="badge b">B</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill coral"
+                                        style="width: 12%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><strong>opensentience.org</strong></td>
+                            <td>
+                                <span class="tag">Runtime</span
+                                ><span class="tag">Research protocols</span
+                                ><span class="tag">Governance</span>
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Elixir/OTP (planned)</td>
+                            <td><span class="badge b-plus">B+</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill purple"
+                                        style="width: 15%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><strong>ticktickclock.com</strong></td>
+                            <td>
+                                <span class="tag">Temporal intelligence</span
+                                ><span class="tag">Anomaly detection</span>
+                            </td>
+                            <td><span class="badge concept">Concept</span></td>
+                            <td>Elixir/OTP + TimescaleDB (planned)</td>
+                            <td><span class="badge b">B</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill coral"
+                                        style="width: 10%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><strong>geofleetic.com</strong></td>
+                            <td>
+                                <span class="tag">Spatial intelligence</span
+                                ><span class="tag">Fleet</span>
+                            </td>
+                            <td><span class="badge concept">Concept</span></td>
+                            <td>Elixir/OTP + PostGIS (planned)</td>
+                            <td><span class="badge b">B</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill coral"
+                                        style="width: 8%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td><strong>graphonomous.com</strong></td>
+                            <td><span class="tag">Marketing site</span></td>
+                            <td><span class="badge shipped">Live</span></td>
+                            <td>Static HTML + demo</td>
+                            <td><span class="badge a">A-</span></td>
+                            <td>
+                                <div class="meter">
+                                    <div
+                                        class="fill green"
+                                        style="width: 80%"
+                                    ></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Shared infrastructure:</strong> All Supabase-backed
+                    products share a single instance via
+                    <code>ampersand-supabase/</code>. 9 PostgreSQL schemas
+                    (amp.*, kag.*, webhost.*, fleet.*, geo.*, temporal.*,
+                    orchestrate.*, govern.*, agentelic.*) with shared auth and
+                    workspace-based multi-tenancy. One
+                    <code>supabase start</code> runs the entire data layer.
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- PROTOCOL SERIES ARCHITECTURE -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Protocol series architecture</h2>
+                <p class="section-sub">
+                    Composable, independently adoptable layers &mdash; unlike
+                    monolithic competitors
+                </p>
+
+                <div class="card">
+                    <table>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Project</th>
+                            <th>Function</th>
+                            <th>Status</th>
+                            <th>Comparable companies</th>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Specification</td>
+                            <td>specprompt.com</td>
+                            <td>
+                                Open YAML+MD format for agent behavior specs
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>GitHub Spec Kit, AWS Kiro</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Build &amp; Test</td>
+                            <td>agentelic.com</td>
+                            <td>
+                                Spec-driven build pipeline: parse &rarr;
+                                generate &rarr; test &rarr; deploy
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>LangChain, CrewAI</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">UI / IDE</td>
+                            <td>bendscript.com</td>
+                            <td>
+                                Interactive knowledge graph editor + KAG server
+                            </td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>Cursor, Replit</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Discovery</td>
+                            <td>fleetprompt.com</td>
+                            <td>
+                                Agent marketplace with trust scoring &amp;
+                                version control
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Smithery, MCP.so, Lindy</td>
+                        </tr>
+                        <tr style="background: rgba(0, 206, 201, 0.06)">
+                            <td style="font-weight: 600; color: var(--teal)">
+                                Knowledge
+                            </td>
+                            <td>graphonomous</td>
+                            <td>
+                                Continual learning graph + &kappa; invariant +
+                                outcome loops
+                            </td>
+                            <td><span class="badge shipped">Alpha</span></td>
+                            <td>Mem0, Zep, Letta, Cognee</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Deliberation</td>
+                            <td>deliberatic.com</td>
+                            <td>
+                                Structured multi-agent debate with Byzantine
+                                consensus
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Academic only</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Coordination</td>
+                            <td>delegatic.com</td>
+                            <td>
+                                Org hierarchy, monotonic policy inheritance,
+                                audit trails
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>No direct competitor</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Orchestration</td>
+                            <td>agentromatic.com</td>
+                            <td>
+                                Autonomous task orchestration + reputation
+                                engine
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>CrewAI, AutoGen</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Hosting</td>
+                            <td>WebHost.Systems</td>
+                            <td>
+                                Multi-runtime agent deployment (Cloudflare + AWS
+                                AgentCore)
+                            </td>
+                            <td><span class="badge beta">Beta</span></td>
+                            <td>E2B, Modal</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Runtime</td>
+                            <td>opensentience.org</td>
+                            <td>
+                                8 cognitive protocols (memory, routing,
+                                deliberation, attention, tiers, shim,
+                                adversarial robustness, agent harness)
+                            </td>
+                            <td><span class="badge spec">Spec</span></td>
+                            <td>Letta runtime</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Spatial</td>
+                            <td>geofleetic.com</td>
+                            <td>
+                                Fleet intelligence, route optimization,
+                                geofencing
+                            </td>
+                            <td><span class="badge concept">Concept</span></td>
+                            <td>Greenfield</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600">Temporal</td>
+                            <td>ticktickclock.com</td>
+                            <td>
+                                Multi-timescale anomaly detection &amp;
+                                forecasting
+                            </td>
+                            <td><span class="badge concept">Concept</span></td>
+                            <td>Greenfield</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>Composability advantage:</strong> Each layer can be
+                    adopted independently. Third parties can integrate at any
+                    point without buying the entire stack. This is
+                    architecturally impossible with monolithic competitors. The
+                    [&] Protocol (AmpersandBoxDesign) is the shared capability
+                    composition language that connects all layers.
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- MARKET CONTEXT -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Market context &mdash; why now</h2>
+                <p class="section-sub">
+                    Converging macro trends at a critical inflection point for
+                    agent infrastructure
+                </p>
+
+                <div
+                    class="comp-grid"
+                    style="
+                        grid-template-columns: repeat(
+                            auto-fit,
+                            minmax(220px, 1fr)
+                        );
+                    "
+                >
+                    <div class="card">
+                        <h3 style="color: var(--accent2)">
+                            MCP protocol adoption
+                        </h3>
+                        <p style="font-size: 0.85rem; color: var(--text2)">
+                            Model Context Protocol has been adopted by every
+                            major AI provider: Anthropic, OpenAI, Google,
+                            Microsoft. Now under broader governance. Claude
+                            Code, Cursor, Zed, and VS Code all ship
+                            MCP-compatible tooling by default. Graphonomous is
+                            MCP-native.
+                        </p>
+                        <div style="margin-top: 0.75rem; font-size: 0.8rem">
+                            <span style="color: var(--green); font-weight: 600"
+                                >Rapid growth</span
+                            >
+                            <span style="color: var(--text3)"
+                                >across all AI developer tools</span
+                            >
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--teal)">
+                            Agent memory gold rush
+                        </h3>
+                        <p style="font-size: 0.85rem; color: var(--text2)">
+                            Mem0 raised ~$24M. Zep, Letta, Cognee all VC-backed.
+                            Gartner projects 33&ndash;40% of enterprise apps
+                            will include AI agents. The agent orchestration
+                            market is accelerating faster than initial
+                            projections.
+                        </p>
+                        <div style="margin-top: 0.75rem; font-size: 0.8rem">
+                            <span style="color: var(--green); font-weight: 600"
+                                >$47B+ AI agent market by 2030</span
+                            >
+                            <span style="color: var(--text3)"
+                                >(~44% CAGR, MarketsandMarkets)</span
+                            >
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--amber)">
+                            Operationalization gap
+                        </h3>
+                        <p style="font-size: 0.85rem; color: var(--text2)">
+                            Enterprise AI is failing at ops, not capability.
+                            LangChain surveys show only ~52% run offline evals;
+                            32% cite quality as the #1 barrier. Gartner warns
+                            40% of agentic projects will be scrapped. The
+                            missing layer is engineering process: spec, test,
+                            deploy, govern, learn.
+                        </p>
+                        <div style="margin-top: 0.75rem; font-size: 0.8rem">
+                            <span style="color: var(--amber); font-weight: 600"
+                                >This is what [&] builds</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <p class="caveat" style="margin-top: 0.5rem">
+                    Market size estimates from MarketsandMarkets, Gartner, and
+                    industry reports. CAGR figures are forward-looking
+                    projections and subject to revision. Enterprise adoption
+                    percentages are Gartner predictions from 2024&ndash;2025
+                    press releases.
+                </p>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- DEVELOPMENT STAGES -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Development stages &mdash; what each phase unlocks</h2>
+                <p class="section-sub">
+                    Clear milestones for investors and contributors at each
+                    commitment level
+                </p>
+
+                <div class="card">
+                    <h3>
+                        <span class="badge shipped">Current</span> Phase 0
+                        &mdash; proof of concept (bootstrapped, $0 external)
+                    </h3>
+                    <p
+                        style="
+                            font-size: 0.88rem;
+                            color: var(--text2);
+                            margin-bottom: 1rem;
+                        "
+                    >
+                        Graphonomous shipped on npm with 22 MCP tools and novel
+                        &kappa; invariant. BendScript beta with 15K+ LOC,
+                        working canvas, AI synthesis, and 6 MCP tools.
+                        WebHost.Systems beta with React frontend and OpenRouter
+                        integration. AmpersandBoxDesign reference CLI for [&]
+                        Protocol validation. Shared Supabase data layer with 9
+                        product schemas. 14-project ecosystem with comprehensive
+                        specs.
+                    </p>
+                    <div class="stage-track">
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <span class="badge a">Next</span> Phase 1 &mdash;
+                        registry + adoption ($0&ndash;$50K)
+                    </h3>
+                    <p
+                        style="
+                            font-size: 0.88rem;
+                            color: var(--text2);
+                            margin-bottom: 1rem;
+                        "
+                    >
+                        List Graphonomous on Smithery, MCP.so, PulseMCP.
+                        <span style="color: var(--green)"
+                            >&#10003; LongMemEval benchmark published (90.4%
+                            SHR).</span
+                        >
+                        Get 10+ external users. Document integration guides for
+                        Claude Code, Cursor, Zed. Harden BendScript for
+                        production use. Add test coverage to WebHost.Systems.
+                    </p>
+                    <div class="stage-track">
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step active"></div>
+                        <div class="step active"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                        <div class="step future"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <span class="badge b-plus">Target</span> Phase 2 &mdash;
+                        second product + revenue ($50K&ndash;$500K)
+                    </h3>
+                    <p
+                        style="
+                            font-size: 0.88rem;
+                            color: var(--text2);
+                            margin-bottom: 1rem;
+                        "
+                    >
+                        Ship FleetPrompt as agent/tool discovery marketplace.
+                        Launch Graphonomous Cloud with managed tier ($19/mo
+                        starter, $99/mo pro). Build Delegatic coordination
+                        layer. First dollar of MRR. Target 500+ weekly active
+                        users across products.
+                    </p>
+                    <div class="stage-track">
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step active"></div>
+                        <div class="step active"></div>
+                        <div class="step future"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <span class="badge concept">Vision</span> Phase 3
+                        &mdash; full stack + scale ($500K&ndash;$2M)
+                    </h3>
+                    <p
+                        style="
+                            font-size: 0.88rem;
+                            color: var(--text2);
+                            margin-bottom: 1rem;
+                        "
+                    >
+                        Graphonomous Postgres adapter + Phoenix dashboard +
+                        federation. BendScript cloud IDE with collaboration.
+                        Agentelic build pipeline (spec &rarr; generate &rarr;
+                        test &rarr; deploy). Complete OpenSentience runtime.
+                        Enterprise contracts. Target 5,000+ WAU, $50K+ MRR.
+                    </p>
+                    <div class="stage-track">
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step done"></div>
+                        <div class="step active"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- SCORECARD -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Portfolio scorecard</h2>
+                <p class="section-sub">Honest assessment across 8 dimensions</p>
+
+                <div class="card" style="overflow-x: auto">
+                    <table>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Grade</th>
+                            <th>Rationale</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical Vision</strong></td>
+                            <td>
+                                <span
+                                    class="badge a-plus"
+                                    style="font-size: 0.8rem"
+                                    >A</span
+                                >
+                            </td>
+                            <td>
+                                Full-stack coherence from spec to governance to
+                                learning. Formal foundations (&kappa;
+                                invariant). Protocol-level thinking rare in the
+                                market.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Execution (Built)</strong></td>
+                            <td>
+                                <span class="badge a" style="font-size: 0.8rem"
+                                    >A-</span
+                                >
+                            </td>
+                            <td>
+                                3 working codebases + reference impl.
+                                Graphonomous: 22 MCP tools, zero tech debt,
+                                <a
+                                    href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
+                                    >published benchmarks</a
+                                >
+                                (OS-E001 + LongMemEval: 90.4% SHR, within 1pp of
+                                Hindsight SOTA). BendScript feature-rich beta.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Execution (Remaining)</strong></td>
+                            <td>
+                                <span class="badge b" style="font-size: 0.8rem"
+                                    >C+</span
+                                >
+                            </td>
+                            <td>
+                                10 spec-only projects. Enormous implementation
+                                surface. Ambitious but realistic with Elixir/OTP
+                                and spec-first methodology.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Timing</strong></td>
+                            <td>
+                                <span
+                                    class="badge a-plus"
+                                    style="font-size: 0.8rem"
+                                    >A-</span
+                                >
+                            </td>
+                            <td>
+                                Agent operationalization is the 2026 constraint.
+                                MCP adoption accelerating. Enterprise demand for
+                                governance/quality validated by Gartner.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competitive Position</strong></td>
+                            <td>
+                                <span class="badge a" style="font-size: 0.8rem"
+                                    >B+</span
+                                >
+                            </td>
+                            <td>
+                                Governance + continual learning + &kappa;
+                                routing are defensible differentiators. But
+                                LangChain/MCP have massive adoption head starts.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revenue Potential</strong></td>
+                            <td>
+                                <span
+                                    class="badge b-plus"
+                                    style="font-size: 0.8rem"
+                                    >B</span
+                                >
+                            </td>
+                            <td>
+                                $47B+ TAM. Clear monetization paths (managed
+                                cloud, marketplace commission, enterprise
+                                tiers). But $0 revenue today.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Profile</strong></td>
+                            <td>
+                                <span class="badge b" style="font-size: 0.8rem"
+                                    >B-</span
+                                >
+                            </td>
+                            <td>
+                                Scope risk (14 projects), solo founder
+                                bandwidth, adoption risk, Elixir hiring pool.
+                                Mitigated by spec-first approach and AI-assisted
+                                development.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Investability</strong></td>
+                            <td>
+                                <span class="badge a" style="font-size: 0.8rem"
+                                    >B+</span
+                                >
+                            </td>
+                            <td>
+                                Seed-ready on core products. Working product
+                                with novel theory at $0 funding = significant
+                                arbitrage vs. funded peers.
+                            </td>
+                        </tr>
+                    </table>
+                    <div
+                        style="
+                            text-align: right;
+                            margin-top: 1rem;
+                            font-size: 1rem;
+                            color: var(--text2);
+                        "
+                    >
+                        Composite:
+                        <strong style="color: var(--accent2); font-size: 1.3rem"
+                            >7.5 / 10</strong
+                        >
+                        <span
+                            style="
+                                font-size: 0.8rem;
+                                display: block;
+                                margin-top: 0.25rem;
+                            "
+                            >Strong technical foundation with empirical
+                            evidence, pre-revenue, high-potential coherent
+                            stack</span
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- INVESTMENT THESIS -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Investment thesis &mdash; the opportunity</h2>
+                <p class="section-sub">
+                    Why [&] represents asymmetric upside for early investors and
+                    contributors
+                </p>
+
+                <div class="comp-grid">
+                    <div class="card">
+                        <h3 style="color: var(--green)">Bull case</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    Comparable: Letta (funded at paper stage)
+                                </td>
+                                <td class="right" style="color: var(--green)">
+                                    $5M+ val
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Comparable: HOC/Bend (~$60M val reported, no
+                                    shipped Bend2)
+                                </td>
+                                <td class="right" style="color: var(--green)">
+                                    $10M+ val
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Comparable: Mem0 (~$24M raised, $100M+ val
+                                    est.)
+                                </td>
+                                <td class="right" style="color: var(--green)">
+                                    $20M+ val
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>With 3 products shipping + 500 users</td>
+                                <td class="right" style="color: var(--green)">
+                                    $5&ndash;15M val
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>With full stack at enterprise scale</td>
+                                <td class="right" style="color: var(--green)">
+                                    $50&ndash;150M val
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--coral)">Risk factors</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    Solo founder &mdash; execution bandwidth
+                                    limited
+                                </td>
+                                <td class="right" style="color: var(--amber)">
+                                    Medium
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    $0 revenue &mdash; pre product-market fit
+                                </td>
+                                <td class="right" style="color: var(--coral)">
+                                    High
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Crowded agent memory market</td>
+                                <td class="right" style="color: var(--amber)">
+                                    Medium
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Elixir/OTP niche (smaller hiring pool)</td>
+                                <td class="right" style="color: var(--amber)">
+                                    Medium
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>14 projects is ambitious scope</td>
+                                <td class="right" style="color: var(--amber)">
+                                    Medium
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MCP standard could fragment</td>
+                                <td class="right" style="color: var(--text3)">
+                                    Low
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1rem">
+                    <h3>Seed round structure</h3>
+                    <table>
+                        <tr>
+                            <th>Use</th>
+                            <th class="right">Amount</th>
+                            <th>Delivers</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Engineering (3 Elixir + 1 React/Svelte FTE, 6
+                                months)
+                            </td>
+                            <td class="right">$500K</td>
+                            <td>
+                                Graphonomous 1.0, WebHost production, Agentelic
+                                alpha
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Product + Design (1 FTE)</td>
+                            <td class="right">$100K</td>
+                            <td>User research, UX, onboarding flows</td>
+                        </tr>
+                        <tr>
+                            <td>GTM + DevRel</td>
+                            <td class="right">$150K</td>
+                            <td>
+                                First 3 enterprise pilots, developer content,
+                                registry listings
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Infrastructure + Ops</td>
+                            <td class="right">$100K</td>
+                            <td>Supabase cloud, monitoring, security audit</td>
+                        </tr>
+                        <tr style="background: rgba(108, 92, 231, 0.06)">
+                            <td><strong>Total (Seed)</strong></td>
+                            <td class="right"><strong>$850K</strong></td>
+                            <td>
+                                <strong
+                                    >Product-market fit on 3 core
+                                    products</strong
+                                >
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card" style="margin-top: 1rem">
+                    <h3>12-month success metrics</h3>
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="right">Current</th>
+                            <th class="right">Target</th>
+                        </tr>
+                        <tr>
+                            <td>Graphonomous active installs</td>
+                            <td class="right">Pre-registry</td>
+                            <td class="right">500+</td>
+                        </tr>
+                        <tr>
+                            <td>WebHost agents deployed</td>
+                            <td class="right">Beta testing</td>
+                            <td class="right">100+</td>
+                        </tr>
+                        <tr>
+                            <td>BendScript DAU</td>
+                            <td class="right">MVP testing</td>
+                            <td class="right">100+</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise pilots signed</td>
+                            <td class="right">0</td>
+                            <td class="right">3+</td>
+                        </tr>
+                        <tr>
+                            <td>Ecosystem ARR</td>
+                            <td class="right">$0</td>
+                            <td class="right">$250K+</td>
+                        </tr>
+                        <tr>
+                            <td>MCP registry listings</td>
+                            <td class="right">0</td>
+                            <td class="right">3+ registries</td>
+                        </tr>
+                        <tr>
+                            <td>Published benchmarks</td>
+                            <td class="right" style="color: var(--green)">
+                                2 (OS-E001 + LongMemEval)
+                            </td>
+                            <td class="right" style="color: var(--green)">
+                                &#10003; Done &mdash; 90.4% SHR
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- CONTRIBUTOR OPPORTUNITIES -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Contributor opportunities</h2>
+                <p class="section-sub">
+                    Highest-leverage ways to accelerate the ecosystem
+                </p>
+
+                <div class="card">
+                    <table>
+                        <tr>
+                            <th>Contribution</th>
+                            <th>Impact</th>
+                            <th>Effort</th>
+                            <th>Best for</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong
+                                    >List Graphonomous on MCP registries</strong
+                                >
+                                (Smithery, MCP.so, PulseMCP)
+                            </td>
+                            <td style="color: var(--green)">Critical</td>
+                            <td>1&ndash;2 days</td>
+                            <td>Anyone</td>
+                        </tr>
+                        <tr style="opacity: 0.6; text-decoration: line-through">
+                            <td>
+                                <strong>Run LongMemEval</strong> for direct
+                                competitive comparison
+                            </td>
+                            <td style="color: var(--green)">Done</td>
+                            <td>
+                                <span style="color: var(--green)"
+                                    >&#10003;</span
+                                >
+                            </td>
+                            <td>
+                                90.4% SHR &mdash;
+                                <a
+                                    href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval"
+                                    >results</a
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Integration guides</strong> for Claude
+                                Code, Cursor, Zed
+                            </td>
+                            <td style="color: var(--amber)">High</td>
+                            <td>3&ndash;5 days each</td>
+                            <td>Technical writers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>WebHost.Systems test coverage</strong>
+                                (currently 12 files)
+                            </td>
+                            <td style="color: var(--amber)">High</td>
+                            <td>1&ndash;2 weeks</td>
+                            <td>React/TS developers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Design Graphonomous Cloud</strong>
+                                (managed hosting architecture)
+                            </td>
+                            <td style="color: var(--amber)">High</td>
+                            <td>2&ndash;3 weeks</td>
+                            <td>Infrastructure engineers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Ship FleetPrompt MVP</strong> (agent
+                                discovery directory)
+                            </td>
+                            <td style="color: var(--amber)">High</td>
+                            <td>4&ndash;6 weeks</td>
+                            <td>Elixir/Phoenix developers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>&kappa; invariant whitepaper</strong>
+                                for academic credibility
+                            </td>
+                            <td style="color: var(--accent2)">Medium</td>
+                            <td>2&ndash;4 weeks</td>
+                            <td>Math/CS researchers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong
+                                    >Build Delegatic coordination layer</strong
+                                >
+                            </td>
+                            <td style="color: var(--accent2)">Medium</td>
+                            <td>8&ndash;12 weeks</td>
+                            <td>Elixir/OTP engineers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>BendScript production hardening</strong>
+                            </td>
+                            <td style="color: var(--accent2)">Medium</td>
+                            <td>2&ndash;4 weeks</td>
+                            <td>SvelteKit developers</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ================================================================== -->
+            <!-- RESEARCH SOURCES -->
+            <!-- ================================================================== -->
+            <section>
+                <h2>Research sources &amp; methodology</h2>
+                <p class="section-sub">
+                    Data integrity notes for due diligence
+                </p>
+
+                <div
+                    class="card"
+                    style="
+                        font-size: 0.82rem;
+                        color: var(--text2);
+                        line-height: 1.8;
+                    "
+                >
+                    <strong>Codebase metrics (verified 2026-03-30):</strong
+                    ><br />
+                    &bull; All file counts, LOC, test counts, and MCP tool
+                    counts validated directly from the source tree<br />
+                    &bull; Graphonomous: 115 .ex files, 22 test files, 22 MCP
+                    tools, 8 dependencies, v0.1.12<br />
+                    &bull; BendScript: 57 source files, ~15,091 LOC, 26+ test
+                    suites, 6 MCP tools<br />
+                    &bull; WebHost.Systems: 39 source files, ~7,714 LOC, 12 test
+                    files<br />
+                    &bull; AmpersandBoxDesign: 17 Elixir files, working CLI
+                    tool<br />
+                    &bull; &kappa; invariant claim (1,926,351 systems) sourced
+                    from AmpersandBoxDesign/prompts/KAPPA_BUILD_PROMPT.md and
+                    opensentience.org/kappa_proof.js<br />
+                    &bull; OS-E001 benchmark (2026-04-02): 12,880 edges, 22
+                    SCCs, max &kappa;=27, graph beats flat by +0.103 recall,
+                    100% pass rate, 22/22 MCP tools, 27K nodes<br />
+                    &bull; LongMemEval benchmark (2026-04-02):
+                    <strong>90.4% Session Hit Rate</strong> (neural, 100
+                    questions on oracle split, 265 sessions, 3,094 turns). QA
+                    Proxy 73.0%. Temporal Reasoning SHR 94.4%, Multi-Session SHR
+                    85.0%. Trigram ablation: 2.8% SHR (32&times; worse).
+                    Reference: arXiv:2410.10813 (ICLR 2025)<br />
+                    &bull; Graphonomous is the only agent memory system
+                    publishing raw retrieval F1/P/R <em>and</em> LongMemEval
+                    results with full reproduction scripts; competitors use QA
+                    accuracy (LLM-as-judge)<br /><br />
+
+                    <strong
+                        >Competitive benchmark data (approximate, from published
+                        papers &amp; blogs):</strong
+                    ><br />
+                    &bull; Hindsight (Vectorize):
+                    <strong>91.4% LongMemEval (SOTA, March 2026)</strong>;
+                    4-strategy retrieval + cross-encoder reranking; 3.8K GitHub
+                    stars<br />
+                    &bull; Mem0: entity extraction F1 0.85&ndash;0.92
+                    (internal); 41K GitHub stars; 186M API calls/quarter; AWS
+                    Agent SDK partner<br />
+                    &bull; Zep/Graphiti: DMR 0.82&ndash;0.88; LongMemEval
+                    ~63&ndash;67% QA accuracy; arXiv:2501.13956; ~5&ndash;8K
+                    stars<br />
+                    &bull; Letta (MemGPT): LOCOMO single-hop ~70&ndash;80%,
+                    multi-hop ~50&ndash;65%; ~12&ndash;15K stars; #1
+                    model-agnostic on Terminal-Bench<br />
+                    &bull; Cognee: claims ~20&ndash;30% improvement over naive
+                    RAG (no public F1); 12K stars; 70+ production deployments<br />
+                    &bull; LangMem: free MIT library for LangGraph; no
+                    standalone benchmarks<br />
+                    &bull; LongMemEval baseline (GPT-4 128k full context):
+                    ~62&ndash;65% overall<br /><br />
+
+                    <strong>Market data (sourced from public reports):</strong
+                    ><br />
+                    &bull; AI-driven knowledge management systems: $7.66B (2025)
+                    &rarr; $51.36B by 2030 (46.7% CAGR) &mdash; Market.us /
+                    TBRC<br />
+                    &bull; AI agent market $47.1B by 2030 (~44% CAGR) &mdash;
+                    MarketsandMarkets<br />
+                    &bull; 33&ndash;40% enterprise apps with AI agents &mdash;
+                    Gartner (2024&ndash;2025 predictions)<br />
+                    &bull; SF alone deployed $12.3B into developer tools across
+                    520+ deals in 2025<br />
+                    &bull; Total direct competitor funding in agent memory:
+                    ~$45M (Mem0 $24M + Letta $10M + Cognee $7.5M + Vectorize
+                    $3.6M)<br />
+                    &bull; Only 4.8% of SaaS companies offer interactive product
+                    demos (Navattic 2025); those who do see 25% higher
+                    conversion, 70% more trial signups<br /><br />
+
+                    <strong style="color: var(--amber)"
+                        >Methodology notes &amp; caveats:</strong
+                    ><br />
+                    &bull; Competitor funding figures marked "reported" come
+                    from press coverage, not SEC filings<br />
+                    &bull; GitHub star counts fluctuate; verify current numbers
+                    before citing externally<br />
+                    &bull; TAM projections are analyst estimates with wide
+                    confidence intervals<br />
+                    &bull; Valuation comparables are illustrative, not
+                    appraisals<br />
+                    &bull; Portfolio value estimates should be validated by
+                    professional appraisers for formal use<br />
+                    &bull; All forward-looking projections are subject to market
+                    conditions
+                </div>
+            </section>
+
+            <div class="footer">
+                <p>
+                    <strong>[&] Ampersand Box Design</strong> &middot;
+                    ampersandboxdesign.com
+                </p>
+                <p style="margin-top: 0.25rem">
+                    This document is for informational purposes. All valuations
+                    are estimates based on comparable market data and are not
+                    financial advice.
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.7rem">
+                    Generated March 30, 2026 &middot; Updated April 2, 2026
+                    (LongMemEval 90.4% SHR + OS-E001 benchmark results +
+                    competitive benchmark data) &middot; Codebase metrics
+                    verified from source &middot; Market data from public
+                    reports
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.7rem">
+                    <a
+                        href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
+                        >OS-E001: Full Empirical Evaluation</a
+                    >
+                    &middot;
+                    <a
+                        href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.md"
+                        >Source (Markdown)</a
+                    >
+                    &middot;
+                    <a href="graphonomous.com/demo/">Live Demo Suite</a>
+                    &middot;
+                    <a href="https://github.com/c-u-l8er/AmpersandBoxDesign"
+                        >GitHub</a
+                    >
+                </p>
+            </div>
+        </div>
+
+        <script>
+            // Animate cards on scroll
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.style.opacity = "1";
+                            e.target.style.transform = "translateY(0)";
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+
+            document.querySelectorAll(".card, .kpi").forEach((el) => {
+                el.style.opacity = "0";
+                el.style.transform = "translateY(16px)";
+                el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                observer.observe(el);
+            });
+        </script>
+    </body>
 </html>
