@@ -481,7 +481,7 @@
                 <div class="kpi coral">
                     <div class="label">Products shipped</div>
                     <div class="value">1 Alpha / 2 Beta</div>
-                    <div class="delta">Graphonomous v0.2.0 live on npm</div>
+                    <div class="delta">Graphonomous v0.3.3 live on npm</div>
                 </div>
                 <div class="kpi amber">
                     <div class="label">TAM (AI agents)</div>
@@ -490,14 +490,14 @@
                 </div>
                 <div class="kpi green">
                     <div class="label">MCP tools built</div>
-                    <div class="value">28</div>
-                    <div class="delta up">22 Graphonomous + 6 BendScript</div>
+                    <div class="value">29</div>
+                    <div class="delta up">23 Graphonomous + 6 BendScript</div>
                 </div>
                 <div class="kpi purple">
-                    <div class="label">LongMemEval SHR</div>
-                    <div class="value">90.4%</div>
+                    <div class="label">LongMemEval QA proxy</div>
+                    <div class="value">92.6%</div>
                     <div class="delta up">
-                        within 1pp of Hindsight SOTA &middot;
+                        98.7% SHR &middot; competitive on local-only hardware &middot;
                         <a
                             href="https://opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval"
                             style="color: var(--accent2)"
@@ -514,7 +514,7 @@
                 <h2>Graphonomous — flagship product deep dive</h2>
                 <p class="section-sub">
                     Continual learning knowledge graph engine &middot;
-                    MCP-native &middot; npm published &middot; v0.2.0 &middot;
+                    MCP-native &middot; npm published &middot; v0.3.3 &middot;
                     Elixir/OTP
                 </p>
 
@@ -629,7 +629,7 @@
                                 >
                             </td>
                             <td>
-                                Full 22/22 MCP tool coverage: codebase skills,
+                                Full 22/22 MCP tool coverage (455 tests): codebase skills,
                                 &kappa;-routing, novelty detection, attention
                                 engine, consolidation, coverage gate, learning
                                 pipeline, graph inspection, typed retrieval,
@@ -648,10 +648,11 @@
                             <td>
                                 12,880 edges &middot; 22 SCCs &middot;
                                 &kappa;=27 &middot; graph beats flat (+0.103
-                                recall) &middot; 100% pass rate &middot; 22/22
-                                MCP tools &middot;
+                                recall) &middot; 100% pass rate &middot; 28/28
+                                MCP tools &middot; GraphMemBench 120/120
+                                &middot;
                                 <strong style="color: var(--green)"
-                                    >90.4% LongMemEval SHR</strong
+                                    >92.6% LongMemEval QA + 98.7% SHR</strong
                                 >
                             </td>
                             <td class="right">10/10</td>
@@ -710,7 +711,7 @@
                 <h2>Active codebases — verified metrics</h2>
                 <p class="section-sub">
                     All numbers validated directly from the source tree on
-                    2026-04-02
+                    2026-04-06
                 </p>
 
                 <div class="card" style="overflow-x: auto">
@@ -883,12 +884,51 @@
                             <td>$3.6M seed (True Ventures)</td>
                             <td>
                                 <strong style="color: var(--coral)"
-                                    >91.4% LongMemEval (SOTA)</strong
+                                    >94.6% LongMemEval (v0.4.19, April 2026)</strong
                                 >
                             </td>
                             <td><strong>Yes &mdash; MCP-native</strong></td>
                             <td>No</td>
                             <td>Yes (MIT, Docker)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>agentmemory</strong></td>
+                            <td>Cloud-native agent memory</td>
+                            <td>Not disclosed</td>
+                            <td>
+                                <strong style="color: var(--coral)"
+                                    >96.2% LongMemEval (Opus 4.6)</strong
+                                >
+                            </td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OMEGA</strong></td>
+                            <td>Cloud-native agent memory</td>
+                            <td>Not disclosed</td>
+                            <td>
+                                <strong style="color: var(--coral)"
+                                    >95.4% LongMemEval (GPT-4.1)</strong
+                                >
+                            </td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mastra OM</strong></td>
+                            <td>Cloud-native agent memory</td>
+                            <td>Not disclosed</td>
+                            <td>
+                                <strong style="color: var(--coral)"
+                                    >94.9% LongMemEval (GPT-5-mini)</strong
+                                >
+                            </td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
                         </tr>
                         <tr>
                             <td><strong>Mem0</strong></td>
@@ -959,7 +999,7 @@
                             <td>$0 (bootstrapped)</td>
                             <td>
                                 <strong style="color: var(--green)"
-                                    >90.4% LongMemEval SHR + F1/P/R + raw JSON +
+                                    >92.6% LongMemEval QA proxy + 98.7% SHR + F1/P/R + raw JSON +
                                     <a
                                         href="https://opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
                                         style="color: var(--green)"
@@ -1000,13 +1040,16 @@
                             single-pass; &kappa;&gt;0 triggers deliberation with
                             fault-line decomposition. Verified on 1.9M+ finite
                             systems.<br /><br />
-                            <strong>22 MCP tools</strong> &mdash; richest MCP
+                            <strong>22 MCP tools, 455 tests</strong> &mdash; richest MCP
                             API surface in the category. Hindsight has ~6 tool
                             categories, Mem0 has a simpler REST/SDK, Zep is
                             cloud-first. Graphonomous exposes graph mutation,
                             typed retrieval, goal management, coverage queries,
                             consolidation, topology analysis, and attention
-                            dispatch &mdash; all as MCP tools.<br /><br />
+                            dispatch &mdash; all as MCP tools.
+                            <strong>6 graph algorithms</strong> (Dijkstra,
+                            Louvain, matching, DAG, incremental SCC,
+                            triangles).<br /><br />
                             <strong>Goal management + attention engine</strong>
                             &mdash; only Graphonomous treats goals as
                             first-class graph citizens with epistemic coverage
@@ -1052,9 +1095,10 @@
                                 >LongMemEval benchmark &mdash; CLOSED</strong
                             >
                             &mdash; Graphonomous achieves
-                            <strong>90.4% Session Hit Rate</strong> on
-                            LongMemEval (neural, 100 questions), within 1pp of
-                            Hindsight&rsquo;s 91.4% SOTA. Beats Zep
+                            <strong>92.6% QA proxy</strong> (98.7% SHR) on
+                            LongMemEval (neural, 100 questions), ~2pp behind
+                            Hindsight&rsquo;s 94.6% &mdash; competitive with all
+                            systems on local-only hardware. Beats Zep
                             (~63&ndash;67%), Letta (~50&ndash;80%), and GPT-4
                             128K (~62&ndash;65%). Full results in
                             <a
@@ -1118,7 +1162,7 @@
                             <td>Hindsight (Vectorize)</td>
                             <td>$3.6M (True Ventures)</td>
                             <td>Not disclosed</td>
-                            <td>MCP-native + 91.4% LongMemEval SOTA</td>
+                            <td>MCP-native + 94.6% LongMemEval (v0.4.19)</td>
                             <td>Closest MCP competitor; 3.8K stars</td>
                         </tr>
                         <tr>
@@ -1737,7 +1781,7 @@
                             margin-bottom: 1rem;
                         "
                     >
-                        Graphonomous shipped on npm with 22 MCP tools and novel
+                        Graphonomous shipped on npm with 22 MCP tools, 455 tests, and novel
                         &kappa; invariant. BendScript beta with 15K+ LOC,
                         working canvas, AI synthesis, and 6 MCP tools.
                         WebHost.Systems beta with React frontend and OpenRouter
@@ -1774,8 +1818,8 @@
                     >
                         List Graphonomous on Smithery, MCP.so, PulseMCP.
                         <span style="color: var(--green)"
-                            >&#10003; LongMemEval benchmark published (90.4%
-                            SHR).</span
+                            >&#10003; LongMemEval benchmark published (92.6%
+                            QA proxy, 98.7% SHR).</span
                         >
                         Get 10+ external users. Document integration guides for
                         Claude Code, Cursor, Zed. Harden BendScript for
@@ -1899,13 +1943,13 @@
                             </td>
                             <td>
                                 3 working codebases + reference impl.
-                                Graphonomous: 22 MCP tools, zero tech debt,
+                                Graphonomous: 22 MCP tools, 455 tests, zero tech debt,
                                 <a
                                     href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
                                     >published benchmarks</a
                                 >
-                                (OS-E001 + LongMemEval: 90.4% SHR, within 1pp of
-                                Hindsight SOTA). BendScript feature-rich beta.
+                                (OS-E001 + LongMemEval: 92.6% QA proxy, 98.7% SHR,
+                                competitive on local-only hardware). BendScript feature-rich beta.
                             </td>
                         </tr>
                         <tr>
@@ -2214,7 +2258,7 @@
                                 2 (OS-E001 + LongMemEval)
                             </td>
                             <td class="right" style="color: var(--green)">
-                                &#10003; Done &mdash; 90.4% SHR
+                                &#10003; Done &mdash; 92.6% QA + 98.7% SHR
                             </td>
                         </tr>
                     </table>
@@ -2261,10 +2305,10 @@
                                 >
                             </td>
                             <td>
-                                90.4% SHR &mdash;
+                                92.6% QA + 98.7% SHR &mdash;
                                 <a
                                     href="opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html#longmemeval"
-                                    >results</a
+                                    >results</
                                 >
                             </td>
                         </tr>
@@ -2356,8 +2400,8 @@
                     ><br />
                     &bull; All file counts, LOC, test counts, and MCP tool
                     counts validated directly from the source tree<br />
-                    &bull; Graphonomous: 115 .ex files, 22 test files, 22 MCP
-                    tools, 8 dependencies, v0.1.12<br />
+                    &bull; Graphonomous: 115 .ex files, 22 test files, 455 tests, 22 MCP
+                    tools, 8 dependencies, v0.3.3<br />
                     &bull; BendScript: 57 source files, ~15,091 LOC, 26+ test
                     suites, 6 MCP tools<br />
                     &bull; WebHost.Systems: 39 source files, ~7,714 LOC, 12 test
@@ -2367,13 +2411,13 @@
                     &bull; &kappa; invariant claim (1,926,351 systems) sourced
                     from AmpersandBoxDesign/prompts/KAPPA_BUILD_PROMPT.md and
                     opensentience.org/kappa_proof.js<br />
-                    &bull; OS-E001 benchmark (2026-04-02): 12,880 edges, 22
+                    &bull; OS-E001 benchmark (2026-04-06): 12,880 edges, 22
                     SCCs, max &kappa;=27, graph beats flat by +0.103 recall,
                     100% pass rate, 22/22 MCP tools, 27K nodes<br />
-                    &bull; LongMemEval benchmark (2026-04-02):
-                    <strong>90.4% Session Hit Rate</strong> (neural, 100
-                    questions on oracle split, 265 sessions, 3,094 turns). QA
-                    Proxy 73.0%. Temporal Reasoning SHR 94.4%, Multi-Session SHR
+                    &bull; LongMemEval benchmark (2026-04-06):
+                    <strong>92.6% QA proxy</strong> (98.7% SHR) (neural, 100
+                    questions on oracle split, 265 sessions, 3,094 turns).
+                    Temporal Reasoning SHR 94.4%, Multi-Session SHR
                     85.0%. Trigram ablation: 2.8% SHR (32&times; worse).
                     Reference: arXiv:2410.10813 (ICLR 2025)<br />
                     &bull; Graphonomous is the only agent memory system
@@ -2386,9 +2430,15 @@
                         papers &amp; blogs):</strong
                     ><br />
                     &bull; Hindsight (Vectorize):
-                    <strong>91.4% LongMemEval (SOTA, March 2026)</strong>;
+                    <strong>94.6% LongMemEval (v0.4.19, April 2026)</strong>;
                     4-strategy retrieval + cross-encoder reranking; 3.8K GitHub
                     stars<br />
+                    &bull; agentmemory:
+                    <strong>96.2% LongMemEval (Opus 4.6)</strong><br />
+                    &bull; OMEGA:
+                    <strong>95.4% LongMemEval (GPT-4.1)</strong><br />
+                    &bull; Mastra OM:
+                    <strong>94.9% LongMemEval (GPT-5-mini)</strong><br />
                     &bull; Mem0: entity extraction F1 0.85&ndash;0.92
                     (internal); 41K GitHub stars; 186M API calls/quarter; AWS
                     Agent SDK partner<br />
@@ -2452,8 +2502,8 @@
                     financial advice.
                 </p>
                 <p style="margin-top: 0.5rem; font-size: 0.7rem">
-                    Generated March 30, 2026 &middot; Updated April 2, 2026
-                    (LongMemEval 90.4% SHR + OS-E001 benchmark results +
+                    Generated March 30, 2026 &middot; Updated April 6, 2026
+                    (LongMemEval 92.6% QA proxy + 98.7% SHR + OS-E001 benchmark results +
                     competitive benchmark data) &middot; Codebase metrics
                     verified from source &middot; Market data from public
                     reports
