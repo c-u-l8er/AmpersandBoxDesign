@@ -1109,6 +1109,238 @@
                 color: var(--muted);
             }
 
+            /* ─── Install Prompt Section ─── */
+            .install-section {
+                padding: 7rem 0 5rem;
+                border-top: 1px solid var(--border);
+            }
+            .install-head {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            .install-head h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+            .install-head h2 em {
+                font-style: italic;
+                color: var(--cyan);
+            }
+            .install-wrap {
+                position: relative;
+                max-width: 880px;
+                margin: 0 auto;
+            }
+            .install-pre {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.8rem;
+                color: var(--text);
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                padding: 1.75rem 2rem;
+                overflow-x: auto;
+                line-height: 1.75;
+                white-space: pre;
+                position: relative;
+            }
+            .install-pre::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    var(--cyan),
+                    var(--blue),
+                    var(--rose),
+                    var(--amber)
+                );
+            }
+            .install-pre .c {
+                color: var(--muted);
+            }
+            .install-pre .k {
+                color: var(--cyan);
+                font-weight: 600;
+            }
+            .install-pre .s {
+                color: var(--amber);
+            }
+            .install-copy {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.68rem;
+                background: var(--surface-2);
+                color: var(--dim);
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                padding: 0.4rem 0.8rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+            .install-copy:hover {
+                color: var(--cyan);
+                border-color: var(--cyan);
+            }
+            .install-foot {
+                margin-top: 1.75rem;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                font-size: 0.8rem;
+                color: var(--dim);
+                line-height: 1.65;
+            }
+            .install-foot strong {
+                display: block;
+                color: var(--text);
+                font-size: 0.7rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                margin-bottom: 0.35rem;
+            }
+
+            /* ─── Machine Loops Section ─── */
+            .loops-section {
+                padding: 7rem 0;
+                border-top: 1px solid var(--border);
+            }
+            .loops-head {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+            .loops-head h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+            .loops-head h2 em {
+                font-style: italic;
+                color: var(--cyan);
+            }
+            .loops-diagram {
+                max-width: 860px;
+                margin: 0 auto 3.5rem;
+            }
+            .loops-diagram svg {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            .loops-legend {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                font-size: 0.75rem;
+                color: var(--dim);
+                margin-top: 1rem;
+            }
+            .loops-legend span {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .loops-legend i {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+
+            /* ─── Integrations / Constellation Graph ─── */
+            .constellation {
+                padding: 7rem 0;
+                border-top: 1px solid var(--border);
+            }
+            .constellation-head {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+            .constellation-head h2 {
+                font-family: "Newsreader", serif;
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 300;
+                letter-spacing: -0.02em;
+                margin-bottom: 1rem;
+            }
+            .constellation-head h2 em {
+                font-style: italic;
+                color: var(--cyan);
+            }
+            .constellation-graph {
+                max-width: 1000px;
+                margin: 0 auto;
+                position: relative;
+            }
+            .constellation-graph svg {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            .constellation-legend {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+                margin-top: 3rem;
+            }
+            .constellation-legend .ll-cell {
+                background: var(--bg);
+                padding: 1.5rem;
+            }
+            .constellation-legend .ll-cell .ll-type {
+                font-size: 0.62rem;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                margin-bottom: 0.65rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .constellation-legend .ll-cell.c-cyan .ll-type {
+                color: var(--cyan);
+            }
+            .constellation-legend .ll-cell.c-blue .ll-type {
+                color: var(--blue);
+            }
+            .constellation-legend .ll-cell.c-rose .ll-type {
+                color: var(--rose);
+            }
+            .constellation-legend .ll-cell.c-amber .ll-type {
+                color: var(--amber);
+            }
+            .constellation-legend .ll-cell .ll-type i {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: currentColor;
+            }
+            .constellation-legend .ll-cell p {
+                font-size: 0.78rem;
+                color: var(--dim);
+                line-height: 1.65;
+                font-weight: 300;
+            }
+            .constellation-legend .ll-cell strong {
+                color: var(--text);
+                font-weight: 500;
+            }
+
             /* ─── Responsive ─── */
             @media (max-width: 900px) {
                 .centerpiece-grid {
@@ -1142,6 +1374,12 @@
                 }
                 .centerpiece-card {
                     padding: 2.5rem;
+                }
+                .install-foot {
+                    grid-template-columns: 1fr;
+                }
+                .constellation-legend {
+                    grid-template-columns: 1fr 1fr;
                 }
             }
 
@@ -1183,14 +1421,15 @@
                             <span>AMPERSAND BOX</span>
                         </a>
                         <nav class="nav">
+                            <a href="#install">Install</a>
+                            <a href="#loops">Loops</a>
+                            <a href="#constellation">Components</a>
                             <a href="./protocol.html">Protocol</a>
                             <a href="#ecosystem">Ecosystem</a>
                             <a href="#how-it-connects">Architecture</a>
-                            <a href="#why-now">Research</a>
                             <a href="https://docs.ampersandboxdesign.com"
                                 >Docs</a
                             >
-                            <a href="#philosophy">Open Source</a>
                             <a
                                 href="mailto:hello@ampersandboxdesign.com"
                                 class="nav-cta"
@@ -1205,7 +1444,8 @@
                 <div class="container">
                     <div class="hero-inner">
                         <p class="hero-eyebrow">
-                            Infrastructure for Agent Intelligence
+                            [&amp;] &middot; PULSE &middot; PRISM &mdash; the
+                            three-protocol stack
                         </p>
                         <h1>
                             The <em>substrate</em><br />for agent civilizations.
@@ -1219,25 +1459,36 @@
                                 font-weight: 400;
                             "
                         >
-                            Build AI agents with composable capabilities.
+                            Compose capabilities. Declare loops. <br />Measure
+                            learning.
                         </p>
                         <p class="hero-sub">
-                            Memory, reasoning, time, and space are not features
-                            — they are infrastructure primitives composed
-                            through the <strong>[&] protocol</strong>. Define
-                            what your agent knows, how it decides, when it acts,
-                            and where it operates.
+                            <strong>[&amp;]</strong> composes memory, reason,
+                            time, space, and govern into a single spec.
+                            <strong>PULSE</strong> declares how those
+                            capabilities cycle &mdash; retrieve, route, act,
+                            learn, consolidate &mdash; and how loops nest across
+                            agents. <strong>PRISM</strong> measures whether
+                            those loops are actually getting sharper over time.
+                            Every portfolio product ships as a PULSE-conforming,
+                            PRISM-evaluable loop.
                         </p>
                         <div class="hero-cta">
-                            <a href="./protocol.html" class="btn btn-primary"
-                                >The [&] Protocol</a
+                            <a href="#install" class="btn btn-primary"
+                                >Install the stack</a
                             >
-                            <a href="#ecosystem" class="btn btn-ghost"
-                                >View the Ecosystem</a
+                            <a href="#loops" class="btn btn-ghost"
+                                >See the loops</a
+                            >
+                            <a href="#constellation" class="btn btn-ghost"
+                                >Components</a
                             >
                         </div>
                         <br />
                         <div class="hero-cta">
+                            <a href="./protocol.html" class="btn btn-ghost"
+                                >The [&amp;] Protocol</a
+                            >
                             <a
                                 href="https://docs.ampersandboxdesign.com"
                                 class="btn btn-ghost"
@@ -1248,11 +1499,149 @@
                                 class="btn btn-ghost"
                                 >Playground</a
                             >
-                            <a
-                                href="https://protocol.ampersandboxdesign.com/schema"
-                                class="btn btn-ghost"
-                                >Schema v0.1.0</a
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="install-section" id="install">
+                <div class="container">
+                    <div class="install-head">
+                        <p class="section-label">ONE PROMPT INSTALL</p>
+                        <h2>
+                            Wire the stack into any MCP agent in
+                            <em>60 seconds</em>
+                        </h2>
+                        <p class="section-sub">
+                            Drop this prompt into Claude Code, Codex, Cursor,
+                            Zed, or any MCP-capable agent. Four npm packages,
+                            four MCP servers, four SQLite databases &mdash;
+                            <strong>box-and-box</strong> for [&amp;] capability
+                            composition, <strong>graphonomous</strong> for the
+                            memory loop, <strong>os-prism</strong> for the
+                            diagnostic loop, <strong>os-pulse</strong> for the
+                            manifest registry. Everything installs the same way
+                            and runs fully local.
+                        </p>
+                    </div>
+
+                    <div class="install-wrap">
+                        <pre
+                            id="install-prompt"
+                            class="install-pre"
+                        ><span class="k">## Install the [&amp;] three-protocol stack</span>
+
+<span class="c"># 1. [&amp;] Protocol — capability composition MCP server (validate → compose → compile)</span>
+npm i -g <span class="s">box-and-box</span>
+
+<span class="c"># 2. Memory loop — Graphonomous MCP server (retrieve → route → act → learn → consolidate)</span>
+npm i -g <span class="s">graphonomous</span>
+
+<span class="c"># 3. Diagnostic loop — PRISM MCP server (compose → interact → observe → reflect → diagnose → config)</span>
+npm i -g <span class="s">os-prism</span>
+
+<span class="c"># 4. Temporal algebra — PULSE manifest registry MCP server</span>
+npm i -g <span class="s">os-pulse</span>
+
+<span class="c"># 5. Add all four to your MCP config (~/.mcp.json or project .mcp.json)</span>
+{
+  <span class="s">"mcpServers"</span>: {
+    <span class="s">"ampersand"</span>: {
+      <span class="s">"command"</span>: <span class="s">"npx"</span>,
+      <span class="s">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"box-and-box"</span>, <span class="s">"--db"</span>, <span class="s">"~/.box-and-box/specs.db"</span>]
+    },
+    <span class="s">"graphonomous"</span>: {
+      <span class="s">"command"</span>: <span class="s">"npx"</span>,
+      <span class="s">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"graphonomous"</span>, <span class="s">"--db"</span>, <span class="s">"~/.graphonomous/knowledge.db"</span>]
+    },
+    <span class="s">"prism"</span>: {
+      <span class="s">"command"</span>: <span class="s">"npx"</span>,
+      <span class="s">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"os-prism"</span>, <span class="s">"--db"</span>, <span class="s">"~/.os-prism/benchmarks.db"</span>]
+    },
+    <span class="s">"pulse"</span>: {
+      <span class="s">"command"</span>: <span class="s">"npx"</span>,
+      <span class="s">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"os-pulse"</span>, <span class="s">"--db"</span>, <span class="s">"~/.os-pulse/manifests.db"</span>]
+    }
+  }
+}
+
+<span class="c"># 6. Restart your agent. [&amp;] composes the capabilities. PULSE declares the</span>
+<span class="c">#    loops. PRISM measures them. Graphonomous remembers. No bespoke</span>
+<span class="c">#    integration, no cloud dependency, no drift.</span></pre>
+                        <button
+                            class="install-copy"
+                            onclick="
+                                navigator.clipboard
+                                    .writeText(
+                                        document.getElementById(
+                                            'install-prompt',
+                                        ).innerText,
+                                    )
+                                    .then(() => {
+                                        this.textContent = 'Copied';
+                                        setTimeout(
+                                            () => (this.textContent = 'Copy'),
+                                            1500,
+                                        );
+                                    })
+                            "
+                        >
+                            Copy
+                        </button>
+                    </div>
+
+                    <div class="install-foot">
+                        <div>
+                            <strong>Requirements</strong>
+                            Node.js &ge; 18 &middot; macOS or Linux &middot; x64
+                            or arm64. Each package ships an embedded SQLite +
+                            sqlite-vec binary; no external DB or cloud service
+                            required.
+                        </div>
+                        <div>
+                            <strong>Works with</strong>
+                            Claude Code &middot; Codex &middot; Cursor &middot;
+                            Zed &middot; any MCP client. Same config pattern
+                            composes additional portfolio loops (Delegatic,
+                            AgenTroMatic, TickTickClock) as you add them.
+                        </div>
+                        <div>
+                            <strong>Four local databases</strong>
+                            <code
+                                style="
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                    font-size: 0.72rem;
+                                "
+                                >~/.box-and-box/specs.db</code
                             >
+                            &middot;
+                            <code
+                                style="
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                    font-size: 0.72rem;
+                                "
+                                >~/.graphonomous/knowledge.db</code
+                            >
+                            &middot;
+                            <code
+                                style="
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                    font-size: 0.72rem;
+                                "
+                                >~/.os-prism/benchmarks.db</code
+                            >
+                            &middot;
+                            <code
+                                style="
+                                    font-family:
+                                        &quot;JetBrains Mono&quot;, monospace;
+                                    font-size: 0.72rem;
+                                "
+                                >~/.os-pulse/manifests.db</code
+                            >. All data stays on your machine.
                         </div>
                     </div>
                 </div>
@@ -1788,45 +2177,51 @@
                                 </div>
                                 <div class="cp-status">
                                     <span class="dot"></span>
-                                    v0.3.3 · LongMemEval 92.6%
+                                    v0.4.0 · 5-machine loop
                                 </div>
                             </div>
                             <p class="cp-description">
-                                A continual learning engine that makes small
-                                language models (1B–8B) get smarter over time in
-                                their deployment context. Self-evolving
-                                knowledge graphs that learn, consolidate, and
-                                prune at inference time — no retraining, no
-                                cloud dependency, no catastrophic forgetting.
+                                The memory loop of the [&amp;] stack. Five
+                                loop-phase machines &mdash;
+                                <code>retrieve</code>, <code>route</code>,
+                                <code>act</code>, <code>learn</code>,
+                                <code>consolidate</code> &mdash; exposed as one
+                                MCP server with embedded SQLite + sqlite-vec.
+                                Every turn retrieves prior context, routes on
+                                topology, mutates the graph, learns from
+                                outcomes, and consolidates at session
+                                boundaries. No retraining, no cloud, no
+                                forgetting.
                             </p>
                             <div class="cp-features">
                                 <div class="cp-feature">
-                                    <h4>Learn</h4>
+                                    <h4>Retrieve &amp; Route</h4>
                                     <p>
-                                        Graph-based memory that grows with every
-                                        interaction. Episodic, semantic,
-                                        procedural, and temporal knowledge —
-                                        structured relationships, not flat
-                                        vectors.
+                                        Hybrid vector + graph recall returns
+                                        context plus a topology signal. When
+                                        <code>κ&nbsp;&gt;&nbsp;0</code>, route
+                                        escalates to deliberation instead of
+                                        flat generation.
                                     </p>
                                 </div>
                                 <div class="cp-feature">
-                                    <h4>Adapt</h4>
+                                    <h4>Act &amp; Learn</h4>
                                     <p>
-                                        Multi-timescale consolidation inspired
-                                        by the brain's sleep cycles. Fast memory
-                                        promotes to slow memory. Weak
-                                        connections decay. Strong patterns
-                                        crystallize.
+                                        Store nodes, edges, and provenance in
+                                        the graph; then close the loop by
+                                        reporting outcomes so confidence,
+                                        reputation, and belief revision are
+                                        tracked per node.
                                     </p>
                                 </div>
                                 <div class="cp-feature">
-                                    <h4>Decide</h4>
+                                    <h4>Consolidate</h4>
                                     <p>
-                                        MCP-first API means any AI client can
-                                        connect directly. Graph-aware context
-                                        injection makes every inference smarter
-                                        than the last.
+                                        Multi-timescale consolidation merges
+                                        similar nodes, strengthens recurring
+                                        edges, prunes stale ones, and promotes
+                                        fast memory into durable semantic
+                                        structure.
                                     </p>
                                 </div>
                             </div>
@@ -1852,46 +2247,53 @@
                                 </div>
                                 <div class="cp-status">
                                     <span class="dot"></span>
-                                    In Development
+                                    v0.1.0 · inner PULSE loop
                                 </div>
                             </div>
                             <p class="cp-description">
-                                An open-source deliberation protocol for
-                                multi-agent AI. Structured argumentation,
-                                Byzantine fault-tolerant consensus,
-                                constitutional guardrails, and Merkle-chained
-                                evidence chains — giving agent clusters
-                                auditable, principled decisions instead of
-                                opaque confidence scores.
+                                The deliberation loop of the [&amp;] stack. When
+                                Graphonomous's <code>route</code> phase detects
+                                cyclic topology
+                                (<code>κ&nbsp;&gt;&nbsp;0</code>), it escalates
+                                into Deliberatic &mdash; a PULSE-conformant
+                                inner loop with its own five domain phases
+                                <code
+                                    >gather&nbsp;→&nbsp;argue&nbsp;→&nbsp;vote&nbsp;→&nbsp;credit&nbsp;→&nbsp;seal</code
+                                >
+                                that runs structured argumentation, consensus,
+                                and Merkle-chained proof before control returns
+                                to the outer loops.
                             </p>
                             <div class="cp-features">
                                 <div class="cp-feature">
-                                    <h4>Argue</h4>
+                                    <h4>Gather &amp; Argue</h4>
                                     <p>
-                                        Extends Dung's argumentation framework
-                                        into a weighted bipolar system. Agents
-                                        submit formal positions with typed
-                                        evidence. Attack and support relations
-                                        are explicit, not implicit.
+                                        Collect typed positions and evidence
+                                        from every participating agent, then run
+                                        a weighted bipolar DAF to expose attack
+                                        and support relations explicitly &mdash;
+                                        no implicit confidence averaging.
                                     </p>
                                 </div>
                                 <div class="cp-feature">
-                                    <h4>Decide</h4>
+                                    <h4>Vote &amp; Credit</h4>
                                     <p>
-                                        Two-phase adaptive consensus — Raft
-                                        fast-path when the winner is clear, PBFT
-                                        conflict-path when positions are close.
-                                        Byzantine fault tolerant.
+                                        Two-phase adaptive consensus &mdash;
+                                        Raft fast-path when the winner is clear,
+                                        PBFT conflict-path when positions are
+                                        close. Per-agent reputation updates from
+                                        outcome signals so reliable voices weigh
+                                        more next round.
                                     </p>
                                 </div>
                                 <div class="cp-feature">
-                                    <h4>Prove</h4>
+                                    <h4>Seal</h4>
                                     <p>
-                                        Merkle-chained evidence logs,
-                                        constitutional governance with hard
-                                        boundaries and soft preferences, and
-                                        vindicated dissent tracking. Every
-                                        decision ships a proof.
+                                        Archive the decision into a
+                                        Merkle-chained evidence log, emit a
+                                        <code>DeliberationResult</code>
+                                        CloudEvent back to Graphonomous, and
+                                        preserve vindicated dissent for review.
                                     </p>
                                 </div>
                             </div>
@@ -1909,6 +2311,910 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="loops-section" id="loops">
+                <div class="container">
+                    <div class="loops-head">
+                        <p class="section-label">MACHINE LOOPS</p>
+                        <h2>Three nested loops. <em>16 machines.</em></h2>
+                        <p class="section-sub">
+                            Every [&amp;] portfolio loop declares its own domain
+                            phases in a PULSE manifest and groups its MCP tools
+                            by loop-phase machine. PRISM benchmarks
+                            Graphonomous. Graphonomous's <code>route</code>
+                            phase drives Deliberatic. Each loop runs its own
+                            vocabulary &mdash; PRISM speaks
+                            <code
+                                >compose/interact/observe/reflect/diagnose/config</code
+                            >, Graphonomous speaks
+                            <code>retrieve/route/act/learn/consolidate</code>,
+                            Deliberatic speaks
+                            <code>gather/argue/vote/credit/seal</code> &mdash;
+                            but all phases map to the same five canonical PULSE
+                            phase <em>kinds</em>, so composition is algebraic,
+                            not ad-hoc.
+                        </p>
+                    </div>
+
+                    <div class="loops-diagram">
+                        <svg
+                            viewBox="0 0 900 620"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <defs>
+                                <marker
+                                    id="arrL-cyan"
+                                    viewBox="0 0 10 8"
+                                    refX="9"
+                                    refY="4"
+                                    markerWidth="7"
+                                    markerHeight="5"
+                                    orient="auto"
+                                >
+                                    <path
+                                        d="M0,0 L10,4 L0,8 Z"
+                                        fill="#4af5c6"
+                                    />
+                                </marker>
+                                <marker
+                                    id="arrL-blue"
+                                    viewBox="0 0 10 8"
+                                    refX="9"
+                                    refY="4"
+                                    markerWidth="7"
+                                    markerHeight="5"
+                                    orient="auto"
+                                >
+                                    <path
+                                        d="M0,0 L10,4 L0,8 Z"
+                                        fill="#7b8cff"
+                                    />
+                                </marker>
+                                <marker
+                                    id="arrL-rose"
+                                    viewBox="0 0 10 8"
+                                    refX="9"
+                                    refY="4"
+                                    markerWidth="7"
+                                    markerHeight="5"
+                                    orient="auto"
+                                >
+                                    <path
+                                        d="M0,0 L10,4 L0,8 Z"
+                                        fill="#ff6b8a"
+                                    />
+                                </marker>
+                                <filter id="softGlow">
+                                    <feGaussianBlur
+                                        stdDeviation="2.2"
+                                        result="blur"
+                                    />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- OUTER LOOP: PRISM (rose) — 6 phases around wide ellipse -->
+                            <ellipse
+                                cx="450"
+                                cy="310"
+                                rx="410"
+                                ry="285"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-opacity="0.22"
+                                stroke-width="1.5"
+                                stroke-dasharray="4,4"
+                            />
+                            <text
+                                x="450"
+                                y="38"
+                                text-anchor="middle"
+                                fill="#ff6b8a"
+                                font-family="'JetBrains Mono',monospace"
+                                font-size="10"
+                                font-weight="700"
+                                letter-spacing="0.14em"
+                            >
+                                OUTER LOOP &middot; PRISM (OS-009) &middot;
+                                BENCHMARK
+                            </text>
+
+                            <!-- PRISM phase boxes (6: compose, interact, observe, reflect, diagnose, config) -->
+                            <!-- compose (top-left) -->
+                            <g>
+                                <rect
+                                    x="70"
+                                    y="70"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="130"
+                                    y="90"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    compose
+                                </text>
+                                <text
+                                    x="130"
+                                    y="104"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    scenarios
+                                </text>
+                            </g>
+                            <!-- interact (top-right) -->
+                            <g>
+                                <rect
+                                    x="710"
+                                    y="70"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="770"
+                                    y="90"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    interact
+                                </text>
+                                <text
+                                    x="770"
+                                    y="104"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    drives inner
+                                </text>
+                            </g>
+                            <!-- observe (right) -->
+                            <g>
+                                <rect
+                                    x="760"
+                                    y="290"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="820"
+                                    y="310"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    observe
+                                </text>
+                                <text
+                                    x="820"
+                                    y="324"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    judge (9 dims)
+                                </text>
+                            </g>
+                            <!-- reflect (bottom-right) -->
+                            <g>
+                                <rect
+                                    x="710"
+                                    y="510"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="770"
+                                    y="530"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    reflect
+                                </text>
+                                <text
+                                    x="770"
+                                    y="544"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    evolve
+                                </text>
+                            </g>
+                            <!-- diagnose (bottom-left) -->
+                            <g>
+                                <rect
+                                    x="70"
+                                    y="510"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="130"
+                                    y="530"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    diagnose
+                                </text>
+                                <text
+                                    x="130"
+                                    y="544"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    leaderboard
+                                </text>
+                            </g>
+                            <!-- config (left) -->
+                            <g>
+                                <rect
+                                    x="20"
+                                    y="290"
+                                    width="120"
+                                    height="44"
+                                    rx="6"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                    stroke-opacity="0.5"
+                                />
+                                <text
+                                    x="80"
+                                    y="310"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                    opacity="0.8"
+                                >
+                                    config
+                                </text>
+                                <text
+                                    x="80"
+                                    y="324"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    admin
+                                </text>
+                            </g>
+
+                            <!-- PRISM loop arrows (connecting phase boxes) -->
+                            <path
+                                d="M192,92 C400,60 560,60 708,92"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.55"
+                                marker-end="url(#arrL-rose)"
+                            />
+                            <path
+                                d="M790,116 C820,180 820,240 818,288"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.55"
+                                marker-end="url(#arrL-rose)"
+                            />
+                            <path
+                                d="M818,336 C820,400 810,470 790,508"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.55"
+                                marker-end="url(#arrL-rose)"
+                            />
+                            <path
+                                d="M708,532 C560,570 400,570 192,532"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.55"
+                                marker-end="url(#arrL-rose)"
+                            />
+                            <path
+                                d="M110,508 C90,470 80,400 82,336"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.4"
+                                marker-end="url(#arrL-rose)"
+                            />
+                            <path
+                                d="M80,288 C80,240 90,180 110,116"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.55"
+                                marker-end="url(#arrL-rose)"
+                            />
+
+                            <!-- MIDDLE LOOP: GRAPHONOMOUS (cyan) — 5 phases around ellipse -->
+                            <ellipse
+                                cx="450"
+                                cy="310"
+                                rx="265"
+                                ry="175"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-opacity="0.3"
+                                stroke-width="1.5"
+                                stroke-dasharray="4,4"
+                            />
+                            <text
+                                x="450"
+                                y="160"
+                                text-anchor="middle"
+                                fill="#4af5c6"
+                                font-family="'JetBrains Mono',monospace"
+                                font-size="10"
+                                font-weight="700"
+                                letter-spacing="0.14em"
+                            >
+                                MIDDLE LOOP &middot; GRAPHONOMOUS (OS-001)
+                                &middot; MEMORY
+                            </text>
+
+                            <!-- retrieve (top) -->
+                            <g>
+                                <rect
+                                    x="390"
+                                    y="178"
+                                    width="120"
+                                    height="40"
+                                    rx="6"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="450"
+                                    y="196"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    retrieve
+                                </text>
+                                <text
+                                    x="450"
+                                    y="210"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    κ + context
+                                </text>
+                            </g>
+                            <!-- route (top-right) -->
+                            <g>
+                                <rect
+                                    x="620"
+                                    y="245"
+                                    width="110"
+                                    height="40"
+                                    rx="6"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="675"
+                                    y="263"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    route
+                                </text>
+                                <text
+                                    x="675"
+                                    y="277"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    act/learn/deliberate
+                                </text>
+                            </g>
+                            <!-- act (bottom-right) -->
+                            <g>
+                                <rect
+                                    x="575"
+                                    y="390"
+                                    width="110"
+                                    height="40"
+                                    rx="6"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="630"
+                                    y="408"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    act
+                                </text>
+                                <text
+                                    x="630"
+                                    y="422"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    mutate graph
+                                </text>
+                            </g>
+                            <!-- learn (bottom-left) -->
+                            <g>
+                                <rect
+                                    x="215"
+                                    y="390"
+                                    width="110"
+                                    height="40"
+                                    rx="6"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="270"
+                                    y="408"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    learn
+                                </text>
+                                <text
+                                    x="270"
+                                    y="422"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    from_outcome
+                                </text>
+                            </g>
+                            <!-- consolidate (top-left) -->
+                            <g>
+                                <rect
+                                    x="170"
+                                    y="245"
+                                    width="110"
+                                    height="40"
+                                    rx="6"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="225"
+                                    y="263"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="600"
+                                >
+                                    consolidate
+                                </text>
+                                <text
+                                    x="225"
+                                    y="277"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="8"
+                                >
+                                    prune + merge
+                                </text>
+                            </g>
+
+                            <!-- Graphonomous arrows -->
+                            <path
+                                d="M508,200 C570,210 610,230 628,244"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.7"
+                                marker-end="url(#arrL-cyan)"
+                            />
+                            <path
+                                d="M670,287 C660,340 650,370 640,388"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.7"
+                                marker-end="url(#arrL-cyan)"
+                            />
+                            <path
+                                d="M576,420 C500,445 400,445 328,420"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.7"
+                                marker-end="url(#arrL-cyan)"
+                            />
+                            <path
+                                d="M260,388 C250,370 240,340 230,287"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-width="1.5"
+                                stroke-dasharray="5,4"
+                                opacity="0.7"
+                                marker-end="url(#arrL-cyan)"
+                            />
+                            <path
+                                d="M272,244 C290,230 330,210 392,200"
+                                fill="none"
+                                stroke="#4af5c6"
+                                stroke-width="2"
+                                stroke-dasharray="6,3"
+                                opacity="0.9"
+                                marker-end="url(#arrL-cyan)"
+                                filter="url(#softGlow)"
+                            />
+
+                            <!-- PRISM→Graphonomous handoff arrow: interact → retrieve -->
+                            <path
+                                d="M712,92 C600,130 520,160 466,178"
+                                fill="none"
+                                stroke="#ff6b8a"
+                                stroke-width="1.8"
+                                stroke-dasharray="3,3"
+                                opacity="0.6"
+                                marker-end="url(#arrL-rose)"
+                            />
+
+                            <!-- INNER LOOP: DELIBERATIC (blue) — 5-phase pentagon ring -->
+                            <circle
+                                cx="450"
+                                cy="310"
+                                r="74"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-opacity="0.38"
+                                stroke-width="1.4"
+                                stroke-dasharray="4,4"
+                            />
+
+                            <!-- gather :: retrieve (top) -->
+                            <g>
+                                <rect
+                                    x="418"
+                                    y="232"
+                                    width="64"
+                                    height="22"
+                                    rx="5"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="450"
+                                    y="247"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    gather
+                                </text>
+                            </g>
+                            <!-- argue :: route (upper right) -->
+                            <g>
+                                <rect
+                                    x="481"
+                                    y="278"
+                                    width="64"
+                                    height="22"
+                                    rx="5"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="513"
+                                    y="293"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    argue
+                                </text>
+                            </g>
+                            <!-- vote :: act (lower right) -->
+                            <g>
+                                <rect
+                                    x="457"
+                                    y="352"
+                                    width="64"
+                                    height="22"
+                                    rx="5"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="489"
+                                    y="367"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    vote
+                                </text>
+                            </g>
+                            <!-- credit :: learn (lower left) -->
+                            <g>
+                                <rect
+                                    x="379"
+                                    y="352"
+                                    width="64"
+                                    height="22"
+                                    rx="5"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="411"
+                                    y="367"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    credit
+                                </text>
+                            </g>
+                            <!-- seal :: consolidate (upper left) -->
+                            <g>
+                                <rect
+                                    x="355"
+                                    y="278"
+                                    width="64"
+                                    height="22"
+                                    rx="5"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="387"
+                                    y="293"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    seal
+                                </text>
+                            </g>
+
+                            <!-- inner clockwise arrows -->
+                            <path
+                                d="M480,256 C495,265 502,272 503,278"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.2"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+                            <path
+                                d="M523,301 C522,320 512,342 500,352"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.2"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+                            <path
+                                d="M462,375 C452,382 438,382 432,375"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.2"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+                            <path
+                                d="M399,352 C388,342 378,320 377,301"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.2"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+                            <path
+                                d="M397,278 C402,270 410,262 420,256"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.2"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+
+                            <!-- DELIBERATIC center label -->
+                            <text
+                                x="450"
+                                y="328"
+                                text-anchor="middle"
+                                fill="#7b8cff"
+                                font-family="'JetBrains Mono',monospace"
+                                font-size="9"
+                                font-weight="700"
+                                letter-spacing="0.16em"
+                                opacity="0.9"
+                            >
+                                DELIBERATIC
+                            </text>
+
+                            <!-- Graphonomous route → Deliberatic route arrow -->
+                            <path
+                                d="M622,272 C590,280 565,286 547,289"
+                                fill="none"
+                                stroke="#7b8cff"
+                                stroke-width="1.6"
+                                stroke-dasharray="3,3"
+                                opacity="0.7"
+                                marker-end="url(#arrL-blue)"
+                            />
+
+                            <!-- Inner loop caption -->
+                            <text
+                                x="450"
+                                y="398"
+                                text-anchor="middle"
+                                fill="#6b6980"
+                                font-family="'JetBrains Mono',monospace"
+                                font-size="8"
+                                font-weight="600"
+                                letter-spacing="0.12em"
+                            >
+                                INNER LOOP · DELIBERATIC · DAF + RAFT/PBFT
+                            </text>
+                        </svg>
+                    </div>
+
+                    <div class="loops-legend">
+                        <span
+                            ><i style="background: #ff6b8a"></i> PRISM (outer)
+                            &middot; 6 machines</span
+                        >
+                        <span
+                            ><i style="background: #4af5c6"></i> Graphonomous
+                            (middle) &middot; 5 machines</span
+                        >
+                        <span
+                            ><i style="background: #7b8cff"></i> Deliberatic
+                            (inner) &middot; 5 machines</span
+                        >
+                    </div>
+
+                    <div
+                        style="
+                            margin-top: 3rem;
+                            text-align: center;
+                            font-size: 0.85rem;
+                            color: var(--dim);
+                            max-width: 760px;
+                            margin-left: auto;
+                            margin-right: auto;
+                            line-height: 1.75;
+                        "
+                    >
+                        Five canonical phase kinds. Five canonical cross-loop
+                        tokens carried as CloudEvents v1 envelopes (<code
+                            style="color: var(--cyan)"
+                            >TopologyContext</code
+                        >,
+                        <code style="color: var(--cyan)"
+                            >DeliberationResult</code
+                        >,
+                        <code style="color: var(--cyan)">OutcomeSignal</code>,
+                        <code style="color: var(--cyan)">ReputationUpdate</code
+                        >,
+                        <code style="color: var(--cyan)"
+                            >ConsolidationEvent</code
+                        >). Seven invariants. A 12-test conformance suite.
+                        Unbounded nesting depth &mdash; OS-008 Agent Harness
+                        will add a fourth outer layer by shipping a manifest
+                        with
+                        <code style="color: var(--cyan)"
+                            >inner_loops: [prism.benchmark]</code
+                        >
+                        &mdash; no code changes required.
                     </div>
                 </div>
             </section>
@@ -2088,6 +3394,709 @@
                                 cognition foundations.
                             </p>
                             <a href="https://opensentience.org">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="constellation" id="constellation">
+                <div class="container">
+                    <div class="constellation-head">
+                        <p class="section-label">
+                            COMPONENTS &amp; INTEGRATIONS
+                        </p>
+                        <h2>
+                            A constellation of loops that
+                            <em>speak the same protocols</em>
+                        </h2>
+                        <p class="section-sub">
+                            The [&amp;] stack is not a walled garden. Every
+                            portfolio loop, every third-party MCP server, and
+                            every standards body touches one of four surfaces:
+                            <strong>capability composition</strong> ([&amp;]
+                            JSON), <strong>loop manifests</strong> (PULSE),
+                            <strong>tool interfaces</strong> (MCP + A2A), or
+                            <strong>cross-loop envelopes</strong> (CloudEvents
+                            v1). Anything that speaks those protocols plugs in.
+                        </p>
+                    </div>
+
+                    <div class="constellation-graph">
+                        <svg
+                            viewBox="0 0 1000 700"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <defs>
+                                <radialGradient
+                                    id="coreGrad"
+                                    cx="0.5"
+                                    cy="0.5"
+                                    r="0.5"
+                                >
+                                    <stop
+                                        offset="0%"
+                                        stop-color="#4af5c6"
+                                        stop-opacity="0.22"
+                                    />
+                                    <stop
+                                        offset="100%"
+                                        stop-color="#4af5c6"
+                                        stop-opacity="0"
+                                    />
+                                </radialGradient>
+                                <filter id="nodeGlow">
+                                    <feGaussianBlur
+                                        stdDeviation="2"
+                                        result="b"
+                                    />
+                                    <feMerge>
+                                        <feMergeNode in="b" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Core halo -->
+                            <circle
+                                cx="500"
+                                cy="350"
+                                r="170"
+                                fill="url(#coreGrad)"
+                            />
+
+                            <!-- Connection lines (drawn first so nodes sit on top) -->
+                            <g
+                                stroke="#ffffff"
+                                stroke-opacity="0.08"
+                                stroke-width="1"
+                                stroke-dasharray="2,3"
+                                fill="none"
+                            >
+                                <!-- core → portfolio loops -->
+                                <line x1="500" y1="350" x2="170" y2="130" />
+                                <line x1="500" y1="350" x2="500" y2="90" />
+                                <line x1="500" y1="350" x2="830" y2="130" />
+                                <line x1="500" y1="350" x2="900" y2="290" />
+                                <line x1="500" y1="350" x2="900" y2="450" />
+                                <line x1="500" y1="350" x2="830" y2="600" />
+                                <line x1="500" y1="350" x2="500" y2="640" />
+                                <line x1="500" y1="350" x2="170" y2="600" />
+                                <line x1="500" y1="350" x2="100" y2="450" />
+                                <line x1="500" y1="350" x2="100" y2="290" />
+                                <!-- protocol surfaces -->
+                                <line x1="500" y1="350" x2="500" y2="290" />
+                                <line x1="500" y1="350" x2="440" y2="410" />
+                                <line x1="500" y1="350" x2="560" y2="410" />
+                                <line x1="500" y1="350" x2="570" y2="300" />
+                            </g>
+
+                            <!-- CORE: [&] Protocol -->
+                            <g filter="url(#nodeGlow)">
+                                <circle
+                                    cx="500"
+                                    cy="350"
+                                    r="58"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="2"
+                                />
+                                <text
+                                    x="500"
+                                    y="340"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'Newsreader',serif"
+                                    font-size="32"
+                                    font-weight="600"
+                                >
+                                    [&amp;]
+                                </text>
+                                <text
+                                    x="500"
+                                    y="368"
+                                    text-anchor="middle"
+                                    fill="#e2e0db"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                    letter-spacing="0.1em"
+                                >
+                                    PROTOCOL
+                                </text>
+                                <text
+                                    x="500"
+                                    y="382"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                    letter-spacing="0.08em"
+                                >
+                                    structural core
+                                </text>
+                            </g>
+
+                            <!-- PROTOCOL SURFACES (yellow/amber — orbit inside) -->
+                            <!-- PULSE -->
+                            <g>
+                                <rect
+                                    x="446"
+                                    y="248"
+                                    width="108"
+                                    height="38"
+                                    rx="4"
+                                    fill="#14161e"
+                                    stroke="#ffc46b"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="500"
+                                    y="265"
+                                    text-anchor="middle"
+                                    fill="#ffc46b"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="700"
+                                    letter-spacing="0.08em"
+                                >
+                                    PULSE
+                                </text>
+                                <text
+                                    x="500"
+                                    y="278"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    loop manifest
+                                </text>
+                            </g>
+                            <!-- PRISM -->
+                            <g>
+                                <rect
+                                    x="362"
+                                    y="408"
+                                    width="108"
+                                    height="38"
+                                    rx="4"
+                                    fill="#14161e"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="416"
+                                    y="425"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="700"
+                                    letter-spacing="0.08em"
+                                >
+                                    PRISM
+                                </text>
+                                <text
+                                    x="416"
+                                    y="438"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    benchmark
+                                </text>
+                            </g>
+                            <!-- MCP + A2A -->
+                            <g>
+                                <rect
+                                    x="528"
+                                    y="408"
+                                    width="108"
+                                    height="38"
+                                    rx="4"
+                                    fill="#14161e"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.3"
+                                />
+                                <text
+                                    x="582"
+                                    y="425"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="10"
+                                    font-weight="700"
+                                    letter-spacing="0.08em"
+                                >
+                                    MCP / A2A
+                                </text>
+                                <text
+                                    x="582"
+                                    y="438"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    tool bus
+                                </text>
+                            </g>
+
+                            <!-- PORTFOLIO LOOPS (cyan — main ring) -->
+                            <!-- graphonomous (top left) -->
+                            <g>
+                                <circle
+                                    cx="170"
+                                    cy="130"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#4af5c6"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="170"
+                                    y="128"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Graphon-
+                                </text>
+                                <text
+                                    x="170"
+                                    y="140"
+                                    text-anchor="middle"
+                                    fill="#4af5c6"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    omous
+                                </text>
+                                <text
+                                    x="170"
+                                    y="154"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    &amp;memory
+                                </text>
+                            </g>
+                            <!-- FleetPrompt (top) -->
+                            <g>
+                                <circle
+                                    cx="500"
+                                    cy="90"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="500"
+                                    y="88"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    FleetPrompt
+                                </text>
+                                <text
+                                    x="500"
+                                    y="114"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    marketplace
+                                </text>
+                            </g>
+                            <!-- AgenTroMatic (top right) -->
+                            <g>
+                                <circle
+                                    cx="830"
+                                    cy="130"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#b48cff"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="830"
+                                    y="128"
+                                    text-anchor="middle"
+                                    fill="#b48cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    AgenTro-
+                                </text>
+                                <text
+                                    x="830"
+                                    y="140"
+                                    text-anchor="middle"
+                                    fill="#b48cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Matic
+                                </text>
+                                <text
+                                    x="830"
+                                    y="154"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    &amp;reason
+                                </text>
+                            </g>
+                            <!-- Delegatic (right upper) -->
+                            <g>
+                                <circle
+                                    cx="900"
+                                    cy="290"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#b48cff"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="900"
+                                    y="292"
+                                    text-anchor="middle"
+                                    fill="#b48cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Delegatic
+                                </text>
+                                <text
+                                    x="900"
+                                    y="306"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    &amp;govern
+                                </text>
+                            </g>
+                            <!-- Deliberatic (right lower) -->
+                            <g>
+                                <circle
+                                    cx="900"
+                                    cy="450"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#ff6b8a"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="900"
+                                    y="448"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Deliber-
+                                </text>
+                                <text
+                                    x="900"
+                                    y="460"
+                                    text-anchor="middle"
+                                    fill="#ff6b8a"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    atic
+                                </text>
+                                <text
+                                    x="900"
+                                    y="474"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    DAF
+                                </text>
+                            </g>
+                            <!-- TickTickClock (bottom right) -->
+                            <g>
+                                <circle
+                                    cx="830"
+                                    cy="600"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#ffc46b"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="830"
+                                    y="598"
+                                    text-anchor="middle"
+                                    fill="#ffc46b"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    TickTick
+                                </text>
+                                <text
+                                    x="830"
+                                    y="610"
+                                    text-anchor="middle"
+                                    fill="#ffc46b"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Clock
+                                </text>
+                                <text
+                                    x="830"
+                                    y="624"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    &amp;time
+                                </text>
+                            </g>
+                            <!-- WebHost (bottom) -->
+                            <g>
+                                <circle
+                                    cx="500"
+                                    cy="640"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#6b6980"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="500"
+                                    y="638"
+                                    text-anchor="middle"
+                                    fill="#e2e0db"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    WebHost
+                                </text>
+                                <text
+                                    x="500"
+                                    y="650"
+                                    text-anchor="middle"
+                                    fill="#e2e0db"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Systems
+                                </text>
+                                <text
+                                    x="500"
+                                    y="664"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    runtime
+                                </text>
+                            </g>
+                            <!-- GeoFleetic (bottom left) -->
+                            <g>
+                                <circle
+                                    cx="170"
+                                    cy="600"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#ffc46b"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="170"
+                                    y="598"
+                                    text-anchor="middle"
+                                    fill="#ffc46b"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    GeoFleetic
+                                </text>
+                                <text
+                                    x="170"
+                                    y="612"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    &amp;space
+                                </text>
+                            </g>
+                            <!-- Agentelic (left lower) -->
+                            <g>
+                                <circle
+                                    cx="100"
+                                    cy="450"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="100"
+                                    y="448"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    Agentelic
+                                </text>
+                                <text
+                                    x="100"
+                                    y="462"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    builder
+                                </text>
+                            </g>
+                            <!-- SpecPrompt (left upper) -->
+                            <g>
+                                <circle
+                                    cx="100"
+                                    cy="290"
+                                    r="42"
+                                    fill="#0e1017"
+                                    stroke="#7b8cff"
+                                    stroke-width="1.4"
+                                />
+                                <text
+                                    x="100"
+                                    y="288"
+                                    text-anchor="middle"
+                                    fill="#7b8cff"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="9"
+                                    font-weight="600"
+                                >
+                                    SpecPrompt
+                                </text>
+                                <text
+                                    x="100"
+                                    y="302"
+                                    text-anchor="middle"
+                                    fill="#6b6980"
+                                    font-family="'JetBrains Mono',monospace"
+                                    font-size="7"
+                                >
+                                    spec-driven
+                                </text>
+                            </g>
+
+                            <!-- SATELLITE THIRD-PARTY INTEGRATIONS (outer orbit) -->
+                            <g
+                                font-family="'JetBrains Mono',monospace"
+                                font-size="8"
+                                fill="#6b6980"
+                                text-anchor="middle"
+                            >
+                                <text x="45" y="60">CloudEvents v1</text>
+                                <text x="300" y="30">JSON Schema 2020-12</text>
+                                <text x="660" y="30">Anthropic MCP</text>
+                                <text x="955" y="60">Google A2A</text>
+                                <text x="970" y="380">Anubis MCP</text>
+                                <text x="970" y="520">Ra / Raft</text>
+                                <text x="660" y="680">Fly.io · Edge</text>
+                                <text x="320" y="680">Elixir / OTP</text>
+                                <text x="30" y="680">sqlite-vec</text>
+                                <text x="30" y="530">Supabase</text>
+                                <text x="30" y="220">IRT · Rasch</text>
+                            </g>
+
+                            <!-- dotted orbit lines for satellites -->
+                            <circle
+                                cx="500"
+                                cy="350"
+                                r="430"
+                                fill="none"
+                                stroke="#ffffff"
+                                stroke-opacity="0.04"
+                                stroke-dasharray="2,5"
+                            />
+                        </svg>
+                    </div>
+
+                    <div class="constellation-legend">
+                        <div class="ll-cell c-cyan">
+                            <div class="ll-type">
+                                <i></i> CAPABILITY SURFACE
+                            </div>
+                            <p>
+                                <strong>[&amp;] JSON</strong> &middot; The
+                                structural core. Composes memory, reason, time,
+                                space, and govern into a single capability
+                                declaration. Validates against JSON Schema
+                                2020-12.
+                            </p>
+                        </div>
+                        <div class="ll-cell c-amber">
+                            <div class="ll-type"><i></i> LOOP SURFACE</div>
+                            <p>
+                                <strong>PULSE manifest</strong> &middot;
+                                Declares phases, cadence, nesting, substrates,
+                                invariants. Five canonical phase kinds. Five
+                                canonical cross-loop tokens as CloudEvents v1
+                                envelopes.
+                            </p>
+                        </div>
+                        <div class="ll-cell c-blue">
+                            <div class="ll-type"><i></i> TOOL SURFACE</div>
+                            <p>
+                                <strong>MCP + A2A</strong> &middot; [&amp;]
+                                compiles into Anthropic MCP for agent-to-tool
+                                and Google A2A for agent-to-agent. Anubis MCP
+                                ships the Elixir reference server; any MCP
+                                client connects.
+                            </p>
+                        </div>
+                        <div class="ll-cell c-rose">
+                            <div class="ll-type">
+                                <i></i> DIAGNOSTIC SURFACE
+                            </div>
+                            <p>
+                                <strong>PRISM benchmark</strong> &middot; Reads
+                                any PULSE-conforming manifest, injects scenarios
+                                at the declared <code>retrieve</code>
+                                boundary, judges on 9 CL dimensions with IRT
+                                calibration. BYOL &mdash; bring your own loop.
+                            </p>
                         </div>
                     </div>
                 </div>
