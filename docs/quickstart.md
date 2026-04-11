@@ -4,6 +4,14 @@ This quickstart gets you from clone to a working `ampersand` executable and runs
 
 All JSON output below was captured from real command execution in this repository.
 
+> **Prefer the MCP server?** `box-and-box` ships on npm as one of four
+> MCP servers in the [&] stack (`box-and-box`, `graphonomous`, `os-prism`,
+> `os-pulse`). Install with `npx -y box-and-box --db ~/.box-and-box/specs.db`
+> and let your agent call the validator, composer, and registry tools over
+> MCP. This quickstart covers the local Elixir CLI used to develop the
+> reference implementation and generate the box-and-box server's validation
+> rules.
+
 ---
 
 ## Prerequisites

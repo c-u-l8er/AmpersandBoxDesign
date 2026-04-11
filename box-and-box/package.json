@@ -1,0 +1,66 @@
+{
+  "name": "box-and-box",
+  "version": "0.1.0",
+  "description": "box-and-box — reference MCP server for the [&] Protocol. Validates ampersand.json agent declarations, composes capability manifests, generates MCP and A2A runtime configuration, and inspects the capability registry. One of four MCP servers in the [&] three-protocol stack (box-and-box, graphonomous, os-prism, os-pulse).",
+  "license": "Apache-2.0",
+  "author": "Ampersand Box Design <travis@ampersandboxdesign.com> (https://ampersandboxdesign.com)",
+  "homepage": "https://ampersandboxdesign.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-u-l8er/AmpersandBoxDesign.git",
+    "directory": "box-and-box"
+  },
+  "bugs": {
+    "url": "https://github.com/c-u-l8er/AmpersandBoxDesign/issues"
+  },
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "box-and-box": "bin/box-and-box.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "bundled",
+    "README.md",
+    "docs/NPM_PACKAGE.md"
+  ],
+  "scripts": {
+    "bundle": "node scripts/bundle.js",
+    "build": "npm run bundle && tsc",
+    "start": "node bin/box-and-box.js --help",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ampersand",
+    "ampersand-protocol",
+    "box-and-box",
+    "agent",
+    "capability",
+    "composition",
+    "a2a",
+    "opensentience"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "better-sqlite3": "^12.8.0",
+    "yargs": "^17.7.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.10.0",
+    "@types/yargs": "^17.0.33",
+    "typescript": "^5.6.3"
+  }
+}

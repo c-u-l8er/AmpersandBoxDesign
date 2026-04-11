@@ -227,9 +227,29 @@ Authoritative locations for capability details are:
 
 ## Quick start
 
-### 1. Validate an agent declaration
+### Option A — The `box-and-box` MCP server (recommended for agents)
 
-From the Elixir reference implementation:
+The [&] Protocol ships as one of four MCP servers in the [&] three-protocol
+stack. All four install identically with `npx` and carry their own embedded
+SQLite + sqlite-vec database:
+
+```jsonc
+// .mcp.json
+{
+  "mcpServers": {
+    "ampersand":    { "command": "npx", "args": ["-y", "box-and-box",  "--db", "~/.box-and-box/specs.db"] },
+    "graphonomous": { "command": "npx", "args": ["-y", "graphonomous", "--db", "~/.graphonomous/knowledge.db"] },
+    "prism":        { "command": "npx", "args": ["-y", "os-prism",     "--db", "~/.os-prism/benchmarks.db"] },
+    "pulse":        { "command": "npx", "args": ["-y", "os-pulse",     "--db", "~/.os-pulse/manifests.db"] }
+  }
+}
+```
+
+`box-and-box` exposes `validate`, `compose`, `check`, `generate_mcp`,
+`generate_a2a`, `diff`, `inspect_spec`, and `registry_list` tools to any MCP
+client (Claude, ChatGPT, Cursor, Zed, Claude Code).
+
+### Option B — Elixir reference CLI (for protocol development)
 
 ```bash
 cd reference/elixir/ampersand_core
