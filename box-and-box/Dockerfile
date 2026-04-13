@@ -1,8 +1,15 @@
 FROM node:20-slim AS build
 WORKDIR /app
-COPY package*.json ./
+
+# Copy package files from box-and-box subdirectory
+COPY box-and-box/package*.json ./
 RUN npm ci
-COPY . .
+
+# Copy the entire AmpersandBoxDesign context so bundle.js can find protocol/ etc.
+COPY . /ampersand
+# Copy box-and-box source into /app
+RUN cp -r /ampersand/box-and-box/. /app/
+
 RUN npm rebuild
 RUN npm run build
 
