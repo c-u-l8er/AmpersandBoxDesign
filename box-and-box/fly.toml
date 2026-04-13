@@ -1,5 +1,5 @@
 app = "box-and-box-mcp"
-primary_region = "iad"
+primary_region = "ord"
 
 [build]
   dockerfile = "Dockerfile"
