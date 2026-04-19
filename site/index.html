@@ -218,6 +218,16 @@
                 animation: fadeUp 1s ease 0.6s forwards;
             }
 
+            .hero-sub code {
+                font-family:
+                    "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
+                font-size: 0.9em;
+                color: var(--cyan);
+                background: rgba(74, 245, 198, 0.08);
+                padding: 0.1em 0.4em;
+                border-radius: 3px;
+            }
+
             .hero-cta {
                 display: flex;
                 gap: 1rem;
@@ -1446,11 +1456,12 @@
                 <div class="container">
                     <div class="hero-inner">
                         <p class="hero-eyebrow">
-                            [&amp;] &middot; PULSE &middot; PRISM &mdash; the
-                            three-protocol stack
+                            [&amp;] &middot; PULSE &middot; PRISM &mdash; an
+                            open protocol stack for MCP agents
                         </p>
                         <h1>
-                            The <em>substrate</em><br />for agent civilizations.
+                            Capability composition<br />for agents that
+                            <em>learn</em>.
                         </h1>
                         <p
                             class="hero-sub"
@@ -1461,45 +1472,34 @@
                                 font-weight: 400;
                             "
                         >
-                            Compose capabilities. Declare loops. <br />Measure
-                            learning.
+                            Declare your agent's memory, reasoning, and actions
+                            &mdash; in one file. Then measure whether it's
+                            actually getting better.
                         </p>
                         <p class="hero-sub">
-                            <strong>[&amp;]</strong> composes memory, reason,
-                            time, space, and govern into a single spec.
-                            <strong>PULSE</strong> declares how those
-                            capabilities cycle &mdash; retrieve, route, act,
-                            learn, consolidate &mdash; and how loops nest across
-                            agents. <strong>PRISM</strong> measures whether
-                            those loops are actually getting sharper over time.
-                            Every portfolio product ships as a PULSE-conforming,
-                            PRISM-evaluable loop.
+                            <strong>[&amp;]</strong> is an open spec for
+                            composing agent capabilities &mdash; memory, reason,
+                            time, space, and govern &mdash; declared in
+                            <code>ampersand.json</code> and compiled to MCP and
+                            A2A configs. <strong>PULSE</strong> describes how
+                            those capabilities cycle &mdash; retrieve, route,
+                            act, learn, consolidate &mdash; and how loops nest
+                            across agents. <strong>PRISM</strong> evaluates
+                            whether the loops sharpen with use. Graphonomous is
+                            the first reference loop; the rest of the portfolio
+                            follows the same shape.
                         </p>
                         <div class="hero-cta">
                             <a href="#install" class="btn btn-primary"
                                 >Install the stack</a
                             >
-                            <a href="#loops" class="btn btn-ghost"
-                                >See the loops</a
-                            >
-                            <a href="#constellation" class="btn btn-ghost"
-                                >Components</a
-                            >
-                        </div>
-                        <br />
-                        <div class="hero-cta">
-                            <a href="./protocol.html" class="btn btn-ghost"
-                                >The [&amp;] Protocol</a
-                            >
-                            <a
-                                href="https://docs.ampersandboxdesign.com"
-                                class="btn btn-ghost"
-                                >Documentation</a
-                            >
                             <a
                                 href="https://protocol.ampersandboxdesign.com/playground"
                                 class="btn btn-ghost"
-                                >Playground</a
+                                >Try the playground</a
+                            >
+                            <a href="./protocol.html" class="btn btn-ghost"
+                                >Read the protocol</a
                             >
                         </div>
                     </div>
