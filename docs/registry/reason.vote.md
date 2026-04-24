@@ -65,12 +65,14 @@ Examples include:
 
 ## 3. Where it fits in the protocol
 
-The [&] Protocol organizes cognition into four core domains:
+The [&] Protocol organizes cognition, embodiment, and governance into six primitive families:
 
 - `&memory` -- what the agent knows
 - `&reason` -- how the agent decides
 - `&time` -- when things happen
 - `&space` -- where things are
+- `&body` -- how the agent is instantiated in an environment (perception, action, affordance)
+- `&govern` -- who is acting, under what rules, at what cost
 
 `&reason.vote` lives under `&reason` and is the subtype most directly associated with:
 

@@ -2,15 +2,16 @@
 
 The `&govern` capability family represents an agent's ability to **enforce policy, verify identity, emit telemetry, manage cost budgets, and escalate to humans** — the cross-cutting governance concerns that apply to every other primitive.
 
-In the [&] Protocol, `&govern` is the fifth cognitive primitive:
+In the [&] Protocol, `&govern` is the sixth primitive (cross-cutting over four cognitive + one sensorimotor):
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&body` — how the agent is instantiated in an environment (perception, action, affordance)
 - `&govern` — who is acting, under what rules, at what cost
 
-Unlike the first four primitives, which map to cognitive domains, `&govern` is **cross-cutting**. It does not exist in isolation — it wraps, constrains, and observes the other four. Every `&memory` operation can emit telemetry. Every `&reason` decision can trigger escalation. Every `&space` action can be identity-verified. Every `&time` forecast can be budget-checked.
+Unlike the five other primitives, which each model a distinct cognitive or sensorimotor domain, `&govern` is **cross-cutting**. It does not exist in isolation — it wraps, constrains, and observes the others. Every `&memory` operation can emit telemetry. Every `&reason` decision can trigger escalation. Every `&space` action can be identity-verified. Every `&time` forecast can be budget-checked. Every `&body` action can be affordance-filtered and authorization-gated.
 
 ---
 
@@ -33,7 +34,7 @@ Treating governance as a first-class capability — rather than an afterthought 
 - that an agent has governance constraints at all
 - what kind of governance it has (telemetry, escalation, identity)
 - which provider implements each governance concern
-- how governance composes with memory, reasoning, time, and space
+- how governance composes with memory, reasoning, time, space, and body
 - what events, budgets, and escalation rules are enforced
 
 Without `&govern`, governance tends to be hidden inside ad hoc middleware, provider-specific plugins, or manual compliance processes. The result is architecture that works in demos but fails in production.
@@ -229,7 +230,7 @@ Together they support:
 - compliance escalation on boundary violations
 - identity-gated access to fleet data
 
-### Full composition: all five primitives
+### Full composition: all six primitives
 
 ```
 stream_data
@@ -239,10 +240,13 @@ stream_data
   |> &govern.telemetry.budget_check()
   |> &memory.graph.enrich()
   |> &reason.argument.evaluate()
+  |> &body.browser.affordances()     # policy-filtered action set
+  |> &govern.escalation.authorize()  # authorize destructive body actions
+  |> &body.browser.act()
   |> &govern.escalation.escalate()   # if confidence < threshold
 ```
 
-This pipeline shows how `&govern` weaves through the other four primitives — not as a separate stage, but as an observability and enforcement layer that accompanies every operation.
+This pipeline shows how `&govern` weaves through the other five primitives — not as a separate stage, but as an observability and enforcement layer that accompanies every operation, including `&body.*` affordance filtering and action authorization.
 
 ---
 

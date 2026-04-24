@@ -1,0 +1,97 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&body.browser",
+  "provider": "agent-browser",
+  "version": "0.1.0",
+  "description": "Browser embodiment contract. Provides typed perception of web DOM state (a11y tree + URL), typed action execution (click, fill, type, navigate, upload, etc.), affordance enumeration over currently-interactive elements, and deterministic state hashing for replay. The canonical `&body.*` subtype for agents that live on the web.",
+  "operations": {
+    "perceive": {
+      "in": "perception_query",
+      "out": "browser_observation",
+      "description": "Capture current browser state as a structured observation: URL, a11y tree, interactive element refs (e.g. @e1, @e2), document metadata. Refs become stale on navigation or re-render; callers MUST re-perceive before re-acting.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "act": {
+      "in": "typed_action",
+      "out": "action_outcome",
+      "description": "Execute a single typed browser action against a ref or semantic locator. Action types: click, dblclick, hover, focus, fill, type, press, check, uncheck, select, upload, scroll, scrollintoview, drag, navigate, wait, screenshot. Emits an action_outcome with before/after state hashes for InteractionTrace construction.",
+      "deterministic": false,
+      "side_effects": true
+    },
+    "affordances": {
+      "in": "scope_query",
+      "out": "affordance_set",
+      "description": "Enumerate the typed actions currently available in the present browser state, optionally scoped to a ref or selector. Returns an action_set describing what is clickable, fillable, selectable, navigable, etc. right now. This is the Gibson-style affordance interface: not every tool is available in every state.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "encode_state": {
+      "in": "perception_query",
+      "out": "state_hash",
+      "description": "Produce a deterministic hash of the current browser state (url + a11y-tree-structure + viewport). Used as FSM state identity: if two perceptions hash equal, the stored action sequence from that state is replayable.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "replay": {
+      "in": "interaction_trace",
+      "out": "replay_result",
+      "description": "Execute a stored InteractionTrace against the current browser. Trace conforms to the OS-011 InteractionTrace schema. Replay fails fast if the starting state_hash does not match the trace's recorded starting state, or if any intermediate state_hash diverges (indicating environment drift).",
+      "deterministic": false,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&memory.episodic",
+    "&reason.plan",
+    "&govern.telemetry",
+    "&govern.identity",
+    "context",
+    "typed_action",
+    "interaction_trace"
+  ],
+  "feeds_into": [
+    "&memory.episodic",
+    "&reason.*",
+    "&govern.telemetry",
+    "output"
+  ],
+  "a2a_skills": [
+    "browser-automation",
+    "web-form-completion",
+    "data-extraction",
+    "web-screenshot",
+    "embodied-browser-replay"
+  ],
+  "metadata": {
+    "primitive": "body",
+    "subtype": "browser",
+    "os_protocol": "OS-011 (Embodiment Protocol)",
+    "ref_model": "snapshot assigns fresh @eN refs per perceive(); refs stale on navigation or re-render; re-perceive required",
+    "action_types": [
+      "click", "dblclick", "hover", "focus", "fill", "type", "press",
+      "check", "uncheck", "select", "upload", "scroll", "scrollintoview",
+      "drag", "navigate", "wait", "screenshot"
+    ],
+    "wait_strategies": [
+      "wait_for_element", "wait_for_url", "wait_for_text",
+      "wait_network_idle", "wait_js_condition"
+    ],
+    "state_encoding": "sha256(canonical_json({url, a11y_tree_structure, viewport_hash}))",
+    "semantic_locators": ["role", "text", "label", "placeholder", "testid"],
+    "session_persistence": "supports cookies/localStorage save-restore for multi-run continuity",
+    "sensitive": true,
+    "provenance_recommended": true,
+    "reference_implementations": [
+      "agent-browser (npm)",
+      "mcp__Claude_in_Chrome__* (Chrome extension)",
+      "mcp__plugin_chrome-devtools-mcp__* (Chrome DevTools)"
+    ],
+    "example_use_cases": [
+      "website FSM recording + replay",
+      "continual-learning agent dogfooding its own web UI",
+      "skill crystallization: successful web-task trace promoted to FleetPrompt SkillCandidate",
+      "cross-machine skill transfer: one agent learns a workflow, another replays it"
+    ]
+  }
+}

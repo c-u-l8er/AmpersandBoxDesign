@@ -27,6 +27,8 @@ defmodule AmpersandCoreExpandedArtifactsTest do
     assert {:ok, contracts} = AmpersandCore.load_contracts()
 
     assert Map.keys(contracts) |> Enum.sort() == [
+             "&body.browser",
+             "&body.os",
              "&govern.escalation",
              "&govern.identity",
              "&govern.telemetry",
@@ -171,9 +173,9 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
     assert default_decoded["valid"] == true
     assert default_decoded["file"] == AmpersandCore.Registry.default_registry_path()
     assert default_decoded["registry"] == "registry.ampersandboxdesign.com"
-    assert default_decoded["primitive_count"] == 4
-    assert default_decoded["capability_count"] == 14
-    assert default_decoded["provider_count"] == 7
+    assert default_decoded["primitive_count"] == 6
+    assert default_decoded["capability_count"] == 22
+    assert default_decoded["provider_count"] == 12
 
     explicit_path = Fixtures.registry_path()
 
@@ -186,9 +188,9 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
     assert explicit_decoded["valid"] == true
     assert explicit_decoded["file"] == explicit_path
     assert explicit_decoded["registry"] == "registry.ampersandboxdesign.com"
-    assert explicit_decoded["primitive_count"] == 4
-    assert explicit_decoded["capability_count"] == 14
-    assert explicit_decoded["provider_count"] == 7
+    assert explicit_decoded["primitive_count"] == 6
+    assert explicit_decoded["capability_count"] == 22
+    assert explicit_decoded["provider_count"] == 12
   end
 
   test "registry list command reports expanded registry coverage" do
@@ -206,22 +208,32 @@ defmodule AmpersandCoreCLIRegistryCommandsTest do
              "version" => "0.1.0"
            }
 
-    assert decoded["primitives"] == ["&memory", "&reason", "&space", "&time"]
-    assert decoded["primitive_count"] == 4
-    assert decoded["capability_count"] == 14
-    assert decoded["provider_count"] == 7
+    assert decoded["primitives"] == ["&body", "&govern", "&memory", "&reason", "&space", "&time"]
+    assert decoded["primitive_count"] == 6
+    assert decoded["capability_count"] == 22
+    assert decoded["provider_count"] == 12
 
     assert decoded["providers"] == [
+             "agent-browser",
+             "claude-computer-use",
+             "delegatic",
              "deliberatic",
              "geofleetic",
              "graphonomous",
              "neo4j-memory",
+             "openclaw",
+             "opensentience",
              "pgvector",
              "ticktickclock",
              "weaviate"
            ]
 
     assert decoded["contract_backed_capabilities"] == [
+             "&body.browser",
+             "&body.os",
+             "&govern.escalation",
+             "&govern.identity",
+             "&govern.telemetry",
              "&memory.episodic",
              "&memory.graph",
              "&memory.vector",

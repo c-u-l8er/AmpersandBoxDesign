@@ -81,14 +81,16 @@ And at the expression level:
 
 ---
 
-## What are the four core capability domains?
+## What are the six core capability domains?
 
-The protocol starts from four cognitive primitives:
+The protocol starts from four cognitive primitives, one sensorimotor primitive, and one cross-cutting governance primitive:
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&body` — how the agent is instantiated in an environment (perception, action, affordance)
+- `&govern` — who is acting, under what rules, at what cost
 
 Each primitive can be refined into subtypes, such as:
 
@@ -102,6 +104,13 @@ Each primitive can be refined into subtypes, such as:
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+- `&body.browser`
+- `&body.os`
+- `&govern.telemetry`
+- `&govern.escalation`
+- `&govern.identity`
+
+`&body` is the sensorimotor primitive added in draft v0.1.0; see OS-011 (Embodiment Protocol) for the behavioral loop that consumes it.
 
 ---
 

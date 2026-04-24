@@ -2,7 +2,7 @@
 
 Welcome to the documentation hub for the **[&] Protocol**.
 
-The [&] Protocol is a language-agnostic specification for **capability composition in AI agents**. It defines how an agent declares what it can remember, how it reasons, how it understands time and space, how those capabilities compose, and how that declaration can compile into downstream runtime artifacts such as MCP and A2A configurations.
+The [&] Protocol is a language-agnostic specification for **capability composition in AI agents**. It defines how an agent declares what it can remember, how it reasons, how it understands time and space, how it is embodied (perception/action/affordance), how those capabilities compose, and how that declaration can compile into downstream runtime artifacts such as MCP and A2A configurations.
 
 Use this documentation to understand the protocol from multiple angles:
 
@@ -13,9 +13,9 @@ Use this documentation to understand the protocol from multiple angles:
 - **Autonomous Systems** explains why autonomous vehicles and drone swarms are the canonical [&] use case, including the Palantir integration surface and κ-driven swarm governance.
 - **Research** provides the motivation for a composition layer in the agent stack.
 - **FAQ** answers common questions quickly.
-- **Ecosystem Overview** explains how all twelve products compose through the five primitives.
-- **Industry Verticals** maps seven commercial industries where all five primitives deliver value.
-- **Capability pages** explain the five core primitives in more detail.
+- **Ecosystem Overview** explains how all twelve products compose through the six primitives.
+- **Industry Verticals** maps seven commercial industries where all six primitives deliver value.
+- **Capability pages** explain the six core primitives in more detail.
 - **Skills** are hands-on, step-by-step guides covering the full declare → validate → compose → generate workflow, plus provider implementation, governance, and integration patterns.
 
 ## What you'll find here
@@ -24,7 +24,7 @@ Use this documentation to understand the protocol from multiple angles:
 - A runtime walkthrough covering declaration → validation → composition → resolution → generation
 - Explanations of capability declaration, contracts, provenance, and governance
 - Comparisons with MCP, A2A, ACP, and related work
-- Deep dives into `&memory`, `&reason`, `&time`, `&space`, and `&govern`
+- Deep dives into `&memory`, `&reason`, `&time`, `&space`, `&body`, and `&govern`
 - **Skills guides** for hands-on implementation — from writing your first `ampersand.json` to building providers and governance policies
 
 ## Documentation map
@@ -137,7 +137,7 @@ If you're new to the project, a good path is:
 6. `topology-is-the-authority` — why governance must emerge from feedback topology, not be configured on top
 7. `research` — understand the ecosystem and research pressures behind the design
 8. `faq` — get quick answers to common adoption and framing questions
-9. Capability deep dives — explore the five core capability families in detail once the runtime model is clear
+9. Capability deep dives — explore the six core capability families in detail once the runtime model is clear
 10. `skills/SKILLS` — hands-on implementation skills registry; start here when you're ready to build
     - `01_DECLARATION` → `02_VALIDATION` → `03_COMPOSITION` → `04_CONTRACTS` → `05_GENERATION` (core workflow)
     - `06_CLI_REFERENCE` (command reference)

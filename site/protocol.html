@@ -15,7 +15,7 @@
         :root {
             --bg:#08090c;--surface:#0e1017;--surface-2:#14161e;
             --border:rgba(255,255,255,0.06);--text:#e2e0db;--dim:#7e7b94;--muted:#4a4860;
-            --cyan:#4af5c6;--blue:#7b8cff;--rose:#ff6b8a;--amber:#ffc46b;--purple:#b48cff;
+            --cyan:#4af5c6;--blue:#7b8cff;--rose:#ff6b8a;--amber:#ffc46b;--green:#6bff8a;--purple:#b48cff;
             --code-bg:#0b0c12;
         }
         *{margin:0;padding:0;box-sizing:border-box;}
@@ -48,6 +48,7 @@
         pre.hl-blue{border-left-color:var(--blue);}
         pre.hl-rose{border-left-color:var(--rose);}
         pre.hl-amber{border-left-color:var(--amber);}
+        pre.hl-green{border-left-color:var(--green);}
         pre.hl-purple{border-left-color:var(--purple);}
         .kw{color:var(--cyan);}
         .fn{color:var(--blue);}
@@ -148,7 +149,7 @@
         <p class="lead">
             The ampersand is not a logo. It's a <strong>composition operator</strong>.
             A language-agnostic protocol specification where <code>&memory</code>,
-            <code>&time</code>, <code>&space</code>, and <code>&reason</code>
+            <code>&time</code>, <code>&space</code>, <code>&body</code>, and <code>&reason</code>
             compose into verified, deployable agent systems — defined by a formal
             grammar, validated against a JSON schema, and implemented in any language.
         </p>
@@ -256,7 +257,7 @@
             The [&] protocol defines a formal grammar for capability composition.
             Any conforming implementation MUST be able to parse and validate
             expressions that satisfy this grammar. The grammar is intentionally
-            small — four primitive types, two operators, and namespaced subtypes.
+            small — six primitive types, two operators, and namespaced subtypes.
         </p>
 
 <pre class="hl-cyan"><span class="cm"># [&] Capability Grammar — BNF</span>
@@ -268,13 +269,14 @@ CapabilityList  := Capability (<span class="str">","</span> Capability)*
 
 Capability      := <span class="op">"&"</span> PrimitiveType ( <span class="str">"."</span> Subtype )? <span class="str">"("</span> ProviderExpr? (<span class="str">","</span> Config)? <span class="str">")"</span>
 
-PrimitiveType   := <span class="at">"memory"</span> | <span class="at">"reason"</span> | <span class="at">"time"</span> | <span class="at">"space"</span> | <span class="at">"govern"</span>
+PrimitiveType   := <span class="at">"memory"</span> | <span class="at">"reason"</span> | <span class="at">"time"</span> | <span class="at">"space"</span> | <span class="at">"body"</span> | <span class="at">"govern"</span>
 
 <span class="cm"># IMPROVEMENT 4: Capability namespaces</span>
 Subtype         := Identifier
                 <span class="cm"># e.g. &memory.graph, &memory.vector, &memory.episodic</span>
                 <span class="cm">#      &time.forecast, &time.anomaly, &time.pattern</span>
                 <span class="cm">#      &space.fleet, &space.geofence, &space.route</span>
+                <span class="cm">#      &body.browser, &body.os, &body.vision, &body.voice, &body.motor</span>
                 <span class="cm">#      &reason.argument, &reason.vote, &reason.plan, &reason.deliberate, &reason.attend</span>
 
 ProviderExpr    := <span class="str">":"</span> Identifier              <span class="cm"># explicit provider</span>
@@ -305,15 +307,16 @@ EscalationRule  := <span class="str">"escalate_when"</span> Condition</pre>
         </p>
 
 
-        <!-- IMPROVEMENT 4: §3 Cognitive Primitives and Namespaces -->
-        <h2 id="primitives">3. Cognitive primitives and <em>namespaces</em></h2>
+        <!-- IMPROVEMENT 4: §3 Cognitive and Sensorimotor Primitives and Namespaces -->
+        <h2 id="primitives">3. Cognitive and sensorimotor primitives and <em>namespaces</em></h2>
 
         <p>
             The [&] protocol defines four fundamental capability primitives.
             Each primitive has a namespace of subtypes that specialize its
-            behavior. Primitives map to cognitive science models of intelligence:
+            behavior. Primitives map to cognitive science models of intelligence plus one sensorimotor primitive:
             <strong>what</strong> (memory), <strong>how</strong> (reasoning),
-            <strong>when</strong> (time), <strong>where</strong> (space).
+            <strong>when</strong> (time), <strong>where</strong> (space),
+            <strong>how embodied</strong> (body), and the cross-cutting <strong>who/under what rules</strong> (govern).
         </p>
 
         <div class="grid-4">

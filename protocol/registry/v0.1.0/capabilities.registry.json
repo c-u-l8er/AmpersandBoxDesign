@@ -314,6 +314,95 @@
       "research_focus": ["spatial reasoning", "fleet operations", "routing"]
     }
   },
+  "&body": {
+    "description": "Sensorimotor embodiment capabilities for perceiving environment state, executing typed actions, enumerating currently-available affordances, and encoding state for deterministic replay. Added in draft v0.1.0; consumed by OS-011 (Embodiment Protocol). Distinct from &space (which describes external spatial data) — &body describes the agent's own instantiation in an environment.",
+    "subtypes": {
+      "browser": {
+        "ops": ["perceive", "act", "affordances", "encode_state", "replay"],
+        "description": "Browser embodiment: web DOM interaction via snapshot-and-ref model. Typed actions include click, fill, type, press, navigate, wait, upload, drag, scroll, screenshot.",
+        "contract_ref": "/contracts/v0.1.0/body.browser.contract.json",
+        "a2a_skills": [
+          "browser-automation",
+          "web-form-completion",
+          "data-extraction",
+          "web-screenshot",
+          "embodied-browser-replay"
+        ]
+      },
+      "os": {
+        "ops": ["perceive", "act", "affordances", "encode_state", "replay"],
+        "description": "Operating system embodiment: shell, filesystem, screen, keyboard, mouse, process inspection. Destructive actions require &govern.* authorization; authorization does not carry across replays.",
+        "contract_ref": "/contracts/v0.1.0/body.os.contract.json",
+        "a2a_skills": [
+          "shell-automation",
+          "filesystem-read",
+          "filesystem-mutation",
+          "screen-capture",
+          "coordinate-input",
+          "git-operations",
+          "embodied-os-replay"
+        ]
+      },
+      "vision": {
+        "ops": ["perceive", "act", "affordances", "encode_state"],
+        "description": "Visual perception embodiment. Reserved for future providers; not yet contracted in v0.1.0."
+      },
+      "voice": {
+        "ops": ["perceive", "act", "affordances", "encode_state"],
+        "description": "Audio input/output embodiment. Reserved for future providers; not yet contracted in v0.1.0."
+      },
+      "motor": {
+        "ops": ["perceive", "act", "affordances", "encode_state", "replay"],
+        "description": "Physical actuation embodiment (robotics, autonomous vehicles). Reserved for future providers; not yet contracted in v0.1.0."
+      }
+    },
+    "providers": [
+      {
+        "id": "agent-browser",
+        "name": "agent-browser",
+        "description": "Canonical &body.browser provider. CLI-first snapshot-and-ref model optimized for AI agents. Default for ProjectAmp2.",
+        "subtypes": ["browser"],
+        "protocol": "cli",
+        "transport": "stdio",
+        "contract_ref": "/contracts/v0.1.0/body.browser.contract.json",
+        "status": "stable"
+      },
+      {
+        "id": "openclaw",
+        "name": "OpenClaw",
+        "description": "Local, open-source &body.os provider with chat-app integrations and multi-machine deployments.",
+        "subtypes": ["os", "browser"],
+        "protocol": "mcp_v1",
+        "transport": "custom",
+        "url": "https://openclaw.ai",
+        "contract_ref": "/contracts/v0.1.0/body.os.contract.json",
+        "status": "beta",
+        "metadata": {
+          "built_on": "pi.dev"
+        }
+      },
+      {
+        "id": "claude-computer-use",
+        "name": "Claude Computer Use",
+        "description": "Coordinate-based OS interaction via Anthropic's computer-use API. Adapts to &body.os via a wrapper.",
+        "subtypes": ["os"],
+        "protocol": "anthropic-api",
+        "transport": "https",
+        "contract_ref": "/contracts/v0.1.0/body.os.contract.json",
+        "status": "experimental"
+      }
+    ],
+    "metadata": {
+      "research_focus": [
+        "affordance enumeration",
+        "sensorimotor grounding",
+        "FSM state encoding for replay",
+        "forward models and surprise signals"
+      ],
+      "os_protocol": "OS-011 (Embodiment Protocol)",
+      "pulse_token": "SurpriseSignal (added in PULSE v0.1.1)"
+    }
+  },
   "&govern": {
     "description": "Governance capabilities for telemetry, escalation, identity, and security across the [&] Protocol ecosystem. Cross-cutting concerns that all capability providers may consume or emit.",
     "subtypes": {

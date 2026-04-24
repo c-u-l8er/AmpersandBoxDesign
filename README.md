@@ -8,6 +8,7 @@ It defines how an agent declares:
 - how it can **reason**
 - how it understands **time**
 - how it understands **space**
+- how it is **embodied** — perception, action, affordance
 - how those capabilities **compose**
 - how decisions retain **provenance**
 - how constraints are expressed as **governance**
@@ -47,12 +48,13 @@ In short:
 
 ## Core model
 
-The protocol starts from five capability primitives:
+The protocol starts from six capability primitives:
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&body` — how the agent is instantiated in an environment (perception, action, affordance)
 - `&govern` — who is acting, under what rules, at what cost
 
 Each primitive can be refined with namespaced subtypes:
@@ -69,12 +71,15 @@ Each primitive can be refined with namespaced subtypes:
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+- `&body.browser`
+- `&body.os`
 - `&govern.telemetry`
 - `&govern.escalation`
 - `&govern.identity`
 
-The protocol has exactly five primitive roots (`&memory`, `&reason`, `&time`, `&space`, `&govern`).
+The protocol has exactly six primitive roots (`&memory`, `&reason`, `&time`, `&space`, `&body`, `&govern`).
 Topology analysis and κ-routing are derived operations from `&memory.graph`, not a separate primitive.
+`&body` is the sensorimotor primitive added in draft v0.1.0; see OS-011 (Embodiment Protocol) for the behavioral loop that consumes it.
 
 Composition is defined with two operators:
 
@@ -176,6 +181,8 @@ This repository is the canonical home for the protocol and its reference artifac
 - `contracts/v0.1.0/space.fleet.contract.json`
 - `contracts/v0.1.0/space.route.contract.json`
 - `contracts/v0.1.0/space.geofence.contract.json`
+- `contracts/v0.1.0/body.browser.contract.json`
+- `contracts/v0.1.0/body.os.contract.json`
 
 Schema-aligned contract examples for `&reason.deliberate` and `&reason.attend` are included in:
 - `protocol/schema/v0.1.0/capability-contract.schema.json` (`examples` section)

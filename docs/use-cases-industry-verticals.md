@@ -1,4 +1,4 @@
-# Industry Verticals: Where All Five Primitives Compose
+# Industry Verticals: Where All Six Primitives Compose
 
 **March 2026 · [&] Ampersand Box Design**
 
@@ -6,19 +6,19 @@
 
 ## Beyond autonomous vehicles
 
-The companion document [Autonomous Systems](use-cases-autonomous-systems.md) explains why military drones and AVs are the canonical [&] use case. But autonomous vehicles are not the only domain where all five primitives compose naturally.
+The companion document [Autonomous Systems](use-cases-autonomous-systems.md) explains why military drones and AVs are the canonical [&] use case. But autonomous vehicles are not the only domain where all six primitives compose naturally.
 
-This document maps **seven commercial industries** where `&memory + &reason + &time + &space + &govern` deliver value that no single-primitive solution can match. For each vertical, we show the five-primitive pipeline, the products that implement it, and the business problem it solves.
+This document maps **seven commercial industries** where `&memory + &reason + &time + &space + &body + &govern` deliver value that no single-primitive solution can match. For each vertical, we show the six-primitive pipeline, the products that implement it, and the business problem it solves.
 
 ---
 
 ## 1. Field Service Management
 
-**The $5.2B industry where all five primitives are table stakes.**
+**The $5.2B industry where all six primitives are table stakes.**
 
 Field service — HVAC repair, elevator maintenance, medical equipment servicing, telecom installation — is the commercial vertical that most completely exercises the [&] Protocol. Every work order involves: what the technician knows (memory), how to prioritize and dispatch (reason), when the equipment will fail next (time), where the technician and equipment are (space), and who approved the work under what SLA (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 equipment_telemetry
@@ -79,9 +79,9 @@ equipment_telemetry
 
 **Hospital operations where temporal prediction + spatial logistics + governance compliance compose.**
 
-Hospital operations — patient flow, equipment tracking, staff scheduling, bed management — require all five primitives. A sepsis early warning system must detect temporal patterns in vitals (time), locate the nearest available care team (space), retrieve the patient's history (memory), reason about treatment protocols (reason), and comply with clinical governance (govern).
+Hospital operations — patient flow, equipment tracking, staff scheduling, bed management — require all six primitives. A sepsis early warning system must detect temporal patterns in vitals (time), locate the nearest available care team (space), retrieve the patient's history (memory), reason about treatment protocols (reason), and comply with clinical governance (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 patient_vitals_stream
@@ -110,7 +110,7 @@ patient_vitals_stream
 
 Supply chain management — demand forecasting, inventory optimization, carrier routing, customs compliance — spans organizations and geographies. A supply chain agent must forecast demand (time), optimize routes across carriers and warehouses (space), remember historical disruption patterns (memory), reason about supplier alternatives when disruptions occur (reason), and enforce compliance across org boundaries (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 demand_signals
@@ -143,9 +143,9 @@ Each subsidiary can only **tighten** parent restrictions — never loosen them. 
 
 **Grid management where temporal anomaly detection + spatial topology + governance compliance are safety-critical.**
 
-Energy grid operations — load balancing, outage prediction, renewable integration, demand response — require all five primitives under safety-critical governance. A grid agent must detect anomalous load patterns (time), understand grid topology and affected regions (space), recall historical outage patterns (memory), reason about load-shedding strategies (reason), and comply with NERC CIP regulatory requirements (govern).
+Energy grid operations — load balancing, outage prediction, renewable integration, demand response — require all six primitives under safety-critical governance. A grid agent must detect anomalous load patterns (time), understand grid topology and affected regions (space), recall historical outage patterns (memory), reason about load-shedding strategies (reason), and comply with NERC CIP regulatory requirements (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 grid_telemetry
@@ -177,7 +177,7 @@ This is not optional governance — it's legally mandated.
 
 Manufacturing operations — predictive maintenance, quality control, production scheduling, supply chain coordination — are increasingly agent-driven. A factory agent must predict equipment failures (time), track assets and production lines spatially (space), recall maintenance history and quality patterns (memory), reason about production schedule adjustments (reason), and enforce ISO 9001 quality governance (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 machine_sensors
@@ -204,9 +204,9 @@ GeoFleetic's spatial digital twins map naturally to factory floor assets:
 
 **Trading, compliance, and risk management where temporal pattern detection + governance audit trails are regulatory requirements.**
 
-Financial services — algorithmic trading, fraud detection, compliance monitoring, risk assessment — require all five primitives under strict regulatory governance. A compliance agent must detect suspicious transaction patterns (time), identify geographic risk factors (space), recall regulatory history (memory), reason about compliance actions (reason), and maintain a complete audit trail (govern).
+Financial services — algorithmic trading, fraud detection, compliance monitoring, risk assessment — require all six primitives under strict regulatory governance. A compliance agent must detect suspicious transaction patterns (time), identify geographic risk factors (space), recall regulatory history (memory), reason about compliance actions (reason), and maintain a complete audit trail (govern).
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 transaction_stream
@@ -235,7 +235,7 @@ transaction_stream
 
 Telecom network operations — cell tower monitoring, network capacity planning, SLA management, field crew dispatch — mirror field service but at massive scale with strict SLA governance.
 
-### The five-primitive pipeline
+### The six-primitive pipeline
 
 ```
 network_kpis
@@ -289,7 +289,7 @@ Demand forecasting feeds capacity analysis, which feeds planning, which is budge
 
 | Vertical | TAM (2025) | Growth | [&] Relevance |
 |----------|-----------|--------|---------------|
-| **Field Service Management** | $5.2B | 11% CAGR | All 5 primitives are table stakes |
+| **Field Service Management** | $5.2B | 11% CAGR | All 6 primitives are table stakes |
 | **Healthcare Operations** | $8.1B (clinical AI) | 38% CAGR | Governance-first; temporal + spatial critical |
 | **Supply Chain AI** | $3.8B | 25% CAGR | Multi-org governance; temporal forecasting |
 | **Energy Grid AI** | $2.1B | 22% CAGR | Safety-critical; all primitives mandatory |
@@ -304,7 +304,7 @@ These are the verticals where single-primitive solutions (memory-only, reasoning
 
 ## Summary
 
-The [&] Protocol was designed for agents that need to **remember, reason, predict, localize, and comply** — simultaneously. Seven commercial verticals exercise all five primitives:
+The [&] Protocol was designed for agents that need to **remember, reason, predict, localize, and comply** — simultaneously. Seven commercial verticals exercise all six primitives:
 
 1. **Field Service** — predict failure, locate technician, dispatch, comply with SLA
 2. **Healthcare** — detect deterioration, locate care team, reason about treatment, comply with HIPAA

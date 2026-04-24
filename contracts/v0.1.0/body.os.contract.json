@@ -1,0 +1,101 @@
+{
+  "$schema": "https://protocol.ampersandboxdesign.com/schema/v0.1.0/capability-contract.schema.json",
+  "capability": "&body.os",
+  "provider": "system",
+  "version": "0.1.0",
+  "description": "Operating system embodiment contract. Provides typed perception of OS state (screen, focused window, filesystem tree, process list, working directory, git state), typed action execution (shell commands, file I/O, keyboard/mouse/screen input), affordance enumeration over currently-available OS operations, and deterministic state hashing. The canonical `&body.*` subtype for agents that live on a machine.",
+  "operations": {
+    "perceive": {
+      "in": "perception_query",
+      "out": "os_observation",
+      "description": "Capture current OS state as a structured observation. Modes: 'screen' (screenshot + focused window), 'filesystem' (cwd + tree), 'process' (process list), 'shell' (env + history), 'git' (repo state), 'full' (all of the above). Sensitive: observations may include file contents, open windows, and environment variables; provider MUST honor &govern.identity scoping.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "act": {
+      "in": "typed_action",
+      "out": "action_outcome",
+      "description": "Execute a single typed OS action. Action types: shell_exec (shell command with stdin/stdout/stderr capture), file_read, file_write, file_edit, file_delete, keyboard_input (text or keystrokes), mouse_click (coordinate), mouse_drag, screen_capture, process_spawn, process_signal. Destructive actions (write/delete/spawn/signal) require &govern.* authorization; unauthorized attempts emit an escalation signal and return a typed error without execution.",
+      "deterministic": false,
+      "side_effects": true
+    },
+    "affordances": {
+      "in": "scope_query",
+      "out": "affordance_set",
+      "description": "Enumerate the typed actions currently available in the present OS state, optionally scoped to a path, window, or process. Returns an action_set describing what commands are installed, which files are writable under current permissions, which windows can be focused, etc. Affordances are policy-filtered: actions the agent is not authorized to take do not appear in the set.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "encode_state": {
+      "in": "perception_query",
+      "out": "state_hash",
+      "description": "Produce a deterministic hash of the current OS state (cwd + focused_window_title + git_head + key_process_list). Used as FSM state identity for replay. Excludes volatile fields (timestamps, pids) by design.",
+      "deterministic": true,
+      "side_effects": false
+    },
+    "replay": {
+      "in": "interaction_trace",
+      "out": "replay_result",
+      "description": "Execute a stored InteractionTrace against the current OS. Trace conforms to the OS-011 InteractionTrace schema. Replay fails fast on state_hash divergence (OS environments drift more than browsers, so strictness is higher). Destructive operations in the trace require re-authorization at replay time; trace authorization does not carry over.",
+      "deterministic": false,
+      "side_effects": true
+    }
+  },
+  "accepts_from": [
+    "&memory.episodic",
+    "&reason.plan",
+    "&govern.telemetry",
+    "&govern.identity",
+    "&govern.escalation",
+    "context",
+    "typed_action",
+    "interaction_trace"
+  ],
+  "feeds_into": [
+    "&memory.episodic",
+    "&reason.*",
+    "&govern.telemetry",
+    "&govern.escalation",
+    "output"
+  ],
+  "a2a_skills": [
+    "shell-automation",
+    "filesystem-read",
+    "filesystem-mutation",
+    "screen-capture",
+    "coordinate-input",
+    "git-operations",
+    "embodied-os-replay"
+  ],
+  "metadata": {
+    "primitive": "body",
+    "subtype": "os",
+    "os_protocol": "OS-011 (Embodiment Protocol)",
+    "action_types": [
+      "shell_exec", "file_read", "file_write", "file_edit", "file_delete",
+      "keyboard_input", "mouse_click", "mouse_drag", "screen_capture",
+      "process_spawn", "process_signal"
+    ],
+    "destructive_actions": [
+      "file_write", "file_edit", "file_delete",
+      "process_spawn", "process_signal", "shell_exec"
+    ],
+    "state_encoding": "sha256(canonical_json({cwd, focused_window, git_head, key_process_names, env_fingerprint}))",
+    "authorization_required": "&govern.identity must bind a valid agent_id; destructive actions require &govern.escalation confirmation per Delegatic policy",
+    "sensitive": true,
+    "provenance_required": true,
+    "reference_implementations": [
+      "Claude Code Bash + Read + Write + Edit tools (bounded)",
+      "Claude Computer Use (coordinate-based)",
+      "OpenClaw (local, open-source)",
+      "Pi.dev (via extensions)"
+    ],
+    "example_use_cases": [
+      "OS FSM recording + replay (competing with OpenClaw)",
+      "agent walks its own codebase (dogfooding)",
+      "cross-machine skill transfer: one agent records a deploy workflow, another replays it",
+      "dark-factory autonomous operation with PRISM-benchmarked reliability"
+    ],
+    "safety_notes": "OS actions have wider blast radius than browser actions. Conforming providers MUST default-deny destructive operations without explicit &govern.* authorization. Replay of destructive traces MUST re-authorize at replay time, not inherit original authorization."
+  }
+}

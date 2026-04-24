@@ -47,12 +47,14 @@ This improves controllability, auditability, and consistency in high-friction re
 
 ## 3. Where it fits in the protocol
 
-The [&] Protocol organizes cognition into four primitive families:
+The [&] Protocol organizes cognition, embodiment, and governance into six primitive families:
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&body` — how the agent is instantiated in an environment (perception, action, affordance)
+- `&govern` — who is acting, under what rules, at what cost
 
 `&reason.deliberate` sits under `&reason` and composes most naturally with:
 

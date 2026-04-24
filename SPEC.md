@@ -67,9 +67,9 @@ The core claim of the protocol is simple: an agent should declare **what kinds o
 
 ---
 
-## 4. Cognitive Primitives
+## 4. Cognitive and Sensorimotor Primitives
 
-The protocol defines five primitive capability domains.
+The protocol defines six primitive capability domains.
 
 ### 4.1 `&memory`
 
@@ -114,7 +114,21 @@ Common subtypes include:
 - `&space.route`
 - `&space.geofence`
 
-### 4.5 `&govern`
+### 4.5 `&body`
+
+Describes sensorimotor embodiment: how the agent perceives environmental state, enumerates currently-available typed actions (affordances), executes typed actions, and encodes state for deterministic replay. Distinct from `&space` (which describes external spatial data) and `&reason.plan` (which produces abstract plans): `&body` describes the agent's actual instantiation in an environment.
+
+Common subtypes include:
+
+- `&body.browser`
+- `&body.os`
+- `&body.vision`
+- `&body.voice`
+- `&body.motor`
+
+Every `&body.*` subtype SHOULD implement the four standard operations: `perceive`, `act`, `affordances`, `encode_state`. These are normative for OS-011 (Embodiment Protocol) conformance.
+
+### 4.6 `&govern`
 
 Describes cross-cutting governance concerns: telemetry, escalation, and identity.
 
@@ -124,12 +138,13 @@ Common subtypes include:
 - `&govern.escalation`
 - `&govern.identity`
 
-These primitives are intended to map to a practical cognitive taxonomy:
+These primitives are intended to map to a practical cognitive + sensorimotor taxonomy:
 
 - **what** → memory
 - **how** → reason
 - **when** → time
 - **where** → space
+- **how embodied** → body
 - **who/under what rules** → govern
 
 ---
@@ -147,6 +162,7 @@ Valid primitive roots are:
 - `reason`
 - `time`
 - `space`
+- `body`
 - `govern`
 
 Examples:
@@ -157,6 +173,8 @@ Examples:
 - `&reason.attend`
 - `&time.anomaly`
 - `&space.fleet`
+- `&body.browser`
+- `&body.os`
 - `&govern.telemetry`
 - `&govern.escalation`
 - `&govern.identity`
@@ -165,9 +183,10 @@ Wildcard matching is used in contracts and compatibility rules. For example:
 
 - `&memory.*` matches any `&memory` subtype
 - `&reason.*` matches any `&reason` subtype
+- `&body.*` matches any `&body` subtype
 - `&govern.*` matches any `&govern` subtype
 
-The protocol defines five primitive roots (`memory`, `reason`, `time`, `space`, `govern`). The first four map to cognitive domains; `govern` is the cross-cutting primitive for telemetry, escalation, and identity that all capability providers may consume or emit.
+The protocol defines six primitive roots (`memory`, `reason`, `time`, `space`, `body`, `govern`). The first four map to cognitive domains; `body` is the sensorimotor primitive for perception, action, affordance, and state-encoding; `govern` is the cross-cutting primitive for telemetry, escalation, and identity that all capability providers may consume or emit.
 
 ---
 

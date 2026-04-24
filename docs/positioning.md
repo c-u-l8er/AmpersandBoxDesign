@@ -91,11 +91,13 @@ Each primitive can be refined into namespaced subtypes such as:
 - `&time.anomaly`
 - `&time.forecast`
 - `&space.fleet`
+- `&body.browser`
+- `&body.os`
 - `&govern.telemetry`
 - `&govern.escalation`
 - `&govern.identity`
 
-This gives the protocol a vocabulary for cognition that is both small and extensible. The first four primitives map to cognitive domains; `&govern` is the cross-cutting primitive for telemetry, escalation, and identity that all capability providers may consume or emit.
+This gives the protocol a vocabulary for cognition that is both small and extensible. The first four primitives map to cognitive domains; `&body` is the sensorimotor primitive (perception, action, affordance); `&govern` is the cross-cutting primitive for telemetry, escalation, and identity that all capability providers may consume or emit.
 
 ### Formal grammar
 
@@ -191,17 +193,18 @@ It sits between architecture design and downstream runtime configuration. Its pu
 - governance-aware,
 - and translatable into other protocol surfaces.
 
-### Five primitives
+### Six primitives
 
-The protocol starts from five primitives that map cleanly onto common cognitive and operational categories:
+The protocol starts from six primitives that map cleanly onto common cognitive, sensorimotor, and operational categories:
 
 - **memory** — what the agent stores and recalls
 - **reason** — how the agent evaluates and decides
 - **time** — how the agent models trends, forecasts, and anomalies
 - **space** — how the agent models regions, fleets, routes, or topology
+- **body** — how the agent is instantiated in an environment: perception, typed action, affordance enumeration, state-encoding for replay
 - **govern** — who is acting, under what rules, at what cost
 
-The first four are cognitive domains. The fifth — `&govern` — is the cross-cutting primitive that makes governance a declared, composable capability rather than an afterthought. `&govern.telemetry` tracks operational metrics, `&govern.escalation` defines deferral policies, and `&govern.identity` manages agent authentication and authorization.
+The first four are cognitive domains. The fifth — `&body` — is the sensorimotor primitive (added in draft v0.1.0); subtypes include `&body.browser` (web DOM), `&body.os` (operating system), `&body.vision`, `&body.voice`, `&body.motor`. See OS-011 (Embodiment Protocol) for the behavioral loop. The sixth — `&govern` — is the cross-cutting primitive that makes governance a declared, composable capability rather than an afterthought. `&govern.telemetry` tracks operational metrics, `&govern.escalation` defines deferral policies, and `&govern.identity` manages agent authentication and authorization.
 
 This is intentionally compact. A smaller primitive set is easier to standardize, while namespaces allow specialization.
 

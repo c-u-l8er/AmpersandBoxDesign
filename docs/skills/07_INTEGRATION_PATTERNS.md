@@ -9,7 +9,7 @@
 
 Abstract composition is useful for understanding the protocol. Concrete
 recipes are useful for building agents. This file provides five tested
-patterns that combine the four primitives in production-relevant ways.
+patterns that combine the six primitives (four cognitive + `&body` sensorimotor + `&govern` cross-cutting) in production-relevant ways.
 
 ---
 
@@ -144,8 +144,8 @@ and deliberative reasoning for fleet-wide decision making.
 &space.fleet & &time.pattern & &memory.graph & &reason.argument
 ```
 
-All four primitives are represented. The pipeline flows spatial data through
-temporal analysis, enriches with historical context, and routes to reasoning.
+All four cognitive primitives are represented in this recipe (memory, reason, time, space). The pipeline flows spatial data through
+temporal analysis, enriches with historical context, and routes to reasoning. An embodied variant would add `&body.*` for perception and action; see Recipe 6 below.
 
 ---
 
@@ -200,8 +200,8 @@ Provenance creates an audit trail of every capability invocation.
 
 ## Recipe 5: Full Cognitive Stack
 
-**Problem:** Build an agent that uses all four primitives — memory, reasoning,
-temporal awareness, and spatial awareness — in a cohesive architecture.
+**Problem:** Build an agent that uses the four cognitive primitives — memory, reasoning,
+temporal awareness, and spatial awareness — in a cohesive architecture. (Pure cognitive agent; adds `&body.*` in Recipe 6 for embodied agents.)
 
 ### Declaration
 
@@ -236,9 +236,61 @@ temporal awareness, and spatial awareness — in a cohesive architecture.
 & &time.anomaly & &time.forecast & &space.fleet & &space.geofence
 ```
 
-Eight capabilities across all four primitives. This is a high-trust agent
+Eight capabilities across all four cognitive primitives. This is a high-trust agent
 (`autonomy: "act"`, `model_tier: "cloud_frontier"`) with a governance
 constraint requiring multi-domain evidence before acting.
+
+---
+
+## Recipe 6: Embodied Computer-Use Agent (all six primitives)
+
+**Problem:** Build an agent that acts on a real browser and operating system, learns from its perception-action traces, and can ship crystallized workflows to other machines — the full dark-factory shape.
+
+### Declaration
+
+```json
+{
+  "agent": "EmbodiedFactoryWorker",
+  "version": "1.0.0",
+  "capabilities": {
+    "&memory.graph":      { "provider": "graphonomous" },
+    "&memory.episodic":   { "provider": "graphonomous" },
+    "&reason.plan":       { "provider": "graphonomous" },
+    "&reason.deliberate": { "provider": "graphonomous", "config": { "budget": "kappa" } },
+    "&time.forecast":     { "provider": "ticktickclock" },
+    "&space.region":      { "provider": "geofleetic" },
+    "&body.browser":      { "provider": "agent-browser" },
+    "&body.os":           { "provider": "openclaw" },
+    "&govern.identity":   { "provider": "delegatic", "config": { "workspace": "factory_42" } },
+    "&govern.telemetry":  { "provider": "opensentience" },
+    "&govern.escalation": { "provider": "delegatic" }
+  },
+  "governance": {
+    "hard": [
+      "Never write to paths outside the workspace sandbox",
+      "Never submit browser forms containing credentials without explicit authorization"
+    ],
+    "escalate_when": { "confidence_below": 0.75, "hard_boundary_approached": true },
+    "autonomy": {
+      "level": "act",
+      "model_tier": "local_large",
+      "heartbeat_seconds": 60,
+      "budget": { "max_actions_per_hour": 100, "require_approval_for": ["process_spawn", "file_delete"] }
+    }
+  },
+  "provenance": true
+}
+```
+
+### Composition expression
+
+```
+&memory.graph & &memory.episodic & &reason.plan & &reason.deliberate
+& &time.forecast & &space.region & &body.browser & &body.os
+& &govern.identity & &govern.telemetry & &govern.escalation
+```
+
+This recipe is the canonical shape for a [&]-composed continual-learning computer-use agent. The `&body.*` capabilities provide the perception-action loop (OS-011 Embodiment Protocol). The `&memory.episodic` consumes InteractionTraces produced by every `&body.*.act` call. Crystallized procedural clusters promote to FleetPrompt SkillCandidates for cross-machine skill transfer. PRISM benchmarks embodiment fidelity.
 
 ---
 

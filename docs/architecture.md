@@ -54,7 +54,7 @@ The protocol exists because there is currently no standard, machine-readable lay
 
 ## 3. Core architectural model
 
-The protocol has five primary architectural concepts:
+The protocol has five primary architectural concepts (stable across the six-primitive vocabulary):
 
 1. **capability primitives**
 2. **canonical declarations**
@@ -66,15 +66,16 @@ These concepts are designed to remain valid across programming languages and run
 
 ### 3.1 Capability primitives
 
-The protocol starts with five primitive capability domains:
+The protocol starts with six primitive capability domains:
 
 - `&memory`
 - `&reason`
 - `&time`
 - `&space`
+- `&body`
 - `&govern`
 
-These are the top-level cognitive building blocks.
+The first four are cognitive building blocks; `&body` is the sensorimotor primitive (perception, action, affordance, state-encoding for replay); `&govern` is the cross-cutting operational primitive.
 
 Examples of subtypes:
 
@@ -89,6 +90,8 @@ Examples of subtypes:
 - `&time.forecast`
 - `&space.fleet`
 - `&space.route`
+- `&body.browser`
+- `&body.os`
 - `&govern.telemetry`
 - `&govern.escalation`
 - `&govern.identity`

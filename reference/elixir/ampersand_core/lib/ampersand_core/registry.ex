@@ -30,8 +30,8 @@ defmodule AmpersandCore.Registry do
   @type capability_id :: String.t()
   @type provider_id :: String.t()
 
-  @primitive_regex ~r/^&(memory|reason|time|space)$/
-  @capability_regex ~r/^&(memory|reason|time|space)(\.[A-Za-z][A-Za-z0-9_-]*)?$/
+  @primitive_regex ~r/^&(memory|reason|time|space|body|govern)$/
+  @capability_regex ~r/^&(memory|reason|time|space|body|govern)(\.[A-Za-z][A-Za-z0-9_-]*)?$/
 
   @default_registry_path Path.expand(
                            "../../../../../protocol/registry/v0.1.0/capabilities.registry.json",
@@ -151,7 +151,7 @@ defmodule AmpersandCore.Registry do
 
   Example return value:
 
-      ["&memory", "&reason", "&space", "&time"]
+      ["&body", "&govern", "&memory", "&reason", "&space", "&time"]
   """
   @spec list_primitives(registry()) :: [primitive_id()]
   def list_primitives(%{} = registry) do

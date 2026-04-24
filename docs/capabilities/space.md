@@ -2,14 +2,18 @@
 
 The `&space` capability family represents an agent's ability to reason about **where things are, how they move, how regions relate to one another, and what actions are valid in a spatial context**.
 
-In the [&] Protocol, `&space` is one of the four core cognitive primitives:
+In the [&] Protocol, `&space` is one of the four core cognitive primitives (alongside `&body` the sensorimotor primitive and `&govern` the cross-cutting operational primitive):
 
 - `&memory` — what the agent knows
 - `&reason` — how the agent decides
 - `&time` — when things happen
 - `&space` — where things are
+- `&body` — how the agent is instantiated in an environment (perception, action, affordance)
+- `&govern` — who is acting, under what rules, at what cost
 
 Spatial capability matters whenever an agent operates over fleets, maps, routes, regions, geofences, topologies, facilities, service territories, supply chains, or any system where location and position change what a valid decision looks like.
+
+`&space` is distinct from `&body`: `&space` models external spatial data (fleet positions, regions, routes), while `&body` models the agent's own sensorimotor interface to an environment (perception, typed action, affordance enumeration). An agent may consume `&space.fleet` to reason about where vehicles are AND declare `&body.motor` to actuate one.
 
 ---
 

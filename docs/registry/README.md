@@ -85,9 +85,11 @@ This publishes discoverable provider and subtype metadata.
 - `docs/capabilities/reason.md`
 - `docs/capabilities/time.md`
 - `docs/capabilities/space.md`
+- `docs/capabilities/body.md` (planned)
+- `docs/capabilities/govern.md`
 
 These explain the primitive domains.
-The files in this directory explain specific capability pages inside those domains.
+The files in this directory explain specific capability pages inside those domains. For `&body.*` subtypes (`body.browser`, `body.os`, etc.), see the individual registry pages and the OS-011 Embodiment Protocol specification for behavioral semantics.
 
 ---
 

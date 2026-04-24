@@ -816,9 +816,9 @@ Use the `p(params, key, default)` helper (from existing components) for string/a
 
 The Attention Engine introduces capabilities that the current protocol grammar and spec don't fully express. This section defines the required amendments to `SPEC.md` and `PROTOCOL_PROMPT.md`.
 
-### 4.1 The Four Primitives Still Hold
+### 4.1 The Four Cognitive Primitives Still Hold For Attention
 
-No 5th primitive is needed. Here's why:
+No new primitive is needed for attention. Here's why:
 
 | New Concept | Where It Lives | Rationale |
 |------------|---------------|-----------|
@@ -828,7 +828,9 @@ No 5th primitive is needed. Here's why:
 | Domain exploration | `&memory.graph` operation | Exploration enriches the graph — it's a memory write operation |
 | Goal generation | `&reason.plan` operation | Goal generation is planning — a reasoning output |
 
-The insight: **attention is meta-reasoning**. It sits within `&reason`, not alongside it. The protocol's four primitives map to the fundamental cognitive axes (what/how/when/where). Attention is "how" applied reflexively — reasoning about reasoning.
+The insight: **attention is meta-reasoning**. It sits within `&reason`, not alongside it. The protocol's four cognitive primitives map to the fundamental cognitive axes (what/how/when/where). Attention is "how" applied reflexively — reasoning about reasoning.
+
+> **Historical note (v0.1.0):** This section argues that attention does NOT warrant a new primitive, and that conclusion remains correct. Separately, in protocol draft v0.1.0 a sensorimotor primitive `&body` was added to close the perception-action gap (subtypes `.browser`, `.os`, `.vision`, `.voice`, `.motor`). `&body` is distinct from attention: attention is meta-reasoning (stays in `&reason`), while `&body` is sensorimotor embodiment (a different cognitive axis entirely). The protocol now has six primitives total: four cognitive (memory/reason/time/space), one sensorimotor (body), and one cross-cutting (govern). See OS-011 (Embodiment Protocol) and `PROTOCOL_PROMPT.md` for current framing.
 
 ### 4.2 New Subtypes
 
@@ -1267,23 +1269,25 @@ The system doesn't need to be told what to do for each step. It needs to be told
 1. Attention capabilities expressible in ampersand.json
 2. Autonomy governance validates against updated schema
 3. Pipeline examples type-check against updated contracts
-4. No new primitives needed (four primitives sufficient)
+4. No new primitive needed for attention (attention stays within `&reason`); see note in §4.1 about the separate `&body` addition for sensorimotor embodiment
 
 ---
 
 ## 9. Architectural Notes
 
-### Why not a 5th primitive?
+### Why not a new primitive for attention?
 
 It's tempting to add `&attend` or `&agency` as a primitive. But attention is **meta-reasoning** — reasoning about what to reason about. It takes the same inputs (knowledge graph, goals, coverage) and produces the same outputs (decisions, actions) as `&reason`. The distinction is that attention is *self-directed* rather than *query-directed*. This is a mode of reasoning, not a new cognitive axis.
 
-The four primitives map to the fundamental axes of cognition:
+The four cognitive primitives map to the fundamental axes of cognition:
 - **What** → `&memory`
 - **How** → `&reason` (including meta-reasoning / attention)
 - **When** → `&time`
 - **Where** → `&space`
 
 There is no "why" primitive because "why" is answered by the composition of memory (what happened), reasoning (how it connects), and time (when it happened). Similarly, "what next" is answered by reasoning over memory and time — which is exactly what the Attention Engine does.
+
+Note: separately from attention, protocol draft v0.1.0 added `&body` as a sensorimotor primitive (perception, action, affordance) to close the perception-action gap. That is not an attention primitive; it models the agent's instantiation in an environment. See OS-011 (Embodiment Protocol).
 
 ### Why heartbeat and not event-driven?
 

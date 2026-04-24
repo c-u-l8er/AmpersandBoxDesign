@@ -17,9 +17,9 @@ You are building **the [&] Protocol ecosystem** — an open-source, language-agn
 
 ## Protocol Architecture Summary
 
-### The Five Capability Domains (Cognitive Primitives)
+### The Six Capability Domains (Cognitive + Sensorimotor Primitives)
 
-The protocol defines exactly five fundamental capability domains. These are framed as **engineering infrastructure primitives** in documentation aimed at developers, and as **cognitive primitives** when connecting to the theoretical foundations. Both framings are valid and should be used contextually:
+The protocol defines exactly six fundamental capability domains. These are framed as **engineering infrastructure primitives** in documentation aimed at developers, and as **cognitive + sensorimotor primitives** when connecting to the theoretical foundations. Both framings are valid and should be used contextually:
 
 | Primitive | Engineering Domain | Cognitive Mapping | Question | Color |
 |-----------|-------------------|-------------------|----------|-------|
@@ -27,17 +27,25 @@ The protocol defines exactly five fundamental capability domains. These are fram
 | `&reason` | Decision logic | Deliberation / planning | How the agent decides | Blue `#7b8cff` |
 | `&time` | Temporal modeling | Temporal awareness / forecasting | When things happen | Rose `#ff6b8a` |
 | `&space` | Spatial modeling | Spatial awareness / navigation | Where things are | Amber `#ffc46b` |
+| `&body` | Sensorimotor interface | Perception / action / affordance | How the agent is instantiated in an environment | Green `#6bff8a` |
 | `&govern` | Cross-cutting governance | Telemetry / escalation / identity | Who is acting, under what rules, at what cost | Purple `#b57bff` |
 
-**Cognitive architecture lineage**: The first four primitives are not arbitrary. They map directly to established cognitive science models:
+**Cognitive architecture lineage**: The first four cognitive primitives are not arbitrary. They map directly to established cognitive science models:
 
 - **SOAR** (Newell, 1990; Laird, 2012): Integrates procedural memory, semantic memory, episodic memory, and a Spatial Visual System (SVS). SOAR's memory types map to `&memory` subtypes; its SVS maps to `&space`; its deliberation/impasse resolution maps to `&reason`.
 - **ACT-R** (Anderson, CMU): Modular architecture with declarative memory, procedural memory, visual/spatial modules, and temporal constraints on retrieval. ACT-R's imaginal buffer (mental workspace) maps to `&reason`; its temporal dynamics map to `&time`.
 - **CoALA** (Cognitive Architectures for Language Agents, 2023): Proposes that LLM agents need working memory, long-term memory (procedural, semantic, episodic), and structured action spaces. CoALA explicitly draws on SOAR and ACT-R. [&] formalizes these insights as composable, provider-agnostic primitives with a validation algebra.
 
-The fifth primitive — `&govern` — is the cross-cutting governance domain: telemetry, escalation, and identity. Unlike the four cognitive primitives, `&govern` does not map to a single cognitive module. It models the operational concerns that all capability providers may consume or emit: who is acting, under what rules, and at what cost. Its lineage is systems engineering (audit, policy enforcement, access control) rather than cognitive science.
+**Sensorimotor grounding**: `&body` is a sensorimotor primitive, added in protocol draft v0.1.0 to close the perception-action gap in the original four cognitive domains. Its lineage is:
 
-When writing developer-facing content (README, CLI help, API docs), prefer the engineering framing: "capability domains" and "state persistence / decision logic / temporal modeling / spatial modeling / cross-cutting governance." When writing the spec, positioning docs, or research-facing content, use the cognitive science framing for the first four primitives and the systems engineering framing for `&govern`.
+- **Motor cortex + cerebellum + proprioception** (neuroscience): biological agents have a distinct system for perceiving environmental state through sensors and committing typed actions through effectors. This is orthogonal to memory/reason/time/space.
+- **ACT-R/E embodied spatial module** (Trafton et al., 2013): extends ACT-R with proprioceptive and motor modules separate from the spatial/visual module; `&body` preserves this distinction.
+- **Sensorimotor grounding** (Smith & Gasser, 2005) and **Gibson's affordances** (1977): intelligence is grounded in the agent's ability to perceive what actions an environment affords. `&body.*.affordances()` is the first-class protocol operation for this.
+- **Without `&body`**: perception and action were smeared across `&reason` (implicit action generation), MCP tool calls (implicit perception), and `&memory.episodic` (retrospective trace recall). The absence was a modeling hole, not a design decision.
+
+The sixth primitive — `&govern` — is the cross-cutting governance domain: telemetry, escalation, and identity. Unlike the five cognitive/sensorimotor primitives, `&govern` does not map to a single cognitive module. It models the operational concerns that all capability providers may consume or emit: who is acting, under what rules, and at what cost. Its lineage is systems engineering (audit, policy enforcement, access control) rather than cognitive science.
+
+When writing developer-facing content (README, CLI help, API docs), prefer the engineering framing: "capability domains" and "state persistence / decision logic / temporal modeling / spatial modeling / sensorimotor interface / cross-cutting governance." When writing the spec, positioning docs, or research-facing content, use the cognitive science framing for the first four primitives, the sensorimotor framing for `&body`, and the systems engineering framing for `&govern`.
 
 ### Namespaced Subtypes
 
@@ -47,9 +55,10 @@ Each primitive has subtypes:
 - `&reason` → `.argument`, `.vote`, `.plan`, `.chain`, `.deliberate`, `.attend`
 - `&time` → `.anomaly`, `.forecast`, `.pattern`, `.baseline`
 - `&space` → `.fleet`, `.geofence`, `.route`, `.region`
+- `&body` → `.browser`, `.os`, `.vision`, `.voice`, `.motor`
 - `&govern` → `.telemetry`, `.escalation`, `.identity`
 
-Custom subtypes are permitted if they satisfy the primitive's capability contract.
+Custom subtypes are permitted if they satisfy the primitive's capability contract. The initial `&body.*` subtypes cover digital embodiment (browser DOM, operating systems); `.vision` and `.voice` are declared for future audio/visual perception providers; `.motor` is reserved for future robotics/physical-actuation providers.
 
 **Derived operations** (computed from primitives, not separate primitives):
 
@@ -67,7 +76,7 @@ AgentSpec       := "agent" Identifier "{" CapabilityBlock GovernanceBlock? "}"
 CapabilityBlock := "capabilities" "[" CapabilityList "]"
 CapabilityList  := Capability ("," Capability)*
 Capability      := "&" PrimitiveType ("." Subtype)? "(" ProviderExpr? ("," Config)? ")"
-PrimitiveType   := "memory" | "reason" | "time" | "space" | "govern"
+PrimitiveType   := "memory" | "reason" | "time" | "space" | "body" | "govern"
 Subtype         := Identifier
 ProviderExpr    := ":" Identifier | ":" "auto"
 Config          := KeyValue ("," KeyValue)*

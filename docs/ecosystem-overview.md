@@ -12,9 +12,9 @@ The [&] ecosystem is a **vertically integrated but open portfolio** where every 
 
 ---
 
-## The five cognitive primitives
+## The six capability primitives
 
-Everything in the ecosystem maps to five primitive capability domains:
+Everything in the ecosystem maps to six primitive capability domains (four cognitive, one sensorimotor, one cross-cutting governance):
 
 | Primitive | Question it answers | Products that implement it |
 |-----------|-------------------|---------------------------|
@@ -22,6 +22,7 @@ Everything in the ecosystem maps to five primitive capability domains:
 | `&reason` | **How** does the agent decide? | Deliberatic (argumentation), AgenTroMatic (orchestration) |
 | `&time` | **When** do things happen? | TickTickClock (anomaly, forecast, pattern) |
 | `&space` | **Where** are things? | GeoFleetic (fleet, route, geofence) |
+| `&body` | **How embodied** is the agent? | agent-browser (`.browser`), OpenClaw / Claude Computer Use / Pi.dev extensions (`.os`); future `.vision`, `.voice`, `.motor` providers |
 | `&govern` | **Who** is acting, under what rules, at what cost? | Delegatic (policy), OpenSentience (enforcement), FleetPrompt (identity) |
 
 ---
@@ -407,7 +408,7 @@ Which products connect to which:
 
 ## Summary
 
-The [&] ecosystem is twelve products, five primitives, one protocol.
+The [&] ecosystem is twelve products, six primitives, one protocol.
 
 Each product solves a specific problem. Together, they form a vertically integrated stack for building, deploying, governing, and evolving AI agents at production scale.
 

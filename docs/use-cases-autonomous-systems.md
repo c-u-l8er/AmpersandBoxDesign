@@ -8,7 +8,7 @@
 
 The [&] Protocol was designed as a general composition layer for agent cognition. But not all applications exercise the protocol equally. Some agents need only memory and reasoning. Some need only tool connectivity. The protocol is useful in those cases, but it is not irreplaceable.
 
-Autonomous military systems — robotic combat vehicles, drone swarms, manned-unmanned teams — are different. They exercise all five primitives simultaneously, under conditions where governance is not optional and disconnected operations are the baseline assumption. This document explains why, where the protocol fits in the stack, and where it does not.
+Autonomous military systems — robotic combat vehicles, drone swarms, manned-unmanned teams — are different. They exercise all six primitives simultaneously, under conditions where governance is not optional and disconnected operations are the baseline assumption. This document explains why, where the protocol fits in the stack, and where it does not.
 
 ---
 
@@ -50,11 +50,13 @@ That middle layer — structured cognition with governance — is what autonomou
 
 ---
 
-## 2. Why all five primitives are load-bearing
+## 2. Why all six primitives are load-bearing
+
+Autonomous military systems are the canonical case where the full [&] primitive set exercises simultaneously — including `&body.*` for direct vehicle/drone actuation and perception. When robotic combat vehicles or drone swarms act on the physical world, a conforming `&body.motor` implementation of OS-011 (Embodiment Protocol) enforces affordance-bounded action under Delegatic governance.
 
 Most agent applications use one or two [&] primitives meaningfully. An infrastructure monitor needs `&time.anomaly` and `&memory.graph`. A research agent needs `&memory` and `&reason`. The other primitives are present but not survival-critical.
 
-Autonomous vehicles are the rare case where all five primitives are simultaneously essential and where failure in any one is catastrophic.
+Autonomous vehicles are the rare case where all six primitives are simultaneously essential and where failure in any one is catastrophic.
 
 ### `&memory.graph` — operational picture as agent memory
 
@@ -466,7 +468,7 @@ Each record is hash-linked to its predecessor. The chain is tamper-evident. It c
 
 Autonomous military systems are the canonical [&] use case because they uniquely require:
 
-1. **All five cognitive primitives simultaneously** — memory, reasoning, time, space, and governance are each survival-critical
+1. **All six capability primitives simultaneously** — memory, reasoning, time, space, body, and governance are each survival-critical
 2. **Governance as a structural requirement** — not optional, not aspirational, legally mandated
 3. **Disconnected operations** — the governance model must work without network connectivity
 4. **Multi-vehicle coordination** — κ-driven topology governance for swarms and MUM-T

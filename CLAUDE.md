@@ -1,6 +1,6 @@
 # [&] Protocol — AmpersandBoxDesign
 
-Open, language-agnostic specification for capability composition in AI agents. Defines how agents declare memory, reasoning, time, space, and governance capabilities that compile into MCP and A2A configurations.
+Open, language-agnostic specification for capability composition in AI agents. Defines how agents declare memory, reasoning, time, space, body (sensorimotor), and governance capabilities that compile into MCP and A2A configurations.
 
 ## Implementation prompts (source-of-truth for code generation)
 
@@ -65,10 +65,12 @@ A protocol change is not complete if only the prose changes. See CONTRIBUTING.md
 
 ## Core model
 
-Five capability primitives: `&memory`, `&reason`, `&time`, `&space`, `&govern`
+Six capability primitives: `&memory`, `&reason`, `&time`, `&space`, `&body`, `&govern`
 Two composition operators: `&` (combine) and `|>` (pipeline)
 Capabilities are interfaces, providers are implementations.
 [&] does not replace MCP or A2A — it compiles into them.
+
+`&body` is the sensorimotor primitive (added in draft v0.1.0) describing the agent's instantiation in an environment — perception, typed action, affordance enumeration, state encoding for replay. See OS-011 (Embodiment Protocol) for the behavioral loop that consumes `&body.*`.
 
 ## Schema targets
 
