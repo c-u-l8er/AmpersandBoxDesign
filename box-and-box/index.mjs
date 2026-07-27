@@ -1,4 +1,4 @@
-// box-and-box — faithful runtime of the modality ladder. Seven rungs, one bridge.
+// box-and-box — faithful runtime of the modality ladder. Eight rungs, one bridge.
 export * from './value.mjs';     // 1 alethic     — refuses               (L1–L14)
 export * from './score.mjs';     // 2 axiological — ranks                 (H1–H13)
 export * from './bridge.mjs';    //   bridge      — floor-then-gradient   (B1–B3)
