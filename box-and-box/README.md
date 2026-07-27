@@ -243,10 +243,10 @@ cooperation law that lets disjoint coalitions combine. `npx box-and-box strategy
 
 ---
 
-## Resource Arithmetic — the economy beneath the ladder
+## Resource Arithmetic — the eighth rung
 
-The seven modalities say what is possible, preferable, permitted, durable, revisable, known, and
-forceable; none of them say what any of it *costs*. Resource Arithmetic is the economy the ladder
+The first seven rungs say what is possible, preferable, permitted, durable, revisable, known, and
+forceable; the eighth says what any of it *costs*. Resource Arithmetic is the economy the ladder
 runs on. A **ledger** is a closed double-entry system — the only primitive is a transfer that can't
 move more than an account holds, spending is a transfer to a sink, refilling a transfer from a
 treasury — so **conservation** holds by construction (value is never created from nothing; that is
@@ -279,7 +279,7 @@ allocation) belongs next to the strategic rung. `npx box-and-box economy` runs t
 This package ships runnable code only. The browser surfaces are published as research pages on
 [opensentience.org](https://opensentience.org): the interactive
 [playground](https://opensentience.org/playground.html) runs the cross-layer harness client-side
-(the RAG composition demo, the bridge selection, and 64 of the 97 laws — same code, no install),
+(the RAG composition demo, the bridge selection, and 64 of the 116 laws — same code, no install),
 and each rung has its own living-paper page —
 [deontic](https://opensentience.org/deontic-arithmetic.html),
 [temporal](https://opensentience.org/temporal-arithmetic.html),
@@ -311,8 +311,9 @@ with **Type-II** metareasoning (Good 1971; Russell & Wefald 1989) and **market-b
 (Clearwater 1996) as its multi-agent companion. The contribution is the executable synthesis and
 the agent-native packaging.
 
-The ladder is complete, and the economy beneath it is in place: **alethic · axiological · deontic ·
-temporal · reflexive · epistemic · strategic**, running on **resource** — seven modalities, one
-economy, one bridge, an evolution surface that measures, prices, and certifies its own revisions, and a compose runtime that snaps capability bricks together over the shared floor — **116 property-tested laws**.
+The ladder is complete: **alethic · axiological · deontic · temporal · reflexive · epistemic ·
+strategic · resource** — eight rungs, one bridge, an evolution surface that measures, prices, and
+certifies its own revisions, and a compose runtime that snaps capability bricks together over the
+shared floor — **116 property-tested laws**.
 
 MIT licensed.
