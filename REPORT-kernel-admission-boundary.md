@@ -155,27 +155,55 @@ the action and the certificate names the decision.
    kernel does not enumerate actions), but it means the integration script must
    construct the options array.
 
-## What remains to advance from `in_tree` to `live_local`
+## Result: advanced from `in_tree` to `live_local`
 
-A single shell script (or test) that:
-1. Constructs a decision spec with at least two options (one that should be
-   permitted, one that should be refused).
-2. Calls `box-and-box govern` as Process A.
-3. Captures the certificate and exit code.
-4. Calls `ampersand generate mcp` (or `validate`) as Process B only on exit 0.
-5. Demonstrates that Process B does NOT run on a refusing verdict.
-6. Retains both certificates (permit and refuse) to files.
+The integration script exists and passes: `test/integration/kernel-gates-action.sh`.
 
-This script does not exist yet. Building it is the next worker's task.
+**Reproduction command:**
+```sh
+cd AmpersandBoxDesign && bash test/integration/kernel-gates-action.sh
+```
+
+**What it exercises (13 assertions, all pass):**
+
+1. **PATH 1 (permit → act):** Compiles `infra-operator.ampersand.json` governance
+   block with `options-permit.json` (two options: `generate-mcp` at value 5,
+   `skip` at value 1). Kernel (Node.js, Process A) exits 0, emits a certificate
+   choosing `generate-mcp`. Actor (Elixir/BEAM, Process B) runs
+   `ampersand generate mcp` and produces valid MCP configuration JSON with
+   `context_servers`. Certificate retained at `test/integration/out/certificate-permit.json`.
+
+2. **PATH 2 (refuse → do not act):** Same agent declaration, but
+   `options-refuse.json` sets `cost_usd: 5000` (exceeds the `$1000` escalation
+   threshold in the governance block). Kernel exits 1, emits a certificate with
+   `decision: null` and `deonticallyVetoed` naming the norm
+   `escalate-cost_exceeds_usd`. Actor is **not invoked** — the `mcp-output-refused.json`
+   file does not exist. Certificate retained at `test/integration/out/certificate-refuse.json`.
+
+**Boundary:** OS process — Node.js (V8) → Elixir (BEAM), connected by exit code
+and stdout JSON capture. No stub, no injected transport, no single-process
+round-trip.
+
+**Certificates retained outside the deciding process:**
+- `test/integration/out/certificate-permit.json` (505 bytes)
+- `test/integration/out/certificate-refuse.json` (484 bytes)
+
+The `out/` directory is `.gitignore`d (generated artifacts); the script recreates
+it on each run.
+
+**Existing tests unaffected:** All 129 laws pass (103 kernel + 13 compose + 13
+coalition, 2000 trials each). The Elixir escript (`ampersand generate mcp`)
+continues to work as before.
 
 DOCTRINE:
 
-**proposed** — The claim "box-and-box kernel admission governs a real action
-executed by a different process" can be advanced from `in_tree` to `live_local`
-using existing commands (`box-and-box govern` + `ampersand generate mcp`) across
-an OS process boundary, with certificate retention via stdout capture. The
-integration requires a thin shell script that is not yet written. The kernel has
-no gap that blocks this; the four findings above are auditability improvements,
-not blockers. What would test this: a shell script that runs both the permit and
-refuse paths, retains both certificates, and is repeatable by `sh
-test/integration/kernel-gates-action.sh`.
+**advanced** — The claim "box-and-box kernel admission governs a real action
+executed by a different process" is now evidenced at `live_local`, advanced from
+`in_tree`. The boundary is an OS process boundary (Node.js V8 → Elixir BEAM);
+the transport is exit code + stdout JSON with no stub or injection. The settling
+evidence is the two retained certificates at `test/integration/out/certificate-{permit,refuse}.json`,
+reproducible by `bash test/integration/kernel-gates-action.sh` (13/13 assertions pass).
+The four kernel gaps identified above (no built-in action harness, certificate
+does not name the gated action, no tamper-evidence, options must be supplied
+externally) remain findings, not blockers — they are auditability improvements
+that would be new protocol surface to address.
