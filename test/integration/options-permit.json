@@ -1,0 +1,14 @@
+[
+  {
+    "id": "generate-mcp",
+    "utility": 5,
+    "value": { "beta": 0.95, "authority": ["cap:generate"], "denyDefault": false },
+    "ctx": { "cost": 50, "transmitsPII": false }
+  },
+  {
+    "id": "skip",
+    "utility": 1,
+    "value": { "beta": 0.99, "authority": ["cap:noop"], "denyDefault": false },
+    "ctx": { "cost": 0, "transmitsPII": false }
+  }
+]
