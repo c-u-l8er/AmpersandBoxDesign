@@ -1,7 +1,7 @@
 {
   "name": "box-and-box",
   "version": "0.10.0",
-  "description": "box-and-box — faithful runtime of the eight-rung modality ladder: alethic, axiological, deontic, temporal, reflexive, epistemic, strategic, and resource (linear/reusable accounting with conservation, capacity-as-continual-learning, and Type-II pricing of the ladder's repair operators). One bridge composes them; an evolution surface measures, prices, and certifies its own revisions on a provenance chain; a compose layer snaps capability bricks together with & and |> over the shared floor. 116 laws property-tested.",
+  "description": "box-and-box — faithful runtime of the eight-rung modality ladder: alethic, axiological, deontic, temporal, reflexive, epistemic, strategic, and resource (linear/reusable accounting with conservation, capacity-as-continual-learning, and Type-II pricing of the ladder's repair operators). One bridge composes them; an evolution surface measures, prices, and certifies its own revisions on a provenance chain; a compose layer snaps capability bricks together with & and |> over the shared floor; a coalition runtime enforces CC2 admissibility clause-by-clause. 129 laws property-tested.",
   "type": "module",
   "main": "index.mjs",
   "exports": {
@@ -18,7 +18,8 @@
     "./strategic": "./strategic.mjs",
     "./resource": "./resource.mjs",
     "./evolution": "./evolution.mjs",
-    "./compose": "./compose.mjs"
+    "./compose": "./compose.mjs",
+    "./coalition": "./coalition.mjs"
   },
   "bin": {
     "box-and-box": "bin/arith.mjs",
@@ -39,6 +40,7 @@
     "resource.mjs",
     "evolution.mjs",
     "compose.mjs",
+    "coalition.mjs",
     "bin/",
     "examples/",
     "test/",
@@ -46,10 +48,11 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node test/laws.mjs && node test/compose-laws.mjs",
+    "test": "node test/laws.mjs && node test/compose-laws.mjs && node test/coalition-laws.mjs",
     "laws": "node test/laws.mjs",
     "compose-laws": "node test/compose-laws.mjs",
-    "prepublishOnly": "node test/laws.mjs && node test/compose-laws.mjs",
+    "prepublishOnly": "node test/laws.mjs && node test/compose-laws.mjs && node test/coalition-laws.mjs",
+    "coalition-laws": "node test/coalition-laws.mjs",
     "rag": "node examples/rag.mjs",
     "select": "node examples/select.mjs",
     "govern": "node examples/govern.mjs",

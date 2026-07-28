@@ -33,6 +33,7 @@ function usage(code) {
                                              singleton coalition (agents:[self], hard ⇒ floor, pipeline ⇒ compose)
   box-and-box laws                           run the 103-law core conformance harness (2000 trials/law)
   box-and-box compose-laws                   run the 13-law compose-runtime harness (CA1–CA4, CP1–CP4, CX1–CX5)
+  box-and-box coalition-laws                  run the 13-law coalition-runtime harness (CO1–CO13)
   box-and-box demo <name>                    run a bundled example: ${DEMOS.join(' | ')}
   box-and-box --help
 
@@ -49,6 +50,7 @@ else if (cmd === 'compile') process.exit(run('bin/compile.mjs', rest));   // [&]
 else if (cmd === 'lift') process.exit(run('bin/lift.mjs', rest));         // CC1 → CC2 coalition
 else if (cmd === 'laws') process.exit(run('test/laws.mjs'));
 else if (cmd === 'compose-laws') process.exit(run('test/compose-laws.mjs'));
+else if (cmd === 'coalition-laws') process.exit(run('test/coalition-laws.mjs'));
 else if (cmd === 'demo') {
   const name = rest[0];
   if (!DEMOS.includes(name)) { process.stderr.write(`unknown demo '${name ?? ''}'. choose: ${DEMOS.join(' | ')}\n`); process.exit(2); }
