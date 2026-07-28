@@ -12,3 +12,4 @@ export * as strategic from './strategic.mjs'; // 7 strategic — coalitional abi
 export * as resource from './resource.mjs'; // + resource — the economy the ladder runs on (C1–C8, CB1–CB3)
 export * as evolution from './evolution.mjs'; // + evolution — measured, priced, certified policy change on a provenance chain (EV1–EV6)
 export * as compose from './compose.mjs'; // the lego layer — bricks compose with & and |> over the shared floor (CA1–CA4, CP1–CP4, CX1–CX5)
+export * as coalition from './coalition.mjs'; // CC2 coalition runtime — admit or refuse by clause name (CO1–CO13)

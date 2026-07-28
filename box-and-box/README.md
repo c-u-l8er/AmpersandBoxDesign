@@ -6,7 +6,7 @@
 - A **Score** lives in a *semiring* `(K, ⊕, ⊗, 0̲, 1̲)`. `vote` aggregates alternatives (⊕), `rollout` chains evidence discounted (⊗), and `reinforce`, `dominate`, `anneal`, `select` do the rest.
 - The **bridge** ties them: `consume` gates each option; a vetoed option gets score `0̲`, which annihilates through any `⊗`. **No heuristic utility, however large, can resurrect a vetoed option.**
 
-All **116 laws** are property-tested — run `npm test`. (Invariant **L1–L14**, heuristic **H1–H13**, bridge **B1–B3**; deontic, temporal, reflexive, epistemic, strategic, and resource are documented per rung below; plus the **evolution bridge EV1–EV6** — measured, priced, certified self-revision on a provenance chain, a *join across rungs*, not a ninth — and the **compose runtime CA1–CA4 · CP1–CP4 · CX1–CX5** — capability bricks snapping together with `&` and `|>` over the shared floor, "a brick of bricks is a brick.")
+All **129 laws** are property-tested — run `npm test`. (Invariant **L1–L14**, heuristic **H1–H13**, bridge **B1–B3**; deontic, temporal, reflexive, epistemic, strategic, and resource are documented per rung below; plus the **evolution bridge EV1–EV6** — measured, priced, certified self-revision on a provenance chain, a *join across rungs*, not a ninth — the **compose runtime CA1–CA4 · CP1–CP4 · CX1–CX5** — capability bricks snapping together with `&` and `|>` over the shared floor, "a brick of bricks is a brick" — and the **coalition runtime CO1–CO13** — CC2 admissibility enforced clause-by-clause, with named refusals for any clause the kernel cannot honestly decide.)
 
 ```
 npm install box-and-box
@@ -16,6 +16,7 @@ box-and-box govern decision.json          # real verdict: JSON in → certificat
 box-and-box compile agent.ampersand.json  # the [&] govern bridge: an ampersand.json governance block → policy
 box-and-box laws                          # the 103-law core conformance harness (2000 trials each)
 box-and-box compose-laws                  # the 13-law compose-runtime harness (& |> floor)
+box-and-box coalition-laws                # the 13-law coalition-runtime harness (CO1–CO13)
 box-and-box demo <name>                   # a bundled teaching example (see below)
 
 # the bridge end-to-end — an [&] declaration, judged by the eight rungs:
@@ -274,6 +275,49 @@ allocation) belongs next to the strategic rung. `npx box-and-box economy` runs t
 
 ---
 
+## Coalition Runtime — CC2 admissibility
+
+The coalition runtime (`coalition.mjs`) enforces every clause the CC2 schema describes. A
+coalition declaration — agents, a goal they must ensure, adversaries, common-knowledge
+prerequisites, per-agent task ownership, safety/liveness shields, an entrenched floor, a compose
+pipeline, and a provenance flag — is checked clause-by-clause against the existing rungs:
+
+```js
+import { coalition } from 'box-and-box';
+
+const result = coalition.admit(declaration, {
+  game,          // strategic.Game — the concurrent game structure
+  initialState,  // starting state
+  goal,          // strategic formula — parsed ensure goal
+  model,         // epistemic.Model — for common_knowledge
+  formulas,      // { factName: epistemic formula } — parsed facts
+  shieldSpecs,   // [{ id, formula, kind }] — parsed temporal formulas
+  trajectories,  // [[state]] — joint coalition trajectories (including reachable alternatives)
+  floorNorms,    // [Norm] — parsed floor constraints
+  bricks         // [Brick] — parsed compose steps (in pipeline order)
+});
+
+// result is either:
+//   { admitted: true, certificate: { coalition, clauses, ordering, floor, rungs, provenance? } }
+//   { admitted: false, refused: 'ensure', reason: '...', missing?: 'game' }
+```
+
+Every clause that references a semantic string (ensure, shield, floor, common\_knowledge) requires
+the caller to supply an explicit evaluator — the kernel cannot parse natural-language descriptions.
+A missing evaluator produces a **named refusal** identifying the missing substrate (`game`,
+`initialState`, `goal`, `model`, `formulas`, `shieldSpecs`, `trajectories`, `floorNorms`, `bricks`),
+never an assumption. This is the fail-closed contract:
+
+- **ensure** is decided through `strategic.canEnsure` against an explicit game, not assumed
+- **shield** safety is evaluated over complete joint coalition trajectories, not per-agent
+- **common\_knowledge** is checked via `epistemic.common`, not assumed
+- **floor** constraints are entrenched via the reflexive rung's `entrench`
+- **compose** pipelines go through the existing `composePipe` / `composeTree` operators
+
+Laws CO1–CO13 are property-tested at 2000 trials each.
+
+---
+
 ## Browser
 
 This package ships runnable code only. The browser surfaces are published as research pages on
@@ -293,7 +337,7 @@ full [/laws](https://ampersandboxdesign.com/laws.html) conformance page.
 ## What it is / isn't
 
 **Is:** the actual substrate as runnable, property-tested infrastructure — families, the
-operations of seven modalities plus the resource economy, the algebraic bridge, the evolution surface, the compose runtime (capability bricks under `&` and `|>` over the shared floor), 116 laws.
+operations of seven modalities plus the resource economy, the algebraic bridge, the evolution surface, the compose runtime (capability bricks under `&` and `|>` over the shared floor), and the coalition runtime (CC2 admissibility enforced clause-by-clause with named refusals), 129 laws.
 
 **Isn't:** new mathematics. The ranking side is **semiring-based soft constraints** (Bistarelli,
 Montanari & Rossi, *JACM* 1997); the bridge is the **shielding** pattern from safe RL (Alshiekh
@@ -313,7 +357,8 @@ the agent-native packaging.
 
 The ladder is complete: **alethic · axiological · deontic · temporal · reflexive · epistemic ·
 strategic · resource** — eight rungs, one bridge, an evolution surface that measures, prices, and
-certifies its own revisions, and a compose runtime that snaps capability bricks together over the
-shared floor — **116 property-tested laws**.
+certifies its own revisions, a compose runtime that snaps capability bricks together over the
+shared floor, and a coalition runtime that enforces CC2 admissibility clause-by-clause —
+**129 property-tested laws**.
 
 MIT licensed.
