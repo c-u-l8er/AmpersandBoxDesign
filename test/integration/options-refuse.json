@@ -1,0 +1,8 @@
+[
+  {
+    "id": "generate-mcp-expensive",
+    "utility": 5,
+    "value": { "beta": 0.95, "authority": ["cap:generate"], "denyDefault": false },
+    "ctx": { "cost": 5000, "transmitsPII": false }
+  }
+]
