@@ -1,2381 +1,589 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>[&] Research & Valuation — Portfolio Intelligence</title>
-        <meta
-            name="description"
-            content="Market research, domain valuations, and strategic analysis for the [&] Ampersand Box Design portfolio of AI infrastructure domains."
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            :root {
-                --bg: #08090c;
-                --surface: #0e1017;
-                --surface-2: #14161e;
-                --border: rgba(255, 255, 255, 0.06);
-                --text: #e2e0db;
-                --dim: #6b6980;
-                --muted: #3d3b4a;
-                --cyan: #4af5c6;
-                --blue: #7b8cff;
-                --rose: #ff6b8a;
-                --amber: #ffc46b;
-                --green: #4af5c6;
-                --red: #ff6b8a;
-            }
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            body {
-                font-family: "JetBrains Mono", monospace;
-                background: var(--bg);
-                color: var(--text);
-                line-height: 1.6;
-            }
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-                pointer-events: none;
-                z-index: 9999;
-            }
-            .container {
-                max-width: 960px;
-                margin: 0 auto;
-                padding: 0 2rem;
-            }
-
-            /* Header */
-            header {
-                padding: 1.75rem 0;
-                border-bottom: 1px solid var(--border);
-                position: sticky;
-                top: 0;
-                z-index: 100;
-                background: rgba(8, 9, 12, 0.9);
-                backdrop-filter: blur(16px);
-            }
-            .header-inner {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .logo {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-weight: 700;
-                font-size: 1rem;
-                color: var(--text);
-                text-decoration: none;
-            }
-            .logo .amp {
-                color: var(--cyan);
-                font-size: 1.3rem;
-            }
-            .nav {
-                display: flex;
-                gap: 1.5rem;
-            }
-            .nav a {
-                color: var(--dim);
-                text-decoration: none;
-                font-size: 0.75rem;
-                font-weight: 500;
-                transition: color 0.2s;
-            }
-            .nav a:hover {
-                color: var(--cyan);
-            }
-
-            /* Page Header */
-            .page-header {
-                padding: 6rem 0 4rem;
-                border-bottom: 1px solid var(--border);
-            }
-            .page-header h1 {
-                font-family: "Newsreader", serif;
-                font-size: clamp(2.2rem, 4vw, 3rem);
-                font-weight: 300;
-                letter-spacing: -0.03em;
-                margin-bottom: 1rem;
-            }
-            .page-header p {
-                font-size: 0.9rem;
-                font-weight: 300;
-                color: var(--dim);
-                max-width: 580px;
-                line-height: 1.8;
-            }
-            .page-meta {
-                margin-top: 2rem;
-                display: flex;
-                gap: 2rem;
-                flex-wrap: wrap;
-            }
-            .meta-item {
-                font-size: 0.7rem;
-                color: var(--muted);
-                letter-spacing: 0.05em;
-            }
-            .meta-item strong {
-                color: var(--dim);
-            }
-
-            /* Sections */
-            .section {
-                padding: 4rem 0;
-                border-bottom: 1px solid var(--border);
-            }
-            .section-label {
-                font-size: 0.6rem;
-                font-weight: 700;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
-                color: var(--muted);
-                margin-bottom: 2rem;
-            }
-            .section h2 {
-                font-family: "Newsreader", serif;
-                font-size: 1.75rem;
-                font-weight: 400;
-                letter-spacing: -0.02em;
-                margin-bottom: 1.5rem;
-            }
-            .prose {
-                font-size: 0.85rem;
-                font-weight: 300;
-                color: var(--dim);
-                line-height: 1.9;
-                max-width: 640px;
-            }
-            .prose + .prose {
-                margin-top: 1rem;
-            }
-
-            /* Tables */
-            .table-wrap {
-                margin: 2rem 0;
-                overflow-x: auto;
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                font-size: 0.78rem;
-            }
-            thead th {
-                text-align: left;
-                font-weight: 700;
-                font-size: 0.65rem;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--muted);
-                padding: 0.75rem 1rem;
-                border-bottom: 1px solid var(--border);
-            }
-            tbody td {
-                padding: 0.85rem 1rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-                color: var(--dim);
-                font-weight: 300;
-            }
-            tbody tr:hover td {
-                color: var(--text);
-                background: rgba(255, 255, 255, 0.01);
-            }
-            .val {
-                color: var(--cyan);
-                font-weight: 700;
-            }
-            .grade {
-                font-weight: 700;
-            }
-            .grade-a {
-                color: var(--cyan);
-            }
-            .grade-b {
-                color: var(--amber);
-            }
-
-            /* Market cards */
-            .market-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1px;
-                background: var(--border);
-                border: 1px solid var(--border);
-                margin: 2rem 0;
-            }
-            .market-card {
-                background: var(--bg);
-                padding: 2rem;
-            }
-            .market-card h4 {
-                font-size: 0.7rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--muted);
-                margin-bottom: 0.75rem;
-            }
-            .market-card .big-num {
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: var(--text);
-                letter-spacing: -0.02em;
-            }
-            .market-card .big-num span {
-                color: var(--cyan);
-            }
-            .market-card .detail {
-                font-size: 0.72rem;
-                color: var(--dim);
-                margin-top: 0.5rem;
-                line-height: 1.6;
-                font-weight: 300;
-            }
-            .source {
-                font-size: 0.65rem;
-                color: var(--muted);
-                margin-top: 0.5rem;
-                font-style: italic;
-            }
-
-            /* Highlight box */
-            .highlight {
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-left: 3px solid var(--cyan);
-                padding: 2rem;
-                margin: 2rem 0;
-            }
-            .highlight h3 {
-                font-size: 0.9rem;
-                font-weight: 700;
-                margin-bottom: 0.75rem;
-            }
-            .highlight p {
-                font-size: 0.82rem;
-                color: var(--dim);
-                line-height: 1.8;
-                font-weight: 300;
-            }
-
-            /* Source list */
-            .sources {
-                margin: 2rem 0;
-            }
-            .sources h3 {
-                font-size: 0.75rem;
-                font-weight: 700;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: var(--muted);
-                margin-bottom: 1rem;
-            }
-            .source-item {
-                padding: 0.6rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-                font-size: 0.72rem;
-                color: var(--dim);
-                font-weight: 300;
-                display: flex;
-                gap: 0.75rem;
-                align-items: baseline;
-            }
-            .source-item .num {
-                color: var(--muted);
-                font-weight: 700;
-                flex-shrink: 0;
-                width: 1.5rem;
-            }
-            .source-item a {
-                color: var(--dim);
-                text-decoration: none;
-                transition: color 0.2s;
-            }
-            .source-item a:hover {
-                color: var(--cyan);
-            }
-
-            /* Disclaimer */
-            .disclaimer {
-                padding: 3rem 0;
-                font-size: 0.7rem;
-                color: var(--muted);
-                line-height: 1.8;
-                font-weight: 300;
-            }
-
-            /* Footer */
-            footer {
-                padding: 2rem 0;
-                border-top: 1px solid var(--border);
-            }
-            .footer-inner {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            footer p {
-                font-size: 0.7rem;
-                color: var(--muted);
-            }
-            footer a {
-                color: var(--cyan);
-                text-decoration: none;
-            }
-
-            @media (max-width: 768px) {
-                .market-grid {
-                    grid-template-columns: 1fr;
-                }
-                .page-meta {
-                    flex-direction: column;
-                    gap: 0.75rem;
-                }
-                .nav {
-                    display: none;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div class="header-inner">
-                    <a href="./index.html" class="logo"
-                        ><span class="amp">[&]</span> AMPERSAND BOX</a
-                    >
-                    <nav class="nav">
-                        <a href="./index.html">Home</a>
-                        <a href="./protocol.html">Protocol</a>
-                        <a href="./index.html#ecosystem">Ecosystem</a>
-                        <a href="mailto:hello@ampersandboxdesign.com"
-                            >Contact</a
-                        >
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="page-header">
-                <h1>Research & Valuation</h1>
-                <p>
-                    Market research, domain valuations, and strategic analysis
-                    for the [&] portfolio of AI infrastructure domains. Anchored
-                    by the three-protocol stack — [&] (composition), PULSE
-                    (temporal algebra), and PRISM (diagnostic benchmark). All
-                    figures sourced from named analyst firms and cross-referenced.
-                </p>
-                <div class="page-meta">
-                    <span class="meta-item"
-                        >Last Updated: <strong>May 2026</strong></span
-                    >
-                    <span class="meta-item"
-                        >Sources Cited: <strong>71</strong></span
-                    >
-                    <span class="meta-item"
-                        >Analyst Firms: <strong>28+</strong></span
-                    >
-                </div>
-            </div>
-
-            <!-- THE [&] PROTOCOL THESIS -->
-            <div class="section">
-                <p class="section-label">Strategic Thesis</p>
-                <h2>
-                    The Three-Protocol Stack for Agent Intelligence
-                </h2>
-                <p class="prose">
-                    The [&] portfolio is unified by a three-protocol stack.
-                    The [&] Protocol defines how cognitive capabilities —
-                    memory, reasoning, time, space, embodiment, and governance
-                    (six primitives as of the OS-011 Embodiment Protocol that
-                    landed in Q2 2026) — compose into verified, deployable agent
-                    systems. PULSE (OS-010) is the temporal algebra that lets
-                    every loop declare its phases, cadence, nesting, and
-                    cross-loop signals. PRISM (OS-009) is the diagnostic
-                    benchmark engine that measures how well systems learn,
-                    consolidate, remember, and transfer knowledge over time.
-                    Together they form a complete compose-circulate-measure
-                    architecture, and every verdict in the stack now resolves
-                    through <strong>Invariant Arithmetic</strong> — a 15-law
-                    algebra over a 43-element periodic table of invariants,
-                    with an Elixir reference and a TypeScript port that is now
-                    the live verifier substrate inside the Workbench proof
-                    harness (detailed below).
-                </p>
-                <p class="prose">
-                    Every domain in the portfolio maps to a layer in the
-                    protocol stack: cognitive primitives (Graphonomous,
-                    Deliberatic, TickTickClock, GeoFleetic), agent platform
-                    (SpecPrompt, Agentelic, Delegatic, AgenTroMatic,
-                    FleetPrompt), and runtime infrastructure (WebHost Systems,
-                    OpenSentience). The protocol specification — including
-                    formal BNF grammar, ACI composition algebra, canonical JSON
-                    schema, context provenance chains, and governance
-                    constraints — is published at
-                    <a href="./protocol.html" style="color: var(--cyan)"
-                        >protocol.ampersandboxdesign.com</a
-                    >.
-                </p>
-
-                <div class="highlight">
-                    <h3>Three-Protocol Stack Position</h3>
-                    <p>
-                        UI (A2UI / AG-UI) →
-                        <strong style="color: var(--cyan)"
-                            >[&] Composition</strong
-                        >
-                        (capability declaration, validation, binding,
-                        provenance) →
-                        <strong style="color: var(--amber)">PULSE</strong>
-                        (loop manifests, phase cadence, cross-loop signals) →
-                        <strong style="color: var(--blue)">PRISM</strong>
-                        (CL benchmarks, IRT calibration, diagnostic reports) →
-                        A2A (agent-to-agent) → MCP (agent-to-tool) → Runtime.
-                    </p>
-                </div>
-            </div>
-
-            <!-- INVARIANT ARITHMETIC / THE FORMAL MOAT -->
-            <div class="section">
-                <p class="section-label">The Formal Moat</p>
-                <h2>Invariant Arithmetic &amp; the Periodic Table</h2>
-                <p class="prose">
-                    The hardest thing to copy in this portfolio is not the code —
-                    it is the <strong>theory of measurement</strong> underneath
-                    it. Most agent frameworks decide "is this safe / correct /
-                    allowed?" with ad-hoc heuristics. The [&] stack answers the
-                    same questions <em>algebraically</em>. Two artifacts make this
-                    real: the <strong>Periodic Table of Agent Invariants</strong>
-                    (the census of <em>what</em> can be measured) and
-                    <strong>Invariant Arithmetic</strong> (the algebra of
-                    <em>how those measurements compose</em>). This is the moat
-                    that converts "another agent framework" into a verification
-                    standard.
-                </p>
-
-                <div class="highlight" style="border-left-color: var(--cyan)">
-                    <h3>1 · The Periodic Table of Agent Invariants (v0.5)</h3>
-                    <p>
-                        A working census of <strong>43 named invariants across
-                        10 families</strong> — topological (κ cyclicity, β
-                        persistence), spatial (σ resolution), temporal (π phase,
-                        ι interval, ψ rhythm), governance (authority-path,
-                        deny-by-default, append-only audit), deliberation,
-                        evaluation, attention, security, embodiment, and
-                        federation. Each "element" is a measurement that tells an
-                        agent <em>what kind of position it is in, and what
-                        authority that position grants</em>. Six already carry
-                        machine-checked proofs (κ, π, ⊘, ⊆, ⊥, ⊕); the κ
-                        cyclicity invariant alone is verified on
-                        <strong>1,926,351 finite systems with zero
-                        counterexamples</strong>. v0.5 added seven economic
-                        invariants — the claim that a healthy agent ecosystem
-                        needs more than one currency to express what it produces.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--blue)">
-                    <h3>2 · Invariant Arithmetic v0.3 — the algebra</h3>
-                    <p>
-                        If the periodic table is the elements, Invariant
-                        Arithmetic is the chemistry: <strong>4 invariant families,
-                        6 operations</strong> (<code>combine</code>,
-                        <code>chain</code>, <code>promote</code>,
-                        <code>reconcile</code>, <code>deliberate</code>,
-                        <code>consume</code>) and <strong>15 algebraic laws</strong>
-                        — associativity, identity, idempotence, monotonicity of
-                        promotion, and the composition rules that govern how κ, σ,
-                        β, and authority values combine without contradiction. All
-                        15 laws are verified by property-based tests at
-                        <strong>1,000 trials each</strong> (all pass in ~134 ms).
-                        It ships as an Elixir reference implementation and a
-                        framework-free ~400-LOC TypeScript port.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--green)">
-                    <h3>3 · Why it matters now — it is no longer just theory</h3>
-                    <p>
-                        As of the v0.3 Workbench release (May 2026), Invariant
-                        Arithmetic is the <strong>live verifier substrate</strong>
-                        of the Proof Harness. Every one of Workbench's six proof
-                        gates — content-hash, trace-completeness,
-                        no-hidden-capability, authority, redaction, and
-                        replay-fidelity — computes its verdict through a single
-                        <code>InvariantArithmetic.consume(value, requirements)</code>
-                        call and projects onto an invariant family, carrying
-                        <code>law</code> + <code>invariant_family</code>
-                        annotations. The <em>same JSON file</em> is the
-                        user-valuable SkillBundle <em>and</em> the PRISM-facing
-                        EvidenceBundle, now self-describing as IA-derived. In
-                        other words: the formal theory is wired directly into the
-                        thing that decides whether a skill is allowed to ship.
-                    </p>
-                </div>
-
-                <p class="prose">
-                    This is also where the portfolio intersects the
-                    <strong>bleeding edge of 2026 research</strong>. The fastest-moving
-                    academic thread in agent memory this year is
-                    <em>neuro-symbolic continual learning</em> — systems like NeSyC
-                    (a neuro-symbolic continual learner using a hypothetico-deductive
-                    monitoring loop), trainable graph memory, and meta-learned memory
-                    designs (ALMA). The consensus those papers are converging toward —
-                    that durable agent cognition needs a <em>symbolic, verifiable
-                    layer</em> over the neural substrate — is exactly the bet the
-                    Periodic Table + Invariant Arithmetic made first, and the only one
-                    of them shipping as a property-tested algebra wired into a live
-                    verifier rather than a research prototype.
-                </p>
-            </div>
-
-            <!-- PORTFOLIO SUMMARY -->
-            <div class="section">
-                <p class="section-label">Portfolio Summary</p>
-                <h2>Domain Asset Valuation</h2>
-                <p class="prose">
-                    The [&] portfolio consists of 14 AI infrastructure domains
-                    positioned across the continual learning, agent
-                    orchestration, and edge AI markets. As of May 2026 it is
-                    supported by <strong>7 shipping-tier products</strong> (plus
-                    4 progressing, 2 frontend apps, and 4 spec-only) and a
-                    verified <strong>1,463-test</strong> ecosystem suite running
-                    at 100% pass. Valuations reflect domain-only estimates (no
-                    product premium) based on comparable sales, market
-                    positioning, and keyword analysis — though the shipping
-                    code, ten live Fly.io deployments, and a closed dark-factory
-                    loop now materially de-risk several of these assets relative
-                    to the April snapshot.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Domain</th>
-                                <th>Category</th>
-                                <th>2026 Value</th>
-                                <th>2034 Projection</th>
-                                <th>Grade</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>fleetprompt.com</strong></td>
-                                <td>Agent Skill Marketplace</td>
-                                <td class="val">$175K</td>
-                                <td>$375K</td>
-                                <td><span class="grade grade-a">A+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>ticktickclock.com</strong></td>
-                                <td>Temporal Intelligence / SSM</td>
-                                <td class="val">$145K</td>
-                                <td>$315K</td>
-                                <td><span class="grade grade-a">A&minus;</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>graphonomous.com</strong></td>
-                                <td>Continual Learning Engine</td>
-                                <td class="val">$95K</td>
-                                <td>$400K</td>
-                                <td><span class="grade grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>bendscript.com</strong></td>
-                                <td>Graph-First Document Protocol</td>
-                                <td class="val">$85K</td>
-                                <td>$225K</td>
-                                <td><span class="grade grade-a">A+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>deliberatic.com</strong></td>
-                                <td>Deliberation Protocol / Consensus</td>
-                                <td class="val">$75K</td>
-                                <td>$450K</td>
-                                <td><span class="grade grade-a">A+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>specprompt.com</strong></td>
-                                <td>Spec-Driven Development</td>
-                                <td class="val">$95K</td>
-                                <td>$235K</td>
-                                <td><span class="grade grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>delegatic.com</strong></td>
-                                <td>Agent Governance</td>
-                                <td class="val">$65K</td>
-                                <td>$210K</td>
-                                <td><span class="grade grade-a">A+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>agentromatic.com</strong></td>
-                                <td>Automatic Deliberation Engine</td>
-                                <td class="val">$65K</td>
-                                <td>$425K</td>
-                                <td><span class="grade grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>agentelic.com</strong></td>
-                                <td>Enterprise Agent Builder</td>
-                                <td class="val">$60K</td>
-                                <td>$390K</td>
-                                <td><span class="grade grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>opensentience.org</strong></td>
-                                <td>Research Protocols / Runtime</td>
-                                <td class="val">$45K</td>
-                                <td>$120K</td>
-                                <td><span class="grade grade-b">B+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>gpscoord.com</strong></td>
-                                <td>Geolocation / Spatial Data</td>
-                                <td class="val">$45K</td>
-                                <td>$105K</td>
-                                <td><span class="grade grade-b">B+</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>webhost.systems</strong></td>
-                                <td>Agent Infrastructure / Hosting</td>
-                                <td class="val">$40K</td>
-                                <td>$95K</td>
-                                <td><span class="grade grade-b">B</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>geofleetic.com</strong></td>
-                                <td>Spatial Intelligence / CRDTs</td>
-                                <td class="val">$30K</td>
-                                <td>$60K</td>
-                                <td><span class="grade grade-b">B</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>a2atraffic.com</strong></td>
-                                <td>Agent-to-Agent Protocol</td>
-                                <td class="val">$20K</td>
-                                <td>$40K</td>
-                                <td><span class="grade grade-b">C+</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight">
-                    <h3>
-                        Portfolio Total: $1.04M realistic (2026) &rarr; $3.45M
-                        projected (2034)
-                    </h3>
-                    <p>
-                        14 domains across the AI agent infrastructure stack. Top
-                        5 domains represent 62% of portfolio value. The agent
-                        ecosystem cluster (FleetPrompt + Delegatic + SpecPrompt
-                        + Agentelic + AgenTroMatic + OpenSentience) carries
-                        $505K individual value — with synergy multiplier
-                        estimated at 1.8&ndash;2.5x as an integrated platform
-                        ($910K&ndash;$1.26M). The three-protocol stack adds a
-                        structural premium: these domains are not isolated
-                        brands but named layers in a published protocol
-                        architecture — 7 shipping products, ten live Fly.io
-                        deployments, a 1,463-test ecosystem suite, and a
-                        dark-factory loop that closes end-to-end in a single
-                        process (cross-machine replay pending).
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--amber)">
-                    <h3>Valuation Context: Shipped Code, Pre-Revenue</h3>
-                    <p>
-                        An honest note: the portfolio has shipped substantial
-                        code (Graphonomous v0.4.3 on npm with 5 loop-phase
-                        machines and 573 tests, the [&] reference CLI + npm/Python
-                        SDKs, PRISM benchmark engine on Fly.io, PULSE v0.1.1
-                        manifest server on npm, the Delegatic OS-006
-                        authorization kernel, two OS-011 body reference impls,
-                        the BendScript Protocol parser, and the new Workbench
-                        proof harness) but is still pre-revenue with no paying
-                        users. Ten apps are now live on Fly.io and the
-                        dark-factory loop closes end-to-end in a single process
-                        (cross-machine replay against the live MCPs is the next
-                        step), which moves the portfolio from "specs +
-                        prototypes" toward "running infrastructure." Domain valuations still assume
-                        the domains are positioned in high-growth AI markets;
-                        the table below shows value scenarios by execution
-                        milestone.
-                    </p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Scenario</th>
-                                <th>Milestone</th>
-                                <th>Portfolio Value</th>
-                                <th>Basis</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Domains only</td>
-                                <td>No product, no users</td>
-                                <td class="val">$100K&ndash;$200K</td>
-                                <td>
-                                    Bare domain resale value. 14 .com/.org
-                                    domains in AI-adjacent categories without
-                                    traffic or revenue
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Domains + specs + protocol + code</td>
-                                <td>
-                                    Published three-protocol stack, 7 shipping
-                                    products, ten live deployments, npm packages
-                                </td>
-                                <td class="val">$600K&ndash;$1.2M</td>
-                                <td>
-                                    Narrative + execution premium. Protocol
-                                    thesis, 71+ cited sources, working MCP
-                                    servers, empirical benchmarks, a closed
-                                    dark-factory loop. Comparable to late
-                                    pre-seed stage
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>First revenue</td>
-                                <td>
-                                    Registry listings, $1K MRR, 50+ users
-                                </td>
-                                <td class="val">$1M&ndash;$3M</td>
-                                <td>
-                                    Pre-seed AI startup range. Median pre-seed
-                                    AI valuation is $7.7M (Carta Q3 2025) with
-                                    42% AI premium. Requires proof of traction
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Product-market fit</td>
-                                <td>
-                                    $10K+ MRR, 100+ users, community traction
-                                </td>
-                                <td class="val">$3M&ndash;$8M</td>
-                                <td>
-                                    Seed-stage AI infrastructure. AI
-                                    infrastructure commands 20x+ revenue
-                                    multiples (Finro Q4 2025). Protocol
-                                    ecosystem multiplier applies
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Scale / exit</td>
-                                <td>$100K+ MRR, enterprise pilots, Series A</td>
-                                <td class="val">$10M&ndash;$50M</td>
-                                <td>
-                                    Median Series A post-money: $78.7M (Carta
-                                    Q4 2025). IP-heavy AI startups see 15&ndash;20%
-                                    valuation premium
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="prose">
-                    The $1.04M figure in the domain table above represents the
-                    "domains + specs + protocol" scenario with optimistic
-                    comparable positioning. The current AI funding environment
-                    — where AI captures 80% of all VC funding (Q1 2026,
-                    Crunchbase) and seed-stage AI companies command median
-                    $24M post-money valuations — provides a favorable tailwind
-                    for execution.
-                </p>
-            </div>
-
-            <!-- TARGET MARKETS -->
-            <div class="section">
-                <p class="section-label">Target Markets</p>
-                <h2>The Markets We're Building For</h2>
-                <p class="prose">
-                    The [&] portfolio targets the intersection of three
-                    converging mega-trends: edge AI, knowledge graphs, and
-                    agentic AI. Each market has been validated by multiple
-                    tier-1 analyst firms. Market data updated May 2026.
-                </p>
-
-                <div class="market-grid">
-                    <div class="market-card">
-                        <h4>Edge AI</h4>
-                        <div class="big-num">$48B &rarr; <span>$386B</span></div>
-                        <div class="detail">
-                            2026 &rarr; 2034 at 29.9% CAGR. Graphonomous's
-                            primary market. AI moving from cloud to device.
-                            Range: $109B&ndash;$386B by 2034 across 6 analyst firms.
-                        </div>
-                        <div class="source">
-                            Fortune Business Insights (Feb 2026), Grand View
-                            Research, Precedence Research, Polaris
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>Knowledge Graphs</h4>
-                        <div class="big-num">$1.1B &rarr; <span>$6.9B</span></div>
-                        <div class="detail">
-                            2024 &rarr; 2030 at 36.6% CAGR. Enterprise knowledge
-                            management and GraphRAG retrieval. Agentic AI +
-                            semantic layer sub-market at $0.85B &rarr; $2.83B (27.15%
-                            CAGR).
-                        </div>
-                        <div class="source">
-                            MarketsandMarkets (2025), Mordor Intelligence (2025)
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>AI Agents</h4>
-                        <div class="big-num">$10.9B &rarr; <span>$53B</span></div>
-                        <div class="detail">
-                            2026 &rarr; 2030 at 46.3% CAGR (MarketsandMarkets).
-                            The narrower "agentic AI" segment is pegged at
-                            $9.9B (2026) &rarr; $57.4B by 2031 (42.1% CAGR), with
-                            firm-by-firm CAGRs spanning 40.5&ndash;49.6%. Decisive
-                            gap: <strong>79% of enterprises have adopted agents,
-                            but only 11% run them in production</strong> &mdash;
-                            operationalization, not novelty, is the 2026 bottleneck.
-                        </div>
-                        <div class="source">
-                            MarketsandMarkets (2025), Mordor Intelligence (2026),
-                            Grand View Research (2026), market.us (2026)
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>KG-as-a-Service</h4>
-                        <div class="big-num">$1.2B &rarr; <span>$6.5B</span></div>
-                        <div class="detail">
-                            2024 &rarr; 2033 at 20.5% CAGR. Cloud-hosted knowledge
-                            graph infrastructure. Graphonomous MCP server
-                            targets this as an edge-native alternative.
-                        </div>
-                        <div class="source">Verified Market Reports (2025)</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GRAPHONOMOUS DEEP DIVE -->
-            <div class="section">
-                <p class="section-label">Hero Product Analysis</p>
-                <h2>Graphonomous: The &amp;memory Primitive</h2>
-                <p class="prose">
-                    Graphonomous is the <code>&amp;memory</code> capability
-                    provider in the [&] Protocol — a continual learning engine
-                    that makes small language models (1B&ndash;8B) get smarter over
-                    time in their deployment context. Now at <strong>v0.4.3</strong>
-                    with 5 loop-phase machines, <strong>573 passing tests</strong>,
-                    six graph algorithms, a 92.6% LongMemEval QA proxy, and the
-                    new <code>&amp;memory.episodic.store/replay</code> surface
-                    that provides the memory half of the OS-011 Embodiment
-                    Protocol. It is deployed as <code>graphonomous-mcp</code> on
-                    Fly.io. Graphonomous sits at the intersection of edge AI,
-                    knowledge graphs, and continual learning — a space that IBM
-                    identified as one of three "major hurdles" for the field.
-                    No direct competitor occupies this intersection.
-                </p>
-
-                <div class="highlight">
-                    <h3>
-                        IBM (Jan 2026): "The field will grapple with three major
-                        hurdles: continuous learning, memory, and scalability."
-                    </h3>
-                    <p>
-                        — Chris Kofman, IBM, on AI trends for 2026. Also: "We'll
-                        begin to see decentralized networks of agents that can
-                        learn from each other, share information and retain
-                        important knowledge over long horizons — weeks, months,
-                        even years."
-                    </p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Dimension</th>
-                                <th>Score</th>
-                                <th>Rationale</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Problem Clarity</td>
-                                <td class="val">9/10</td>
-                                <td>
-                                    "LLMs can't learn after deployment" —
-                                    universal pain point
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Market Timing</td>
-                                <td class="val">10/10</td>
-                                <td>
-                                    IBM, Clarifai, Harvard all independently
-                                    identified CL + edge as THE 2026 trend.
-                                    $48M+ in direct agent-memory funding validates market
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Naming Fit</td>
-                                <td class="val">10/10</td>
-                                <td>
-                                    "Graph" + "autonomous" = self-governing
-                                    graph. Name IS the product.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Differentiation</td>
-                                <td class="val">8/10</td>
-                                <td>
-                                    No competitor does "MCP-first CL engine for
-                                    edge." Closest: Mem0 ($24M Series A, ~50K stars)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Feasibility</td>
-                                <td class="val">9/10</td>
-                                <td>
-                                    Shipped: 5 machines, 573 passing tests, six
-                                    graph algorithms, npm published, live on
-                                    Fly.io, 92.6% LongMemEval QA proxy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Protocol Synergy</td>
-                                <td class="val">10/10</td>
-                                <td>
-                                    The <code>&amp;memory</code> primitive —
-                                    every other capability composes with it.
-                                    PULSE manifest declares its 5-phase loop
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Overall</strong></td>
-                                <td class="val"><strong>9.3/10</strong></td>
-                                <td>
-                                    <strong
-                                        >Highest-conviction opportunity in the
-                                        portfolio</strong
-                                    >
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="prose">
-                    The closest funded comparable is Mem0, which raised $24M
-                    total ($20M Series A led by Basis Set Ventures + $3.9M seed;
-                    YC, Peak XV, GitHub Fund) for the "memory layer for AI apps,"
-                    reaching ~50K GitHub stars, 14M+ downloads, API calls growing
-                    35M&rarr;186M/quarter through 2025, and the exclusive
-                    memory-provider slot in AWS's new Agent SDK. Graphonomous is architecturally more
-                    ambitious: graph-native (not flat vectors), edge-native
-                    (SQLite, not cloud-only), MCP-first (5 loop-phase
-                    machines), and includes consolidation cycles inspired by
-                    neuroscience research plus a unique &kappa; cyclicity
-                    invariant verified on 1.9M+ finite systems.
-                </p>
-
-                <div class="market-grid">
-                    <div class="market-card">
-                        <h4>Domain Value (with code)</h4>
-                        <div class="big-num"><span>$175K</span></div>
-                        <div class="detail">
-                            Domain + shipped code + npm package + empirical
-                            benchmarks + protocol integration. $80K premium
-                            over bare domain.
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>Build Scenario (Year 5)</h4>
-                        <div class="big-num"><span>$1.27M</span> ARR</div>
-                        <div class="detail">
-                            Pro ($49/mo) + Team ($199/mo) + Enterprise + Managed
-                            Hosting revenue.
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>License-to-OpCo Exit</h4>
-                        <div class="big-num"><span>$10&ndash;20M</span></div>
-                        <div class="detail">
-                            [&] retains 20% equity, domain as asset. Exit at
-                            Series B / strategic acquisition.
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>Ecosystem Play (2035)</h4>
-                        <div class="big-num"><span>$15&ndash;60M+</span></div>
-                        <div class="detail">
-                            Graphonomous as the &amp;memory layer for the entire
-                            three-protocol stack ecosystem.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MARKET VALIDATION -->
-            <div class="section">
-                <p class="section-label">Industry Validation</p>
-                <h2>What the Market Is Saying</h2>
-                <p class="prose">
-                    Multiple independent signals from tier-1 institutions
-                    confirm the CL + edge + memory thesis and the need for
-                    composition-layer infrastructure.
-                </p>
-
-                <div class="highlight" style="border-left-color: var(--blue)">
-                    <h3>Clarifai (Jan 2026)</h3>
-                    <p>
-                        "Researchers are exploring lifelong memory systems that
-                        continually learn from interactions... long-term memory
-                        reduces institutional knowledge loss."
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--amber)">
-                    <h3>Harvard Business School (Dec 2025)</h3>
-                    <p>
-                        "AI is no longer the experiment on the side; it's
-                        rewiring how work gets done... shifting from isolated
-                        tools to platforms that sit at the center of workflows."
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--rose)">
-                    <h3>Q1 2026 VC: AI Captures 80% of All Funding</h3>
-                    <p>
-                        Q1 2026 shattered records with $300B in venture funding,
-                        with AI capturing 80% of total global VC (Crunchbase).
-                        Foundational AI startup funding in Q1 alone was double
-                        all of 2025. The four largest rounds ever recorded
-                        closed in Q1 2026.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--cyan)">
-                    <h3>MCP Ecosystem: 15,000+ Public Servers</h3>
-                    <p>
-                        MCP is now governed under the Linux Foundation's Agentic
-                        AI Foundation, with adoption by Anthropic, OpenAI,
-                        Google, Microsoft, and Amazon. By mid-2026 trackers
-                        index 15,000+ public MCP servers (PulseMCP); the official
-                        registry lists ~9,600 and Smithery ~7,300. The [&]
-                        Protocol generates MCP configurations — it sits above
-                        MCP in the stack.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--blue)">
-                    <h3>MarketsandMarkets (2025&ndash;2026)</h3>
-                    <p>
-                        AI agents market projected from $7.84B (2025) to $52.62B
-                        by 2030 at 46.3% CAGR. Vertical AI agents growing at
-                        62.7% CAGR — multi-agent systems at 48.5% CAGR. Grand
-                        View Research projects $182.97B by 2033 at 49.6% CAGR.
-                    </p>
-                </div>
-            </div>
-
-            <!-- AGENT CIVILIZATIONS -->
-            <div class="section">
-                <p class="section-label">Agent Infrastructure Convergence</p>
-                <h2>Why the Market Is Converging on the [&] Thesis</h2>
-                <p class="prose">
-                    The [&] thesis is that composed agent systems need memory,
-                    reasoning, time, space, embodiment, and governance as
-                    <em>infrastructure primitives</em> — not features bolted on
-                    per app. Three verifiable signals show the market moving
-                    toward that shape: the AI-agents market is projected at
-                    $53&ndash;183B by 2030&ndash;2033, agent memory alone has
-                    attracted <strong>$48M+</strong> in direct competitor
-                    funding, and MCP has crossed 15,000+ public servers under
-                    the Linux Foundation's Agentic AI Foundation. We are not
-                    waiting for that convergence to be ratified by an
-                    acquisition or a logo — the bet is that
-                    <strong>external validation is a lagging indicator</strong>:
-                    if the substrate is built, verified, and shipped first, the
-                    market arrives at it. The addition of <code>&amp;body</code>
-                    (OS-011, Q2 2026) is on that curve: the 2026 frontier is
-                    embodied and computer-using agents, and the [&] stack already
-                    has a typed sensorimotor primitive with two reference impls
-                    (<code>body-browser</code>, <code>body-os</code>).
-                </p>
-
-                <div class="highlight">
-                    <h3>The build-first wager</h3>
-                    <p>
-                        What is hard to copy here is not a market position — it
-                        is the <em>theory of measurement</em> and the shipped
-                        stack underneath it: 1,463 passing tests, ten live Fly.io
-                        services, a property-tested invariant algebra wired into
-                        a working verifier, and κ verified on 1,926,351 finite
-                        systems. None of that depends on a funding round or a
-                        customer logo to be real. The [&] Protocol's capability
-                        registry and A2A Agent Card generation are exactly the
-                        composition + governance layer the agent-infrastructure
-                        space is converging toward — and they exist as running
-                        code today.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--amber)">
-                    <h3>
-                        VentureBeat (Jan 2026): "The winners will build the
-                        control plane"
-                    </h3>
-                    <p>
-                        "Continual learning shifts rigor toward memory
-                        provenance and retention... The winners will not only
-                        pick strong models, they will build the control plane
-                        that keeps those models correct, current, and
-                        cost-efficient." — The [&] Protocol is that control
-                        plane: capability composition, context provenance, and
-                        governance constraints as a formal specification.
-                    </p>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--rose)">
-                    <h3>
-                        Agent Memory Funding: $48M+ in Direct Competitor Capital
-                    </h3>
-                    <p>
-                        Mem0 raised $24M Series A (Basis Set, YC, Peak XV; ~50K
-                        stars). Letta raised $10M seed (Felicis; $70M val; 22K
-                        stars). Cognee raised $7.5M seed (Pebblebed; 15.2K
-                        stars). Hindsight/Vectorize raised $3.6M seed (True
-                        Ventures; 9K stars). Zep raised $3.3M (Engineering
-                        Capital; Graphiti at 24.8K stars). That is
-                        <strong>$48.4M</strong> across direct agent-memory
-                        competitors (CrewAI's $18M is adjacent multi-agent
-                        orchestration, not memory). This level of funding
-                        validates the market Graphonomous targets — at $0 raised.
-                    </p>
-                </div>
-            </div>
-
-            <!-- MEMORY AS INFRASTRUCTURE -->
-            <div class="section">
-                <p class="section-label">&amp;memory Research Landscape</p>
-                <h2>Memory as a First-Class Primitive</h2>
-                <p class="prose">
-                    The [&] thesis that "memory is infrastructure, not a
-                    feature" is now the consensus position in academic AI
-                    research. A December 2025 survey paper — "Memory in the Age
-                    of AI Agents" — proposes rethinking memory as a "first-class
-                    primitive in the design of future agentic intelligence."
-                    The LongMemEval benchmark (ICLR 2025) has become the
-                    standard measure, with a dozen systems now competing on
-                    its 500-question evaluation.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>System</th>
-                                <th>LongMemEval Score</th>
-                                <th>Architecture</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>OMEGA (public #1)</td>
-                                <td class="val">95.4% (GPT-4.1)</td>
-                                <td>Local-first intelligence layer</td>
-                            </tr>
-                            <tr>
-                                <td>Mastra OM</td>
-                                <td class="val">94.9% (GPT-5-mini)</td>
-                                <td>Observational memory, 5&ndash;40x compression</td>
-                            </tr>
-                            <tr style="background: rgba(74, 245, 198, 0.06)">
-                                <td><strong>Graphonomous</strong></td>
-                                <td class="val">92.6% QA proxy (98.7% SHR)</td>
-                                <td>CL graph + &kappa; routing, local-only hardware</td>
-                            </tr>
-                            <tr>
-                                <td>Hindsight (Vectorize, $3.6M seed)</td>
-                                <td class="val">91.4% (Gemini 3 Pro)</td>
-                                <td>4-network MCP-native, 9K stars</td>
-                            </tr>
-                            <tr>
-                                <td>Zep / Graphiti ($3.3M)</td>
-                                <td>~63&ndash;67%</td>
-                                <td>Temporal knowledge graph, 24.8K stars</td>
-                            </tr>
-                            <tr>
-                                <td>Letta / MemGPT ($10M seed)</td>
-                                <td>~50&ndash;80% (LOCOMO)</td>
-                                <td>OS-inspired 3-tier runtime, 22K stars</td>
-                            </tr>
-                            <tr>
-                                <td>GPT-4 128K (baseline)</td>
-                                <td>~62&ndash;65%</td>
-                                <td>Full context window, no memory system</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="prose" style="font-size: 0.9rem; color: var(--dim)">
-                    A caveat on reading this board: LongMemEval is a
-                    <em>two-stage</em> benchmark — a retrieval stage and a reader
-                    (LLM) stage — so a system's headline number rises whenever it
-                    is paired with a stronger frontier model. The leaders above
-                    run cloud-native against the best available readers (Opus 4.6
-                    posts a best-in-class 93.3% on the abstention subset; OMEGA
-                    holds the #1 overall slot at 95.4%), while
-                    <strong>Graphonomous posts 92.6% QA / 98.7% retrieval-SHR on
-                    local-only hardware</strong> — the only entry that is not
-                    leaning on a hosted frontier reader. As the reader ceiling
-                    keeps climbing with each Opus/GPT release, the durable
-                    differentiator is the <em>retrieval</em> half (SHR), which is
-                    model-independent — and that is precisely where Graphonomous's
-                    98.7% leads. We deliberately do not publish an inflated
-                    frontier-reader QA number we cannot reproduce on the hardware
-                    our users actually run.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Research</th>
-                                <th>Date</th>
-                                <th>[&] Relevance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    "Memory in the Age of AI Agents" (arXiv
-                                    2512.13564)
-                                </td>
-                                <td>Dec 2025</td>
-                                <td>
-                                    Proposes memory as "first-class primitive" —
-                                    validates Graphonomous positioning
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>HOPE / Nested Learning (NeurIPS 2025)</td>
-                                <td>Dec 2024</td>
-                                <td>
-                                    Multi-timescale memory: fast + slow modules.
-                                    Graphonomous implements this as
-                                    consolidation cycles
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Microsoft PlugMem (Mar 2026)</td>
-                                <td>Mar 2026</td>
-                                <td>
-                                    Transforms raw logs into structured
-                                    knowledge — episodic &rarr; semantic &rarr;
-                                    procedural. Same architecture as
-                                    Graphonomous
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MemoryBench (arXiv 2510.17281)</td>
-                                <td>Oct 2025</td>
-                                <td>
-                                    First benchmark for continual learning in
-                                    LLM systems. Validates need for memory
-                                    infrastructure
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MemRL: Self-Evolving Agents (Jan 2026)</td>
-                                <td>Jan 2026</td>
-                                <td>
-                                    Runtime RL on episodic memory — agents that
-                                    learn from their own experience
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>NeSyC: Neuro-Symbolic Continual Learner (arXiv 2503.00870)</td>
-                                <td>2026</td>
-                                <td>
-                                    Symbolic verification loop over a neural
-                                    learner for open-domain embodied tasks —
-                                    the academic mirror of Invariant Arithmetic +
-                                    OS-011 embodiment
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Trainable Graph Memory (arXiv 2511.07800)</td>
-                                <td>2026</td>
-                                <td>
-                                    "From experience to strategy" — graph memory
-                                    as the substrate agents learn over; validates
-                                    the graph-native (not flat-vector) bet
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ALMA: Meta-Learned Memory Designs (arXiv 2602.07755)</td>
-                                <td>2026</td>
-                                <td>
-                                    A meta-agent searches over memory designs as
-                                    executable code — points toward declarative,
-                                    composable memory the [&] algebra already encodes
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Compress-Add-Smooth temporal memory (arXiv 2604.00067)</td>
-                                <td>2026</td>
-                                <td>
-                                    Fixed-budget continual learning for
-                                    resource-constrained agents — directly
-                                    favorable to a local-only engine like
-                                    Graphonomous
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight">
-                    <h3>
-                        Adaline Labs (Jan 2026): "2026 may be remembered as the
-                        year AI research shifted from 'how big can we go' to
-                        'how smart can we be efficiently.'"
-                    </h3>
-                    <p>
-                        "The models that win aren't necessarily the largest;
-                        they're the ones that reason deeply, learn continuously,
-                        and deploy everywhere. Intelligence, it turns out, is
-                        less about parameter count than about architecture,
-                        memory, and knowing when to think hard versus when to
-                        think fast." — This is the Graphonomous thesis: small
-                        models (1B&ndash;8B) that get smarter over time through
-                        structured memory, not larger context windows.
-                    </p>
-                </div>
-            </div>
-
-            <!-- MULTI-AGENT DELIBERATION -->
-            <div class="section">
-                <p class="section-label">&amp;reason Research Landscape</p>
-                <h2>Structured Deliberation > Opaque Confidence</h2>
-                <p class="prose">
-                    The [&] Protocol's <code>&amp;reason</code> primitive —
-                    implemented by Deliberatic — builds on a rapidly growing
-                    body of academic research proving that multi-agent
-                    deliberation protocols outperform single-agent reasoning and
-                    simple voting. The ACL 2025 paper "Voting or Consensus?"
-                    demonstrated that consensus protocols improve knowledge
-                    tasks by 2.8% and voting protocols improve reasoning tasks
-                    by 13.2%. Deliberatic's approach — structured argumentation
-                    with evidence chains — represents the next generation beyond
-                    both.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Research</th>
-                                <th>Date</th>
-                                <th>[&] Relevance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Kaesberg et al., "Voting or Consensus?" (ACL
-                                    2025)
-                                </td>
-                                <td>Jul 2025</td>
-                                <td>
-                                    Systematic comparison of 7 decision
-                                    protocols. Consensus outperforms voting on
-                                    knowledge tasks. Deliberatic implements both
-                                    with adaptive switching
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Wu et al., "Stop Overvaluing MAD" (Nov 2025)
-                                </td>
-                                <td>Nov 2025</td>
-                                <td>
-                                    Shows debate is bounded by strongest agent's
-                                    accuracy. Recommends explicit deliberation
-                                    with justified stances — exactly
-                                    Deliberatic's argumentation framework
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pokharel et al., "Deliberation Leads to
-                                    Unanimous Consensus"
-                                </td>
-                                <td>Feb 2026</td>
-                                <td>
-                                    LLMs as rational agents in structured
-                                    discussions. Two-phase consensus with
-                                    Byzantine fault tolerance — mirrors
-                                    Deliberatic's Raft + PBFT design
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Dung's Argumentation Framework
-                                    (foundational)
-                                </td>
-                                <td>1995+</td>
-                                <td>
-                                    Deliberatic extends Dung's abstract
-                                    argumentation into weighted bipolar systems
-                                    with typed evidence and attack/support
-                                    relations
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TEMPORAL INTELLIGENCE -->
-            <div class="section">
-                <p class="section-label">&amp;time Research Landscape</p>
-                <h2>Temporal Intelligence via State Space Models</h2>
-                <p class="prose">
-                    The [&] Protocol's <code>&amp;time</code> primitive —
-                    implemented by TickTickClock — leverages Mamba-class
-                    selective state space models (SSMs) for temporal
-                    intelligence: anomaly detection, pattern prediction, and
-                    time-series continual learning. Mamba (Gu & Dao, 2023) has
-                    emerged as the leading post-Transformer architecture for
-                    sequence modeling, offering 5x higher throughput with linear
-                    complexity.
-                </p>
-
-                <div class="highlight">
-                    <h3>Why SSMs for &amp;time</h3>
-                    <p>
-                        State space models maintain a continuous state
-                        representation that naturally captures temporal dynamics.
-                        Mamba's selective scan mechanism (40x faster than
-                        standard SSM implementation) enables real-time anomaly
-                        detection on edge devices — exactly TickTickClock's
-                        target deployment. Hybrid architectures like Jamba (AI21
-                        Labs) mix Transformer attention with SSM layers,
-                        validating the approach of using SSMs for temporal
-                        processing within larger agent systems.
-                    </p>
-                </div>
-            </div>
-
-            <!-- SPATIAL INTELLIGENCE -->
-            <div class="section">
-                <p class="section-label">&amp;space Research Landscape</p>
-                <h2>Spatial Intelligence & Edge-Native CRDTs</h2>
-                <p class="prose">
-                    The [&] Protocol's <code>&amp;space</code> primitive —
-                    implemented by GeoFleetic — uses delta-CRDTs (Conflict-free
-                    Replicated Data Types) for distributed spatial state
-                    synchronization. The fleet management software market
-                    ($21.8B in 2024, growing to $52&ndash;117B by 2032&ndash;2034
-                    depending on source) provides the commercial foundation,
-                    while GeoFleetic's edge-native architecture positions it
-                    for real-time, low-latency requirements.
-                </p>
-            </div>
-
-            <!-- FLEETPROMPT MARKETPLACE THESIS -->
-            <div class="section">
-                <p class="section-label">Distribution Layer Analysis</p>
-                <h2>FleetPrompt: The Marketplace Thesis</h2>
-                <p class="prose">
-                    Infrastructure layers are important, but historically
-                    marketplaces capture the most value in ecosystems.
-                    FleetPrompt is positioned as the capability marketplace for
-                    the [&] ecosystem: install capabilities as versioned
-                    <code>ampersand.json</code> packages.
-                </p>
-                <p class="prose">
-                    This thesis received explosive validation in 2026. The agent
-                    skills marketplace category went from non-existent to
-                    350,000+ skills indexed across eight marketplaces by mid-2026
-                    — a pace that took npm a decade. The MCP ecosystem has grown
-                    to 15,000+ public servers (PulseMCP), with ~9,600 in the
-                    Linux Foundation registry and ~7,300 on Smithery.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Marketplace</th>
-                                <th>Skills/Servers</th>
-                                <th>Installs</th>
-                                <th>Launched</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>All skill marketplaces (8)</td>
-                                <td class="val">350,000+</td>
-                                <td>&mdash;</td>
-                                <td>mid-2026</td>
-                            </tr>
-                            <tr>
-                                <td>Smithery (MCP)</td>
-                                <td class="val">~7,300 servers</td>
-                                <td>&mdash;</td>
-                                <td>2024</td>
-                            </tr>
-                            <tr>
-                                <td>Skills.sh (Vercel)</td>
-                                <td class="val">30+ agents</td>
-                                <td>CLI package manager</td>
-                                <td>Jan 2026</td>
-                            </tr>
-                            <tr>
-                                <td>MCP Ecosystem (PulseMCP)</td>
-                                <td class="val">15,000+ servers</td>
-                                <td>&mdash;</td>
-                                <td>2024&ndash;2026</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight">
-                    <h3>FleetPrompt's differentiation</h3>
-                    <p>
-                        Existing marketplaces distribute raw skills (SKILL.md
-                        files) or MCP servers. FleetPrompt distributes
-                        <strong>composed capability packages</strong> —
-                        versioned <code>ampersand.json</code> bundles that
-                        include memory configuration, reasoning strategy,
-                        temporal patterns, and governance constraints as a
-                        single installable unit. The [&] Protocol's capability
-                        contracts enable compatibility validation at install
-                        time — something no current marketplace offers.
-                    </p>
-                </div>
-
-                <div class="market-grid">
-                    <div class="market-card">
-                        <h4>Domain Value</h4>
-                        <div class="big-num"><span>$175K</span></div>
-                        <div class="detail">
-                            Highest-valued domain in the portfolio. "Fleet" +
-                            "Prompt" = compound semantic alignment with agent
-                            marketplace category.
-                        </div>
-                    </div>
-                    <div class="market-card">
-                        <h4>Brand Ceiling (with product)</h4>
-                        <div class="big-num"><span>$50M&ndash;$150M+</span></div>
-                        <div class="detail">
-                            If agent ecosystems become the dominant computing
-                            paradigm, the marketplace layer captures the
-                            economic center. Comparable: the skills category's
-                            growth to 350K+ packages in under a year.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DOMAIN COMPARABLE SALES -->
-            <div class="section">
-                <p class="section-label">Comparable Sales</p>
-                <h2>Domain Market Context</h2>
-                <p class="prose">
-                    The ai.com sale at $70M reset the ceiling for what
-                    category-defining digital assets can command. AI-adjacent
-                    domains command significant premiums.
-                </p>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Domain</th>
-                                <th>Sale Price</th>
-                                <th>Year</th>
-                                <th>Relevance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ai.com</td>
-                                <td class="val">$70,000,000</td>
-                                <td>2025*</td>
-                                <td>
-                                    Largest domain sale in history. Purchased by
-                                    Crypto.com CEO Kris Marszalek. Launched as
-                                    agentic AI platform at Super Bowl LX (Feb
-                                    2026).
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>chat.com</td>
-                                <td class="val">$15,500,000</td>
-                                <td>2024</td>
-                                <td>
-                                    OpenAI acquisition — AI interface premium
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>fin.ai</td>
-                                <td class="val">$1,000,000</td>
-                                <td>2024</td>
-                                <td>Fintech AI — category-defining brand</td>
-                            </tr>
-                            <tr>
-                                <td>you.ai</td>
-                                <td class="val">$700,000</td>
-                                <td>2024</td>
-                                <td>AI brand — single word + .ai premium</td>
-                            </tr>
-                            <tr>
-                                <td>ace.ai</td>
-                                <td class="val">$205,000</td>
-                                <td>2024</td>
-                                <td>Premium AI brand — short, memorable</td>
-                            </tr>
-                            <tr>
-                                <td>crew.ai</td>
-                                <td class="val">$104,900</td>
-                                <td>2024</td>
-                                <td>
-                                    Direct comparable — AI agent coordination.
-                                    CrewAI now at 45.9K stars, $18M raised
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="prose" style="margin-top: 0.5rem; font-size: 0.72rem">
-                    *ai.com sale closed April 2025, publicly disclosed February
-                    2026. Paid in cryptocurrency.
-                </p>
-            </div>
-
-            <!-- NEXT 6 MONTHS OUTLOOK -->
-            <div class="section">
-                <p class="section-label">Forward View</p>
-                <h2>The Next 6 Months (Jun&ndash;Dec 2026)</h2>
-                <p class="prose">
-                    Three forces define the back half of 2026, and the [&]
-                    portfolio is positioned at the intersection of all three:
-                    (1) the shift from cloud chat assistants to <strong>embodied,
-                    computer-using agents</strong>; (2) the hardening of
-                    <strong>memory + continual learning</strong> from a research
-                    curiosity into a procurement checkbox; and (3) the
-                    <strong>governance and provenance</strong> reckoning as
-                    agents gain the ability to act. Our roadmap was committed to
-                    these three bets before they were consensus.
-                </p>
-
-                <div class="highlight" style="border-left-color: var(--cyan)">
-                    <h3>Market forecast — what we expect by December 2026</h3>
-                    <p>
-                        The AI-agents market should hold a 40&ndash;49% CAGR
-                        toward the $50B+ 2030 band, with the embodied / computer-use
-                        sub-segment the fastest-growing slice. Expect continued
-                        consolidation of the MCP registry under the Linux
-                        Foundation's Agentic AI Foundation (one canonical index
-                        absorbing the fragmented 15K+ server long tail), at least
-                        one more nine-figure agent-memory round, and the first
-                        wave of enterprise RFPs that explicitly require
-                        continual-learning + memory-provenance guarantees rather
-                        than raw context windows. Edge / small-language-model
-                        inference keeps compounding (SLM-for-edge ~$3.4B&rarr;$12.9B
-                        trajectory), which is structurally favorable to a
-                        local-only memory engine like Graphonomous.
-                    </p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Portfolio milestone (target H2 2026)</th>
-                                <th>From &rarr; To</th>
-                                <th>Why it matters</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Live <code>&amp;body</code> validation</td>
-                                <td>Simulator-only &rarr; real agent-browser / Computer Use</td>
-                                <td>
-                                    Moves OS-011 from "passes conformance against
-                                    a stub" to "drives a real browser/OS" — the
-                                    last credibility gap on the embodiment bet
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Close the cross-machine dark-factory loop</td>
-                                <td>Single-process Simulator &rarr; cross-machine replay on real backends</td>
-                                <td>
-                                    body-browser-mcp, body-os-mcp, and
-                                    delegatic-mcp are already live (3 of the 10
-                                    Fly.io apps) but run Simulator backends;
-                                    wiring them into real cross-machine replay +
-                                    authority round-trip closes the loop across
-                                    the fleet, not just in one process
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>First revenue / registry listings</td>
-                                <td>Pre-revenue &rarr; $1K MRR, 50+ users</td>
-                                <td>
-                                    Crosses the valuation inflection from
-                                    "specs + code" ($600K&ndash;$1.2M) into the
-                                    pre-seed traction band ($1M&ndash;$3M)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Workbench v0.3.0-alpha &rarr; v1.0</td>
-                                <td>Local kernel &rarr; real Delegatic authority + PRISM upload</td>
-                                <td>
-                                    Turns the proof harness into a shippable
-                                    skill-certification surface — the consumer
-                                    end of the dark-factory loop
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>OS-007 Adversarial Robustness</td>
-                                <td>Draft &rarr; spec complete</td>
-                                <td>
-                                    The one remaining draft protocol; completes
-                                    the governance story as agents start acting
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight" style="border-left-color: var(--amber)">
-                    <h3>Honest risk framing</h3>
-                    <p>
-                        The portfolio is still pre-revenue with no paying users,
-                        and the highest-leverage gap is not more code — it is
-                        live end-to-end traction. The bet for H2 2026 is
-                        conversion: the protocol layer is overbuilt (~90%)
-                        relative to the implementation (~55%) and the
-                        go-to-market (~0%). The realistic upside case is
-                        crossing from the $600K&ndash;$1.2M "shipped specs + code"
-                        band into the $1M&ndash;$3M "first revenue" band; the
-                        downside case is that an analogous well-funded competitor
-                        (Mem0, Letta, or a hyperscaler memory primitive)
-                        commoditizes the <code>&amp;memory</code> layer before
-                        distribution is established.
-                    </p>
-                </div>
-            </div>
-
-            <!-- SOURCES -->
-            <div class="section">
-                <p class="section-label">Citations</p>
-                <h2>Research Sources</h2>
-                <p class="prose">
-                    All market figures are sourced from named analyst firms and
-                    cross-referenced where possible. Ranges reflect variance
-                    across sources. Updated May 2026.
-                </p>
-
-                <div class="sources">
-                    <h3>Edge AI Market</h3>
-                    <div class="source-item">
-                        <span class="num">1</span
-                        ><a
-                            href="https://www.fortunebusinessinsights.com/edge-ai-market-107023"
-                            >Fortune Business Insights — Edge AI Market (Feb
-                            2026): $35.81B (2025) &rarr; $385.89B (2034), 33.3%
-                            CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">2</span
-                        ><a
-                            href="https://www.grandviewresearch.com/industry-analysis/edge-ai-market-report"
-                            >Grand View Research — Edge AI Market: $24.91B
-                            (2025) &rarr; $118.69B (2033), 21.7% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">3</span
-                        ><a
-                            href="https://www.precedenceresearch.com/edge-ai-market"
-                            >Precedence Research — Edge AI Market: $25.65B
-                            (2025) &rarr; $143.06B (2034), 21.04% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">4</span
-                        ><a href="https://market.us/report/edge-ai-market/"
-                            >Market.us — Edge AI Market: $23.3B (2024) &rarr; $196.6B
-                            (2034), 23.8% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">5</span
-                        ><a
-                            href="https://www.polarismarketresearch.com/industry-analysis/edge-ai-market"
-                            >Polaris Market Research — Edge AI Market: $108.99B
-                            by 2034, 19.7% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">6</span
-                        ><a
-                            href="https://www.bccresearch.com/market-research/information-technology/edge-ai-market.html"
-                            >BCC Research — Edge AI Market: $11.8B (2025) &rarr;
-                            $56.8B (2030), 36.9% CAGR</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Knowledge Graph Market</h3>
-                    <div class="source-item">
-                        <span class="num">7</span
-                        ><a
-                            href="https://www.marketsandmarkets.com/Market-Reports/knowledge-graph-market-217920811.html"
-                            >MarketsandMarkets — KG Market: $1.07B (2024) &rarr;
-                            $6.94B (2030), 36.6% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">8</span
-                        ><a
-                            href="https://www.thebusinessresearchcompany.com/report/knowledge-graph-global-market-report"
-                            >Business Research Company — KG Market: $4.46B by
-                            2030, 22.5% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">9</span
-                        ><a
-                            href="https://www.verifiedmarketreports.com/product/knowledge-graphs-as-a-service-market/"
-                            >Verified Market Reports — KGaaS Market: $1.2B
-                            (2024) &rarr; $6.5B (2033), 20.5% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">10</span
-                        ><a
-                            href="https://www.mordorintelligence.com/industry-reports/agentic-artificial-intelligence-in-semantic-layer-and-knowledge-graph-market"
-                            >Mordor Intelligence — Agentic AI in Semantic Layer
-                            &amp; KG: $0.85B (2025) &rarr; $2.83B (2030), 27.15%
-                            CAGR</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>AI Agents &amp; Agentic AI</h3>
-                    <div class="source-item">
-                        <span class="num">11</span
-                        ><a
-                            href="https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-15761548.html"
-                            >MarketsandMarkets — AI Agents Market: $7.84B (2025)
-                            &rarr; $52.62B (2030), 46.3% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">12</span
-                        ><a
-                            href="https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report"
-                            >Grand View Research — AI Agents Market: $10.91B
-                            (2026) &rarr; $182.97B (2033), 49.6% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">13</span
-                        ><a
-                            href="https://www.bccresearch.com/market-research/artificial-intelligence-technology/ai-agent-market.html"
-                            >BCC Research — AI Agent Market (Jan 2026): $8B
-                            (2025) &rarr; $48.3B (2030), 43.3% CAGR</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Industry Trends &amp; Validation</h3>
-                    <div class="source-item">
-                        <span class="num">14</span
-                        ><a
-                            href="https://www.ibm.com/think/news/ai-tech-trends-predictions-2026"
-                            >IBM Think — AI Trends 2026: CL, memory, scalability
-                            as "three major hurdles"</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">15</span
-                        ><a
-                            href="https://www.clarifai.com/blog/llms-and-ai-trends"
-                            >Clarifai — LLM &amp; AI Trends 2026: "lifelong memory
-                            systems" emerging category</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">16</span
-                        ><a
-                            href="https://www.library.hbs.edu/working-knowledge/ai-trends-for-2026-building-change-fitness-and-balancing-trade-offs"
-                            >Harvard Business School — AI Trends 2026</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">17</span
-                        ><a
-                            href="https://modelcontextprotocol.io/specification/2025-11-25"
-                            >MCP Spec (Nov 2025): OAuth 2.1, async tasks,
-                            structured outputs</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">18</span
-                        ><a
-                            href="https://thenewstack.io/why-the-model-context-protocol-won/"
-                            >The New Stack — Why the Model Context Protocol Won:
-                            10,000+ active servers, Linux Foundation governance</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">19</span
-                        ><a
-                            href="https://venturebeat.com/technology/four-ai-research-trends-enterprise-teams-should-watch-in-2026"
-                            >VentureBeat — Four AI Research Trends for 2026</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">20</span
-                        ><a
-                            href="https://labs.adaline.ai/p/the-ai-research-landscape-in-2026"
-                            >Adaline Labs — AI Research Landscape 2026</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Agent Infrastructure &amp; MCP</h3>
-                    <div class="source-item">
-                        <span class="num">21</span
-                        ><a
-                            href="https://modelcontextprotocol.io"
-                            >Model Context Protocol — specification &amp; ecosystem</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">22</span
-                        ><a
-                            href="https://www.pulsemcp.com/servers"
-                            >PulseMCP — public MCP server index (15,000+ servers)</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Memory &amp; Continual Learning Research</h3>
-                    <div class="source-item">
-                        <span class="num">23</span
-                        ><a href="https://arxiv.org/abs/2512.13564"
-                            >arXiv 2512.13564 — "Memory in the Age of AI Agents:
-                            A Survey" (Dec 2025)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">24</span
-                        ><a href="https://arxiv.org/html/2510.17281v4"
-                            >MemoryBench — Benchmark for Memory and Continual
-                            Learning in LLM Systems (Oct 2025)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">25</span
-                        ><a href="https://arxiv.org/pdf/2504.19413"
-                            >Mem0 — Building Production-Ready AI Agents with
-                            Scalable Long-Term Memory ($24M Series A)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">26</span
-                        ><a href="https://github.com/xiaowu0162/LongMemEval"
-                            >LongMemEval (ICLR 2025) — benchmark repo &amp;
-                            public leaderboard</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">27</span
-                        ><a href="https://mastra.ai/research/observational-memory"
-                            >Mastra Observational Memory — 94.87% LongMemEval,
-                            5&ndash;40x compression</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">28</span
-                        ><a href="https://omegamax.co/benchmarks"
-                            >OMEGA — 95.4% LongMemEval, local-first intelligence
-                            layer</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Multi-Agent Deliberation &amp; Consensus</h3>
-                    <div class="source-item">
-                        <span class="num">29</span
-                        ><a
-                            href="https://aclanthology.org/2025.findings-acl.606/"
-                            >Kaesberg et al. — "Voting or Consensus?" (ACL 2025)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">30</span
-                        ><a href="https://arxiv.org/html/2504.02128v2"
-                            >"Achieving Unanimous Consensus Through Multi-Agent
-                            Deliberation" (Feb 2026)</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Temporal Intelligence &amp; SSMs</h3>
-                    <div class="source-item">
-                        <span class="num">31</span
-                        ><a href="https://arxiv.org/abs/2312.00752"
-                            >Gu &amp; Dao — "Mamba: Linear-Time Sequence Modeling"
-                            (ICLR 2024)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">32</span
-                        ><a href="https://openreview.net/forum?id=vEtDApqkNR"
-                            >MambaTS — Improved SSMs for Time Series (ICLR
-                            2025)</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Domain Valuation &amp; AI Startup Context</h3>
-                    <div class="source-item">
-                        <span class="num">33</span
-                        ><a
-                            href="https://domainnamewire.com/2026/02/06/ai-com-domain-name-sold-70-million/"
-                            >Domain Name Wire — ai.com sold for $70M (Feb 2026)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">34</span
-                        ><a
-                            href="https://www.finrofca.com/news/ai-startup-valuation-trends-2025"
-                            >Finro Q4 2025 — AI Infrastructure 20x+ revenue
-                            multiples</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">35</span
-                        ><a href="https://www.zeni.ai/blog/pre-seed-valuations"
-                            >Carta / Zeni — Pre-seed valuations: median $7.7M</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">36</span
-                        ><a href="https://carta.com/data/record-setting-valuations/"
-                            >Carta — Record-setting valuations: Seed $24M post,
-                            Series A $78.7M post (Q4 2025)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">37</span
-                        ><a
-                            href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/"
-                            >Crunchbase — Q1 2026: $300B VC, AI = 80% of total</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">38</span
-                        ><a
-                            href="https://news.crunchbase.com/ai/big-funding-trends-charts-eoy-2025/"
-                            >Crunchbase — $202B invested in AI in 2025</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Agent Memory Competitor Funding</h3>
-                    <div class="source-item">
-                        <span class="num">39</span
-                        ><a href="https://mem0.ai/series-a"
-                            >Mem0 — $24M Series A (Basis Set, YC, Peak XV).
-                            ~50K stars, hundreds of millions of API calls/quarter</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">40</span
-                        ><a href="https://letta.com/"
-                            >Letta (MemGPT) — $10M seed (Felicis, $70M val).
-                            22K stars</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">41</span
-                        ><a href="https://www.cognee.ai/blog/cognee-news/cognee-raises-seven-million-five-hundred-thousand-dollars-seed"
-                            >Cognee — $7.5M seed (Pebblebed). 15.2K stars</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">42</span
-                        ><a href="https://github.com/vectorize-io/hindsight"
-                            >Hindsight/Vectorize — $3.6M seed (True Ventures).
-                            9K stars, 91.4% LongMemEval</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">43</span
-                        ><a href="https://github.com/getzep/graphiti"
-                            >Zep / Graphiti — $3.3M (Engineering Capital).
-                            24.8K stars</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">44</span
-                        ><a href="https://crewai.com/"
-                            >CrewAI — $18M Series A. 45.9K stars, 12M daily
-                            agent executions</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Agent Skills Marketplace Ecosystem</h3>
-                    <div class="source-item">
-                        <span class="num">45</span
-                        ><a
-                            href="https://smartscope.blog/en/blog/skillsmp-marketplace-guide/"
-                            >SkillsMP — agent-skills marketplace, SKILL.md open
-                            standard (part of the 350K+ skills indexed across 8
-                            marketplaces by mid-2026)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">46</span
-                        ><a href="https://smithery.ai/"
-                            >Smithery — ~7,300 MCP servers indexed (mid-2026)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">47</span
-                        ><a
-                            href="https://thenewstack.io/model-context-protocol-roadmap-2026/"
-                            >MCP Roadmap 2026 — enterprise-ready: auth, audit,
-                            gateway, configuration portability</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Empirical Benchmarks</h3>
-                    <div class="source-item">
-                        <span class="num">48</span
-                        ><a
-                            href="https://opensentience.org/docs/spec/OS-E001-EMPIRICAL-EVALUATION.html"
-                            >OS-E001 — Graphonomous Empirical Evaluation:
-                            92.6% LongMemEval QA proxy, 98.7% SHR, 12,880
-                            edges, &kappa;=27</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">49</span
-                        ><a href="https://hindsight.vectorize.io/blog/2026/03/23/agent-memory-benchmark"
-                            >Hindsight — Agent Memory Benchmark Manifesto</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">50</span
-                        ><a href="https://arxiv.org/html/2512.12818v1"
-                            >Hindsight arXiv — "Building Agent Memory that
-                            Retains, Recalls, and Reflects"</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Fleet Management &amp; Spatial Markets</h3>
-                    <div class="source-item">
-                        <span class="num">51</span
-                        ><a
-                            href="https://www.emergenresearch.com/industry-report/fleet-management-software-market"
-                            >Emergen Research — Fleet Management Software:
-                            $21.8B (2024) &rarr; $52.4B (2034), 9.2% CAGR</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">52</span
-                        ><a
-                            href="https://www.fortunebusinessinsights.com/industry-reports/fleet-management-software-market-100893"
-                            >Fortune Business Insights — Fleet Management:
-                            $27.55B (2024) &rarr; $116.56B (2032), 19.76% CAGR</a
-                        >
-                    </div>
-                </div>
-
-                <div class="sources">
-                    <h3>Mid-2026 Market Update (May 2026)</h3>
-                    <div class="source-item">
-                        <span class="num">53</span
-                        ><a
-                            href="https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-15761548.html"
-                            >MarketsandMarkets — AI Agents Market holding
-                            40&ndash;49% CAGR toward the $50B+ 2030 band
-                            (mid-2026 update)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">54</span
-                        ><a
-                            href="https://news.crunchbase.com/ai/agentic-ai-startup-funding-2026/"
-                            >Crunchbase — Agentic AI funding ~$2.66B across 44
-                            rounds through April 2026</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">55</span
-                        ><a href="https://www.linuxfoundation.org/press/announcing-the-agentic-ai-foundation"
-                            >Linux Foundation — Agentic AI Foundation now governs
-                            MCP and adjacent agent standards</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">56</span
-                        ><a href="https://www.pulsemcp.com/servers"
-                            >PulseMCP — 15,000+ public MCP servers tracked
-                            (mid-2026)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">57</span
-                        ><a href="https://registry.modelcontextprotocol.io/"
-                            >MCP official registry — ~9,600 published servers</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">58</span
-                        ><a
-                            href="https://www.marketsandmarkets.com/Market-Reports/small-language-model-market-67513017.html"
-                            >Small Language Model (edge) market: ~$3.42B (2025)
-                            &rarr; ~$12.85B (2030)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">59</span
-                        ><a href="https://www.grandviewresearch.com/industry-analysis/edge-ai-market-report"
-                            >Edge AI market ~$29.98B in 2026 (analyst consensus
-                            midpoint)</a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">60</span
-                        ><a href="https://www.anthropic.com/news/claude-computer-use"
-                            >Computer-use / embodied agents as the 2026 frontier
-                            — context for OS-011 &amp; <code>&amp;body</code></a
-                        >
-                    </div>
-                    <div class="source-item">
-                        <span class="num">61</span
-                        ><a href="./protocol.html"
-                            >[&] Protocol — 6 primitives (incl. <code>&amp;body</code>),
-                            Invariant Arithmetic (43 invariants, 15 laws), and the
-                            three-protocol stack</a
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <!-- DISCLAIMER -->
-            <div class="disclaimer">
-                <strong>Disclaimer:</strong> Domain valuations are estimates
-                based on comparable sales, market positioning, and keyword
-                analysis. They are not appraisals and should not be relied upon
-                for financial decisions. Market size figures reflect the range
-                reported by multiple analyst firms and may vary. [&] Ampersand
-                Box Design is a portfolio holding company; individual domain
-                operating entities may be structured separately. Past domain
-                sales are not indicative of future values. All trademarks belong
-                to their respective owners. GitHub star counts verified
-                May 2026 via GitHub API.
-            </div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+<link rel="manifest" href="/site.webmanifest" />
+<title>[&amp;] Research &amp; Valuation — September 2026</title>
+<meta name="description" content="Market research, a valuation ladder keyed to evidence rungs, and strategy for the Ampersand Box Design portfolio of agent-infrastructure domains, as of September 2026." />
+<meta name="keywords" content="agent infrastructure market 2026, agentic AI market size, agent memory funding, MCP A2A Agentic AI Foundation, EU AI Act agents, domain valuation, ampersand box design, computedriven, graphonomous, fleetprompt" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0d0c; --surface:#131512; --surface2:#181b17; --surface3:#1f231d;
+    --ink:#eef1e8; --ink-dim:#c2c9b6; --muted:#8f9884; --faint:#5b6355;
+    --line:#242820; --line2:#323829;
+    --teal:#5cc196; --teal-2:#86d6b3; --teal-deep:#2f7d5b;
+    --amber:#e69138; --amber-2:#f0b15f;
+    --red:#e0604f; --purple:#c79bd4; --blue:#7fb2e6;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Hanken Grotesk",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1100px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth; scroll-padding-top:90px}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.68; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:radial-gradient(820px 520px at 84% -8%, rgba(92,193,150,.13), transparent 60%),
+               radial-gradient(700px 600px at 2% 8%, rgba(230,145,56,.05), transparent 55%),
+               radial-gradient(900px 700px at 50% 120%, rgba(92,193,150,.06), transparent 60%)}
+  a{color:inherit; text-decoration:none}
+  ::selection{background:rgba(92,193,150,.28); color:#fff}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  code{font-family:var(--mono); font-size:.88em; color:var(--teal-2); background:rgba(92,193,150,.09); padding:.08em .4em; border-radius:4px}
+  pre{font-family:var(--mono); font-size:13px; line-height:1.6; background:#0a0b0a; border:1px solid var(--line); border-radius:10px; padding:16px 18px; overflow-x:auto; color:var(--ink-dim)}
+  p a, li a, td a{border-bottom:1px solid var(--line2); color:var(--teal-2)}
+  p a:hover, li a:hover, td a:hover{border-bottom-color:var(--teal)}
+
+  nav.local{position:sticky; top:0; z-index:40; background:rgba(12,13,12,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  nav.local .wrap{display:flex; align-items:center; justify-content:space-between; height:52px; gap:16px}
+  nav.local .brand{font-family:var(--serif); font-weight:600; letter-spacing:.02em; font-size:15px}
+  nav.local .brand b{color:var(--teal)}
+  nav.local .links{display:flex; gap:20px; font-size:13px; color:var(--muted); overflow-x:auto; white-space:nowrap}
+  nav.local .links a:hover{color:var(--ink)}
+
+  header.doc{padding:84px 0 44px; border-bottom:1px solid var(--line); position:relative; overflow:hidden}
+  header.doc .glyph{position:absolute; right:-2%; top:-28%; font-family:var(--serif); font-weight:600; font-size:min(40vw,520px); line-height:1; color:var(--teal); opacity:.05; pointer-events:none}
+  header.doc .wrap{position:relative; z-index:1}
+  .kicker{font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--teal); margin:0 0 20px; display:inline-flex; align-items:center; gap:10px}
+  .kicker::before{content:""; width:22px; height:1px; background:var(--teal); opacity:.7}
+  h1.title{font-family:var(--serif); font-weight:600; letter-spacing:-.02em; line-height:1.05; font-size:clamp(36px,6vw,64px); max-width:20ch; margin:0 0 18px}
+  h1.title .br{display:block; color:var(--muted); font-weight:400; font-size:clamp(18px,2.6vw,26px); margin-top:12px}
+  .lead{color:var(--muted); font-size:clamp(16px,1.9vw,19px); line-height:1.6; max-width:68ch; margin:0 0 30px}
+  .lead strong{color:var(--ink-dim); font-weight:500}
+  .meta{border:1px solid var(--line2); border-radius:14px; background:var(--surface); overflow:hidden; margin-top:8px}
+  .meta dl{display:grid; grid-template-columns:max-content 1fr}
+  .meta dt{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); padding:10px 20px; border-bottom:1px solid var(--line); white-space:nowrap}
+  .meta dd{font-family:var(--mono); font-size:13px; color:var(--ink-dim); padding:10px 20px; border-bottom:1px solid var(--line); border-left:1px solid var(--line)}
+  .meta dl > dt:last-of-type, .meta dl > dd:last-of-type{border-bottom:none}
+
+  section{padding:64px 0; border-bottom:1px solid var(--line)}
+  .num{font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--teal); margin-bottom:14px}
+  h2{font-family:var(--serif); font-weight:600; letter-spacing:-.015em; line-height:1.12; font-size:clamp(28px,3.6vw,40px); max-width:24ch; margin-bottom:16px}
+  h3{font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.25; margin:28px 0 10px}
+  h4{font-weight:600; font-size:15px; margin:18px 0 6px}
+  .sub{color:var(--muted); font-size:17px; max-width:68ch; margin-bottom:26px}
+  p{margin-bottom:14px; max-width:74ch}
+  ul,ol{margin:0 0 16px 22px; max-width:74ch}
+  li{margin-bottom:8px}
+  li::marker{color:var(--teal)}
+  em.note{font-style:normal; color:var(--muted)}
+
+  /* market cards */
+  .mk{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; margin:22px 0}
+  .m{background:var(--surface); border:1px solid var(--line2); border-radius:14px; padding:22px 22px 18px; display:flex; flex-direction:column}
+  .m .t{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:8px}
+  .m h3{margin:0 0 6px; font-size:20px}
+  .m .big{font-family:var(--serif); font-weight:600; font-size:30px; letter-spacing:-.02em; line-height:1.1; margin:6px 0 8px}
+  .m .big small{font-size:14px; color:var(--muted); font-weight:400; font-family:var(--sans); letter-spacing:0}
+  .m p{font-size:14.5px; color:var(--ink-dim); margin-bottom:8px}
+  .m .feeds{font-size:13px; color:var(--muted); border-top:1px dashed var(--line2); padding-top:10px; margin-top:auto}
+  .m .feeds b{color:var(--teal-2); font-weight:600}
+  .m .src{font-family:var(--mono); font-size:11px; color:var(--faint); margin-top:6px}
+
+  /* convergence diagram */
+  .conv{display:grid; grid-template-columns:1fr 60px 1fr; gap:14px; align-items:center; margin:26px 0; border:1px solid var(--line2); border-radius:14px; background:var(--surface); padding:22px}
+  .conv .col{display:flex; flex-direction:column; gap:8px}
+  .conv .pill{font-family:var(--mono); font-size:12.5px; padding:8px 12px; border-radius:8px; background:var(--surface3); border:1px solid var(--line2); color:var(--ink-dim)}
+  .conv .arrow{font-family:var(--mono); color:var(--teal); text-align:center; font-size:22px}
+  .conv .gap{border:1px solid var(--teal-deep); background:rgba(92,193,150,.07); border-radius:12px; padding:18px}
+  .conv .gap .h{font-family:var(--serif); font-size:22px; font-weight:600; margin-bottom:6px}
+  .conv .gap p{font-size:14px; color:var(--ink-dim); margin-bottom:0}
+  @media (max-width:820px){.conv{grid-template-columns:1fr} .conv .arrow{transform:rotate(90deg)}}
+
+  .tbl{width:100%; border-collapse:collapse; font-size:14px; margin:18px 0 8px}
+  .tbl th{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); text-align:left; padding:10px 12px; border-bottom:1px solid var(--line2)}
+  .tbl td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-dim)}
+  .tbl td:first-child{color:var(--ink); font-weight:500}
+  .tbl tr:hover td{background:rgba(238,241,232,.02)}
+  .tblwrap{overflow-x:auto}
+  .rg{font-family:var(--mono); font-size:12px; padding:2px 8px; border-radius:5px; white-space:nowrap}
+  .rg.spec{color:var(--muted); background:rgba(143,152,132,.12)}
+  .rg.tree{color:var(--blue); background:rgba(127,178,230,.12)}
+  .rg.local{color:var(--amber-2); background:rgba(230,145,56,.12)}
+  .rg.dep{color:var(--teal); background:rgba(92,193,150,.12)}
+  .rg.ext{color:var(--purple); background:rgba(199,155,212,.14)}
+  .rg.none{color:var(--red); background:rgba(224,96,79,.12)}
+  .money{font-family:var(--mono); white-space:nowrap}
+
+  /* valuation ladder */
+  .vlad{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:22px 0 8px}
+  .vr{background:var(--surface); border:1px solid var(--line2); border-radius:12px; padding:14px}
+  .vr:nth-child(1){margin-top:56px} .vr:nth-child(2){margin-top:42px} .vr:nth-child(3){margin-top:28px} .vr:nth-child(4){margin-top:14px} .vr:nth-child(5){margin-top:0}
+  .vr .k{font-family:var(--mono); font-size:12.5px; font-weight:600; color:var(--teal)}
+  .vr .b{font-family:var(--serif); font-weight:600; font-size:22px; letter-spacing:-.02em; margin:6px 0 4px}
+  .vr .d{font-size:13px; color:var(--muted); line-height:1.45}
+  .vr.here{border-color:var(--teal-deep); background:rgba(92,193,150,.06)}
+  .vr.here .k::after{content:" ← today"; color:var(--amber-2)}
+  @media (max-width:820px){.vlad{grid-template-columns:1fr} .vr{margin-top:0!important}}
+
+  /* domain cards */
+  .doms{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; margin:20px 0}
+  .dom{background:var(--surface); border:1px solid var(--line2); border-radius:12px; padding:16px 16px 14px}
+  .dom .n{font-family:var(--mono); font-size:14px; font-weight:600; color:var(--ink)}
+  .dom .c{font-size:12.5px; color:var(--muted); margin:2px 0 8px}
+  .dom .row{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; margin-top:6px; color:var(--ink-dim)}
+  .dom .row .k{color:var(--faint); font-family:var(--mono); font-size:11px}
+  .dom .w{font-size:12.5px; color:var(--muted); border-top:1px dashed var(--line2); margin-top:10px; padding-top:8px}
+  .dom .w b{color:var(--teal-2); font-weight:600}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:28px}
+  @media (max-width:820px){.two{grid-template-columns:1fr}}
+
+  .band{border-left:3px solid var(--teal); background:rgba(92,193,150,.06); border-radius:0 12px 12px 0; padding:18px 22px; margin:22px 0}
+  .band.warn{border-left-color:var(--amber); background:rgba(230,145,56,.06)}
+  .band.bad{border-left-color:var(--red); background:rgba(224,96,79,.06)}
+  .band .h{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; color:var(--teal)}
+  .band.warn .h{color:var(--amber)} .band.bad .h{color:var(--red)}
+  .band p{font-size:14.5px; margin-bottom:8px} .band p:last-child{margin-bottom:0}
+
+  .versus{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0}
+  .versus > div{background:var(--surface); border:1px solid var(--line2); border-radius:14px; padding:20px 22px}
+  .versus h3{margin:0 0 10px; font-size:19px}
+  .versus .h{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px}
+  .versus .lose .h{color:var(--red)} .versus .keep .h{color:var(--teal)}
+  .versus li{font-size:14.5px; color:var(--ink-dim)}
+  @media (max-width:820px){.versus{grid-template-columns:1fr}}
+
+  .src-list{font-size:14px; color:var(--ink-dim); columns:2; column-gap:32px; margin:16px 0}
+  .src-list li{break-inside:avoid; margin-bottom:8px}
+  .src-list .k{font-family:var(--mono); font-size:11px; color:var(--faint); margin-right:6px}
+  @media (max-width:820px){.src-list{columns:1}}
+
+  footer{padding:48px 0 40px}
+  footer .grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:28px; margin-bottom:28px}
+  footer .brand{font-family:var(--serif); font-weight:600; font-size:16px} footer .brand b{color:var(--teal)}
+  footer .blurb{color:var(--muted); font-size:14px; margin-top:8px; max-width:40ch}
+  footer h5{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:10px}
+  footer a{display:block; font-size:14px; color:var(--ink-dim); margin-bottom:6px}
+  footer .copy{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--mono); font-size:12px; color:var(--faint); border-top:1px solid var(--line); padding-top:18px}
+  @media (max-width:820px){footer .grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<script type="module" src="/amp-nav.js"></script>
+<amp-nav property="ampersand" style="--amp-nav-bg:rgba(12,13,12,.82);--amp-nav-fg:#eef1e8;--amp-nav-muted:#8f9884;--amp-nav-accent:#5cc196;--amp-nav-border:rgba(238,241,232,.1);--amp-nav-hover:rgba(238,241,232,.05);--amp-nav-cta-bg:#5cc196;--amp-nav-cta-fg:#0c0d0c;"></amp-nav>
+
+<nav class="local" aria-label="On this page">
+  <div class="wrap">
+    <a class="brand" href="/">[<b>&amp;</b>] AMPERSAND BOX</a>
+    <div class="links">
+      <a href="#thesis">Thesis</a>
+      <a href="#markets">Five markets</a>
+      <a href="#standards">Standards</a>
+      <a href="#capital">Capital</a>
+      <a href="#memory">Memory</a>
+      <a href="#valuation">Valuation</a>
+      <a href="#domains">Domains</a>
+      <a href="#strategy">Strategy</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </div>
+</nav>
+
+<header class="doc" id="top">
+  <div class="glyph">&amp;</div>
+  <div class="wrap">
+    <p class="kicker">Research &amp; valuation · September 2026</p>
+    <h1 class="title">Five markets are converging on one gap. The portfolio is built in the gap.
+      <span class="br">Market research, a valuation ladder keyed to evidence, and strategy for twenty-two agent-infrastructure domains.</span>
+    </h1>
+    <p class="lead">
+      The agent economy in 2026 has a peculiar shape: <strong>capital has never been more concentrated, adoption
+      has never been wider, and almost nobody can say afterwards what their agent actually did.</strong>
+      This page researches the markets the [&amp;] portfolio sits inside, prices its domains with a method
+      you can disagree with line by line, and says which of its bets the market is about to reward, which it
+      is about to commoditise, and what should be sold first.
+    </p>
+    <div class="meta">
+      <dl>
+        <dt>Scope</dt><dd>22 domains across composition, governance, memory, worlds and distribution; the ComputeDriven studio; OpenSentience research</dd>
+        <dt>Researched</dt><dd>2026-09-12 from public analyst, primary and trade sources; every figure carries its source tag in <a href="#sources">§9</a></dd>
+        <dt>Companion</dt><dd><a href="/portfolio-review.html">The portfolio review</a> grades what is built; this page prices what it stands on</dd>
+        <dt>Author</dt><dd>Claude (Fable 5.1). Valuations are estimates by a stated method, not appraisals, and are deliberately lower than the May 2026 figures</dd>
+        <dt>Not here</dt><dd>Investment advice. Nothing on this page is a recommendation to buy, sell or fund anything</dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== 01 THESIS ===================== -->
+<section id="thesis">
+  <div class="wrap">
+    <p class="num">01 · The thesis in one diagram</p>
+    <h2>Everyone is shipping agents. Almost no one can replay one.</h2>
+    <p class="sub">The five markets below are usually analysed separately. Put them side by side and they point at the same missing thing: a record of what an agent was allowed to do, what it did, and whether the two agree, that a second machine can check.</p>
+
+    <div class="conv">
+      <div class="col">
+        <div class="pill">Agentic AI · $10.9–12B (2026) → ~$53B (2030)</div>
+        <div class="pill">Agent memory · $48M+ of direct venture funding</div>
+        <div class="pill">Governance &amp; compliance · EU AI Act Art. 12 live since 2 Aug 2026</div>
+        <div class="pill">Local &amp; sovereign compute · inference leaving the cloud</div>
+        <div class="pill">World models · $3B+ raised in H1 2026</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="gap">
+        <div class="h">The operationalisation gap</div>
+        <p>Gartner's 40% cancellation forecast, a 17% replay rate among organisations running agents, and prompt injection in a third of sampled skills are the same finding three times: the agent stack can produce actions faster than it can account for them. The [&amp;] portfolio's product is the accounting — composition that refuses instead of degrading, receipts a stranger can re-derive, and a world that is a graph rather than a snapshot.</p>
+      </div>
+    </div>
+
+    <p>
+      That is a narrow claim and it is meant to be. The portfolio does not compete on model quality, on hosting,
+      or on retrieval accuracy, and this page will show that it would lose on all three. It competes on the
+      part of the stack that the compliance calendar, the security lists and the cancellation statistics are
+      all now pointing at, and it competes there with running code whose claims were derived rather than typed.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 02 FIVE MARKETS ===================== -->
+<section id="markets">
+  <div class="wrap">
+    <p class="num">02 · Five markets, sized by named sources</p>
+    <h2>The numbers, and which layer of the portfolio each one feeds.</h2>
+    <p class="sub">Analyst forecasts for “agentic AI” vary by a factor of ten depending on what is counted. Ranges are shown rather than a point, and the definition each firm uses is named where it changes the answer.</p>
+
+    <div class="mk">
+      <div class="m">
+        <div class="t">Market 1</div>
+        <h3>Agentic AI</h3>
+        <div class="big">$10.9–12B → ~$53B <small>2026 → 2030 · 44–46% CAGR</small></div>
+        <p>MarketsandMarkets' AI-agents series is the most-quoted band. Its narrower “enterprise agentic AI” cut runs $5.3B to $24.5B over the same years. Grand View Research's wider definition reaches $183B by 2033. Gartner expects 40% of enterprise applications to embed task-specific agents by end of 2026, from under 5% in 2025.</p>
+        <div class="feeds">Feeds <b>everything</b> — this is the demand side. The portfolio's exposure is the governance and evidence slice of it, not the whole.</div>
+        <div class="src">MarketsandMarkets 2025–26 · Grand View 2026 · Gartner</div>
+      </div>
+      <div class="m">
+        <div class="t">Market 2</div>
+        <h3>Agent memory</h3>
+        <div class="big">$48M+ <small>direct venture funding into five named competitors</small></div>
+        <p>Mem0 $24M (Series A, Oct 2025), Letta $10M, Cognee $7.5M, Hindsight $3.6M, Zep $3.3M. Retrieval quality has converged: Mem0 94.4%, Mastra 94.87%, OMEGA 95.4% on LongMemEval with cloud readers. The category's next fight is provenance and cost per recall, not accuracy.</p>
+        <div class="feeds">Feeds <b>Graphonomous</b>, and warns it: the headline benchmark is no longer where the margin is. See <a href="#memory">§5</a>.</div>
+        <div class="src">company announcements · vendor research pages · PitchBook</div>
+      </div>
+      <div class="m">
+        <div class="t">Market 3</div>
+        <h3>Governance, audit and compliance</h3>
+        <div class="big">Art. 12 <small>enforceable for high-risk systems since 2 August 2026</small></div>
+        <p>The EU AI Act now requires automatic, lifetime event logging for high-risk AI, retained at least six months on both provider and deployer sides, with penalties to 3% of turnover. OWASP's Agentic Top 10 (Dec 2025) names memory poisoning, tool misuse and rogue agents. A Q1 2026 survey of 420 organisations found only 17% could reconstruct an agent's tool-call sequence after the fact.</p>
+        <div class="feeds">Feeds <b>box-and-box, Delegatic, Workbench's proof gates, TRAAVIIS receipts</b>. This is the market where “a certificate on every verdict” stops being a slogan.</div>
+        <div class="src">EU AI Act text via Help Net Security · OWASP GenAI project · trade survey</div>
+      </div>
+      <div class="m">
+        <div class="t">Market 4</div>
+        <h3>Local and sovereign compute</h3>
+        <div class="big">on-device <small>inference share rising; sovereignty a board topic in 2026</small></div>
+        <p>Trade coverage puts enterprise inference at the edge or on-premises well above its 2023 level, and “sovereign AI” has moved from a compliance niche to national infrastructure budgets. Small models now do real reasoning in a few billion parameters on hardware people already own. The Cloudflare Agents SDK, by contrast, makes a hosted stateful agent cost nothing when idle.</p>
+        <div class="feeds">Feeds <b>T&amp;R, Super (CD), [World] Cloud</b> — an operating system that ships its own verifier is a sovereignty product before it is anything else. Tension: Cloudflare is both the portfolio's cloud and a competitor's hosting.</div>
+        <div class="src">trade press (labelled) · Cloudflare docs</div>
+      </div>
+      <div class="m">
+        <div class="t">Market 5</div>
+        <h3>World models</h3>
+        <div class="big">$3B+ <small>raised by world-model startups in H1 2026</small></div>
+        <p>AMI Labs (~$1B), World Labs ($1B), General Intuition ($320M), Odyssey ($310M), Decart ($300M). Their “world” is a learned simulator of physics and causality that agents train inside. It is not this portfolio's “world”, which is a machine, its state and the record of how it got that way, in three named sizes.</p>
+        <div class="feeds">Feeds <b>nothing directly</b>, and threatens the vocabulary. Every ComputeDriven page must keep saying which “world” it means. Opportunity: a learned world model is itself a thing whose runs need receipts.</div>
+        <div class="src">Forbes, June 2026 · Introl · company announcements</div>
+      </div>
+      <div class="m">
+        <div class="t">Adjacent</div>
+        <h3>Agentic engineering</h3>
+        <div class="big">39% <small>of professional developers used Claude Code at work, May–July 2026</small></div>
+        <p>Up from 18% in January; 47% in the United States. Codex grew about fivefold to 16%. Roughly a third of Claude Code's heaviest users generate more than 80% of their code with agents. Every one of those sessions leaves a transcript on disk.</p>
+        <div class="feeds">Feeds <b>Workbench</b>: the recorder's raw material is now the majority workflow, and the “harness is the product” masterclass is talking to the mainstream.</div>
+        <div class="src">JetBrains research, August 2026 · Stack Overflow 2026 survey</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 STANDARDS ===================== -->
+<section id="standards">
+  <div class="wrap">
+    <p class="num">03 · The standards layer settled this year</p>
+    <h2>One foundation now holds both protocols. That changes what a composition layer has to prove.</h2>
+    <div class="two">
+      <div>
+        <p>In December 2025 Anthropic, Block and OpenAI formed the <b>Agentic AI Foundation</b> under the Linux Foundation and donated MCP, goose and AGENTS.md to it, with Google, Microsoft, AWS, Cloudflare and Bloomberg backing. On 17 August 2026 Google's <b>A2A</b> joined the same foundation. Agent-to-tool and agent-to-agent are now governed in one place, with an enterprise roadmap that prioritises audit trails, SSO and retry semantics.</p>
+        <p>MCP's own numbers: more than 10,000 published servers and around 97 million monthly SDK downloads. The skills layer above it grew from one registry to eight marketplaces in six months and now indexes somewhere between 800,000 and 1.9 million SKILL.md files depending on who is counting. Quality is the story there: an audit of 22,511 skills found 140,963 issues, and Snyk found prompt injection in 36% of a sample.</p>
+        <p>The [&amp;] Protocol's position is that it sits <em>above</em> both: it composes capabilities and compiles the result to MCP configurations and A2A Agent Cards. That claim got cheaper to make and easier to test this year, because the targets stopped moving. It also got more necessary, because the thing the foundation is standardising is transport, and the thing the skills audits are finding is that nothing at the transport layer refuses a bad part.</p>
+      </div>
+      <div>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Layer</th><th>Standard</th><th>Portfolio artifact</th><th>Rung</th></tr></thead>
+          <tbody>
+            <tr><td>Agent ↔ tool</td><td>MCP (AAIF)</td><td>Graphonomous, PULSE, PRISM, Delegatic servers</td><td><span class="rg dep">live_deployed</span></td></tr>
+            <tr><td>Agent ↔ agent</td><td>A2A (AAIF, Aug 2026)</td><td>a2atraffic.com serves a signed Agent Card and answers A2A JSON</td><td><span class="rg dep">live_deployed</span></td></tr>
+            <tr><td>Skills</td><td>SKILL.md (agentskills.io)</td><td>ampersand-plugins; Workbench emits SkillBundles with proof gates</td><td><span class="rg local">live_local</span></td></tr>
+            <tr><td>Composition</td><td>none industry-wide</td><td>[&amp;] Protocol + CC2 compose laws (101 enforced)</td><td><span class="rg tree">in_tree</span></td></tr>
+            <tr><td>Governance</td><td>OWASP ASI · NIST AI RMF · EU AI Act</td><td>box-and-box (210+3 laws), OS-006 kernel</td><td><span class="rg dep">live_deployed</span></td></tr>
+            <tr><td>Loop declaration</td><td>none</td><td>PULSE manifests</td><td><span class="rg dep">live_deployed</span></td></tr>
+            <tr><td>Evidence</td><td>none (ISO 42001 A.6.1.6 wants it)</td><td>TRAAVIIS/trvs receipts · CLAIM_LEDGER</td><td><span class="rg local">live_local</span></td></tr>
+          </tbody>
+        </table></div>
+        <p><em class="note">Four of seven rows have no industry standard. Those are where a small portfolio can define terms; they are also where nobody is yet asking for one.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 CAPITAL ===================== -->
+<section id="capital">
+  <div class="wrap">
+    <p class="num">04 · Capital, and what it is not funding</p>
+    <h2>A record year that mostly went to two companies.</h2>
+    <div class="two">
+      <div>
+        <p>Global venture funding reached about <b>$510 billion in the first half of 2026</b>, more than all of 2025, with AI taking over 70% of it (roughly 80% in Q1). OpenAI and Anthropic alone absorbed $217 billion, 43% of every startup dollar in the half. At seed, Carta's Q1 median was $3.2M raised on a $24M post-money, with AI companies carrying roughly a 42% premium over non-AI peers.</p>
+        <p>Underneath that, the shape is a barbell. Solo founders were 63% of new startups in 2026 by one payments-processor count, and “one-person company” is a normal thing to say about an infrastructure business. But fewer than 5% of the 12,000-odd public MCP servers had monetised by March 2026, and those that had mostly cleared $500 to $3,000 a month.</p>
+        <p>Two readings follow for this portfolio. First, its comparables have been funded at the paper stage: Letta at a research prototype, Mem0 before its graph tier. A working kernel with derived laws, an operating system image and a memory server on npm is more than several of those pitches carried. Second, that observation has been true since May and has changed nothing, because a term sheet is written against traction, not against a law count. Which returns to the review's finding: the missing input is one outsider, not more code.</p>
+      </div>
+      <div>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Datum</th><th>Value</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>Global VC, H1 2026</td><td class="money">$510B</td><td>Crunchbase</td></tr>
+            <tr><td>AI share, Q1 2026</td><td class="money">~80% · $242B</td><td>Crunchbase</td></tr>
+            <tr><td>OpenAI + Anthropic, H1</td><td class="money">$217B · 43%</td><td>Crunchbase</td></tr>
+            <tr><td>Seed median (all), Q1</td><td class="money">$3.2M on $24M post</td><td>Carta</td></tr>
+            <tr><td>AI seed premium</td><td class="money">~42%</td><td>Carta / Causo</td></tr>
+            <tr><td>Agentic-AI projects cancelled by 2027</td><td class="money">&gt;40%</td><td>Gartner, Jun 2025</td></tr>
+            <tr><td>“Real” agentic vendors</td><td class="money">~130</td><td>Gartner</td></tr>
+            <tr><td>MCP servers monetised</td><td class="money">&lt;5% of ~12,000</td><td>trade press</td></tr>
+            <tr><td>Typical MCP server revenue</td><td class="money">$500–3,000 / mo</td><td>trade press</td></tr>
+            <tr><td>Cloudflare R2 storage</td><td class="money">$0.015 / GB-mo · $0 egress</td><td>Cloudflare</td></tr>
+          </tbody>
+        </table></div>
+        <div class="band warn">
+          <div class="h">What this means for pricing</div>
+          <p>Do not plan revenue from MCP registry listings. Plan it from the storage SKU ([World] Cloud's cost basis is about $1.35 per 100 GB per month at R2 rates, with zero egress) and from certification, which is the one thing on this page a compliance officer can be told to buy.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <footer>
-            <div class="container">
-                <div class="footer-inner">
-                    <p>
-                        &copy; <span id="year"></span>
-                        <a href="./index.html">Ampersand Box Design</a>
-                    </p>
-                    <p>
-                        <a href="./portfolio_company_complete_research.html"
-                            >Research & Valuation</a
-                        >
-                        &middot;
-                        <a href="./protocol.html">Protocol</a>
-                        &middot;
-                        <a href="mailto:hello@ampersandboxdesign.com"
-                            >Contact</a
-                        >
-                    </p>
-                </div>
-            </div>
-        </footer>
+<!-- ===================== 05 MEMORY ===================== -->
+<section id="memory">
+  <div class="wrap">
+    <p class="num">05 · The memory market, close up</p>
+    <h2>Retrieval is solved enough. The next margin is in who wrote the memory and why.</h2>
+    <p class="sub">The competitor set is small, funded, open source, and converging. The table is what each one is betting on, and the last column is the thing this portfolio would have to show to matter.</p>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>System</th><th>Bet</th><th>Funding</th><th>LongMemEval</th><th>Self-hostable</th><th>What Graphonomous has that it lacks</th></tr></thead>
+      <tbody>
+        <tr><td>Mem0</td><td>Extraction pipeline, multi-store fan-out; the community default (~51K stars)</td><td>$24M Series A</td><td>94.4% (own report)</td><td>Yes; graph tier paid</td><td>A machine-checked cyclicity invariant; goals as graph objects</td></tr>
+        <tr><td>Letta</td><td>MemGPT hierarchy as an agent-as-a-server</td><td>$10M seed</td><td>LOCOMO-focused</td><td>Yes</td><td>Embedded SQLite; no server process to run</td></tr>
+        <tr><td>Zep / Graphiti</td><td>Temporal knowledge graph</td><td>$3.3M</td><td>71.2% (GPT-4o judge)</td><td>Graphiti OSS, needs Neo4j</td><td>Consolidation with causal outcome attribution</td></tr>
+        <tr><td>Cognee</td><td>Ontology-aware graph from anything</td><td>$7.5M seed</td><td>no public F1</td><td>Yes</td><td>κ-routed deliberation; PULSE manifest</td></tr>
+        <tr><td>Supermemory</td><td>Free local single-machine server since June 2026; engine closed</td><td>funded</td><td>—</td><td>Binary only</td><td>Open engine; the whole loop declared</td></tr>
+        <tr><td>Mastra OM · OMEGA</td><td>Observational compression; local-first layer</td><td>—</td><td>94.87% · 95.4%</td><td>varies</td><td>Nothing on accuracy. This is the point.</td></tr>
+        <tr><td><b>Graphonomous</b></td><td>Continual-learning graph, κ invariant, goal coverage, edge-sized</td><td>$0</td><td>92.6% QA proxy, local reader</td><td>Yes, npm</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="band bad">
+      <div class="h">The uncomfortable measurement</div>
+      <p>The status file records that topology on versus off on this benchmark is +0.3 points, and that no flat-RAG baseline was run. So the thing Graphonomous is for has not yet been shown to earn its keep where it is easiest to measure. The honest research position is that LongMemEval does not exercise cyclic knowledge, and the honest engineering position is that a benchmark which does needs to be published before the invariant is a selling point rather than a proof.</p>
+    </div>
+    <p>
+      Where the category is going: the December 2025 survey “Memory in the Age of AI Agents” calls memory a first-class primitive; the 2026 papers that matter (NeSyC, trainable graph memory, ALMA) put a symbolic, checkable layer over the neural one; the May 2026 “replay divergence” preprint names the failure the compliance market is now paying for. All three point at provenance and replay, which is where the portfolio's instruments are, and away from the accuracy race, which is where its marketing was.
+    </p>
+  </div>
+</section>
 
-        <script>
-            (function () {
-                var el = document.getElementById("year");
-                if (el) el.textContent = String(new Date().getFullYear());
-            })();
-        </script>
-    </body>
+<!-- ===================== 06 VALUATION ===================== -->
+<section id="valuation">
+  <div class="wrap">
+    <p class="num">06 · A valuation ladder keyed to evidence rungs</p>
+    <h2>Price the rung, not the story.</h2>
+    <p class="sub">The May page put the portfolio at $1.04M “realistic” on domains alone. That number had no method a reader could reject. This one does: the portfolio is worth what its highest occupied rung makes sellable, and each rung has comparables.</p>
+
+    <div class="vlad">
+      <div class="vr"><div class="k">domains</div><div class="b">$60K–$180K</div><div class="d">Bare aftermarket value of 22 mostly two-word .com/.org names with no traffic. Comparables: two-word AI-adjacent .coms clear low four to low five figures; the six-figure market is single words and short acronyms.</div></div>
+      <div class="vr"><div class="k">+ specs &amp; docs</div><div class="b">$150K–$400K</div><div class="d">Fourteen 400–1,150 line specs, a 434-URL docs atlas, five masterclasses. Priced as acquirable content and positioning, roughly what an acqui-hire would attribute to “they already wrote it down”.</div></div>
+      <div class="vr here"><div class="k">+ derived code</div><div class="b">$0.6M–$1.5M</div><div class="d">A kernel with 210 derived laws, an OS image with its verifier, a memory server on npm, a recorder on real data, four products on Fly. Pre-seed IP comparables: Letta was funded at a paper; Higher Order at a prototype. Discounted because nothing here has been consumed.</div></div>
+      <div class="vr"><div class="k">+ one external</div><div class="b">$1.5M–$4M</div><div class="d">First outside reproduction, first storage byte from a stranger, first B1 run. Crosses into the pre-seed band Carta reports for AI ($17.9M median pre-money is the top of the range, not the expectation).</div></div>
+      <div class="vr"><div class="k">+ revenue</div><div class="b">$4M–$25M</div><div class="d">A storage or certification SKU with paying users and a receipt they re-derived. AI-infrastructure multiples of 20× revenue are quoted in the trade; a bootstrapped audit-tooling company with $50K MRR sits at the bottom of this band.</div></div>
+    </div>
+    <p><em class="note">Bands are estimates by the method stated, not appraisals, and they widen to the right on purpose. The portfolio occupies the middle rung today. The step from the middle rung to the next one is the cheapest in the ladder and the only one that has not been attempted.</em></p>
+
+    <div class="band">
+      <div class="h">Why the bare-domain band is a fifth of May's</div>
+      <p>The 2026 aftermarket rewards single words (ai.com $70M, club.com $10M) and one-word .ai names (bot.ai $1.2M, neural.ai $1.75M). Compound coinages such as <i>agentromatic</i> or <i>deliberatic</i> are brands, not keywords; they are worth what stands on them, which is exactly why the ladder above prices the standing rather than the name. The two exceptions are computedriven.com and webhost.systems, which read as generic categories, and fleetprompt.com and specprompt.com, which carry a live keyword.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 DOMAINS ===================== -->
+<section id="domains">
+  <div class="wrap">
+    <p class="num">07 · The domains, one card each</p>
+    <h2>Twenty-two names, the market each maps to, and what would move it.</h2>
+    <p class="sub">Bare-value ranges are the aftermarket estimate for the name alone; “stands on it” is the rung the artifact behind the name has reached, from the review. Ordered by what is built, not by what the name is worth.</p>
+
+    <div class="doms">
+      <div class="dom"><div class="n">computedriven.com</div><div class="c">Studio · OS · cloud · edge</div><div class="row"><span class="k">bare</span><span>$8K–$30K</span></div><div class="row"><span class="k">market</span><span>sovereign compute</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> [World] Cloud serves one public capability. Strongest generic name in the set.</div></div>
+      <div class="dom"><div class="n">tr.computedriven.com</div><div class="c">T&amp;R, the operating system</div><div class="row"><span class="k">bare</span><span>subdomain</span></div><div class="row"><span class="k">market</span><span>sovereign compute</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> a stranger boots v0.3 and posts the sha256 they derived.</div></div>
+      <div class="dom"><div class="n">opensentience.org</div><div class="c">12 protocols · invariants · proofs · patterns</div><div class="row"><span class="k">bare</span><span>$3K–$12K</span></div><div class="row"><span class="k">market</span><span>governance research</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> one pattern reaches REPRODUCED (0 of 32 today).</div></div>
+      <div class="dom"><div class="n">ampersandboxdesign.com</div><div class="c">The [&amp;] Protocol · kernel · masterclasses</div><div class="row"><span class="k">bare</span><span>$2K–$8K</span></div><div class="row"><span class="k">market</span><span>composition / governance</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> a third party publishes an <code>*.ampersand.json</code> the CLI validates.</div></div>
+      <div class="dom"><div class="n">graphonomous.com</div><div class="c">&amp;memory · MCP server on npm</div><div class="row"><span class="k">bare</span><span>$2K–$8K</span></div><div class="row"><span class="k">market</span><span>agent memory</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> a benchmark exists on which κ-routing can lose, and doesn't.</div></div>
+      <div class="dom"><div class="n">workbench.opensentience.org</div><div class="c">Recorder + proof harness</div><div class="row"><span class="k">bare</span><span>subdomain</span></div><div class="row"><span class="k">market</span><span>agentic engineering · compliance</span></div><div class="row"><span class="k">stands on it</span><span class="rg local">live_local</span></div><div class="w"><b>Moves when</b> a Claude Code session records itself via hooks. The highest-leverage wedge on this page.</div></div>
+      <div class="dom"><div class="n">fleetprompt.com</div><div class="c">Composed-capability marketplace</div><div class="row"><span class="k">bare</span><span>$5K–$25K</span></div><div class="row"><span class="k">market</span><span>skills distribution</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span> · prior design</div><div class="w"><b>Moves when</b> install refuses an uncertified bundle in public. The 36%-injection statistic is its pitch.</div></div>
+      <div class="dom"><div class="n">specprompt.com</div><div class="c">Spec-driven development standard</div><div class="row"><span class="k">bare</span><span>$4K–$20K</span></div><div class="row"><span class="k">market</span><span>agentic engineering</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span> · prior design</div><div class="w"><b>Moves when</b> the spec toolchain reads a Workbench SkillBundle. Competes with Spec Kit and Kiro on name alone today.</div></div>
+      <div class="dom"><div class="n">delegatic.com</div><div class="c">OS-006 authorization kernel</div><div class="row"><span class="k">bare</span><span>$1K–$6K</span></div><div class="row"><span class="k">market</span><span>governance · NHI</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> the policy store leaves ETS; then it is an OPA-shaped product for agents, which is a real category.</div></div>
+      <div class="dom"><div class="n">agentelic.com</div><div class="c">Spec-driven agent builder</div><div class="row"><span class="k">bare</span><span>$2K–$8K</span></div><div class="row"><span class="k">market</span><span>agent platforms</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> it builds one agent for someone else. Crowded category; the [&amp;] integration is the only reason to exist.</div></div>
+      <div class="dom"><div class="n">a2atraffic.com</div><div class="c">A2A observatory · signed Agent Card</div><div class="row"><span class="k">bare</span><span>$1K–$5K</span></div><div class="row"><span class="k">market</span><span>agent-to-agent</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> a second agent talks to it. A2A joining the AAIF in August made this name timelier than it was in May.</div></div>
+      <div class="dom"><div class="n">alkeyword.com</div><div class="c">Generative-engine optimisation tool</div><div class="row"><span class="k">bare</span><span>$1K–$5K</span></div><div class="row"><span class="k">market</span><span>AI search visibility</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> a domain that is not ours is crawled. Outside the thesis, but it is the only thing here a small business would pay for this month.</div></div>
+      <div class="dom"><div class="n">traaviis.com</div><div class="c">Evidence &amp; receipts (trvs)</div><div class="row"><span class="k">bare</span><span>$1K–$4K</span></div><div class="row"><span class="k">market</span><span>audit / compliance</span></div><div class="row"><span class="k">stands on it</span><span class="rg local">live_local</span></div><div class="w"><b>Moves when</b> a receipt is verified on a machine we do not own. Article 12's natural artifact.</div></div>
+      <div class="dom"><div class="n">bendscript.com</div><div class="c">Graph-first document protocol</div><div class="row"><span class="k">bare</span><span>$2K–$8K</span></div><div class="row"><span class="k">market</span><span>document formats</span></div><div class="row"><span class="k">stands on it</span><span class="rg tree">in_tree</span></div><div class="w"><b>Moves when</b> one portfolio surface is authored in it. Pivoted from SaaS in April; the name outlives the product.</div></div>
+      <div class="dom"><div class="n">runefort.com</div><div class="c">Layout protocol for tiled UIs</div><div class="row"><span class="k">bare</span><span>$1K–$5K</span></div><div class="row"><span class="k">market</span><span>UI protocols</span></div><div class="row"><span class="k">stands on it</span><span class="rg local">live_local</span></div><div class="w"><b>Moves when</b> it has a test script. The T&amp;R road is its proof today.</div></div>
+      <div class="dom"><div class="n">webhost.systems</div><div class="c">Multi-runtime agent hosting</div><div class="row"><span class="k">bare</span><span>$4K–$15K</span></div><div class="row"><span class="k">market</span><span>agent hosting</span></div><div class="row"><span class="k">stands on it</span><span class="rg tree">in_tree</span></div><div class="w"><b>Moves when</b> it decides what it is after Supabase. Cloudflare's Agents SDK does most of the original pitch for free.</div></div>
+      <div class="dom"><div class="n">gpscoord.com</div><div class="c">Geolocation data</div><div class="row"><span class="k">bare</span><span>$5K–$20K</span></div><div class="row"><span class="k">market</span><span>spatial data</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> it feeds GeoFleetic. Best pure keyword in the set; least connected to the thesis.</div></div>
+      <div class="dom"><div class="n">deliberatic.com</div><div class="c">Structured multi-agent deliberation</div><div class="row"><span class="k">bare</span><span>$1K–$4K</span></div><div class="row"><span class="k">market</span><span>&amp;reason</span></div><div class="row"><span class="k">stands on it</span><span class="rg spec">spec</span></div><div class="w"><b>Moves when</b> code exists. The ACL 2025 and Feb 2026 consensus papers say the design is right; nothing runs.</div></div>
+      <div class="dom"><div class="n">agentromatic.com</div><div class="c">Orchestration + reputation</div><div class="row"><span class="k">bare</span><span>$1K–$4K</span></div><div class="row"><span class="k">market</span><span>orchestration</span></div><div class="row"><span class="k">stands on it</span><span class="rg spec">spec</span></div><div class="w"><b>Moves when</b> it is parked or merged into Super's lane model. Candidate for a formal park.</div></div>
+      <div class="dom"><div class="n">ticktickclock.com</div><div class="c">Temporal intelligence</div><div class="row"><span class="k">bare</span><span>$3K–$12K</span></div><div class="row"><span class="k">market</span><span>&amp;time · anomaly detection</span></div><div class="row"><span class="k">stands on it</span><span class="rg spec">spec</span></div><div class="w"><b>Moves when</b> PULSE's cadence needs a clock it does not have. Memorable name; no code.</div></div>
+      <div class="dom"><div class="n">geofleetic.com</div><div class="c">Spatial intelligence · fleets</div><div class="row"><span class="k">bare</span><span>$1K–$4K</span></div><div class="row"><span class="k">market</span><span>&amp;space</span></div><div class="row"><span class="k">stands on it</span><span class="rg spec">spec</span></div><div class="w"><b>Moves when</b> a fleet exists to be spatial about. The fleet-management market is large and entirely uninterested so far.</div></div>
+      <div class="dom"><div class="n">wrand.cc · c-u-l8er.link</div><div class="c">The domain graph · the person</div><div class="row"><span class="k">bare</span><span>nominal</span></div><div class="row"><span class="k">market</span><span>—</span></div><div class="row"><span class="k">stands on it</span><span class="rg dep">live_deployed</span></div><div class="w"><b>Moves when</b> nothing; these are the map and the author, not assets.</div></div>
+    </div>
+    <p><em class="note">Sum of bare ranges: roughly $60K to $180K, which is the bottom rung of the ladder above. Two names are not counted: toolboxhvac.com and brokenrecord.studio are outside the portfolio thesis.</em></p>
+  </div>
+</section>
+
+<!-- ===================== 08 STRATEGY ===================== -->
+<section id="strategy">
+  <div class="wrap">
+    <p class="num">08 · Strategy</p>
+    <h2>What the market will commoditise, what it will not, and what to sell first.</h2>
+
+    <div class="versus">
+      <div class="lose">
+        <div class="h">Will be commoditised by mid-2027 · do not compete here</div>
+        <h3>Retrieval, hosting, chat</h3>
+        <ul>
+          <li><b>Memory accuracy.</b> Five funded systems within two points of each other; the ceiling is the reader model, which none of them own.</li>
+          <li><b>Agent hosting.</b> Cloudflare gives every agent a Durable Object with state, hibernation, scheduling and MCP for free when idle. WebHost.Systems' original pitch is now a product feature of the portfolio's own cloud provider.</li>
+          <li><b>Agent builders.</b> Agentelic's category has hundreds of entrants and Gartner counts ~130 real ones. The [&amp;] integration is the only durable reason to keep it.</li>
+          <li><b>The word “world”.</b> Three billion dollars just bought it for a different meaning.</li>
+        </ul>
+      </div>
+      <div class="keep">
+        <div class="h">Will compound · this is the portfolio</div>
+        <h3>Refusal, receipts, re-derivation</h3>
+        <ul>
+          <li><b>Composition that refuses.</b> Two parts built without knowledge of each other either compose with a certificate or return zero with a reason. No transport standard does this and the skills audits show why it is needed.</li>
+          <li><b>Receipts a stranger can check.</b> Article 12 wants automatic, lifetime, replayable records of what an agent did. The portfolio's entire method is that.</li>
+          <li><b>An OS that carries its verifier.</b> Sovereignty budgets are buying exactly the property T&amp;R was built around: don't trust the number, re-run it.</li>
+          <li><b>Derived counts.</b> Boring, and the reason the rest can be believed. The portfolio has corrected its own law count six times in public; its competitors' benchmark tables have not been corrected once.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Sell in this order</h3>
+    <ol>
+      <li><b>Workbench, to people already using Claude Code.</b> The raw material is on 39% of professional developers' disks. A session that records itself into a signed, scored bundle is a compliance artifact and a skill at once. It needs hooks, not marketing.</li>
+      <li><b>Storage, through [World] Cloud.</b> Sync and restore before hosted compute (ruled), entitlement before checkout (ruled), roughly $1.35 per 100 GB per month at cost with zero egress. The first byte from a stranger is the first revenue datapoint and the first external rung simultaneously.</li>
+      <li><b>Certification, through FleetPrompt.</b> A marketplace that installs only what carries a certificate is the answer to a statistic (36% of sampled skills carry prompt injection) that a buyer already believes. Reposition it from “prior design” to the install gate.</li>
+      <li><b>Delegatic, when its store leaves memory.</b> Policy-as-code for agents is an existing category (OPA-shaped) with a compliance calendar behind it.</li>
+    </ol>
+
+    <h3>Park, on the record</h3>
+    <p>AgenTroMatic, Deliberatic, GeoFleetic and TickTickClock are complete specs with no code and no near-term consumer. Parking them by name in the status file costs nothing, removes four rows from the scope grade in the review, and keeps the names, which are worth more than the specs. Un-park any of them the day a shipped product needs the primitive.</p>
+
+    <h3>The one experiment</h3>
+    <p>Everything on this page prices higher one rung to the right, and the step to that rung is the cheapest in the ladder: hand one outsider the docs atlas and one task, or get one stranger to reproduce one receipt. It has been runnable since 2026-08-11. Until it runs, the market research above describes a market the portfolio is beside, not in.</p>
+  </div>
+</section>
+
+<!-- ===================== 09 SOURCES ===================== -->
+<section id="sources">
+  <div class="wrap">
+    <p class="num">09 · Sources</p>
+    <h2>Every figure, with the kind of source it came from.</h2>
+    <p class="sub">Tags: <b>analyst</b> a named research firm · <b>primary</b> the organisation's own publication · <b>survey</b> a stated sample and method · <b>vendor</b> a competitor's own claim · <b>press</b> a named outlet · <b>trade</b> a trade blog, used where nothing better exists and labelled so.</p>
+    <ul class="src-list">
+      <li><span class="k">analyst</span><a href="https://www.marketsandmarkets.com/Market-Reports/ai-agents-market-15761548.html">MarketsandMarkets — AI Agents Market to 2030</a></li>
+      <li><span class="k">analyst</span><a href="https://www.marketsandmarkets.com/Market-Reports/enterprise-agentic-ai-market-219711254.html">MarketsandMarkets — Enterprise Agentic AI, $5.3B → $24.5B</a></li>
+      <li><span class="k">analyst</span><a href="https://www.grandviewresearch.com/industry-analysis/enterprise-agentic-ai-market-report">Grand View Research — enterprise agentic AI</a></li>
+      <li><span class="k">analyst</span><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">Gartner — 40% of agentic AI projects cancelled by 2027; agent washing</a></li>
+      <li><span class="k">press</span><a href="https://news.crunchbase.com/venture/global-startup-exits-ipo-ma-soar-ai-q2-h1-2026/">Crunchbase — record $510B global funding in H1 2026</a></li>
+      <li><span class="k">primary</span><a href="https://carta.com/data/state-of-private-markets-q1-2026/">Carta — State of Private Markets Q1 2026</a></li>
+      <li><span class="k">primary</span><a href="https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation">Linux Foundation — Agentic AI Foundation announcement</a></li>
+      <li><span class="k">primary</span><a href="https://anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation">Anthropic — donating MCP to the AAIF</a></li>
+      <li><span class="k">press</span><a href="https://www.forbes.com/sites/janakirammsv/2026/08/19/agent2agent-joins-the-agentic-ai-foundation-alongside-mcp/">Forbes — A2A joins the AAIF, 17 August 2026</a></li>
+      <li><span class="k">press</span><a href="https://www.helpnetsecurity.com/2026/04/16/eu-ai-act-logging-requirements/">Help Net Security — what the EU AI Act requires for agent logging</a></li>
+      <li><span class="k">trade</span><a href="https://a4bee.com/article/ai-agents-eu-ai-act-ready/">A4BEE — what changes for high-risk agents on 2 August 2026</a></li>
+      <li><span class="k">primary</span><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP — Top 10 for Agentic Applications 2026</a></li>
+      <li><span class="k">trade</span><a href="https://agenticrail.nz/blog/ai-agent-audit-log-best-practices/">Agentic Rail — audit logs, deterministic replay, the 17% figure</a></li>
+      <li><span class="k">trade</span><a href="https://tianpan.co/blog/2026-04-12-deterministic-replay-debugging-non-deterministic-ai-agents">TianPan — deterministic replay for agents</a></li>
+      <li><span class="k">press</span><a href="https://www.forbes.com/sites/josipamajic/2026/06/30/world-model-startups-raise-3-billion-vcs-bet-beyond-llms/">Forbes — world-model startups raise $3B in H1 2026</a></li>
+      <li><span class="k">survey</span><a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains — AI coding agent adoption, August 2026</a></li>
+      <li><span class="k">survey</span><a href="https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/">JetBrains — how much code developers let agents write</a></li>
+      <li><span class="k">primary</span><a href="https://mem0.ai/series-a">Mem0 — $24M Series A</a></li>
+      <li><span class="k">vendor</span><a href="https://mem0.ai/blog/ai-memory-benchmarks-in-2026">Mem0 — LoCoMo vs LongMemEval vs BEAM (94.4%)</a></li>
+      <li><span class="k">vendor</span><a href="https://mastra.ai/research/observational-memory">Mastra — Observational Memory, 94.87%</a></li>
+      <li><span class="k">vendor</span><a href="https://omegamax.co/benchmarks">OMEGA — LongMemEval leaderboard, 95.4%</a></li>
+      <li><span class="k">trade</span><a href="https://mnemoverse.com/docs/library/ai-memory-solutions-2026-q3">Mnemoverse — Mem0 vs Zep vs Letta vs Cognee vs Supermemory, Q3 2026</a></li>
+      <li><span class="k">trade</span><a href="https://agentmarketcap.ai/blog/2026/04/10/agent-memory-vendor-landscape-2026-letta-zep-mem0-langmem">AgentMarketCap — agent memory vendor landscape 2026</a></li>
+      <li><span class="k">trade</span><a href="https://www.agensi.io/learn/best-ai-agent-skills-marketplaces-2026">Agensi — skills marketplaces compared (counts, the 36% figure via Snyk)</a></li>
+      <li><span class="k">trade</span><a href="https://agentman.ai/blog/agent-skills-ecosystem-report-2026">Agentman — the agent skills ecosystem in 2026</a></li>
+      <li><span class="k">trade</span><a href="https://mcp-marketplace.io/blog/state-of-mcp-monetization-2026">MCP Marketplace — state of MCP monetisation 2026</a></li>
+      <li><span class="k">primary</span><a href="https://developers.cloudflare.com/agents/">Cloudflare — Agents SDK</a></li>
+      <li><span class="k">trade</span><a href="https://egresscost.com/cloudflare/">EgressCost — R2 pricing 2026</a></li>
+      <li><span class="k">trade</span><a href="https://www.strategicrevenue.com/2026-ytd-domain-sales-show-premium-com-domains-still-rule-as-ai-gains-ground/">Strategic Revenue — 2026 YTD domain sales</a></li>
+      <li><span class="k">trade</span><a href="https://www.domainpros.ai/sold">DomainPros — record sales (ai.com $70M, neural.ai $1.75M)</a></li>
+      <li><span class="k">trade</span><a href="https://bishopi.io/blog/has-the-ai-domain-boom-peaked-yes-but-only-at-the-bottom-2026-data">Bishopi — .ai aftermarket splitting in two, 2026 data</a></li>
+      <li><span class="k">trade</span><a href="https://www.premai.io/blog/sovereign-ai-platforms/">Prem — sovereign AI platforms 2026</a></li>
+      <li><span class="k">trade</span><a href="https://georgeguimaraes.com/what-the-critics-got-right-about-elixir-and-ai-agents/">Guimarães — what the critics got right about Elixir and agents</a></li>
+      <li><span class="k">paper</span><a href="https://arxiv.org/abs/2512.13564">“Memory in the Age of AI Agents: A Survey” (Dec 2025)</a></li>
+      <li><span class="k">paper</span><a href="https://arxiv.org/abs/2503.00870">NeSyC — neuro-symbolic continual learner</a></li>
+      <li><span class="k">paper</span><a href="https://arxiv.org/html/2603.16586v1">“Runtime Governance for AI Agents: Policies on Paths”</a></li>
+      <li><span class="k">tree</span><a href="https://docs.ampersandboxdesign.com/#/ECOSYSTEM.md">STACK_COMPLETION.md · REVISION_REGISTER.md · CLOUD_V1.md · STACK_HUB.md</a></li>
+    </ul>
+    <p><em class="note">Where a figure appears only in trade press (the 17% replay rate; the “55% of inference at the edge” family of claims), it is quoted with that label and should be weighted accordingly. No figure on this page was carried over from the May version without being re-found.</em></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <a class="brand" href="#top">[<b>&amp;</b>] RESEARCH &amp; VALUATION</a>
+        <p class="blurb">Markets, standards, capital and a valuation ladder keyed to evidence rungs. Revised when a source moves.</p>
+      </div>
+      <div>
+        <h5>This page</h5>
+        <a href="#markets">Five markets</a>
+        <a href="#valuation">Valuation ladder</a>
+        <a href="#domains">Domains</a>
+        <a href="#strategy">Strategy</a>
+      </div>
+      <div>
+        <h5>Companion</h5>
+        <a href="/portfolio-review.html">Portfolio review</a>
+        <a href="/protocol">The [&amp;] Protocol</a>
+        <a href="/masterclasses">Masterclasses</a>
+        <a href="/factory">The factory floor</a>
+      </div>
+      <div>
+        <h5>Stack</h5>
+        <a href="https://computedriven.com">ComputeDriven</a>
+        <a href="https://opensentience.org">OpenSentience</a>
+        <a href="https://graphonomous.com">Graphonomous</a>
+        <a href="https://workbench.opensentience.org">Workbench</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© Ampersand Box Design · researched 2026-09-12 · not investment advice</span>
+      <span>Price the rung, not the story.</span>
+    </div>
+  </div>
+</footer>
+</body>
 </html>
