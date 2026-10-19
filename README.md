@@ -79,7 +79,7 @@ Each primitive can be refined with namespaced subtypes:
 
 The protocol has exactly six primitive roots (`&memory`, `&reason`, `&time`, `&space`, `&body`, `&govern`).
 Topology analysis and κ-routing are derived operations from `&memory.graph`, not a separate primitive.
-`&body` is the sensorimotor primitive added in draft v0.1.0; see OS-011 (Embodiment Protocol) for the behavioral loop that consumes it.
+`&body` is the sensorimotor primitive added in draft v0.1.0; see GRASP for the behavioral loop that consumes it.
 
 Composition is defined with two operators:
 

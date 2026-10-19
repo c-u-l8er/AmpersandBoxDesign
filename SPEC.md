@@ -126,7 +126,7 @@ Common subtypes include:
 - `&body.voice`
 - `&body.motor`
 
-Every `&body.*` subtype SHOULD implement the four standard operations: `perceive`, `act`, `affordances`, `encode_state`. These are normative for OS-011 (Embodiment Protocol) conformance.
+Every `&body.*` subtype SHOULD implement the four standard operations: `perceive`, `act`, `affordances`, `encode_state`. These are normative for GRASP conformance.
 
 ### 4.6 `&govern`
 

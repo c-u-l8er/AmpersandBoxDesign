@@ -352,10 +352,10 @@
       <span class="prov">provider · GeoFleetic</span>
     </div>
     <div class="pcard">
-      <div class="sym">&amp;body</div><div class="os">service · OS-011 Embodiment</div>
+      <div class="sym">&amp;body</div><div class="os">service · GRASP</div>
       <h4>Body</h4>
       <p>The sensorimotor primitive: perception, typed action, affordance enumeration, state encoding for replay. Emits a <em class="tk">SurpriseSignal</em> on forward-model error.</p>
-      <span class="prov">spec · Embodiment Protocol</span>
+      <span class="prov">spec · GRASP</span>
     </div>
     <div class="pcard">
       <div class="sym">&amp;govern</div><div class="os">ring 0 · box-and-box</div>
@@ -367,7 +367,7 @@
 
   <div class="note">
     <span class="lbl">Why six, not four</span>
-    Earlier drafts named four primitives (<code>&amp;memory · &amp;reason · &amp;time · &amp;space</code>). Draft 0.1.0 adds <b>&amp;body</b> (OS-011, the sensorimotor loop) and elevates <b>&amp;govern</b> to a first-class primitive — because governance is not a wrapper bolted on after the fact, it is a faculty the agent <em>holds</em>. All six are normative.
+    Earlier drafts named four primitives (<code>&amp;memory · &amp;reason · &amp;time · &amp;space</code>). Draft 0.1.0 adds <b>&amp;body</b> (GRASP, the sensorimotor loop) and elevates <b>&amp;govern</b> to a first-class primitive — because governance is not a wrapper bolted on after the fact, it is a faculty the agent <em>holds</em>. All six are normative.
   </div>
 </section>
 
@@ -711,7 +711,7 @@ ampersand generate a2a infra-operator.ampersand.json   <span class="c"># → A2A
     <div class="tcard"><div class="sym">△</div><h4>PRISM · OS-009</h4><div class="axis">diagnostic</div><p>Continual-learning measurement. Reads any system's PULSE manifest to discover its phases.</p><span class="file">BYOR adapter</span></div>
   </div>
 
-  <p class="body">The five canonical PULSE phase kinds — <code>retrieve · route · act · learn · consolidate</code> — match the memory loop exactly. Six cross-loop tokens flow between loops, including <code>SurpriseSignal</code>, added for OS-011 (Embodiment) forward-model-prediction-error — the <code>&amp;body</code> primitive's signal into the stack.</p>
+  <p class="body">The five canonical PULSE phase kinds — <code>retrieve · route · act · learn · consolidate</code> — match the memory loop exactly. Six cross-loop tokens flow between loops, including <code>SurpriseSignal</code>, added for GRASP forward-model-prediction-error — the <code>&amp;body</code> primitive's signal into the stack.</p>
 </section>
 
 <!-- §15 PROVIDERS -->

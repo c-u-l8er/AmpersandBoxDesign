@@ -52,7 +52,7 @@ That middle layer — structured cognition with governance — is what autonomou
 
 ## 2. Why all six primitives are load-bearing
 
-Autonomous military systems are the canonical case where the full [&] primitive set exercises simultaneously — including `&body.*` for direct vehicle/drone actuation and perception. When robotic combat vehicles or drone swarms act on the physical world, a conforming `&body.motor` implementation of OS-011 (Embodiment Protocol) enforces affordance-bounded action under Delegatic governance.
+Autonomous military systems are the canonical case where the full [&] primitive set exercises simultaneously — including `&body.*` for direct vehicle/drone actuation and perception. When robotic combat vehicles or drone swarms act on the physical world, a conforming `&body.motor` implementation of GRASP enforces affordance-bounded action under Delegatic governance.
 
 Most agent applications use one or two [&] primitives meaningfully. An infrastructure monitor needs `&time.anomaly` and `&memory.graph`. A research agent needs `&memory` and `&reason`. The other primitives are present but not survival-critical.
 

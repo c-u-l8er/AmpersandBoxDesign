@@ -60,7 +60,7 @@ Produce a deterministic hash of current browser state. Canonical encoding: `sha2
 
 ### `replay(interaction_trace) → replay_result`
 
-Execute a stored `InteractionTrace` against the current browser. Fails fast if the starting state hash does not match the trace's recorded start, or if any intermediate hash diverges (indicating environment drift). See OS-011 for trace schema and replay semantics.
+Execute a stored `InteractionTrace` against the current browser. Fails fast if the starting state hash does not match the trace's recorded start, or if any intermediate hash diverges (indicating environment drift). See GRASP for trace schema and replay semantics.
 
 ## Architecture patterns
 
@@ -168,4 +168,4 @@ Every `action_outcome` MUST carry provenance: provider, capability, operation, t
 
 ## Summary
 
-`&body.browser` is the typed browser body for [&] Protocol agents. It makes perception, action, affordance enumeration, and state encoding first-class capability operations rather than implementation conventions. Any browser-driving agent — OpenClaw, Claude Computer Use, agent-browser, Pi.dev plugins — can satisfy the contract and immediately compose with every other [&] capability: episodic memory for recording, planning for generating action sequences, telemetry for observability, governance for authorization. Combined with OS-011 (Embodiment Protocol), `&body.browser` is what makes website FSMs recordable, replayable, and shareable across machines.
+`&body.browser` is the typed browser body for [&] Protocol agents. It makes perception, action, affordance enumeration, and state encoding first-class capability operations rather than implementation conventions. Any browser-driving agent — OpenClaw, Claude Computer Use, agent-browser, Pi.dev plugins — can satisfy the contract and immediately compose with every other [&] capability: episodic memory for recording, planning for generating action sequences, telemetry for observability, governance for authorization. Combined with GRASP, `&body.browser` is what makes website FSMs recordable, replayable, and shareable across machines.

@@ -204,7 +204,7 @@ The protocol starts from six primitives that map cleanly onto common cognitive, 
 - **body** — how the agent is instantiated in an environment: perception, typed action, affordance enumeration, state-encoding for replay
 - **govern** — who is acting, under what rules, at what cost
 
-The first four are cognitive domains. The fifth — `&body` — is the sensorimotor primitive (added in draft v0.1.0); subtypes include `&body.browser` (web DOM), `&body.os` (operating system), `&body.vision`, `&body.voice`, `&body.motor`. See OS-011 (Embodiment Protocol) for the behavioral loop. The sixth — `&govern` — is the cross-cutting primitive that makes governance a declared, composable capability rather than an afterthought. `&govern.telemetry` tracks operational metrics, `&govern.escalation` defines deferral policies, and `&govern.identity` manages agent authentication and authorization.
+The first four are cognitive domains. The fifth — `&body` — is the sensorimotor primitive (added in draft v0.1.0); subtypes include `&body.browser` (web DOM), `&body.os` (operating system), `&body.vision`, `&body.voice`, `&body.motor`. See GRASP for the behavioral loop. The sixth — `&govern` — is the cross-cutting primitive that makes governance a declared, composable capability rather than an afterthought. `&govern.telemetry` tracks operational metrics, `&govern.escalation` defines deferral policies, and `&govern.identity` manages agent authentication and authorization.
 
 This is intentionally compact. A smaller primitive set is easier to standardize, while namespaces allow specialization.
 

@@ -36,7 +36,7 @@
     "replay": {
       "in": "interaction_trace",
       "out": "replay_result",
-      "description": "Execute a stored InteractionTrace against the current browser. Trace conforms to the OS-011 InteractionTrace schema. Replay fails fast if the starting state_hash does not match the trace's recorded starting state, or if any intermediate state_hash diverges (indicating environment drift).",
+      "description": "Execute a stored InteractionTrace against the current browser. Trace conforms to the GRASP InteractionTrace schema. Replay fails fast if the starting state_hash does not match the trace's recorded starting state, or if any intermediate state_hash diverges (indicating environment drift).",
       "deterministic": false,
       "side_effects": true
     }
@@ -66,7 +66,7 @@
   "metadata": {
     "primitive": "body",
     "subtype": "browser",
-    "os_protocol": "OS-011 (Embodiment Protocol)",
+    "os_protocol": "OS-011 (GRASP)",
     "ref_model": "snapshot assigns fresh @eN refs per perceive(); refs stale on navigation or re-render; re-perceive required",
     "action_types": [
       "click", "dblclick", "hover", "focus", "fill", "type", "press",

@@ -61,7 +61,7 @@ Produce a deterministic hash of current OS state. Canonical encoding: `sha256(ca
 
 ### `replay(interaction_trace) → replay_result`
 
-Execute a stored `InteractionTrace` against the current OS. OS replay is stricter than browser replay because OS environments drift more (installed tools, file layout, process state). Fails fast on state-hash divergence. **Destructive operations in a trace require re-authorization at replay time** — this is normative; the trace itself does not grant authority. See OS-011 for replay semantics and provenance requirements.
+Execute a stored `InteractionTrace` against the current OS. OS replay is stricter than browser replay because OS environments drift more (installed tools, file layout, process state). Fails fast on state-hash divergence. **Destructive operations in a trace require re-authorization at replay time** — this is normative; the trace itself does not grant authority. See GRASP for replay semantics and provenance requirements.
 
 ## Architecture patterns
 
@@ -212,4 +212,4 @@ Every `action_outcome` MUST carry full provenance: provider, capability, operati
 
 ## Summary
 
-`&body.os` is the typed operating-system body for [&] Protocol agents. It is the protocol's answer to OpenClaw and the computer-use category: a capability contract that makes OS perception, action, affordance enumeration, state encoding, and replay first-class operations with built-in governance boundaries. Combined with OS-011 (Embodiment Protocol) for behavioral semantics and OS-008 (Harness) for runtime enforcement, `&body.os` is the foundation for dark-factory autonomous operation — agents that learn OS workflows, ship them to other machines, and operate under measurable, auditable authorization.
+`&body.os` is the typed operating-system body for [&] Protocol agents. It is the protocol's answer to OpenClaw and the computer-use category: a capability contract that makes OS perception, action, affordance enumeration, state encoding, and replay first-class operations with built-in governance boundaries. Combined with GRASP for behavioral semantics and OS-008 (Harness) for runtime enforcement, `&body.os` is the foundation for dark-factory autonomous operation — agents that learn OS workflows, ship them to other machines, and operate under measurable, auditable authorization.

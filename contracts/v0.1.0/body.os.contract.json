@@ -36,7 +36,7 @@
     "replay": {
       "in": "interaction_trace",
       "out": "replay_result",
-      "description": "Execute a stored InteractionTrace against the current OS. Trace conforms to the OS-011 InteractionTrace schema. Replay fails fast on state_hash divergence (OS environments drift more than browsers, so strictness is higher). Destructive operations in the trace require re-authorization at replay time; trace authorization does not carry over.",
+      "description": "Execute a stored InteractionTrace against the current OS. Trace conforms to the GRASP InteractionTrace schema. Replay fails fast on state_hash divergence (OS environments drift more than browsers, so strictness is higher). Destructive operations in the trace require re-authorization at replay time; trace authorization does not carry over.",
       "deterministic": false,
       "side_effects": true
     }
@@ -70,7 +70,7 @@
   "metadata": {
     "primitive": "body",
     "subtype": "os",
-    "os_protocol": "OS-011 (Embodiment Protocol)",
+    "os_protocol": "OS-011 (GRASP)",
     "action_types": [
       "shell_exec", "file_read", "file_write", "file_edit", "file_delete",
       "keyboard_input", "mouse_click", "mouse_drag", "screen_capture",

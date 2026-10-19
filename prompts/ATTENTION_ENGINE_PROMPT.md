@@ -830,7 +830,7 @@ No new primitive is needed for attention. Here's why:
 
 The insight: **attention is meta-reasoning**. It sits within `&reason`, not alongside it. The protocol's four cognitive primitives map to the fundamental cognitive axes (what/how/when/where). Attention is "how" applied reflexively — reasoning about reasoning.
 
-> **Historical note (v0.1.0):** This section argues that attention does NOT warrant a new primitive, and that conclusion remains correct. Separately, in protocol draft v0.1.0 a sensorimotor primitive `&body` was added to close the perception-action gap (subtypes `.browser`, `.os`, `.vision`, `.voice`, `.motor`). `&body` is distinct from attention: attention is meta-reasoning (stays in `&reason`), while `&body` is sensorimotor embodiment (a different cognitive axis entirely). The protocol now has six primitives total: four cognitive (memory/reason/time/space), one sensorimotor (body), and one cross-cutting (govern). See OS-011 (Embodiment Protocol) and `PROTOCOL_PROMPT.md` for current framing.
+> **Historical note (v0.1.0):** This section argues that attention does NOT warrant a new primitive, and that conclusion remains correct. Separately, in protocol draft v0.1.0 a sensorimotor primitive `&body` was added to close the perception-action gap (subtypes `.browser`, `.os`, `.vision`, `.voice`, `.motor`). `&body` is distinct from attention: attention is meta-reasoning (stays in `&reason`), while `&body` is sensorimotor embodiment (a different cognitive axis entirely). The protocol now has six primitives total: four cognitive (memory/reason/time/space), one sensorimotor (body), and one cross-cutting (govern). See GRASP and `PROTOCOL_PROMPT.md` for current framing.
 
 ### 4.2 New Subtypes
 
@@ -1287,7 +1287,7 @@ The four cognitive primitives map to the fundamental axes of cognition:
 
 There is no "why" primitive because "why" is answered by the composition of memory (what happened), reasoning (how it connects), and time (when it happened). Similarly, "what next" is answered by reasoning over memory and time — which is exactly what the Attention Engine does.
 
-Note: separately from attention, protocol draft v0.1.0 added `&body` as a sensorimotor primitive (perception, action, affordance) to close the perception-action gap. That is not an attention primitive; it models the agent's instantiation in an environment. See OS-011 (Embodiment Protocol).
+Note: separately from attention, protocol draft v0.1.0 added `&body` as a sensorimotor primitive (perception, action, affordance) to close the perception-action gap. That is not an attention primitive; it models the agent's instantiation in an environment. See GRASP.
 
 ### Why heartbeat and not event-driven?
 

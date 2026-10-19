@@ -315,7 +315,7 @@
     }
   },
   "&body": {
-    "description": "Sensorimotor embodiment capabilities for perceiving environment state, executing typed actions, enumerating currently-available affordances, and encoding state for deterministic replay. Added in draft v0.1.0; consumed by OS-011 (Embodiment Protocol). Distinct from &space (which describes external spatial data) — &body describes the agent's own instantiation in an environment.",
+    "description": "Sensorimotor embodiment capabilities for perceiving environment state, executing typed actions, enumerating currently-available affordances, and encoding state for deterministic replay. Added in draft v0.1.0; consumed by GRASP. Distinct from &space (which describes external spatial data) — &body describes the agent's own instantiation in an environment.",
     "subtypes": {
       "browser": {
         "ops": ["perceive", "act", "affordances", "encode_state", "replay"],
@@ -399,7 +399,7 @@
         "FSM state encoding for replay",
         "forward models and surprise signals"
       ],
-      "os_protocol": "OS-011 (Embodiment Protocol)",
+      "os_protocol": "OS-011 (GRASP)",
       "pulse_token": "SurpriseSignal (added in PULSE v0.1.1)"
     }
   },

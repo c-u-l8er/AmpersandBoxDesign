@@ -110,7 +110,7 @@ Each primitive can be refined into subtypes, such as:
 - `&govern.escalation`
 - `&govern.identity`
 
-`&body` is the sensorimotor primitive added in draft v0.1.0; see OS-011 (Embodiment Protocol) for the behavioral loop that consumes it.
+`&body` is the sensorimotor primitive added in draft v0.1.0; see GRASP for the behavioral loop that consumes it.
 
 ---
 

@@ -290,7 +290,7 @@ constraint requiring multi-domain evidence before acting.
 & &govern.identity & &govern.telemetry & &govern.escalation
 ```
 
-This recipe is the canonical shape for a [&]-composed continual-learning computer-use agent. The `&body.*` capabilities provide the perception-action loop (OS-011 Embodiment Protocol). The `&memory.episodic` consumes InteractionTraces produced by every `&body.*.act` call. Crystallized procedural clusters promote to FleetPrompt SkillCandidates for cross-machine skill transfer. PRISM benchmarks embodiment fidelity.
+This recipe is the canonical shape for a [&]-composed continual-learning computer-use agent. The `&body.*` capabilities provide the perception-action loop (GRASP). The `&memory.episodic` consumes InteractionTraces produced by every `&body.*.act` call. Crystallized procedural clusters promote to FleetPrompt SkillCandidates for cross-machine skill transfer. PRISM benchmarks embodiment fidelity.
 
 ---
 

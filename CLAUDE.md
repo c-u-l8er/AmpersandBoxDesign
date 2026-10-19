@@ -70,7 +70,7 @@ Two composition operators: `&` (combine) and `|>` (pipeline)
 Capabilities are interfaces, providers are implementations.
 [&] does not replace MCP or A2A — it compiles into them.
 
-`&body` is the sensorimotor primitive (added in draft v0.1.0) describing the agent's instantiation in an environment — perception, typed action, affordance enumeration, state encoding for replay. See OS-011 (Embodiment Protocol) for the behavioral loop that consumes `&body.*`.
+`&body` is the sensorimotor primitive (added in draft v0.1.0) describing the agent's instantiation in an environment — perception, typed action, affordance enumeration, state encoding for replay. See GRASP for the behavioral loop that consumes `&body.*`.
 
 ## Schema targets
 

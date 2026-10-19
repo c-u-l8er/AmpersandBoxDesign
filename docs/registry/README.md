@@ -89,7 +89,7 @@ This publishes discoverable provider and subtype metadata.
 - `docs/capabilities/govern.md`
 
 These explain the primitive domains.
-The files in this directory explain specific capability pages inside those domains. For `&body.*` subtypes (`body.browser`, `body.os`, etc.), see the individual registry pages and the OS-011 Embodiment Protocol specification for behavioral semantics.
+The files in this directory explain specific capability pages inside those domains. For `&body.*` subtypes (`body.browser`, `body.os`, etc.), see the individual registry pages and the GRASP specification for behavioral semantics.
 
 ---
 
