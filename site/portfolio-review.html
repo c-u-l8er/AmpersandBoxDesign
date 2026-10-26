@@ -289,7 +289,7 @@
     <div class="tblwrap"><table class="tbl">
       <thead><tr><th>Protocol</th><th>Role</th><th>Rung</th><th>Note</th></tr></thead>
       <tbody>
-        <tr><td>[&amp;] Protocol 0.1.0</td><td>Six primitives, two operators, one kernel; compiles to MCP and A2A. npm + Python SDKs, Elixir reference CLI.</td><td><span class="rg tree">in_tree</span></td><td>58 tests; the compose laws above are its conformance surface</td></tr>
+        <tr><td>[&amp;] Protocol 0.1.0</td><td>Six primitives, two operators, one kernel; compiles to MCP and A2A. npm + Python SDKs, Elixir reference CLI.</td><td><span class="rg tree">in_tree</span></td><td>58 tests; the compose suite above is its conformance surface</td></tr>
         <tr><td>OpenSentience OS-001…011 + SCOPE</td><td>The twelve research protocols: continual learning, κ-routing, deliberation, attention, model tiers, governance, adversarial (draft), harness, PRISM, PULSE, embodiment, scope.</td><td><span class="rg tree">in_tree</span></td><td>OS-007 is the one still-draft protocol; OS-012 SCOPE deliberately deferred</td></tr>
         <tr><td>PULSE 0.1.1</td><td>Temporal algebra: a loop declares its phases, cadence, nesting and cross-loop tokens in one JSON file.</td><td><span class="rg dep">live_deployed</span></td><td>npm <code>os-pulse</code>; six canonical tokens; three reference manifests</td></tr>
         <tr><td>PRISM 0.1.0</td><td>Diagnostic benchmark that reads any PULSE manifest and measures the loop over time.</td><td><span class="rg dep">live_deployed</span></td><td>172 tests; prism-eval.fly.dev answered 200 today</td></tr>
@@ -360,7 +360,7 @@
       <div class="card">
         <div class="tag">Kernel · doctrine stratum</div>
         <h3>The laws, and the three that fail on purpose</h3>
-        <p>Run both suites and the kernel prints 109 enforced laws, then 101 compose laws, 2,000 randomised trials each, and then three lines in red: CP5, CP6 and CP7 are algebraic gaps the kernel has not closed, and the build fails if one of them ever starts <em>passing</em>. That inversion is the most credible thing in the portfolio. A test suite that can only go green is not evidence; this one carries its own negative controls.</p>
+        <p>Run both suites and the kernel prints 109 enforced kernel laws, then 101 enforced compose laws, 2,000 randomised trials each, and then three lines in red: CP5, CP6 and CP7 are algebraic gaps the kernel has not closed, and the build fails if one of them ever starts <em>passing</em>. That inversion is the most credible thing in the portfolio. A test suite that can only go green is not evidence; this one carries its own negative controls.</p>
         <p>The July–August round with outside review (R25–R63 in the revision register) produced the compose layer almost entirely from falsifiers: a coalition handing off on behalf of a member that could not have handed off itself; identity that quantifies over the carrier rather than everything a constructor can represent; a certificate that is presented, not authenticated, unless this process minted it.</p>
         <div class="foot">cd AmpersandBoxDesign/box-and-box &amp;&amp; node test/laws.mjs &amp;&amp; node test/compose-laws.mjs · ~2 s</div>
       </div>
